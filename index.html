@@ -579,8 +579,11 @@
           data-i18n-attr="aria-label:gallery.close" aria-label="Fechar">×</button>
   <button type="button" class="lb-nav lb-prev" id="lb-prev"
           data-i18n-attr="aria-label:gallery.prev" aria-label="Foto anterior">‹</button>
+  <!-- src fica vazio de propósito: é preenchido ao abrir a foto. Sem o
+       atributo, e não como src="", que faria o navegador pedir a própria
+       página de volta. -->
   <figure class="lb-figure">
-    <img id="lb-image" src="" alt="">
+    <img id="lb-image" alt="">
     <figcaption id="lb-caption"></figcaption>
   </figure>
   <button type="button" class="lb-nav lb-next" id="lb-next"
