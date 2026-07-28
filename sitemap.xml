@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Troque o domínio pelo domínio real depois de publicar o site. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://deliciasbrasilflorida.com/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://deliciasbrasilflorida.com/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://deliciasbrasilflorida.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deliciasbrasilflorida.com/"/>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

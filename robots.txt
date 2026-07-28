@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Troque o domínio abaixo pelo domínio real depois de publicar o site.
+Sitemap: https://deliciasbrasilflorida.com/sitemap.xml
