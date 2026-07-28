@@ -145,21 +145,42 @@ Depois acesse `http://localhost:3000` (ou `:8000`).
 
 Todo o site é estático, então serve em qualquer lugar:
 
-- **GitHub Pages** — já está configurado e no ar (veja abaixo).
+- **GitHub Pages** — já configurado; falta um clique (veja abaixo).
 - **Netlify / Vercel / Cloudflare Pages** — arraste a pasta na interface deles.
 - **Hospedagem comum (cPanel, Hostinger, etc.)** — envie os arquivos por FTP
   para a pasta `public_html`.
 
-### Endereço atual
-
-O site está publicado no GitHub Pages, de graça e sem prazo de validade:
+### Endereço do site
 
 **https://jacqueplaton.github.io/sites/**
 
-A publicação é automática: todo `push` nesta branch dispara o workflow
-`.github/workflows/deploy.yml`, que reconstrói e republica em cerca de um
-minuto. Também dá para publicar na mão pelo botão "Run workflow", na aba
-**Actions** do repositório.
+O GitHub Pages é gratuito, não expira e já suporta domínio próprio depois.
+Está tudo configurado, mas **falta um clique que só o dono da conta pode dar**:
+o GitHub não deixa nenhum robô ligar o Pages pela primeira vez.
+
+#### O passo que falta (uma vez só, ~15 segundos)
+
+1. Abra **https://github.com/jacqueplaton/sites/settings/pages**
+2. Em **Source**, escolha **GitHub Actions**
+3. Pronto. Abra a aba **Actions**, clique em "Publicar site no GitHub Pages"
+   e depois em **Run workflow**.
+
+Em cerca de um minuto o site está no ar no endereço acima. Daí em diante é
+automático: todo `push` nesta branch republica sozinho.
+
+#### Alternativa, se preferir sem Actions
+
+Em **Settings → Pages → Source**, escolha **Deploy from a branch**, selecione a
+branch `claude/session-x6jjir` e a pasta `/ (root)`. Funciona igual — o site já
+está na raiz do repositório e o arquivo `.nojekyll` está no lugar. Nesse caso
+você pode apagar `.github/workflows/deploy.yml`, que deixa de ser necessário.
+
+#### Por que o robô não conseguiu terminar
+
+Criar um site do Pages exige permissão de administrador do repositório. Nem o
+token desta sessão nem o `GITHUB_TOKEN` do Actions têm essa permissão — a
+tentativa automática falha com *"Resource not accessible by integration"*.
+Depois que o Pages existe, o workflow publica sozinho para sempre.
 
 ### Ao registrar um domínio próprio
 
@@ -221,8 +242,9 @@ Nada aqui foi inventado. Estes pontos ficaram propositalmente em aberto:
 | 4 | **Logotipo oficial** | Não recebido | `media/logo.svg` é um desenho provisório feito com as cores do briefing (fruta dourada + folha verde). Substitua pelo arquivo oficial mantendo o nome. |
 | 5 | **Fotos reais do restaurante** | Não recebidas | Todas as imagens foram extraídas dos 5 vídeos enviados. Se houver fotos do salão, da fachada ou da equipe, elas ajudam bastante na seção Galeria. |
 | 6 | **Depoimentos de clientes** | Não recebidos | Nenhum foi inventado. Há um bloco pronto e comentado na seção Avaliações do `index.html` para colar textos reais quando tiver, com autorização de quem escreveu. |
-| 7 | **Domínio próprio** | Não registrado | O site está no ar em `jacqueplaton.github.io/sites/`. Ao registrar o domínio do restaurante, siga "Ao registrar um domínio próprio". |
-| 8 | **Coordenadas do mapa** | Não confirmadas | O JSON-LD usa só o endereço, sem latitude/longitude, para não arriscar apontar o pino no lugar errado. Pegue as coordenadas exatas no perfil do Google Business e adicione um bloco `geo` se quiser. |
+| 7 | **Ligar o GitHub Pages** | Falta 1 clique | Settings → Pages → Source → "GitHub Actions". Só o dono da conta pode fazer. Veja "O passo que falta". |
+| 8 | **Domínio próprio** | Não registrado | Depois de publicado, siga "Ao registrar um domínio próprio". |
+| 9 | **Coordenadas do mapa** | Não confirmadas | O JSON-LD usa só o endereço, sem latitude/longitude, para não arriscar apontar o pino no lugar errado. Pegue as coordenadas exatas no perfil do Google Business e adicione um bloco `geo` se quiser. |
 
 ---
 
