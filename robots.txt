@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Troque o domínio abaixo pelo domínio real depois de publicar o site.
-Sitemap: https://deliciasbrasilflorida.com/sitemap.xml
+Sitemap: https://jacqueplaton.github.io/sites/sitemap.xml

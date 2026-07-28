@@ -145,15 +145,33 @@ Depois acesse `http://localhost:3000` (ou `:8000`).
 
 Todo o site é estático, então serve em qualquer lugar:
 
-- **Netlify / Vercel / Cloudflare Pages** — arraste a pasta, pronto.
-- **GitHub Pages** — ative nas configurações do repositório.
+- **GitHub Pages** — já está configurado e no ar (veja abaixo).
+- **Netlify / Vercel / Cloudflare Pages** — arraste a pasta na interface deles.
 - **Hospedagem comum (cPanel, Hostinger, etc.)** — envie os arquivos por FTP
   para a pasta `public_html`.
 
-### Depois de publicar: trocar o domínio
+### Endereço atual
 
-O código usa `https://deliciasbrasilflorida.com/` como exemplo. Troque pelo
-domínio real em três arquivos:
+O site está publicado no GitHub Pages, de graça e sem prazo de validade:
+
+**https://jacqueplaton.github.io/sites/**
+
+A publicação é automática: todo `push` nesta branch dispara o workflow
+`.github/workflows/deploy.yml`, que reconstrói e republica em cerca de um
+minuto. Também dá para publicar na mão pelo botão "Run workflow", na aba
+**Actions** do repositório.
+
+### Ao registrar um domínio próprio
+
+Quando o restaurante tiver o domínio (algo como `deliciasbrasilflorida.com`):
+
+1. No repositório, vá em **Settings → Pages → Custom domain**, digite o domínio
+   e salve. O GitHub cria um arquivo `CNAME` e emite o certificado HTTPS.
+2. No painel do registrador do domínio, aponte o DNS para o GitHub:
+   - registro `A` de `@` para `185.199.108.153`, `185.199.109.153`,
+     `185.199.110.153` e `185.199.111.153`
+   - registro `CNAME` de `www` para `jacqueplaton.github.io`
+3. Troque as URLs absolutas pelo novo domínio nos três arquivos abaixo.
 
 | Arquivo | Onde |
 |---|---|
@@ -161,7 +179,8 @@ domínio real em três arquivos:
 | `robots.txt` | linha `Sitemap:` |
 | `sitemap.xml` | as tags `<loc>` e `<xhtml:link href>` |
 
-Um "localizar e substituir" pelo domínio antigo resolve os três de uma vez.
+Um "localizar e substituir" de `https://jacqueplaton.github.io/sites/` pelo novo
+endereço resolve os três de uma vez.
 
 ### Depois de publicar: Google
 
@@ -202,7 +221,7 @@ Nada aqui foi inventado. Estes pontos ficaram propositalmente em aberto:
 | 4 | **Logotipo oficial** | Não recebido | `media/logo.svg` é um desenho provisório feito com as cores do briefing (fruta dourada + folha verde). Substitua pelo arquivo oficial mantendo o nome. |
 | 5 | **Fotos reais do restaurante** | Não recebidas | Todas as imagens foram extraídas dos 5 vídeos enviados. Se houver fotos do salão, da fachada ou da equipe, elas ajudam bastante na seção Galeria. |
 | 6 | **Depoimentos de clientes** | Não recebidos | Nenhum foi inventado. Há um bloco pronto e comentado na seção Avaliações do `index.html` para colar textos reais quando tiver, com autorização de quem escreveu. |
-| 7 | **Domínio** | Não definido | Veja "Depois de publicar: trocar o domínio". |
+| 7 | **Domínio próprio** | Não registrado | O site está no ar em `jacqueplaton.github.io/sites/`. Ao registrar o domínio do restaurante, siga "Ao registrar um domínio próprio". |
 | 8 | **Coordenadas do mapa** | Não confirmadas | O JSON-LD usa só o endereço, sem latitude/longitude, para não arriscar apontar o pino no lugar errado. Pegue as coordenadas exatas no perfil do Google Business e adicione um bloco `geo` se quiser. |
 
 ---
