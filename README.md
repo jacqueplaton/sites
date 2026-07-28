@@ -145,10 +145,56 @@ Depois acesse `http://localhost:3000` (ou `:8000`).
 
 Todo o site é estático, então serve em qualquer lugar:
 
-- **GitHub Pages** — já configurado; falta um clique (veja abaixo).
-- **Netlify / Vercel / Cloudflare Pages** — arraste a pasta na interface deles.
+- **Netlify** — já configurado; duas formas, veja abaixo.
+- **GitHub Pages** — já configurado; falta um clique, veja mais adiante.
+- **Vercel / Cloudflare Pages** — funcionam igual, é o mesmo site estático.
 - **Hospedagem comum (cPanel, Hostinger, etc.)** — envie os arquivos por FTP
   para a pasta `public_html`.
+
+---
+
+## Publicar na Netlify
+
+O repositório já tem `netlify.toml` e `netlify-build.sh`, então a Netlify
+publica sem você precisar preencher nada na interface. O build separa só os
+arquivos do site (deixa `.claude`, `.github` e este README de fora) e **troca
+sozinho as URLs de SEO** pelo endereço que a Netlify atribuir.
+
+### Opção 1 — conectar o repositório (recomendado)
+
+É a melhor para portfólio: cada `push` republica sozinho, e as URLs de
+canonical, Open Graph, `hreflang`, JSON-LD, `robots.txt` e `sitemap.xml`
+passam a apontar para o endereço certo automaticamente.
+
+1. Entre em **https://app.netlify.com** com a sua conta.
+2. **Add new site → Import an existing project → GitHub**.
+3. Autorize a Netlify e escolha o repositório **`jacqueplaton/sites`**.
+4. Em **Branch to deploy**, escolha **`claude/session-x6jjir`**.
+5. Não preencha comando de build nem pasta — o `netlify.toml` já define.
+6. **Deploy site**.
+
+Em cerca de um minuto o site fica no ar. Para trocar o endereço padrão, vá em
+**Site configuration → Change site name**.
+
+### Opção 2 — arrastar o pacote (mais rápido, sem Git)
+
+1. Entre em **https://app.netlify.com/drop**
+2. Arraste o arquivo `deliciasbrasil-netlify.zip` para a área indicada.
+
+Fica no ar em segundos. Só uma ressalva: nesse modo as URLs absolutas de SEO
+continuam apontando para o endereço do GitHub Pages, porque no momento de
+arrastar ainda não existe endereço definido. Para portfólio isso não atrapalha
+a aparência, mas se for indexar no Google prefira a Opção 1, ou ajuste depois
+conforme a seção "Ao registrar um domínio próprio".
+
+### Domínio próprio na Netlify
+
+**Domain management → Add a domain**, e a própria Netlify mostra os registros
+de DNS para configurar no registrador. O certificado HTTPS é automático.
+
+---
+
+## Publicar no GitHub Pages
 
 ### Endereço do site
 
@@ -242,7 +288,8 @@ Nada aqui foi inventado. Estes pontos ficaram propositalmente em aberto:
 | 4 | **Logotipo oficial** | Não recebido | `media/logo.svg` é um desenho provisório feito com as cores do briefing (fruta dourada + folha verde). Substitua pelo arquivo oficial mantendo o nome. |
 | 5 | **Fotos reais do restaurante** | Não recebidas | Todas as imagens foram extraídas dos 5 vídeos enviados. Se houver fotos do salão, da fachada ou da equipe, elas ajudam bastante na seção Galeria. |
 | 6 | **Depoimentos de clientes** | Não recebidos | Nenhum foi inventado. Há um bloco pronto e comentado na seção Avaliações do `index.html` para colar textos reais quando tiver, com autorização de quem escreveu. |
-| 7 | **Ligar o GitHub Pages** | Falta 1 clique | Settings → Pages → Source → "GitHub Actions". Só o dono da conta pode fazer. Veja "O passo que falta". |
+| 7 | **Publicar** | Falta você escolher | Netlify (veja "Publicar na Netlify") ou GitHub Pages. Os dois estão configurados; qualquer um exige um passo na sua conta, que nenhum robô pode dar. |
+| 7b | **Ligar o GitHub Pages** | Falta 1 clique | Settings → Pages → Source → "GitHub Actions". Só o dono da conta pode fazer. Veja "O passo que falta". |
 | 8 | **Domínio próprio** | Não registrado | Depois de publicado, siga "Ao registrar um domínio próprio". |
 | 9 | **Coordenadas do mapa** | Não confirmadas | O JSON-LD usa só o endereço, sem latitude/longitude, para não arriscar apontar o pino no lugar errado. Pegue as coordenadas exatas no perfil do Google Business e adicione um bloco `geo` se quiser. |
 

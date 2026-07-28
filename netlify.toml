@@ -1,0 +1,51 @@
+# ==========================================================================
+# Configuração do Netlify
+# --------------------------------------------------------------------------
+# Se você conectar este repositório no Netlify (Add new site → Import an
+# existing project), ele lê este arquivo e publica sozinho. Não precisa
+# preencher nada na interface — nem comando de build, nem pasta.
+# ==========================================================================
+
+[build]
+  # Monta uma pasta só com os arquivos do site e ajusta as URLs absolutas
+  # para o endereço que o Netlify atribuir. Veja netlify-build.sh.
+  command  = "bash netlify-build.sh"
+  publish  = "_site"
+
+# --------------------------------------------------------------------------
+# Cache. Os arquivos de mídia e as fontes nunca mudam de conteúdo sem mudar
+# de nome, então podem ficar guardados por um ano no navegador do visitante.
+# O HTML precisa ser sempre revalidado, senão uma troca de cardápio demora
+# a aparecer.
+# --------------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+    X-Frame-Options        = "SAMEORIGIN"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
