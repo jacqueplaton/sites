@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500" role="img" aria-label="Placeholder 06 · SOBRE">
+  <rect width="1200" height="1500" fill="#EDE7DD"/>
+  <rect x="16" y="16" width="1168" height="1468" fill="none" stroke="#B08D57" stroke-width="2" stroke-dasharray="10 8" opacity=".7"/>
+  <line x1="600" y1="450" x2="600" y2="600" stroke="#16294A" stroke-width="1" opacity=".35"/>
+  <circle cx="600" cy="450" r="4" fill="#B08D57"/>
+  <text x="600" y="750" font-family="IBM Plex Mono, monospace" font-size="34" fill="#16294A" text-anchor="middle" letter-spacing="4">06 · SOBRE</text>
+  <text x="600" y="870" font-family="Manrope, Helvetica, sans-serif" font-size="20" fill="#55595F" text-anchor="middle">Retrato autoral na entrada do consultorio</text>
+  <text x="600" y="990" font-family="IBM Plex Mono, monospace" font-size="13" fill="#8A8578" text-anchor="middle" letter-spacing="2">SUBSTITUIR POR FOTOGRAFIA REAL · 4:5 · 1200x1500</text>
+</svg>

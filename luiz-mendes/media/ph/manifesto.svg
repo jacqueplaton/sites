@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" role="img" aria-label="Placeholder 03 · MANIFESTO">
+  <rect width="1920" height="1080" fill="#EDE7DD"/>
+  <rect x="16" y="16" width="1888" height="1048" fill="none" stroke="#B08D57" stroke-width="2" stroke-dasharray="10 8" opacity=".7"/>
+  <line x1="960" y1="324" x2="960" y2="432" stroke="#16294A" stroke-width="1" opacity=".35"/>
+  <circle cx="960" cy="324" r="4" fill="#B08D57"/>
+  <text x="960" y="540" font-family="IBM Plex Mono, monospace" font-size="54" fill="#16294A" text-anchor="middle" letter-spacing="4">03 · MANIFESTO</text>
+  <text x="960" y="626" font-family="Manrope, Helvetica, sans-serif" font-size="33" fill="#55595F" text-anchor="middle">Maos preparando instrumentos · fundo marinho · POSTER DO VIDEO</text>
+  <text x="960" y="713" font-family="IBM Plex Mono, monospace" font-size="21" fill="#8A8578" text-anchor="middle" letter-spacing="2">SUBSTITUIR POR FOTOGRAFIA REAL · 16:9 · 1920x1080</text>
+</svg>

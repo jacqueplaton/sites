@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" width="1500" height="1000" role="img" aria-label="Placeholder 02 · EMPATIA">
+  <rect width="1500" height="1000" fill="#EDE7DD"/>
+  <rect x="16" y="16" width="1468" height="968" fill="none" stroke="#B08D57" stroke-width="2" stroke-dasharray="10 8" opacity=".7"/>
+  <line x1="750" y1="300" x2="750" y2="400" stroke="#16294A" stroke-width="1" opacity=".35"/>
+  <circle cx="750" cy="300" r="4" fill="#B08D57"/>
+  <text x="750" y="500" font-family="IBM Plex Mono, monospace" font-size="42" fill="#16294A" text-anchor="middle" letter-spacing="4">02 · EMPATIA</text>
+  <text x="750" y="580" font-family="Manrope, Helvetica, sans-serif" font-size="26" fill="#55595F" text-anchor="middle">Pessoa em casa percebendo desconforto · espaço à esquerda</text>
+  <text x="750" y="660" font-family="IBM Plex Mono, monospace" font-size="16" fill="#8A8578" text-anchor="middle" letter-spacing="2">SUBSTITUIR POR FOTOGRAFIA REAL · 3:2 · 1500x1000</text>
+</svg>

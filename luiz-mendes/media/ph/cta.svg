@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2100 900" width="2100" height="900" role="img" aria-label="Placeholder 08 · CTA FINAL">
+  <rect width="2100" height="900" fill="#EDE7DD"/>
+  <rect x="16" y="16" width="2068" height="868" fill="none" stroke="#B08D57" stroke-width="2" stroke-dasharray="10 8" opacity=".7"/>
+  <line x1="1050" y1="270" x2="1050" y2="360" stroke="#16294A" stroke-width="1" opacity=".35"/>
+  <circle cx="1050" cy="270" r="4" fill="#B08D57"/>
+  <text x="1050" y="450" font-family="IBM Plex Mono, monospace" font-size="59" fill="#16294A" text-anchor="middle" letter-spacing="4">08 · CTA FINAL</text>
+  <text x="1050" y="522" font-family="Manrope, Helvetica, sans-serif" font-size="36" fill="#55595F" text-anchor="middle">Caminhando pelo consultorio · luz quente · POSTER DO VIDEO</text>
+  <text x="1050" y="594" font-family="IBM Plex Mono, monospace" font-size="23" fill="#8A8578" text-anchor="middle" letter-spacing="2">SUBSTITUIR POR FOTOGRAFIA REAL · 21:9 · 2100x900</text>
+</svg>
