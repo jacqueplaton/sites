@@ -1,0 +1,68 @@
+import Image from "next/image";
+import type { Treatment } from "@/data/treatments";
+import { TREATMENT_NOTE } from "@/data/treatments";
+import { treatmentWhatsappUrl } from "@/lib/whatsapp";
+
+type Props = {
+  treatment: Treatment;
+  index: number;
+};
+
+export default function TreatmentCard({ treatment, index }: Props) {
+  return (
+    <article className="group flex flex-col border-t rule pt-6" data-reveal>
+      <div className="flex items-baseline justify-between gap-4">
+        <span className="eyebrow text-dourado-escuro">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <span className="eyebrow text-grafite/65">Tratamento</span>
+      </div>
+
+      <div className="relative mt-6 aspect-4/3 w-full overflow-hidden bg-areia/35">
+        <Image
+          src={treatment.image}
+          alt={treatment.alt}
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
+        />
+      </div>
+
+      <h3 className="mt-7 font-display text-[1.75rem] leading-tight font-light text-vinho">
+        {treatment.name}
+      </h3>
+
+      <p className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <span className="text-[1.25rem] font-semibold tracking-tight text-grafite">
+          {treatment.price}
+          {treatment.priceNote ? (
+            <span className="ml-1 text-[0.8125rem] font-normal text-grafite/65">
+              {treatment.priceNote}
+            </span>
+          ) : null}
+        </span>
+        <span className="text-[0.875rem] text-grafite/65">
+          <span className="sr-only">Valor anterior: </span>
+          <s>{treatment.previousPrice}</s>
+        </span>
+      </p>
+
+      <p className="mt-3 text-[0.8125rem] leading-relaxed text-grafite/65">
+        {TREATMENT_NOTE}
+      </p>
+
+      <a
+        href={treatmentWhatsappUrl(treatment.name)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-6 inline-flex items-center gap-2 self-start text-[0.75rem] font-semibold tracking-[0.08em] text-vinho uppercase"
+      >
+        <span className="link-underline">Quero saber mais</span>
+        <span aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1">
+          →
+        </span>
+        <span className="sr-only">sobre {treatment.name}, pelo WhatsApp</span>
+      </a>
+    </article>
+  );
+}
