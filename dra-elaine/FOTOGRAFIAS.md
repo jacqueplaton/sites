@@ -46,3 +46,31 @@ Todos em `public/images/tratamentos/`:
 - Os textos alternativos (`alt`) já estão definidos em
   `src/data/treatments.ts` e nos componentes dos retratos. Se uma foto for
   trocada por outra cena, ajuste o `alt` correspondente.
+
+---
+
+## Como as fotos atuais foram geradas
+
+Os originais estavam em armazenamento externo e o ambiente de
+desenvolvimento não alcança aquele host. O pacote publicado foi montado
+baixando os originais, convertendo para WebP e buildando:
+
+```bash
+# retratos  -> 1122 px de largura
+# procedimentos -> 1200 px de largura
+convert original.png -strip -resize 1122x -quality 82 \
+  -define webp:method=6 public/images/dra-elaine-hero.webp
+```
+
+Resultado: as nove imagens somam **512 KB** (os PNGs originais somavam
+cerca de 17 MB). O site referencia `.webp`.
+
+## Conferir o que é cada foto
+
+Os originais foram medidos: **3 retratos 1122×1402** e **6 procedimentos
+1448×1086**, o que bate com o que o site pede. A orientação está correta,
+mas qual retrato vai em qual seção — e qual procedimento é qual — ainda
+precisa de conferência visual.
+
+Para trocar, renomeie os arquivos em `public/images/`. Nenhum componente
+muda.

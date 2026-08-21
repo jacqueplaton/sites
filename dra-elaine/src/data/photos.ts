@@ -7,15 +7,15 @@
  * de nome — nenhum componente precisa mudar.
  */
 export const photos = {
-  heroPortrait: "/images/dra-elaine-hero.png",
-  aboutPortrait: "/images/dra-elaine-sobre.png",
-  approachPortrait: "/images/dra-elaine-profissional.png",
+  heroPortrait: "/images/dra-elaine-hero.webp",
+  aboutPortrait: "/images/dra-elaine-sobre.webp",
+  approachPortrait: "/images/dra-elaine-profissional.webp",
   treatments: {
-    "preenchimento-labial": "/images/tratamentos/preenchimento-labial.png",
-    "enzimas-emagrecedoras": "/images/tratamentos/enzimas-emagrecedoras.png",
-    skinbooster: "/images/tratamentos/skinbooster.png",
-    microagulhamento: "/images/tratamentos/microagulhamento.png",
-    botox: "/images/tratamentos/botox.png",
-    criofrequencia: "/images/tratamentos/criofrequencia.png",
+    "preenchimento-labial": "/images/tratamentos/preenchimento-labial.webp",
+    "enzimas-emagrecedoras": "/images/tratamentos/enzimas-emagrecedoras.webp",
+    skinbooster: "/images/tratamentos/skinbooster.webp",
+    microagulhamento: "/images/tratamentos/microagulhamento.webp",
+    botox: "/images/tratamentos/botox.webp",
+    criofrequencia: "/images/tratamentos/criofrequencia.webp",
   },
 } as const;
