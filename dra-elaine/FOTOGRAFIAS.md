@@ -11,6 +11,9 @@ A verificação é feita no build. Salve o arquivo com o nome esperado e rode
 `npm run build`: a foto substitui o slot automaticamente, sem mexer em
 código.
 
+Este arquivo fica fora de `public/` de propósito: assim ele não vai junto
+para o site publicado.
+
 ## Retratos — proporção vertical 4:5 (ex.: 1200 × 1500 px)
 
 | Arquivo | Onde aparece |

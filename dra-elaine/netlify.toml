@@ -1,0 +1,29 @@
+# Publicação do site da Dra. Elaine Fernandes no Netlify.
+#
+# Use este arquivo quando o site do Netlify estiver conectado ao repositório.
+# No painel do Netlify, defina a base directory como `dra-elaine` — é a partir
+# dela que estes caminhos são resolvidos.
+#
+# Para uma publicação avulsa (sem conectar o repositório), basta arrastar a
+# pasta `out/` — ou o zip dela — em https://app.netlify.com/drop.
+
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Os arquivos com hash no nome nunca mudam de conteúdo: podem ser guardados
+# em cache indefinidamente.
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"

@@ -49,7 +49,7 @@ preencher para que apareçam automaticamente no rodapé e na seção "Sobre".
 ## Fotografias
 
 Os 9 arquivos usados pelo site estão descritos em
-[`public/images/LEIA-ME.md`](public/images/LEIA-ME.md), com nomes, caminhos
+[`FOTOGRAFIAS.md`](FOTOGRAFIAS.md), com nomes, caminhos
 e proporções.
 
 Enquanto uma fotografia não é entregue, o componente `PhotoFrame` exibe o
