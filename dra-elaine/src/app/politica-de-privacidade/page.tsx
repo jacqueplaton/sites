@@ -55,20 +55,20 @@ const sections = [
 
 export default function PrivacyPolicy() {
   return (
-    <main id="conteudo" className="flex-1 bg-marfim">
+    <main id="conteudo" className="flex-1 bg-tinta">
       <div className="mx-auto max-w-[52rem] px-5 py-16 sm:px-8 lg:py-24">
         <Link
           href="/"
-          className="link-underline eyebrow text-grafite/65"
+          className="link-underline eyebrow text-blush/75"
         >
           ← Voltar ao início
         </Link>
 
-        <h1 className="mt-10 font-display text-[2.5rem] leading-[1.02] font-light text-vinho sm:text-[3.25rem]">
+        <h1 className="mt-10 font-display text-[2.5rem] leading-[1.02] font-light text-creme sm:text-[3.25rem]">
           Política de <span className="italic">Privacidade</span>
         </h1>
 
-        <p className="mt-6 max-w-[60ch] text-[1rem] leading-relaxed text-grafite/70">
+        <p className="mt-6 max-w-[60ch] text-[1rem] leading-relaxed text-blush/80">
           Esta página explica como as informações enviadas por meio do site da{" "}
           {siteData.displayName} são utilizadas.
         </p>
@@ -77,10 +77,10 @@ export default function PrivacyPolicy() {
           {sections.map((section, index) => (
             <section key={section.title} className="border-t rule py-9">
               <div className="flex items-baseline gap-4">
-                <span className="eyebrow text-dourado-escuro">
+                <span className="eyebrow text-latao">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <h2 className="font-display text-[1.625rem] leading-tight font-light text-vinho">
+                <h2 className="font-display text-[1.625rem] leading-tight font-light text-creme">
                   {section.title}
                 </h2>
               </div>
@@ -88,7 +88,7 @@ export default function PrivacyPolicy() {
                 {section.body.map((paragraph) => (
                   <p
                     key={paragraph}
-                    className="max-w-[62ch] text-[0.9375rem] leading-relaxed text-grafite/70 text-pretty"
+                    className="max-w-[62ch] text-[0.9375rem] leading-relaxed text-blush/80 text-pretty"
                   >
                     {paragraph}
                   </p>
@@ -99,15 +99,15 @@ export default function PrivacyPolicy() {
 
           <section className="border-t border-b rule py-9">
             <div className="flex items-baseline gap-4">
-              <span className="eyebrow text-dourado-escuro">
+              <span className="eyebrow text-latao">
                 {String(sections.length + 1).padStart(2, "0")}
               </span>
-              <h2 className="font-display text-[1.625rem] leading-tight font-light text-vinho">
+              <h2 className="font-display text-[1.625rem] leading-tight font-light text-creme">
                 Contato
               </h2>
             </div>
             <div className="mt-4 sm:pl-11">
-              <p className="text-[0.9375rem] leading-relaxed text-grafite/70">
+              <p className="text-[0.9375rem] leading-relaxed text-blush/80">
                 Dúvidas sobre esta política podem ser enviadas pelo WhatsApp{" "}
                 <a
                   href={whatsappUrl(
@@ -115,18 +115,18 @@ export default function PrivacyPolicy() {
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="link-underline text-vinho"
+                  className="link-underline text-creme"
                 >
                   {siteData.whatsappDisplay}
                 </a>
                 .
               </p>
               {siteData.email && (
-                <p className="mt-2 text-[0.9375rem] text-grafite/70">
+                <p className="mt-2 text-[0.9375rem] text-blush/80">
                   E-mail:{" "}
                   <a
                     href={`mailto:${siteData.email}`}
-                    className="link-underline text-vinho"
+                    className="link-underline text-creme"
                   >
                     {siteData.email}
                   </a>
@@ -136,7 +136,7 @@ export default function PrivacyPolicy() {
           </section>
         </div>
 
-        <p className="mt-10 text-[0.75rem] leading-relaxed text-grafite/65">
+        <p className="mt-10 text-[0.75rem] leading-relaxed text-blush/75">
           O conteúdo deste site tem caráter informativo e não substitui a
           avaliação de um profissional de saúde.
         </p>

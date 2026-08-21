@@ -18,9 +18,9 @@ const items = [
 
 export default function TrustStrip() {
   return (
-    <section aria-label="Diferenciais do atendimento" className="bg-vinho on-dark text-marfim">
+    <section aria-label="Diferenciais do atendimento" className="bg-vinho on-dark text-creme">
       <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
-        <ul className="grid divide-y divide-marfim/12 md:grid-cols-3 md:divide-x md:divide-y-0">
+        <ul className="grid divide-y divide-blush/20 md:grid-cols-3 md:divide-x md:divide-y-0">
           {items.map((item, i) => (
             <li
               key={item.index}
@@ -28,11 +28,11 @@ export default function TrustStrip() {
               data-reveal
               style={{ ["--reveal-delay" as string]: `${i * 90}ms` }}
             >
-              <span className="eyebrow text-dourado">{item.index}</span>
-              <h2 className="mt-4 font-display text-[1.5rem] leading-tight font-light text-marfim">
+              <span className="eyebrow text-latao">{item.index}</span>
+              <h2 className="mt-4 font-display text-[1.5rem] leading-tight font-light text-creme">
                 {item.title}
               </h2>
-              <p className="mt-3 text-[0.8125rem] leading-relaxed text-marfim/60">
+              <p className="mt-3 text-[0.8125rem] leading-relaxed text-creme/60">
                 {item.detail}
               </p>
             </li>

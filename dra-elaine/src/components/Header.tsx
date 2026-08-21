@@ -66,8 +66,8 @@ export default function Header() {
 
   return (
     <>
-      <div className="bg-vinho text-marfim on-dark">
-        <p className="eyebrow mx-auto max-w-[88rem] px-5 py-2.5 text-center text-[0.5625rem] leading-relaxed tracking-[0.1em] text-marfim/85 sm:px-8 sm:text-[0.6875rem] sm:tracking-[0.22em]">
+      <div className="bg-vinho text-creme on-dark">
+        <p className="eyebrow mx-auto max-w-[88rem] px-5 py-2.5 text-center text-[0.5625rem] leading-relaxed tracking-[0.1em] text-creme/85 sm:px-8 sm:text-[0.6875rem] sm:tracking-[0.22em]">
           Atendimento presencial, on-line e domiciliar no RJ
         </p>
       </div>
@@ -75,14 +75,14 @@ export default function Header() {
       <header
         className={`sticky top-0 z-50 border-b transition-colors duration-500 ${
           scrolled
-            ? "rule bg-marfim/92 backdrop-blur-md"
-            : "border-transparent bg-marfim"
+            ? "rule bg-tinta/90 backdrop-blur-md"
+            : "border-transparent bg-tinta"
         }`}
       >
         <div className="mx-auto flex max-w-[88rem] items-center justify-between gap-6 px-5 py-4 sm:px-8 lg:py-5">
           <a
             href="#inicio"
-            className="font-display text-[1.35rem] leading-none tracking-tight text-vinho sm:text-[1.5rem]"
+            className="font-display text-[1.35rem] leading-none tracking-tight text-creme sm:text-[1.5rem]"
           >
             Dra. Elaine <span className="italic font-light">Fernandes</span>
           </a>
@@ -93,7 +93,7 @@ export default function Header() {
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="link-underline text-[0.8125rem] font-medium text-grafite/75 transition-colors hover:text-vinho"
+                    className="link-underline text-[0.8125rem] font-medium text-blush/85 transition-colors hover:text-creme"
                   >
                     {item.label}
                   </a>
@@ -107,7 +107,7 @@ export default function Header() {
               href={whatsappUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden bg-vinho px-5 py-3 text-[0.75rem] font-semibold tracking-[0.08em] text-marfim uppercase transition-colors hover:bg-bordo sm:inline-block"
+              className="hidden bg-latao px-5 py-3 text-[0.75rem] font-semibold tracking-[0.08em] text-tinta uppercase transition-colors hover:bg-creme sm:inline-block"
             >
               Agendar avaliação
             </a>
@@ -118,7 +118,7 @@ export default function Header() {
               onClick={() => (open ? close() : setOpen(true))}
               aria-expanded={open}
               aria-controls="menu-mobile"
-              className="flex h-11 w-11 items-center justify-center border rule text-vinho lg:hidden"
+              className="flex h-11 w-11 items-center justify-center border rule text-creme lg:hidden"
             >
               <span className="sr-only">
                 {open ? "Fechar menu" : "Abrir menu"}
@@ -147,16 +147,16 @@ export default function Header() {
           role="dialog"
           aria-modal="true"
           aria-label="Menu de navegação"
-          className="fixed inset-0 z-[60] flex flex-col bg-marfim lg:hidden"
+          className="fixed inset-0 z-[60] flex flex-col bg-tinta lg:hidden"
         >
           <div className="flex items-center justify-between border-b rule px-5 py-4">
-            <span className="font-display text-[1.35rem] leading-none text-vinho">
+            <span className="font-display text-[1.35rem] leading-none text-creme">
               Dra. Elaine <span className="italic font-light">Fernandes</span>
             </span>
             <button
               type="button"
               onClick={close}
-              className="flex h-11 w-11 items-center justify-center border rule text-vinho"
+              className="flex h-11 w-11 items-center justify-center border rule text-creme"
             >
               <span className="sr-only">Fechar menu</span>
               <span aria-hidden="true" className="relative block h-5 w-5">
@@ -178,10 +178,10 @@ export default function Header() {
                     onClick={close}
                     className="flex items-baseline gap-4 py-4"
                   >
-                    <span className="eyebrow text-dourado-escuro">
+                    <span className="eyebrow text-latao">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <span className="font-display text-[1.75rem] leading-none text-vinho">
+                    <span className="font-display text-[1.75rem] leading-none text-creme">
                       {item.label}
                     </span>
                   </a>
@@ -196,11 +196,11 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={close}
-              className="block bg-vinho px-5 py-4 text-center text-[0.75rem] font-semibold tracking-[0.08em] text-marfim uppercase"
+              className="block bg-latao px-5 py-4 text-center text-[0.75rem] font-semibold tracking-[0.08em] text-tinta uppercase"
             >
               Agendar avaliação
             </a>
-            <p className="mt-3 text-center text-[0.75rem] text-grafite/65">
+            <p className="mt-3 text-center text-[0.75rem] text-blush/75">
               {siteData.whatsappDisplay} · {siteData.locationDisplay}
             </p>
           </div>

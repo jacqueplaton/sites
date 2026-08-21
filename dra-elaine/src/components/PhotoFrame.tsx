@@ -24,6 +24,8 @@ type Props = {
  * foto entrar no lugar, na mesma proporção, sem deslocar o layout.
  */
 function photoExists(src: string): boolean {
+  // Foto hospedada fora do projeto: não há o que verificar no disco.
+  if (/^https?:\/\//.test(src)) return true;
   try {
     return fs.existsSync(path.join(process.cwd(), "public", src));
   } catch {
@@ -44,7 +46,7 @@ export default function PhotoFrame({
   const available = photoExists(src);
 
   return (
-    <div className={`relative overflow-hidden bg-areia/30 ${className}`}>
+    <div className={`relative overflow-hidden bg-vinho/25 ${className}`}>
       {available ? (
         <Image
           src={src}
@@ -56,12 +58,12 @@ export default function PhotoFrame({
         />
       ) : (
         <div className="absolute inset-0 flex items-center justify-center p-6">
-          <div className="w-full max-w-[15rem] border-y border-vinho/20 py-4 text-center">
-            <p className="eyebrow text-dourado-escuro">Fotografia</p>
-            <p className="mt-2 font-display text-[1.0625rem] leading-snug text-vinho">
+          <div className="w-full max-w-[15rem] border-y rule py-4 text-center">
+            <p className="eyebrow text-latao">Fotografia</p>
+            <p className="mt-2 font-display text-[1.0625rem] leading-snug text-creme">
               {caption}
             </p>
-            <p className="mt-2 text-[0.625rem] font-semibold tracking-[0.18em] text-grafite/65 uppercase">
+            <p className="mt-2 text-[0.625rem] font-semibold tracking-[0.18em] text-blush/75 uppercase">
               {ratioLabel}
             </p>
           </div>

@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
   images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "d2ol7oe51mr4n9.cloudfront.net" },
+    ],
     // O otimizador de imagens do Next exige servidor. Na exportação estática
     // as fotos são servidas como estão, então devem ser salvas já
     // redimensionadas (ver public/images/LEIA-ME.md).

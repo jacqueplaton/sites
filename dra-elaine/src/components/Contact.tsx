@@ -40,22 +40,21 @@ export default function Contact() {
   }
 
   const fieldClass =
-    "mt-2 w-full border rule bg-branco px-4 py-3 text-[0.9375rem] text-grafite outline-none transition-colors placeholder:text-grafite/65 focus:border-vinho";
-  const labelClass = "eyebrow text-grafite/65";
+    "mt-2 w-full border rule bg-tinta px-4 py-3 text-[0.9375rem] text-creme outline-none transition-colors placeholder:text-blush/75 focus:border-vinho";
+  const labelClass = "eyebrow text-blush/75";
 
   return (
-    <section id="contato" className="border-t rule bg-marfim py-20 lg:py-32">
+    <section id="contato" className="border-t rule bg-tinta py-20 lg:py-32">
       <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-4" data-reveal>
-              <span className="eyebrow text-dourado-escuro">07</span>
-              <span aria-hidden="true" className="h-px w-10 bg-areia" />
-              <span className="eyebrow text-grafite/65">Contato</span>
+              <span aria-hidden="true" className="h-px w-8 bg-latao" />
+              <span className="eyebrow text-blush/75">Contato</span>
             </div>
 
             <h2
-              className="mt-8 max-w-[18ch] font-display text-[2.25rem] leading-[1.02] font-light text-vinho text-balance sm:text-[3rem]"
+              className="mt-8 max-w-[18ch] font-display text-[2.25rem] leading-[1.02] font-light text-creme text-balance sm:text-[3rem]"
               data-reveal
               style={{ ["--reveal-delay" as string]: "80ms" }}
             >
@@ -67,7 +66,7 @@ export default function Contact() {
               href={whatsappUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-10 inline-block bg-vinho px-7 py-4 text-[0.75rem] font-semibold tracking-[0.08em] text-marfim uppercase transition-colors hover:bg-bordo"
+              className="mt-10 inline-block bg-latao px-7 py-4 text-[0.75rem] font-semibold tracking-[0.08em] text-tinta uppercase transition-colors hover:bg-creme"
               data-reveal
             >
               Falar pelo WhatsApp
@@ -81,7 +80,7 @@ export default function Contact() {
                     href={whatsappUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="link-underline text-[0.9375rem] text-grafite"
+                    className="link-underline text-[0.9375rem] text-creme"
                   >
                     {siteData.whatsappDisplay}
                   </a>
@@ -94,7 +93,7 @@ export default function Contact() {
                     href={siteData.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="link-underline text-[0.9375rem] text-grafite"
+                    className="link-underline text-[0.9375rem] text-creme"
                   >
                     {siteData.instagramHandle}
                   </a>
@@ -102,7 +101,7 @@ export default function Contact() {
               </div>
               <div className="flex items-baseline justify-between gap-4 border-b rule py-5">
                 <dt className={labelClass}>Localização</dt>
-                <dd className="text-[0.9375rem] text-grafite">
+                <dd className="text-[0.9375rem] text-creme">
                   {siteData.locationDisplay}
                 </dd>
               </div>
@@ -205,7 +204,7 @@ export default function Contact() {
                 <label
                   htmlFor={`${uid}-consentimento`}
                   id={`${uid}-consentimento-desc`}
-                  className="text-[0.8125rem] leading-relaxed text-grafite/65"
+                  className="text-[0.8125rem] leading-relaxed text-blush/75"
                 >
                   Autorizo o contato por WhatsApp para tratar do meu
                   agendamento. Os dados preenchidos são usados apenas para
@@ -215,13 +214,13 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="mt-8 w-full bg-vinho px-7 py-4 text-[0.75rem] font-semibold tracking-[0.08em] text-marfim uppercase transition-colors hover:bg-bordo disabled:cursor-not-allowed disabled:opacity-45 sm:w-auto"
+                className="mt-8 w-full bg-latao px-7 py-4 text-[0.75rem] font-semibold tracking-[0.08em] text-tinta uppercase transition-colors hover:bg-creme disabled:cursor-not-allowed disabled:opacity-45 sm:w-auto"
                 disabled={!consent}
               >
                 Enviar pelo WhatsApp
               </button>
 
-              <p className="mt-4 text-[0.75rem] leading-relaxed text-grafite/65">
+              <p className="mt-4 text-[0.75rem] leading-relaxed text-blush/75">
                 Ao enviar, o WhatsApp abre em uma nova aba com a mensagem já
                 preenchida. Você revisa antes de enviar.
               </p>

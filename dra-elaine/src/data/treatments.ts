@@ -1,3 +1,5 @@
+import { photos } from "./photos";
+
 export type Treatment = {
   slug: string;
   name: string;
@@ -21,7 +23,7 @@ export const treatments: Treatment[] = [
     name: "Preenchimento labial",
     price: "R$ 850,00",
     previousPrice: "R$ 1.600,00",
-    image: "/images/tratamentos/preenchimento-labial.png",
+    image: photos.treatments["preenchimento-labial"],
     alt: "Profissional de luvas apoiando o queixo de uma paciente enquanto segura uma seringa, durante atendimento em consultório.",
   },
   {
@@ -29,7 +31,7 @@ export const treatments: Treatment[] = [
     name: "Enzimas emagrecedoras",
     price: "R$ 350,00",
     previousPrice: "R$ 500,00",
-    image: "/images/tratamentos/enzimas-emagrecedoras.png",
+    image: photos.treatments["enzimas-emagrecedoras"],
     alt: "Profissional de luvas demarcando a região abdominal de uma paciente com lápis branco, com bandeja de materiais ao fundo.",
   },
   {
@@ -37,7 +39,7 @@ export const treatments: Treatment[] = [
     name: "Skinbooster",
     price: "R$ 800,00",
     previousPrice: "R$ 1.900,00",
-    image: "/images/tratamentos/skinbooster.png",
+    image: photos.treatments["skinbooster"],
     alt: "Paciente deitada durante aplicação facial realizada por profissional de luvas com seringa, em consultório.",
   },
   {
@@ -45,7 +47,7 @@ export const treatments: Treatment[] = [
     name: "Microagulhamento",
     price: "R$ 580,00",
     previousPrice: "R$ 1.200,00",
-    image: "/images/tratamentos/microagulhamento.png",
+    image: photos.treatments["microagulhamento"],
     alt: "Paciente de olhos fechados recebendo aplicação na face com caneta de microagulhamento.",
   },
   {
@@ -53,7 +55,7 @@ export const treatments: Treatment[] = [
     name: "Botox",
     price: "R$ 890,00",
     previousPrice: "R$ 1.300,00",
-    image: "/images/tratamentos/botox.png",
+    image: photos.treatments["botox"],
     alt: "Profissional de luvas posicionando a pele da face de uma paciente antes da aplicação com seringa.",
   },
   {
@@ -62,7 +64,7 @@ export const treatments: Treatment[] = [
     price: "R$ 250,00",
     previousPrice: "R$ 300,00",
     priceNote: "por área",
-    image: "/images/tratamentos/criofrequencia.png",
+    image: photos.treatments["criofrequencia"],
     alt: "Aplicação de criofrequência em atendimento estético realizado em consultório.",
   },
 ];
