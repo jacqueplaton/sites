@@ -3,9 +3,13 @@
 O site referencia **9 arquivos**. Eles ainda não estão neste repositório e
 precisam ser adicionados exatamente com estes nomes e nestes caminhos.
 
-Enquanto os arquivos não existirem, o layout continua correto: cada moldura
-já reserva a proporção final, então não há salto de layout — apenas o espaço
-aparece vazio.
+Enquanto os arquivos não existirem, cada moldura exibe o slot identificado
+(nome da foto e proporção) e o layout permanece correto: a proporção final
+já está reservada, então nada se desloca quando a foto entrar.
+
+A verificação é feita no build. Salve o arquivo com o nome esperado e rode
+`npm run build`: a foto substitui o slot automaticamente, sem mexer em
+código.
 
 ## Retratos — proporção vertical 4:5 (ex.: 1200 × 1500 px)
 

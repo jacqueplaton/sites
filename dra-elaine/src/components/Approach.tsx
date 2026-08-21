@@ -1,4 +1,4 @@
-import Image from "next/image";
+import PhotoFrame from "./PhotoFrame";
 
 export default function Approach() {
   return (
@@ -7,15 +7,15 @@ export default function Approach() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Retrato deslocado do eixo do texto */}
           <div className="lg:col-span-5 lg:pt-16" data-reveal>
-            <div className="relative aspect-4/5 w-full overflow-hidden bg-areia/35">
-              <Image
-                src="/images/dra-elaine-profissional.png"
-                alt="Dra. Elaine Fernandes durante atendimento, em ambiente de consultório."
-                fill
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                className="object-cover object-top"
-              />
-            </div>
+            <PhotoFrame
+              src="/images/dra-elaine-profissional.png"
+              alt="Dra. Elaine Fernandes durante atendimento, em ambiente de consultório."
+              caption="Retrato — abordagem"
+              ratioLabel="Vertical 4:5"
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="aspect-4/5 w-full"
+              imageClassName="object-top"
+            />
             <p className="mt-4 max-w-[34ch] text-[0.75rem] leading-relaxed text-grafite/65">
               Um cuidado que começa muito antes de qualquer procedimento.
             </p>

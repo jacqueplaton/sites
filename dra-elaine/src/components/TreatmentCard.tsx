@@ -1,4 +1,4 @@
-import Image from "next/image";
+import PhotoFrame from "./PhotoFrame";
 import type { Treatment } from "@/data/treatments";
 import { TREATMENT_NOTE } from "@/data/treatments";
 import { treatmentWhatsappUrl } from "@/lib/whatsapp";
@@ -18,15 +18,15 @@ export default function TreatmentCard({ treatment, index }: Props) {
         <span className="eyebrow text-grafite/65">Tratamento</span>
       </div>
 
-      <div className="relative mt-6 aspect-4/3 w-full overflow-hidden bg-areia/35">
-        <Image
-          src={treatment.image}
-          alt={treatment.alt}
-          fill
-          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
-        />
-      </div>
+      <PhotoFrame
+        src={treatment.image}
+        alt={treatment.alt}
+        caption={treatment.name}
+        ratioLabel="Horizontal 4:3"
+        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+        className="mt-6 aspect-4/3 w-full"
+        imageClassName="transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
+      />
 
       <h3 className="mt-7 font-display text-[1.75rem] leading-tight font-light text-vinho">
         {treatment.name}

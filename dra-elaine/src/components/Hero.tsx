@@ -1,4 +1,4 @@
-import Image from "next/image";
+import PhotoFrame from "./PhotoFrame";
 import { siteData } from "@/data/site";
 import { whatsappUrl } from "@/lib/whatsapp";
 
@@ -77,16 +77,16 @@ export default function Hero() {
                 aria-hidden="true"
                 className="absolute -top-4 -left-4 hidden h-24 w-24 border-t border-l rule-dark lg:block"
               />
-              <div className="relative aspect-4/5 w-full overflow-hidden bg-areia/35 lg:aspect-auto lg:h-[min(78vh,50rem)]">
-                <Image
-                  src="/images/dra-elaine-hero.png"
-                  alt="Retrato da Dra. Elaine Fernandes em seu consultório."
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover object-top"
-                />
-              </div>
+              <PhotoFrame
+                src="/images/dra-elaine-hero.png"
+                alt="Retrato da Dra. Elaine Fernandes em seu consultório."
+                caption="Retrato de abertura"
+                ratioLabel="Vertical 4:5"
+                priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="aspect-4/5 w-full lg:aspect-auto lg:h-[min(78vh,50rem)]"
+                imageClassName="object-top"
+              />
               <span
                 aria-hidden="true"
                 className="absolute -right-4 -bottom-4 hidden h-24 w-24 border-r border-b rule-dark lg:block"

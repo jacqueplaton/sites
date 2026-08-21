@@ -52,6 +52,17 @@ Os 9 arquivos usados pelo site estão descritos em
 [`public/images/LEIA-ME.md`](public/images/LEIA-ME.md), com nomes, caminhos
 e proporções.
 
+Enquanto uma fotografia não é entregue, o componente `PhotoFrame` exibe o
+slot identificado (nome da foto e proporção) em vez de um espaço vazio. A
+verificação acontece **durante o build**: se o arquivo não existe, nenhuma
+requisição de imagem é feita, então não há erro de console nem imagem
+substituta no lugar.
+
+Para colocar uma foto no ar, basta salvar o arquivo com o nome esperado em
+`public/images/` e rodar `npm run build` de novo. Ela entra na mesma
+moldura, na mesma proporção, sem deslocar o layout e sem nenhuma alteração
+de código.
+
 ## Acessibilidade
 
 - Contraste verificado: todo texto atinge no mínimo 4.5:1 sobre o seu fundo.

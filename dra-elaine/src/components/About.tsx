@@ -1,4 +1,4 @@
-import Image from "next/image";
+import PhotoFrame from "./PhotoFrame";
 import { siteData } from "@/data/site";
 
 export default function About() {
@@ -77,15 +77,15 @@ export default function About() {
           </div>
 
           <div className="lg:col-span-5 lg:col-start-8" data-reveal>
-            <div className="relative aspect-4/5 w-full overflow-hidden bg-areia/35">
-              <Image
-                src="/images/dra-elaine-sobre.png"
-                alt="Retrato da Dra. Elaine Fernandes."
-                fill
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                className="object-cover object-top"
-              />
-            </div>
+            <PhotoFrame
+              src="/images/dra-elaine-sobre.png"
+              alt="Retrato da Dra. Elaine Fernandes."
+              caption="Retrato — sobre"
+              ratioLabel="Vertical 4:5"
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="aspect-4/5 w-full"
+              imageClassName="object-top"
+            />
           </div>
         </div>
       </div>
