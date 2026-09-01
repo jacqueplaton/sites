@@ -10,15 +10,27 @@
    Coloque o arquivo dentro de assets/ e escreva o caminho aqui.
    Deixar em branco ('') mantém a cena desenhada em SVG, que já é elegante.
    -------------------------------------------------------------------------- */
+// Um vídeo pode ser um caminho só ('assets/video/x.mp4') ou os dois formatos:
+// o navegador escolhe entre webm (mais leve) e mp4 (Safari e iPhone).
+// O 'poster' aparece antes do vídeo abrir e substitui o vídeo no celular,
+// para não gastar dados de quem está na rua.
 const MIDIA = {
-  'hero-video':  '',                                   // ex.: 'assets/video/hero-priscila.mp4'
-  'hero-foto':   '',                                   // ex.: 'assets/img/hero-priscila.jpg'
-  // um vídeo pode ser um caminho só, ou dois formatos: o navegador escolhe
-  'sobre-video': { webm: 'assets/video/sobre-escritorio.webm',
-                   mp4:  'assets/video/sobre-escritorio.mp4' },
-  'bancario':    '',                                   // ex.: 'assets/img/direito-bancario.jpg'
-  'contratos':   '',                                   // ex.: 'assets/img/contratual-consumidor.jpg'
-  'familia':     ''                                    // ex.: 'assets/img/familia-sucessoes.jpg'
+  'hero-video':  { webm:   'assets/video/hero-priscila.webm',
+                   mp4:    'assets/video/hero-priscila.mp4',
+                   poster: 'assets/img/hero-priscila.webp' },
+  'hero-foto':   '',                                   // pôster do hero: já vem do vídeo acima
+  'sobre-video': { webm:   'assets/video/sobre-escritorio.webm',
+                   mp4:    'assets/video/sobre-escritorio.mp4',
+                   poster: 'assets/img/sobre-escritorio.webp' },
+  'bancario':    { webm:   'assets/video/direito-bancario.webm',
+                   mp4:    'assets/video/direito-bancario.mp4',
+                   poster: 'assets/img/direito-bancario.webp' },
+  'contratos':   { webm:   'assets/video/contratual-consumidor.webm',
+                   mp4:    'assets/video/contratual-consumidor.mp4',
+                   poster: 'assets/img/contratual-consumidor.webp' },
+  'familia':     { webm:   'assets/video/familia-sucessoes.webm',
+                   mp4:    'assets/video/familia-sucessoes.mp4',
+                   poster: 'assets/img/familia-sucessoes.webp' }
 };
 
 (function () {
@@ -65,11 +77,33 @@ const MIDIA = {
   setTimeout(function () { clearInterval(passo); encerrarLoader(); }, 5000);
 
   /* ── Mídias opcionais (fotos e vídeos das cenas) ────────────────────── */
+  const celular = window.matchMedia('(max-width: 768px)').matches;
+
   document.querySelectorAll('[data-media]').forEach(function (el) {
-    const caminho = MIDIA[el.dataset.media];
+    let caminho = MIDIA[el.dataset.media];
     if (!caminho) { el.remove(); return; }
 
+    // Em telas pequenas as cenas de área ficam no pôster: nada de baixar vídeo
+    // na rede móvel. O hero e o retrato continuam em movimento.
+    if (celular && caminho.poster && el.classList.contains('area__photo')) {
+      const foto = document.createElement('img');
+      foto.className = el.className;
+      foto.alt = '';
+      foto.setAttribute('aria-hidden', 'true');
+      foto.width = 1280; foto.height = 720;
+      foto.loading = 'lazy'; foto.decoding = 'async';
+      foto.addEventListener('load', function () {
+        foto.classList.add('is-live');
+        if (foto.parentElement) foto.parentElement.classList.add('tem-midia');
+      }, { once: true });
+      foto.addEventListener('error', function () { foto.remove(); }, { once: true });
+      el.replaceWith(foto);
+      foto.src = caminho.poster;
+      return;
+    }
+
     if (el.tagName === 'VIDEO') {
+      if (caminho.poster && !el.getAttribute('poster')) el.setAttribute('poster', caminho.poster);
       if (typeof caminho === 'string') {
         el.src = caminho;
       } else {
@@ -84,7 +118,10 @@ const MIDIA = {
         el.load();
       }
       el.preload = 'metadata';
-      el.addEventListener('loadeddata', function () { el.classList.add('is-live'); }, { once: true });
+      el.addEventListener('loadeddata', function () {
+        el.classList.add('is-live');
+        if (el.parentElement) el.parentElement.classList.add('tem-midia');
+      }, { once: true });
       el.addEventListener('error', function () {
         // só descarta a cena se o arquivo realmente não puder ser lido;
         // uma interrupção de rede (MEDIA_ERR_ABORTED) não é motivo para isso
@@ -103,7 +140,10 @@ const MIDIA = {
         tocar();
       }
     } else {
-      el.addEventListener('load', function () { el.classList.add('is-live'); }, { once: true });
+      el.addEventListener('load', function () {
+        el.classList.add('is-live');
+        if (el.parentElement) el.parentElement.classList.add('tem-midia');
+      }, { once: true });
       el.addEventListener('error', function () { el.remove(); }, { once: true });
       el.src = caminho;
     }

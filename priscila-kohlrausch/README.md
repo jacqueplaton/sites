@@ -45,13 +45,12 @@ Abra **`js/app.js`**. Logo no começo existe este bloco:
 
 ```js
 const MIDIA = {
-  'hero-video':  '',
+  'hero-video':  { webm: '...', mp4: '...', poster: '...' },   // primeira dobra
   'hero-foto':   '',
-  'sobre-video': { webm: 'assets/video/sobre-escritorio.webm',
-                   mp4:  'assets/video/sobre-escritorio.mp4' },
-  'bancario':    '',
-  'contratos':   '',
-  'familia':     ''
+  'sobre-video': { webm: '...', mp4: '...', poster: '...' },   // retrato da seção Sobre
+  'bancario':    { webm: '...', mp4: '...', poster: '...' },   // cena do Direito Bancário
+  'contratos':   { webm: '...', mp4: '...', poster: '...' },   // Contratos e Consumidor
+  'familia':     { webm: '...', mp4: '...', poster: '...' }    // cena de Família e Sucessões
 };
 ```
 
@@ -63,6 +62,9 @@ nunca fica com buraco.
 - **Vídeo:** `.mp4` (H.264, sem áudio) resolve em todos os navegadores. Dando
   os dois formatos, como no exemplo acima, o navegador escolhe: o `.webm`
   (VP9) pesa cerca de metade e o `.mp4` cobre Safari e iPhone.
+- **`poster`:** imagem que aparece antes do vídeo abrir. Em telas de até 768px
+  as três cenas de área mostram só o pôster — o celular não baixa vídeo de
+  fundo. O hero e o retrato continuam em movimento também no celular.
 
 Para gerar os dois a partir de um vídeo original:
 
@@ -114,7 +116,12 @@ Nada precisa de Node no servidor: é um site estático.
 - **Bibliotecas locais.** GSAP + ScrollTrigger (coreografia) e Lenis (rolagem
   suave) ficam em `assets/vendor`. Sem CDN: o site funciona mesmo offline.
 - **Cenas em SVG.** Cada área tem uma composição própria de ícones dourados,
-  desenhada à mão em SVG. Fotos e vídeos entram por cima quando existirem.
+  desenhada à mão em SVG. Quando existe filmagem, ela entra por cima e o SVG
+  sai por dissolvência; hoje isso acontece em Bancário e Família e Sucessões,
+  enquanto Contratos e Consumidor segue na arte vetorial.
+- **Vídeo do hero espelhado.** `transform: scaleX(-1)` no `css/styles.css`
+  coloca a advogada do lado direito e deixa a área escura da esquerda livre
+  para o texto. Ao trocar a filmagem, confira se o espelhamento ainda ajuda.
 - **Movimento reduzido.** Quem liga "reduzir movimento" no sistema recebe o
   site inteiro sem parallax, sem pin e sem scrub — com todo o conteúdo visível.
 - **Acessibilidade.** Skip link, navegação por teclado, foco visível, menu com

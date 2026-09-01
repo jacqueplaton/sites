@@ -28,15 +28,14 @@ e-mail adv.priscila16@gmail.com, Instagram @adv.priscilakohlrausch.
 
 | Arquivo | Situação | Observação |
 | --- | --- | --- |
-| `assets/video/sobre-escritorio.mp4` + `.webm` | **provisório** | Cena institucional genérica (não é a Dra. Priscila). Substituir pelo vídeo da própria advogada antes de publicar. O texto e a legenda não afirmam que a pessoa em cena é ela. |
-| `assets/img/sobre-escritorio.webp` / `.jpg` | pôster do vídeo acima | regerar junto com o vídeo novo |
-| `assets/video/hero-priscila.mp4` | **falta** | vídeo do hero: câmera lateral suave, ela assina um documento e levanta o olhar, sem áudio, 8–12 s |
-| `assets/img/hero-priscila.jpg` | **falta** | primeiro quadro do vídeo do hero (1600×900 ou maior) |
-| `assets/img/direito-bancario.jpg` | opcional | cena da área; sem ela, fica a arte em SVG |
-| `assets/img/contratual-consumidor.jpg` | opcional | idem |
-| `assets/img/familia-sucessoes.jpg` | opcional | idem |
-| `assets/logo/priscila-kohlrausch.svg` | **provisório** | monograma PK desenhado aqui; trocar pelo logotipo oficial quando existir |
-| `assets/img/og-image.jpg` | pronto (1200×630) | regerar se o logotipo mudar; fonte em `assets/img/og-image.svg` |
+| `video/hero-priscila.mp4` + `.webm` | **instalado, provisório** | Primeira dobra. A pessoa em cena **não é a Dra. Priscila** — é filmagem gerada. Como o hero representa a advogada, este é o arquivo mais urgente a substituir por gravação real dela. O vídeo é espelhado pelo CSS para ela ficar à direita. |
+| `video/sobre-escritorio.mp4` + `.webm` | **instalado, provisório** | Retrato vertical da seção Sobre. Mesma observação: não é a advogada. |
+| `video/direito-bancario.mp4` + `.webm` | instalado | Cena de objetos (balança, banco, cartão, moedas). Sem pessoas: pode ficar. |
+| `video/familia-sucessoes.mp4` + `.webm` | instalado | Cena de objetos (árvore, chave, casa, família em bronze). Sem pessoas: pode ficar. |
+| `video/contratual-consumidor.mp4` + `.webm` | instalado | Cena de objetos (aperto de mãos, contrato com lupa, escudo, sacola e cartão). Sem pessoas: pode ficar. |
+| `img/*.webp` e `.jpg` | prontos | Pôsteres extraídos dos vídeos; regerar junto com qualquer troca de filmagem. |
+| `assets/logo/priscila-kohlrausch.svg` | **provisório** | Monograma PK desenhado aqui; trocar pelo logotipo oficial quando existir. |
+| `assets/img/og-image.jpg` | pronto (1200×630) | Regerar se o logotipo mudar; fonte em `assets/img/og-image.svg`. |
 
 Para ligar uma mídia nova, escreva o caminho no bloco `MIDIA`, no topo de
 `js/app.js`. Enquanto o campo estiver vazio, a cena em SVG continua no lugar.
@@ -49,7 +48,7 @@ Para ligar uma mídia nova, escreva o caminho no bloco `MIDIA`, no topo de
 - [ ] Confirmar atendimento on-line e presencial.
 - [ ] Aprovar as listas de assuntos de cada área.
 - [ ] Aprovar (ou retirar) a frase sobre ser mãe de duas meninas.
-- [ ] Substituir o vídeo provisório pelo material da própria advogada.
+- [ ] Substituir os dois vídeos com pessoa (hero e Sobre) por gravação da própria advogada.
 - [ ] Trocar o domínio provisório em todo o projeto.
 - [ ] Revisar a Política de Privacidade e, se entrar analytics, tratar consentimento.
 - [ ] Revisão ética final conforme o Provimento 205/2021 do CFOAB e a seccional.
