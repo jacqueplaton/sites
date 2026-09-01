@@ -47,7 +47,7 @@ Abra **`js/app.js`**. Logo no começo existe este bloco:
 const MIDIA = {
   'hero-video':  { webm: '...', mp4: '...', poster: '...' },   // primeira dobra
   'hero-foto':   '',
-  'sobre-video': { webm: '...', mp4: '...', poster: '...' },   // retrato da seção Sobre
+  'sobre-video': { webm: '...', mp4: '...', poster: '...' },   // cena da seção Sobre
   'bancario':    { webm: '...', mp4: '...', poster: '...' },   // cena do Direito Bancário
   'contratos':   { webm: '...', mp4: '...', poster: '...' },   // Contratos e Consumidor
   'familia':     { webm: '...', mp4: '...', poster: '...' }    // cena de Família e Sucessões
@@ -119,9 +119,13 @@ Nada precisa de Node no servidor: é um site estático.
   desenhada à mão em SVG. Quando existe filmagem, ela entra por cima e o SVG
   sai por dissolvência; hoje isso acontece em Bancário e Família e Sucessões,
   enquanto Contratos e Consumidor segue na arte vetorial.
-- **Vídeo do hero espelhado.** `transform: scaleX(-1)` no `css/styles.css`
-  coloca a advogada do lado direito e deixa a área escura da esquerda livre
-  para o texto. Ao trocar a filmagem, confira se o espelhamento ainda ajuda.
+- **Hero e Sobre usam a mesma filmagem.** No hero ela é espelhada
+  (`transform: scaleX(-1)`) e fica à direita, com o texto à esquerda; na seção
+  Sobre entra sem espelho, à esquerda, com o texto à direita — e começando em
+  outro ponto do vídeo (`data-inicio` no `index.html`), para as duas cenas não
+  ficarem sincronizadas. Como é o mesmo arquivo, a segunda cena não custa
+  download nenhum: vem do cache. Ao trocar a filmagem, confira se o
+  espelhamento do hero ainda ajuda.
 - **Movimento reduzido.** Quem liga "reduzir movimento" no sistema recebe o
   site inteiro sem parallax, sem pin e sem scrub — com todo o conteúdo visível.
 - **Acessibilidade.** Skip link, navegação por teclado, foco visível, menu com

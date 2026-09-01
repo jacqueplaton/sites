@@ -19,9 +19,11 @@ const MIDIA = {
                    mp4:    'assets/video/hero-priscila.mp4',
                    poster: 'assets/img/hero-priscila.webp' },
   'hero-foto':   '',                                   // pôster do hero: já vem do vídeo acima
-  'sobre-video': { webm:   'assets/video/sobre-escritorio.webm',
-                   mp4:    'assets/video/sobre-escritorio.mp4',
-                   poster: 'assets/img/sobre-escritorio.webp' },
+  // a seção Sobre repete a filmagem do hero: mesmo arquivo, já em cache,
+  // sem espelhamento e começando em outro ponto do vídeo
+  'sobre-video': { webm:   'assets/video/hero-priscila.webm',
+                   mp4:    'assets/video/hero-priscila.mp4',
+                   poster: 'assets/img/hero-priscila.webp' },
   'bancario':    { webm:   'assets/video/direito-bancario.webm',
                    mp4:    'assets/video/direito-bancario.mp4',
                    poster: 'assets/img/direito-bancario.webp' },
@@ -121,6 +123,9 @@ const MIDIA = {
       el.addEventListener('loadeddata', function () {
         el.classList.add('is-live');
         if (el.parentElement) el.parentElement.classList.add('tem-midia');
+        // começa em outro ponto, para duas cenas com o mesmo vídeo não ficarem iguais
+        const inicio = parseFloat(el.dataset.inicio);
+        if (inicio > 0 && inicio < el.duration) { try { el.currentTime = inicio; } catch (e) {} }
       }, { once: true });
       el.addEventListener('error', function () {
         // só descarta a cena se o arquivo realmente não puder ser lido;
@@ -335,17 +340,11 @@ const MIDIA = {
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
     });
 
-    // 4. retrato em vídeo: revelação de baixo para cima
-    gsap.to('#portrait', {
-      clipPath: 'inset(0 0 0% 0)',
-      duration: 1.4,
-      ease: 'power3.inOut',
-      scrollTrigger: { trigger: '#portrait', start: 'top 82%', once: true }
-    });
-    gsap.fromTo('.portrait__media',
-      { scale: 1.16, yPercent: -3 },
-      { scale: 1.02, yPercent: 3, ease: 'none',
-        scrollTrigger: { trigger: '#portrait', start: 'top bottom', end: 'bottom top', scrub: true } });
+    // 4. cena da seção Sobre: aproximação lenta da câmera
+    gsap.fromTo('.about__video',
+      { scale: 1.14, yPercent: -3 },
+      { scale: 1, yPercent: 4, ease: 'none',
+        scrollTrigger: { trigger: '.about', start: 'top bottom', end: 'bottom top', scrub: true } });
 
     // 5. marquee horizontal
     gsap.to('#marquee', {

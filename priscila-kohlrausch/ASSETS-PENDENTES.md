@@ -28,8 +28,8 @@ e-mail adv.priscila16@gmail.com, Instagram @adv.priscilakohlrausch.
 
 | Arquivo | Situação | Observação |
 | --- | --- | --- |
-| `video/hero-priscila.mp4` + `.webm` | **instalado, provisório** | Primeira dobra. A pessoa em cena **não é a Dra. Priscila** — é filmagem gerada. Como o hero representa a advogada, este é o arquivo mais urgente a substituir por gravação real dela. O vídeo é espelhado pelo CSS para ela ficar à direita. |
-| `video/sobre-escritorio.mp4` + `.webm` | **instalado, provisório** | Retrato vertical da seção Sobre. Mesma observação: não é a advogada. |
+| `video/hero-priscila.mp4` + `.webm` | **instalado, provisório** | Usado no hero **e** na seção Sobre. A pessoa em cena **não é a Dra. Priscila** — é filmagem gerada. Como o hero representa a advogada, este é o arquivo mais urgente a substituir por gravação real dela. O vídeo é espelhado pelo CSS para ela ficar à direita. |
+| seção Sobre | **usa o mesmo arquivo do hero** | Sem espelho e começando em outro ponto do vídeo, com a advogada à esquerda e o texto à direita. Trocando o vídeo do hero, esta cena troca junto. O retrato vertical anterior foi retirado do projeto. |
 | `video/direito-bancario.mp4` + `.webm` | instalado | Cena de objetos (balança, banco, cartão, moedas). Sem pessoas: pode ficar. |
 | `video/familia-sucessoes.mp4` + `.webm` | instalado | Cena de objetos (árvore, chave, casa, família em bronze). Sem pessoas: pode ficar. |
 | `video/contratual-consumidor.mp4` + `.webm` | instalado | Cena de objetos (aperto de mãos, contrato com lupa, escudo, sacola e cartão). Sem pessoas: pode ficar. |

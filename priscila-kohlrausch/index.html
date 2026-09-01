@@ -209,8 +209,16 @@
 
 <!-- ══ 02 · Sobre (revelada pela transição circular do hero) ═════════════ -->
 <div class="wipe" id="wipe">
-<section class="about zone-light" id="sobre">
-  <div class="shell about__grid">
+<section class="about" id="sobre">
+  <!-- Cena em tela cheia. É o mesmo vídeo do hero, sem espelhamento: lá ela
+       aparece à direita, aqui à esquerda, e o texto troca de lado. O tempo
+       inicial diferente evita que as duas cenas fiquem sincronizadas. -->
+  <div class="about__scene" data-parallax="scene">
+    <video class="about__video" data-media="sobre-video" data-inicio="5.5" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" width="1280" height="720"></video>
+  </div>
+  <div class="about__veil"></div>
+
+  <div class="about__inner shell">
     <div class="about__copy">
       <span class="label" data-anim="up">001 / Sobre a advogada</span>
       <h2 class="h-section" data-anim="up">Técnica para analisar.<br>Clareza para orientar.</h2>
@@ -225,17 +233,8 @@
         </a>
       </div>
     </div>
-
-    <!-- Retrato em vídeo. TODO(cliente): substituir pelo vídeo da própria
-         advogada; o arquivo atual é uma cena institucional provisória. -->
-    <figure class="portrait" id="portrait">
-      <img class="portrait__media portrait__poster" src="assets/img/sobre-escritorio.webp" alt="Cena de escritório de advocacia: análise de documentos sobre a mesa de trabalho." width="720" height="1280" loading="lazy" decoding="async">
-      <video class="portrait__media portrait__video" data-media="sobre-video" poster="assets/img/sobre-escritorio.webp" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
-      <span class="portrait__tone" aria-hidden="true"></span>
-      <span class="portrait__frame" aria-hidden="true"></span>
-      <figcaption class="portrait__caption"><span>001</span> &nbsp;Atendimento individualizado</figcaption>
-    </figure>
   </div>
+  <span class="about__index" aria-hidden="true">01</span>
 </section>
 </div>
 
