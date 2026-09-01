@@ -47,7 +47,8 @@ Abra **`js/app.js`**. Logo no começo existe este bloco:
 const MIDIA = {
   'hero-video':  '',
   'hero-foto':   '',
-  'sobre-video': 'assets/video/sobre-escritorio.mp4',
+  'sobre-video': { webm: 'assets/video/sobre-escritorio.webm',
+                   mp4:  'assets/video/sobre-escritorio.mp4' },
   'bancario':    '',
   'contratos':   '',
   'familia':     ''
@@ -56,8 +57,20 @@ const MIDIA = {
 
 Coloque o arquivo dentro de `assets/` e escreva o caminho entre as aspas.
 Deixando em branco (`''`), a cena desenhada em SVG continua no ar — o site
-nunca fica com buraco. Formatos: vídeo em `.mp4` (H.264, sem áudio) e foto em
-`.jpg`/`.webp`.
+nunca fica com buraco.
+
+- **Foto:** `.jpg` ou `.webp`, um caminho só.
+- **Vídeo:** `.mp4` (H.264, sem áudio) resolve em todos os navegadores. Dando
+  os dois formatos, como no exemplo acima, o navegador escolhe: o `.webm`
+  (VP9) pesa cerca de metade e o `.mp4` cobre Safari e iPhone.
+
+Para gerar os dois a partir de um vídeo original:
+
+```bash
+ffmpeg -i original.mp4 -an -c:v libx264 -crf 25 -preset slow -movflags +faststart cena.mp4
+ffmpeg -i original.mp4 -an -c:v libvpx-vp9 -crf 36 -b:v 0 -row-mt 1 cena.webm
+ffmpeg -ss 1.2 -i original.mp4 -frames:v 1 cena.webp     # pôster
+```
 
 ### Preencher os dados que faltam
 

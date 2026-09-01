@@ -28,7 +28,7 @@ e-mail adv.priscila16@gmail.com, Instagram @adv.priscilakohlrausch.
 
 | Arquivo | Situação | Observação |
 | --- | --- | --- |
-| `assets/video/sobre-escritorio.mp4` | **provisório** | Cena institucional genérica (não é a Dra. Priscila). Substituir pelo vídeo da própria advogada antes de publicar. O texto e a legenda não afirmam que a pessoa em cena é ela. |
+| `assets/video/sobre-escritorio.mp4` + `.webm` | **provisório** | Cena institucional genérica (não é a Dra. Priscila). Substituir pelo vídeo da própria advogada antes de publicar. O texto e a legenda não afirmam que a pessoa em cena é ela. |
 | `assets/img/sobre-escritorio.webp` / `.jpg` | pôster do vídeo acima | regerar junto com o vídeo novo |
 | `assets/video/hero-priscila.mp4` | **falta** | vídeo do hero: câmera lateral suave, ela assina um documento e levanta o olhar, sem áudio, 8–12 s |
 | `assets/img/hero-priscila.jpg` | **falta** | primeiro quadro do vídeo do hero (1600×900 ou maior) |

@@ -13,7 +13,9 @@
 const MIDIA = {
   'hero-video':  '',                                   // ex.: 'assets/video/hero-priscila.mp4'
   'hero-foto':   '',                                   // ex.: 'assets/img/hero-priscila.jpg'
-  'sobre-video': 'assets/video/sobre-escritorio.mp4',  // cena provisória de escritório
+  // um vídeo pode ser um caminho só, ou dois formatos: o navegador escolhe
+  'sobre-video': { webm: 'assets/video/sobre-escritorio.webm',
+                   mp4:  'assets/video/sobre-escritorio.mp4' },
   'bancario':    '',                                   // ex.: 'assets/img/direito-bancario.jpg'
   'contratos':   '',                                   // ex.: 'assets/img/contratual-consumidor.jpg'
   'familia':     ''                                    // ex.: 'assets/img/familia-sucessoes.jpg'
@@ -68,20 +70,37 @@ const MIDIA = {
     if (!caminho) { el.remove(); return; }
 
     if (el.tagName === 'VIDEO') {
-      el.src = caminho;
+      if (typeof caminho === 'string') {
+        el.src = caminho;
+      } else {
+        // webm primeiro; quem não souber ler cai no mp4 (Safari e iOS)
+        [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function (par) {
+          if (!caminho[par[0]]) return;
+          const fonte = document.createElement('source');
+          fonte.src = caminho[par[0]];
+          fonte.type = par[1];
+          el.appendChild(fonte);
+        });
+        el.load();
+      }
       el.preload = 'metadata';
       el.addEventListener('loadeddata', function () { el.classList.add('is-live'); }, { once: true });
-      el.addEventListener('error', function () { el.remove(); }, { once: true });
+      el.addEventListener('error', function () {
+        // só descarta a cena se o arquivo realmente não puder ser lido;
+        // uma interrupção de rede (MEDIA_ERR_ABORTED) não é motivo para isso
+        if (!el.error || el.error.code !== 1) el.remove();
+      });
+      const tocar = function () { const p = el.play(); if (p) p.catch(function () {}); };
       // só toca quando estiver à vista, para poupar bateria e dados
       if ('IntersectionObserver' in window) {
         new IntersectionObserver(function (entradas) {
           entradas.forEach(function (e) {
-            if (e.isIntersecting) { const p = el.play(); if (p) p.catch(function () {}); }
-            else el.pause();
+            if (e.isIntersecting) tocar();
+            else if (!el.paused) el.pause();   // nunca pausar durante o carregamento
           });
         }, { threshold: 0.2 }).observe(el);
       } else {
-        const p = el.play(); if (p) p.catch(function () {});
+        tocar();
       }
     } else {
       el.addEventListener('load', function () { el.classList.add('is-live'); }, { once: true });

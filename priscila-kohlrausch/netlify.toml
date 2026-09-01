@@ -1,0 +1,44 @@
+# ==========================================================================
+# Netlify — site da Priscila P. Kohlrausch
+# --------------------------------------------------------------------------
+# Funciona nos dois modos:
+#   1. Arrastando a pasta (ou o .zip) em app.netlify.com/drop — o Netlify lê
+#      este arquivo e aplica os cabeçalhos abaixo. Não há build.
+#   2. Conectando o repositório: em Site settings → Build & deploy, use
+#      base directory = priscila-kohlrausch, publish directory = .
+#      e deixe o comando de build em branco.
+# ==========================================================================
+
+[build]
+  publish  = "."
+  command  = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+    X-Frame-Options        = "SAMEORIGIN"
+    Permissions-Policy     = "geolocation=(), microphone=(), camera=()"
+
+# HTML sempre revalidado: trocar um texto aparece na hora.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Fontes, vídeos, imagens e bibliotecas não mudam sem mudar de nome.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
