@@ -1,0 +1,5 @@
+# Priscila P. Kohlrausch — Advocacia e Consultoria Jurídica
+User-agent: *
+Allow: /
+
+Sitemap: https://dominio-a-definir.com.br/sitemap.xml

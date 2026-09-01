@@ -1,0 +1,116 @@
+# Priscila P. Kohlrausch — Advocacia e Consultoria Jurídica
+
+Site institucional de página única, em português, com rolagem cinematográfica.
+HTML, CSS e JavaScript puros: **sem framework, sem build, sem `npm install`**.
+Basta subir os arquivos em qualquer hospedagem.
+
+Referência de ritmo editorial: <https://www.lidianefloresadv.com.br/> — usada
+apenas como inspiração de cadência, numeração de seções e hierarquia. Nenhum
+código, texto, imagem ou composição foi copiado.
+
+---
+
+## Estrutura dos arquivos
+
+```
+index.html                     página inteira (todas as seções)
+politica-de-privacidade.html   página legal ligada no rodapé
+favicon.svg                    ícone da aba do navegador
+robots.txt / sitemap.xml       instruções para o Google
+
+css/
+  styles.css     ←  todo o visual: cores, tipografia, layout, responsivo
+  fonts.css         declarações das fontes locais (não precisa mexer)
+
+js/
+  app.js         ←  bloco MIDIA no topo + rolagem, menu, FAQ e animações
+
+assets/
+  fonts/            Cormorant Garamond e Manrope em .woff2 (hospedadas aqui)
+  vendor/           GSAP, ScrollTrigger e Lenis (locais, sem CDN)
+  video/            vídeos das cenas
+  img/              pôsteres, fotos e imagem de compartilhamento
+  logo/             logotipo em SVG
+```
+
+Os dois arquivos marcados com ← são os únicos abertos no dia a dia.
+
+---
+
+## Tarefas do dia a dia
+
+### Trocar ou acrescentar um vídeo/foto de cena
+
+Abra **`js/app.js`**. Logo no começo existe este bloco:
+
+```js
+const MIDIA = {
+  'hero-video':  '',
+  'hero-foto':   '',
+  'sobre-video': 'assets/video/sobre-escritorio.mp4',
+  'bancario':    '',
+  'contratos':   '',
+  'familia':     ''
+};
+```
+
+Coloque o arquivo dentro de `assets/` e escreva o caminho entre as aspas.
+Deixando em branco (`''`), a cena desenhada em SVG continua no ar — o site
+nunca fica com buraco. Formatos: vídeo em `.mp4` (H.264, sem áudio) e foto em
+`.jpg`/`.webp`.
+
+### Preencher os dados que faltam
+
+Procure por `TODO(cliente)` no `index.html` e por `[COLCHETES]` no texto.
+Os campos pendentes estão listados em `ASSETS-PENDENTES.md`.
+
+### Definir o domínio
+
+Depois de contratar o domínio, rode uma vez na pasta do site:
+
+```bash
+grep -rl dominio-a-definir . | xargs sed -i 's#https://dominio-a-definir.com.br#https://SEUDOMINIO#g'
+```
+
+Isso ajusta canonical, Open Graph, JSON-LD, `robots.txt` e `sitemap.xml`.
+
+---
+
+## Rodar no computador
+
+Sempre por HTTP — abrir o `index.html` com dois cliques quebra o vídeo:
+
+```bash
+npx serve .        # ou: python3 -m http.server 8000
+```
+
+## Publicar
+
+- **Netlify / Vercel:** _base directory_ `priscila-kohlrausch`, sem comando de
+  build, pasta publicada `.` (a própria pasta).
+- **Hospedagem comum:** envie o conteúdo da pasta por FTP para a raiz do site.
+
+Nada precisa de Node no servidor: é um site estático.
+
+---
+
+## Decisões técnicas
+
+- **Fontes locais.** Cormorant Garamond e Manrope ficam em `assets/fonts`.
+  Nada é buscado no Google, o que evita dependência externa e questões de LGPD.
+- **Bibliotecas locais.** GSAP + ScrollTrigger (coreografia) e Lenis (rolagem
+  suave) ficam em `assets/vendor`. Sem CDN: o site funciona mesmo offline.
+- **Cenas em SVG.** Cada área tem uma composição própria de ícones dourados,
+  desenhada à mão em SVG. Fotos e vídeos entram por cima quando existirem.
+- **Movimento reduzido.** Quem liga "reduzir movimento" no sistema recebe o
+  site inteiro sem parallax, sem pin e sem scrub — com todo o conteúdo visível.
+- **Acessibilidade.** Skip link, navegação por teclado, foco visível, menu com
+  `aria-expanded`, FAQ com `aria-controls`, contraste conferido.
+
+## Publicidade e ética profissional
+
+O conteúdo segue o tom informativo exigido pelo Provimento 205/2021 do CFOAB:
+sem promessa de resultado, sem "consulta grátis", sem urgência artificial, sem
+números de processos, clientes ou êxito, sem depoimentos e sem símbolos oficiais
+da OAB. O único número exibido — `03 áreas de atuação` — é verdadeiro.
+Antes de publicar, faça a revisão ética final com a advogada.

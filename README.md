@@ -301,3 +301,15 @@ Nada aqui foi inventado. Estes pontos ficaram propositalmente em aberto:
   [Karla](https://fonts.google.com/specimen/Karla) (texto), ambas sob licença
   SIL Open Font License 1.1, hospedadas no próprio site.
 - Vídeos e fotos: material enviado pelo cliente, reprocessado para web.
+
+---
+
+## Outros sites neste repositório
+
+| Pasta | Site |
+| --- | --- |
+| raiz | Delícias Brasil Florida (este README) |
+| `priscila-kohlrausch/` | Priscila P. Kohlrausch — Advocacia e Consultoria Jurídica |
+
+Cada pasta é independente: tem os próprios arquivos, o próprio README e é
+publicada separadamente.
