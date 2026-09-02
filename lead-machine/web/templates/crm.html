@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block cabecalho %}CRM{% endblock %}
+{% block corpo %}
+<div class="alerta">
+  <strong>Quadro em leitura, com troca de status.</strong>
+  Arrastar cartão, registro de contato, data, valor de proposta, motivo da
+  perda e follow-up D0/D2/D5/D10 entram na Fase 4. O status de cada lead já
+  pode ser alterado pelo seletor do cartão.
+</div>
+<div class="kanban" id="kanban"></div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block cabecalho %}Configurações{% endblock %}
+{% block acoes %}
+  <button class="btn btn-secundario" data-acao="restaurar-config">Restaurar padrões</button>
+  <button class="btn" data-acao="salvar-config">Salvar e recalcular</button>
+{% endblock %}
+{% block corpo %}
+<section class="painel">
+  <h2>Pesos do score</h2>
+  <p class="ajuda">
+    Mudar um peso recalcula o score de todos os leads da base. O total é
+    limitado à faixa de 0 a 100.
+  </p>
+  <div class="grade-form" id="pesos"></div>
+</section>
+
+<section class="painel">
+  <h2>Limiares</h2>
+  <div class="grade-form" id="limiares"></div>
+</section>
+
+<section class="painel">
+  <h2>Faixas</h2>
+  <div class="grade-form" id="faixas"></div>
+</section>
+
+<section class="painel">
+  <h2>Nichos</h2>
+  <p class="ajuda">
+    Um nicho por bloco. Argumentos e dores: um item por linha. O
+    <em>potencial</em> "alto" é o que aciona o peso de categoria de alto ticket.
+  </p>
+  <div id="nichos"></div>
+  <button class="btn btn-secundario" data-acao="novo-nicho">Adicionar nicho</button>
+</section>
+
+<section class="painel">
+  <h2>Ambiente</h2>
+  <div id="ambiente" class="chaves"></div>
+  <p class="ajuda">
+    Chaves de API ficam apenas no arquivo <code>.env</code> do servidor —
+    nunca no navegador. Veja <code>.env.example</code>.
+  </p>
+</section>
+{% endblock %}

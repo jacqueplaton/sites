@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block cabecalho %}Dashboard{% endblock %}
+{% block acoes %}
+  <button class="btn btn-secundario" data-acao="carregar-seeds">Carregar leads fictícios</button>
+{% endblock %}
+{% block corpo %}
+<section class="cartoes" id="cartoes"></section>
+
+<section class="painel">
+  <h2>Funil por status</h2>
+  <div id="funil" class="funil"></div>
+</section>
+
+<div class="colunas-2">
+  <section class="painel">
+    <h2>Leads e conversão por nicho</h2>
+    <div id="por-nicho" class="tabela-scroll"></div>
+  </section>
+  <section class="painel">
+    <h2>Leads e conversão por cidade</h2>
+    <div id="por-cidade" class="tabela-scroll"></div>
+  </section>
+</div>
+
+<section class="painel">
+  <h2>Conversão por tipo de abordagem</h2>
+  <div id="por-abordagem" class="tabela-scroll"></div>
+</section>
+{% endblock %}

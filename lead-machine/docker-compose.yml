@@ -1,0 +1,13 @@
+services:
+  lead-machine:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      # O banco e a configuração ficam fora do contêiner: recriar a imagem
+      # não apaga os leads.
+      - ./data:/dados
+    env_file:
+      - path: .env
+        required: false
+    restart: unless-stopped

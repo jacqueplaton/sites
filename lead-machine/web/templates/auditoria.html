@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block cabecalho %}Auditoria{% endblock %}
+{% block acoes %}
+  <button class="btn btn-secundario" data-acao="verificar-site" hidden>Verificar site agora</button>
+{% endblock %}
+{% block corpo %}
+<form class="filtros" id="form-auditoria">
+  <input type="number" name="lead_id" placeholder="ID do lead" min="1" required>
+  <button class="btn" type="submit">Abrir auditoria</button>
+</form>
+<div id="auditoria"></div>
+{% endblock %}

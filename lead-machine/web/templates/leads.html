@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block cabecalho %}Leads{% endblock %}
+{% block acoes %}
+  <button class="btn btn-secundario" data-acao="abrir-import">Importar CSV</button>
+  <button class="btn btn-secundario" data-acao="exportar-csv">Exportar CSV</button>
+  <button class="btn btn-secundario" data-acao="exportar-xlsx">Exportar XLSX</button>
+  <button class="btn" data-acao="novo-lead">Novo lead</button>
+{% endblock %}
+{% block corpo %}
+<form class="filtros" id="filtros">
+  <input type="search" name="q" placeholder="Buscar por nome, categoria, endereço…">
+  <input list="lista-cidades" name="cidade" placeholder="Cidade">
+  <datalist id="lista-cidades"></datalist>
+  <input list="lista-categorias" name="categoria" placeholder="Nicho / categoria">
+  <datalist id="lista-categorias"></datalist>
+  <select name="site">
+    <option value="">Site: todos</option>
+    <option value="SEM_SITE">Só sem site (confirmado)</option>
+    <option value="SITE_NAO_CONFIRMADO">Site não confirmado</option>
+    <option value="TEM_SITE">Com site</option>
+  </select>
+  <select name="faixa">
+    <option value="">Faixa: todas</option>
+    <option value="HOT">HOT (80-100)</option>
+    <option value="WARM">WARM (60-79)</option>
+    <option value="COLD">COLD (40-59)</option>
+    <option value="LOW">LOW (0-39)</option>
+  </select>
+  <select name="status" id="filtro-status"><option value="">Status: todos</option></select>
+  <input type="number" name="score_min" placeholder="Score mín." min="0" max="100">
+  <input type="number" name="avaliacao_min" placeholder="Nota mín." min="0" max="5" step="0.1">
+  <input type="number" name="avaliacoes_min" placeholder="Nº aval. mín." min="0">
+  <label class="alternador"><input type="checkbox" name="tem_telefone" value="true"> só com telefone</label>
+  <label class="alternador"><input type="checkbox" name="tem_instagram" value="true"> só com Instagram</label>
+  <select name="ordenar">
+    <option value="-score">Maior score</option>
+    <option value="score">Menor score</option>
+    <option value="recentes">Mais recentes</option>
+    <option value="nome">Nome A-Z</option>
+    <option value="-avaliacoes">Mais avaliações</option>
+  </select>
+  <button class="btn" type="submit">Filtrar</button>
+  <button class="btn btn-texto" type="reset">Limpar</button>
+</form>
+
+<p class="resumo-lista" id="resumo-lista"></p>
+<div class="tabela-scroll"><table class="tabela" id="tabela-leads"></table></div>
+<div class="paginacao" id="paginacao"></div>
+
+<dialog id="dialogo-lead" class="dialogo">
+  <form method="dialog" id="form-lead">
+    <h2 id="titulo-dialogo">Novo lead</h2>
+    <div class="grade-form">
+      <label>Empresa*<input name="nome_empresa" required minlength="2"></label>
+      <label>Categoria / nicho<input name="categoria" list="lista-categorias"></label>
+      <label>Subcategoria<input name="subcategoria"></label>
+      <label>Cidade<input name="cidade"></label>
+      <label>Estado<input name="estado"></label>
+      <label>País<input name="pais" value="Brasil"></label>
+      <label class="largo">Endereço<input name="endereco"></label>
+      <label>Telefone<input name="telefone"></label>
+      <label>Website<input name="website" placeholder="https://"></label>
+      <label>Instagram<input name="instagram"></label>
+      <label>Facebook<input name="facebook"></label>
+      <label class="largo">Google Maps<input name="google_maps_url"></label>
+      <label>Nota<input name="avaliacao" type="number" step="0.1" min="0" max="5"></label>
+      <label>Nº de avaliações<input name="qtd_avaliacoes" type="number" min="0"></label>
+      <label>Horário<input name="horario"></label>
+      <label>Fonte<input name="fonte" value="cadastro_manual"></label>
+      <label class="largo">Descrição<textarea name="descricao" rows="2"></textarea></label>
+      <label class="largo">Observações<textarea name="observacoes" rows="2"></textarea></label>
+    </div>
+    <p class="erro-form" id="erro-form" hidden></p>
+    <menu>
+      <button type="button" class="btn btn-texto" data-acao="fechar-dialogo">Cancelar</button>
+      <button type="submit" class="btn">Salvar</button>
+    </menu>
+  </form>
+</dialog>
+
+<dialog id="dialogo-import" class="dialogo">
+  <form id="form-import">
+    <h2>Importar CSV</h2>
+    <p class="ajuda">
+      Colunas aceitas: nome_empresa (obrigatória), categoria, cidade, estado,
+      endereco, telefone, website, instagram, facebook, google_maps_url,
+      avaliacao, qtd_avaliacoes, horario, descricao, fonte, observacoes.
+      Separador , ou ;. Leads duplicados são bloqueados e listados no relatório.
+    </p>
+    <input type="file" name="arquivo" accept=".csv,text/csv" required>
+    <div id="relatorio-import"></div>
+    <menu>
+      <button type="button" class="btn btn-texto" data-acao="fechar-dialogo">Fechar</button>
+      <button type="submit" class="btn">Importar</button>
+    </menu>
+  </form>
+</dialog>
+{% endblock %}
