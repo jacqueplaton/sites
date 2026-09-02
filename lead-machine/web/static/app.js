@@ -586,13 +586,98 @@ async function iniciarConfiguracoes() {
 
 // -- roteamento -------------------------------------------------------------
 
+// -- Buscar Leads -----------------------------------------------------------
+
+async function iniciarBuscar() {
+  const [fontes, config] = await Promise.all([
+    api('/api/busca/fontes'),
+    api('/api/config'),
+  ]);
+
+  $('#seletor-fonte').innerHTML = fontes.map((f) => `
+    <option value="${escapar(f.id)}" ${f.disponivel ? '' : 'disabled'}>
+      ${escapar(f.nome)}${f.disponivel ? '' : ' — indisponível'}
+    </option>`).join('');
+
+  $('#tabela-fontes').innerHTML = `
+    <table class="tabela tabela-fluida">
+      <thead><tr><th>Fonte</th><th>Custo</th><th>Limitação</th></tr></thead>
+      <tbody>${fontes.map((f) => `<tr>
+        <td><b>${escapar(f.nome)}</b>${f.disponivel ? '' : '<br><small>não integrada</small>'}</td>
+        <td>${escapar(f.custo)}</td>
+        <td>${escapar(f.limitacao)}</td>
+      </tr>`).join('')}</tbody>
+    </table>`;
+
+  $('#lista-nichos').innerHTML = config.nichos
+    .map((n) => `<option value="${escapar(n.chave)}">${escapar(n.nome)}</option>`).join('');
+
+  $('#form-busca').addEventListener('submit', async (evento) => {
+    evento.preventDefault();
+    const botao = evento.target.querySelector('button[type="submit"]');
+    const corpo = {};
+    new FormData(evento.target).forEach((valor, chave) => {
+      const texto = String(valor).trim();
+      if (!texto) return;
+      if (['quantidade', 'raio', 'avaliacao_min', 'avaliacoes_min'].includes(chave)) {
+        corpo[chave] = Number(texto);
+      } else if (chave.startsWith('so_')) {
+        corpo[chave] = true;
+      } else {
+        corpo[chave] = texto;
+      }
+    });
+
+    botao.disabled = true;
+    botao.textContent = 'Buscando…';
+    $('#resultado-busca').innerHTML = '<p class="ajuda">Consultando a fonte — isso pode levar alguns segundos.</p>';
+    try {
+      const r = await api('/api/busca', { method: 'POST', body: JSON.stringify(corpo) });
+      $('#resultado-busca').innerHTML = `
+        <section class="painel">
+          <h2>Resultado</h2>
+          <p>
+            <b>${r.encontrados_na_fonte}</b> encontrados na fonte ·
+            <b>${r.descartados_por_filtro}</b> descartados pelos filtros ·
+            <b>${r.novos}</b> novos na base ·
+            <b>${r.duplicados}</b> duplicados bloqueados ·
+            <b>${r.erros}</b> com erro
+          </p>
+          ${r.avisos.length ? `<ul class="lista-evidencia">${
+            r.avisos.map((a) => `<li>${escapar(a)}</li>`).join('')}</ul>` : ''}
+          <p class="ajuda">${escapar(r.proximo_passo)}</p>
+          ${r.leads.length ? `<div class="tabela-scroll"><table class="tabela">
+            <thead><tr><th>Score</th><th>Empresa</th><th>Cidade</th><th>Telefone</th>
+            <th>Website na fonte</th><th></th></tr></thead>
+            <tbody>${r.leads.map((lead) => `<tr>
+              <td><b>${lead.score}</b> ${etiquetaFaixa(lead.faixa)}</td>
+              <td>${escapar(lead.nome_empresa)}</td>
+              <td>${escapar(textoOuTraco(lead.cidade))}</td>
+              <td>${escapar(textoOuTraco(lead.telefone))}</td>
+              <td>${escapar(textoOuTraco(lead.website))}</td>
+              <td><a class="btn btn-secundario btn-mini" href="/auditoria/${lead.id}">Auditoria</a></td>
+            </tr>`).join('')}</tbody></table></div>` : '<p class="vazio">Nenhum lead novo entrou na base.</p>'}
+          ${r.detalhes_duplicados.length ? `<details><summary>Duplicados bloqueados</summary><ul>${
+            r.detalhes_duplicados.map((d) => `<li>${escapar(d.nome_empresa)} — ${escapar(d.motivo)} (lead #${d.lead_existente})</li>`).join('')
+          }</ul></details>` : ''}
+        </section>`;
+      avisar(`${r.novos} lead(s) novo(s) na base.`);
+    } catch (erro) {
+      $('#resultado-busca').innerHTML = `<div class="alerta"><b>A busca não funcionou.</b> ${escapar(erro.message)}</div>`;
+    } finally {
+      botao.disabled = false;
+      botao.textContent = 'Buscar';
+    }
+  });
+}
+
 const PAGINAS = {
   dashboard: iniciarDashboard,
   leads: iniciarLeads,
   auditoria: iniciarAuditoria,
   crm: iniciarCrm,
   configuracoes: iniciarConfiguracoes,
-  buscar: async () => {},
+  buscar: iniciarBuscar,
 };
 
 const iniciar = PAGINAS[document.body.dataset.pagina];

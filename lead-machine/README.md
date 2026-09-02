@@ -60,7 +60,7 @@ O banco e a configuração ficam em `./data`, fora do contêiner.
 ### Testes
 
 ```bash
-.venv/bin/python -m pytest         # 81 testes, ~3 s, nenhuma requisição de rede
+.venv/bin/python -m pytest         # 97 testes, ~3 s, nenhuma requisição de rede
 ```
 
 Os testes usam banco temporário e um cliente HTTP falso: rodam offline, sem
@@ -70,7 +70,7 @@ tocar em plataforma externa nenhuma.
 
 ## Em poucos cliques
 
-1. **Buscar Leads** → (Fase 2) ou **Leads → Importar CSV**
+1. **Buscar Leads** → cidade + nicho na fonte gratuita (OpenStreetMap), ou **Leads → Importar CSV**
 2. **Leads** → filtro *Só sem site (confirmado)* → ordenar por *Maior score*
 3. clicar na empresa → **Auditoria**: score explicado, presença digital,
    por que o lead é interessante e o que vender
@@ -100,14 +100,15 @@ lead-machine/
 │   ├── scoring.py           score 0–100 com justificativa de cada regra
 │   ├── niches.py            catálogo de nichos
 │   ├── audit.py             auditoria comercial do lead
+│   ├── fontes/              coleta: interface + OpenStreetMap (Overpass)
 │   ├── importer.py          import de CSV
 │   ├── exporter.py          export CSV/XLSX
 │   ├── seeds.py             18 leads fictícios
-│   └── routers/             leads · dashboard · configuração · import/export · páginas
+│   └── routers/             leads · busca · dashboard · configuração · import/export · páginas
 ├── web/
 │   ├── templates/           Jinja2 (uma página por tela)
 │   └── static/              estilo.css e app.js — sem framework, sem build
-├── tests/                   81 testes
+├── tests/                   97 testes
 └── data/                    leads.db e config.json (não versionados)
 ```
 
@@ -223,6 +224,8 @@ leads. `POST /api/leads/checar-duplicata` consulta sem gravar.
 | `GET` | `/api/leads/{id}/auditoria` | auditoria comercial |
 | `GET` | `/api/dashboard` | métricas (aceita os mesmos filtros) |
 | `GET` | `/api/opcoes` | valores para os selects da interface |
+| `GET` | `/api/busca/fontes` | fontes de coleta e o que cada uma entrega |
+| `POST` | `/api/busca` | coleta na fonte e grava passando por dedupe/detector/score |
 | `POST` | `/api/import/csv` | importa (multipart, até 10 MB) |
 | `GET` | `/api/export/csv` · `/api/export/xlsx` | exporta com os filtros |
 | `GET/PUT` | `/api/config` | pesos, limiares, faixas, nichos |
@@ -260,20 +263,46 @@ e erros por linha. O CSV que o app exporta pode ser reimportado.
   esse lead é interessante", "o que vender")
 - interface completa: Dashboard · Buscar Leads · Leads · CRM · Auditoria ·
   Configurações
-- 81 testes, seeds fictícios, logs, rate limit, retry, timeout e cache
+- 97 testes, seeds fictícios, logs, rate limit, retry, timeout e cache
 
-**Fase 2 — fontes de coleta.** A tela **Buscar Leads** já tem os parâmetros
-(cidade, estado, país, nicho, quantidade, raio, avaliação mínima, nº mínimo de
-avaliações e os três toggles), mas o botão está desativado: falta decidir a
-fonte. As opções reais:
+**Fase 2 — coleta: OpenStreetMap ligado, Places API pendente de chave**
 
-| Fonte | Custo | Limitação |
-|---|---|---|
-| Google Places API (Text Search + Place Details) | paga por requisição, exige conta de faturamento e chave própria no Google Cloud | os termos restringem armazenamento e exibição de parte dos campos; é preciso conferir a documentação oficial vigente e o preço em vigor antes de integrar |
-| OpenStreetMap / Overpass API | gratuita (ODbL, exige atribuição) | cobertura irregular de negócios; quase nunca traz nota, avaliação ou site |
-| Import de CSV | zero | já disponível |
+A tela **Buscar Leads** funciona: escolhe a fonte, cidade, estado, país, nicho,
+quantidade, raio e os toggles, e os resultados entram na base passando pelo
+mesmo caminho de sempre (`criar_lead` → dedupe → detector → score). Nenhum lead
+entra por fora disso.
+
+| Fonte | Situação | Custo | Limitação |
+|---|---|---|---|
+| OpenStreetMap (Nominatim + Overpass) | **ligada** | gratuita | cobertura irregular; **não traz nota nem nº de avaliações**, e quase nunca traz Instagram ou URL do Maps |
+| Google Places API (Text Search + Place Details) | não integrada | paga por requisição, com conta de faturamento no Google Cloud | exige chave própria em `.env`; os termos restringem armazenamento e exibição de parte dos campos. Antes de integrar é obrigatório conferir a documentação e o preço oficiais vigentes |
+| Import de CSV | disponível | zero | depende de você já ter a lista |
 
 Raspagem do Google Maps está fora: viola os termos de uso.
+
+**Consequência prática de usar o OSM:** sem nota e sem nº de avaliações, quatro
+regras do score não têm como disparar (`muitas_avaliacoes`, `boa_nota`,
+`empresa_estabelecida`, `aparentemente_inativa`). O lead entra com score menor
+e os filtros de reputação da busca não se aplicam — a própria tela avisa isso
+no resultado. Para qualificar por poder de compra com dado de reputação, a
+fonte é a Places API.
+
+Nichos que o OSM etiqueta de forma confiável: dentista, clínica, advocacia,
+estética, salão, barbearia, academia, oficina, auto center, imobiliária,
+restaurante, contador, arquiteto, fisioterapeuta e nutricionista (rara no
+Brasil). Nicho fora dessa lista faz a busca parar com a explicação, em vez de
+devolver categoria errada.
+
+> **Aviso de verificação:** a chamada de rede real ao Nominatim e à Overpass
+> **não foi executada** no ambiente onde este código foi escrito — a saída
+> externa é bloqueada lá. A montagem da consulta, a conversão para Lead, os
+> filtros, os avisos e todos os caminhos de erro estão cobertos por testes com
+> respostas de fixture no formato documentado de cada API; o que falta validar,
+> na sua máquina, é a viagem HTTP de ida e volta. Se algo falhar, a tela mostra
+> a causa real (sem rede, cidade desconhecida, Overpass fora do ar).
+
+**Atribuição obrigatória:** os dados do OpenStreetMap são ODbL. Em qualquer uso
+público do que sair dessa coleta, credite “© colaboradores do OpenStreetMap”.
 
 **Fase 3 — camada de IA.** `analyze_lead()` e `generate_outreach()` (versões
 curta, consultiva e direta) dependem de chave da Anthropic ou da OpenAI em

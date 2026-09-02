@@ -12,7 +12,7 @@ from fastapi.staticfiles import StaticFiles
 from app import __version__
 from app.config import BASE_DIR, carregar_config, configurar_logs, settings
 from app.database import criar_tabelas
-from app.routers import configuracoes, dashboard, importexport, leads, paginas
+from app.routers import busca, configuracoes, dashboard, importexport, leads, paginas
 
 logger = logging.getLogger("lead_machine")
 
@@ -40,6 +40,7 @@ def criar_app() -> FastAPI:
 
     for router in (
         leads.router,
+        busca.router,
         dashboard.router,
         configuracoes.router,
         importexport.router,

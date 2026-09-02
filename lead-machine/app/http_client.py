@@ -99,8 +99,13 @@ class ClienteHTTP:
             self._cache.clear()
 
     # -- acesso ------------------------------------------------------------
-    def obter(self, url: str) -> Resposta:
-        """GET com retry exponencial. Nunca levanta exceção de rede."""
+    def obter(self, url: str, limite_bytes: int | None = None, aceita: str | None = None) -> Resposta:
+        """GET com retry exponencial. Nunca levanta exceção de rede.
+
+        `limite_bytes` sobe o corte do corpo (a resposta de uma API vem
+        inteira; a home de um site a gente só precisa espiar).
+        """
+        limite = limite_bytes or self.max_bytes
         em_cache = self._do_cache(url)
         if em_cache is not None:
             logger.debug("cache: %s", url)
@@ -116,12 +121,12 @@ class ClienteHTTP:
                     follow_redirects=True,
                     headers={
                         "User-Agent": self.user_agent,
-                        "Accept": "text/html,application/xhtml+xml",
+                        "Accept": aceita or "text/html,application/xhtml+xml",
                     },
                     verify=True,
                 ) as cliente:
                     resposta = cliente.get(url)
-                    texto = resposta.text[: self.max_bytes] if resposta.text else ""
+                    texto = resposta.text[:limite] if resposta.text else ""
                     resultado = Resposta(
                         url=url,
                         status=resposta.status_code,

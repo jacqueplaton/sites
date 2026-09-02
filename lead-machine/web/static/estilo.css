@@ -171,6 +171,8 @@ input:focus, select:focus, textarea:focus { outline: 2px solid #bfdbfe; border-c
 .grade-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
 .grade-form label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--texto-suave); }
 .grade-form label.largo { grid-column: 1 / -1; }
+/* o alternador é caixa + texto na mesma linha, não empilhado como os campos */
+.grade-form label.alternador { flex-direction: row; align-items: center; }
 .grade-form .largo { grid-column: 1 / -1; }
 .ajuda { font-size: 13px; color: var(--texto-suave); }
 .erro-form { color: var(--hot); font-size: 13px; }
