@@ -74,7 +74,7 @@ O banco e a configuração ficam em `./data`, fora do contêiner.
 ### Testes
 
 ```bash
-.venv/bin/python -m pytest         # 115 testes, ~5 s, nenhuma requisição de rede
+.venv/bin/python -m pytest         # 120 testes, ~5 s, nenhuma requisição de rede
 ```
 
 Os testes usam banco temporário e um cliente HTTP falso: rodam offline, sem
@@ -122,7 +122,7 @@ LEAD-AGENCY/
 ├── sites/
 │   ├── templates/           templates de site da agência (Fase 4)
 │   └── clientes/            um diretório por cliente (Fase 4)
-├── tests/                   115 testes, todos offline
+├── tests/                   120 testes, todos offline
 └── data/                    leads.db e config.json (não versionados)
 ```
 
@@ -162,10 +162,15 @@ Retorna `SEM_SITE` · `TEM_SITE` · `SITE_NAO_CONFIRMADO`, junto com
 | Campo vazio, sem verificação | `SITE_NAO_CONFIRMADO` / `NAO_VERIFICADO` | 0,0 |
 | Campo vazio, candidatos testados sem resposta | `SEM_SITE` / `NAO_ENCONTRADO` | 0,6 |
 | URL malformada ou link de rede social | `SITE_NAO_CONFIRMADO` / `INVALIDO` | 0,3–0,4 |
-| Não responde, 4xx/5xx, ou página estacionada | `SITE_NAO_CONFIRMADO` / `INVALIDO` | 0,4–0,6 |
+| Domínio não resolve, 4xx/5xx, ou página estacionada | `SITE_NAO_CONFIRMADO` / `INVALIDO` | 0,5–0,6 |
+| Falha nossa (proxy, timeout, sem rota) | `SITE_NAO_CONFIRMADO` / `NAO_VERIFICADO` | 0,0 |
 | `robots.txt` do host proíbe a leitura | `SITE_NAO_CONFIRMADO` / `NAO_VERIFICADO` | 0,2 |
 | Responde 2xx com conteúdo real | `TEM_SITE` / `CONFIRMADO` | 0,95–1,0 |
 | Domínio adivinhado que responde e cita a empresa | `TEM_SITE` / `CONFIRMADO` | 0,75–0,8 |
+
+Falha de rede **nunca** vira conclusão: se não conseguimos sair, o resultado é
+"não verificado", não "sem site" (veja `decisions.md`, D12). `scripts/qualificar`
+avisa quando todas as verificações de uma rodada falharam por conexão.
 
 A busca por domínio candidato (`empresa.com.br`, `empresa.com`) é **desligada
 por padrão** — ligue em `LM_BUSCAR_DOMINIO_CANDIDATO=true` se quiser que o app
@@ -284,7 +289,7 @@ e erros por linha. O CSV que o app exporta pode ser reimportado.
   esse lead é interessante", "o que vender")
 - interface completa: Dashboard · Buscar Leads · Leads · CRM · Auditoria ·
   Configurações
-- 115 testes, seeds fictícios, logs, rate limit, retry, timeout e cache
+- 120 testes, seeds fictícios, logs, rate limit, retry, timeout e cache
 
 **Fase 2 — coleta: OpenStreetMap ligado, Places API pendente de chave**
 

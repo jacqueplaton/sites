@@ -172,3 +172,22 @@ def test_qualificar_sem_a_opcao_nao_sai_adivinhando_dominio(monkeypatch, db):
     monkeypatch.setattr("app.cli.crud.verificar_site_do_lead", espiao)
     main(["qualificar", "--sim"])
     assert recebido["buscar_dominio"] is False
+
+
+def test_qualificar_avisa_quando_a_rede_derrubou_todas_as_verificacoes(
+    capsys, monkeypatch, db
+):
+    """Score baixo por falta de rede não pode passar por score baixo do lead."""
+    from app.crm.models import StatusWebsite
+
+    crud.criar_lead(db, {**LEAD, "website": None})
+
+    def sem_rede(_db, lead, cliente=None, buscar_dominio=None):
+        lead.website_status = StatusWebsite.NAO_VERIFICADO
+        return lead
+
+    monkeypatch.setattr("app.cli.crud.verificar_site_do_lead", sem_rede)
+    main(["qualificar", "--sim"])
+    saida = capsys.readouterr().out
+    assert "nenhuma verificação de site foi concluída" in saida
+    assert "Confira a" in saida and "conexão" in saida

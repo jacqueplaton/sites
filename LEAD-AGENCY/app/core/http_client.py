@@ -8,6 +8,7 @@ mais rápido que o intervalo configurado.
 from __future__ import annotations
 
 import logging
+import socket
 import threading
 import time
 from dataclasses import dataclass, field
@@ -22,13 +23,23 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class Resposta:
-    """Resultado de uma tentativa de acesso. `erro` preenchido = não respondeu."""
+    """Resultado de uma tentativa de acesso. `erro` preenchido = não respondeu.
+
+    `tipo_falha` separa dois mundos que o texto do erro esconde:
+
+    * `"dns"`  — o domínio não resolve. Isso é evidência: o endereço não
+      existe, e quem chamou pode concluir algo a partir disso.
+    * `"rede"` — nós é que não conseguimos sair (proxy, timeout, conexão
+      recusada, sem rota). Isso **não** é evidência sobre o destino, e
+      concluir qualquer coisa a partir daí é inventar dado.
+    """
 
     url: str
     status: int | None = None
     url_final: str | None = None
     texto: str = ""
     erro: str | None = None
+    tipo_falha: str | None = None
     tamanho: int = 0
     do_cache: bool = False
 
@@ -36,11 +47,45 @@ class Resposta:
     def ok(self) -> bool:
         return self.status is not None and 200 <= self.status < 400
 
+    @property
+    def falha_nossa(self) -> bool:
+        """A falha foi do nosso lado — não dá para concluir nada do destino."""
+        return self.tipo_falha == "rede"
+
 
 @dataclass
 class _Entrada:
     resposta: Resposta
     expira_em: float
+
+
+def classificar_falha(excecao: Exception) -> str:
+    """"dns" quando o domínio não resolve; "rede" para todo o resto.
+
+    Só a primeira é evidência sobre o destino. Timeout, proxy, conexão
+    recusada e falta de rota falam de nós, não da empresa.
+    """
+    if isinstance(excecao, httpx.ProxyError):
+        return "rede"
+    if isinstance(excecao, httpx.TimeoutException):
+        return "rede"
+    if isinstance(excecao, httpx.ConnectError):
+        causa: BaseException | None = excecao
+        for _ in range(5):  # a cadeia de causas é curta; o limite evita ciclo
+            if causa is None:
+                break
+            if isinstance(causa, socket.gaierror):
+                return "dns"
+            causa = causa.__cause__ or causa.__context__
+        texto = str(excecao).lower()
+        marcas = (
+            "name or service not known", "nodename nor servname",
+            "temporary failure in name resolution", "getaddrinfo",
+            "no address associated with hostname",
+        )
+        if any(marca in texto for marca in marcas):
+            return "dns"
+    return "rede"
 
 
 class _RateLimiter:
@@ -113,6 +158,7 @@ class ClienteHTTP:
 
         host = urlparse(url).hostname or url
         erro = "não foi possível acessar"
+        tipo_falha = "rede"
         for tentativa in range(1, max(1, self.tentativas) + 1):
             self._limiter.aguardar(host)
             try:
@@ -138,15 +184,17 @@ class ClienteHTTP:
                     return resultado
             except httpx.HTTPError as exc:
                 erro = f"{type(exc).__name__}: {exc}"
+                tipo_falha = classificar_falha(exc)
                 logger.info("falha ao acessar %s (tentativa %s): %s", url, tentativa, erro)
                 if tentativa < self.tentativas:
                     time.sleep(min(2 ** (tentativa - 1), 8))
             except Exception as exc:  # pragma: no cover - defensivo
                 erro = f"erro inesperado: {exc}"
+                tipo_falha = "rede"
                 logger.warning("erro inesperado em %s: %s", url, exc)
                 break
 
-        resultado = Resposta(url=url, erro=erro)
+        resultado = Resposta(url=url, erro=erro, tipo_falha=tipo_falha)
         self._guardar(url, resultado)
         return resultado
 

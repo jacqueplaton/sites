@@ -1,6 +1,6 @@
 # Progresso
 
-Atualizado em 02/09/2026 · 115 testes passando (`.venv/bin/python -m pytest`)
+Atualizado em 02/09/2026 · 120 testes passando (`.venv/bin/python -m pytest`)
 
 ## Fase 1 — estrutura, banco, CRM, importação CSV, score ✅
 
@@ -12,6 +12,7 @@ Atualizado em 02/09/2026 · 115 testes passando (`.venv/bin/python -m pytest`)
 | Importador de CSV tolerante a cabeçalho, com relatório | pronto | `app/prospecting/importer.py` |
 | Deduplicação bloqueante por chave composta | pronto | `app/lead_scoring/dedupe.py` |
 | `detect_missing_website()` com evidência e confiança | pronto | `app/lead_scoring/website_detector.py` |
+| Falha de rede separada de domínio inexistente (D12) | pronto | `app/core/http_client.py` |
 | Score 0–100 configurável, com justificativa por regra | pronto | `app/lead_scoring/scoring.py` |
 | Dashboard web + dashboard de terminal | pronto | `app/dashboard/metrics.py`, `app/cli.py` |
 | CRM Kanban (leitura + troca de status) | parcial | `web/templates/crm.html` |
@@ -67,7 +68,7 @@ auditoria, site e copy, que dependem das Fases 3 e 4.
 
 ## O que está testado
 
-115 testes, ~5 s, **sem nenhuma requisição de rede**: dedupe (11), detector de
+120 testes, ~5 s, **sem nenhuma requisição de rede**: dedupe (11), detector de
 site (11), score (11), API de leads (11), filtros (11), import/export (9),
 CRM e dashboard (8), configuração e robustez do cliente HTTP (11), coleta na
 fonte (16). Seeds fictícios permitem rodar o fluxo inteiro offline.

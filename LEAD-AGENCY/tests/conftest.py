@@ -58,16 +58,28 @@ def cliente():
 class ClienteFalso:
     """Substitui o cliente HTTP nos testes. Nenhuma requisição sai da máquina."""
 
-    def __init__(self, respostas: dict[str, Resposta] | None = None, robots: bool = True):
+    def __init__(
+        self,
+        respostas: dict[str, Resposta] | None = None,
+        robots: bool = True,
+        tipo_falha_padrao: str = "dns",
+    ):
         self.respostas = respostas or {}
         self.robots = robots
+        self.tipo_falha_padrao = tipo_falha_padrao
         self.chamadas: list[str] = []
 
-    def obter(self, url: str) -> Resposta:
+    def obter(self, url: str, limite_bytes=None, aceita=None) -> Resposta:
         self.chamadas.append(url)
         if url in self.respostas:
             return self.respostas[url]
-        return Resposta(url=url, erro="ConnectError: host de teste sem resposta")
+        # Padrão: o domínio não resolve — isso é evidência sobre o destino.
+        # Para simular falha nossa (proxy, timeout), use tipo_falha="rede".
+        return Resposta(
+            url=url,
+            erro="ConnectError: [Errno -2] Name or service not known",
+            tipo_falha=self.tipo_falha_padrao,
+        )
 
     def robots_permite(self, url: str) -> bool:
         return self.robots

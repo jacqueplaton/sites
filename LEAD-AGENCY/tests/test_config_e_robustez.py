@@ -179,3 +179,50 @@ def test_robots_bloqueado_e_respeitado(monkeypatch):
     monkeypatch.setattr(httpx, "Client", ClientFalso)
     cliente = ClienteHTTP(tentativas=1, intervalo_host=0, cache_min=0)
     assert cliente.robots_permite("https://x.example.com/") is False
+
+
+# --- classificação da falha ------------------------------------------------
+
+def test_classificar_falha_separa_dns_de_rede():
+    """Só "o domínio não resolve" é evidência sobre o destino."""
+    import socket
+
+    import httpx
+
+    from app.core.http_client import classificar_falha
+
+    assert classificar_falha(httpx.ProxyError("403 Forbidden")) == "rede"
+    assert classificar_falha(httpx.ConnectTimeout("estourou")) == "rede"
+    assert classificar_falha(httpx.ReadTimeout("estourou")) == "rede"
+    assert classificar_falha(httpx.ConnectError("Connection refused")) == "rede"
+
+    por_causa = httpx.ConnectError("falhou")
+    por_causa.__cause__ = socket.gaierror(-2, "Name or service not known")
+    assert classificar_falha(por_causa) == "dns"
+    assert classificar_falha(
+        httpx.ConnectError("[Errno -2] Name or service not known")
+    ) == "dns"
+
+
+def test_resposta_de_falha_carrega_o_tipo(monkeypatch):
+    import httpx
+
+    class ClientFalso:
+        def __init__(self, **kwargs):
+            pass
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return False
+
+        def get(self, url):
+            raise httpx.ProxyError("403 Forbidden")
+
+    monkeypatch.setattr(httpx, "Client", ClientFalso)
+    resposta = ClienteHTTP(tentativas=1, intervalo_host=0, cache_min=0).obter(
+        "https://bloqueado.example.com"
+    )
+    assert resposta.tipo_falha == "rede"
+    assert resposta.falha_nossa is True

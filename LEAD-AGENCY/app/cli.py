@@ -19,7 +19,7 @@ from sqlalchemy import select
 from app.core.config import BASE_DIR, configurar_logs
 from app.core.database import SessionLocal, criar_tabelas
 from app.crm import crud
-from app.crm.models import Faixa, Lead, StatusLead
+from app.crm.models import Faixa, Lead, StatusLead, StatusWebsite
 from app.crm.schemas import Filtros
 from app.dashboard.metrics import resumo_dashboard
 
@@ -171,7 +171,7 @@ def comando_qualificar(args: argparse.Namespace) -> int:
             print("Seguindo sem verificação de site: nenhum lead será marcado "
                   "como SEM_SITE (ausência não verificada não é ausência).")
 
-        promovidos = 0
+        promovidos = nao_verificados = 0
         for lead in leads:
             if verificar:
                 crud.verificar_site_do_lead(db, lead, buscar_dominio=args.buscar_dominio)
@@ -180,10 +180,20 @@ def comando_qualificar(args: argparse.Namespace) -> int:
             if lead.score >= args.corte:
                 lead.status = StatusLead.QUALIFICADO
                 promovidos += 1
+            if verificar and lead.website_status == StatusWebsite.NAO_VERIFICADO:
+                nao_verificados += 1
             db.commit()
             gravar_dossie(lead)
             print(f"  #{lead.id:<4} {lead.score:>3} {lead.faixa:<5} "
                   f"{lead.site_situacao:<20} {lead.nome_empresa}")
+
+        if verificar and nao_verificados == len(leads):
+            print(
+                "\n  ATENÇÃO: nenhuma verificação de site foi concluída — todas as "
+                "tentativas\n  falharam por rede. Nenhum lead foi marcado como sem "
+                "site, e por isso\n  os scores estão mais baixos do que ficariam com "
+                "a verificação. Confira a\n  conexão e rode de novo."
+            )
 
         print(f"\n{promovidos} promovido(s) a QUALIFICADO (corte: score ≥ {args.corte}).")
     return 0

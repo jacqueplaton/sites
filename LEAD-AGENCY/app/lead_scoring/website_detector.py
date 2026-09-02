@@ -181,10 +181,15 @@ def detect_missing_website(
         )
 
     testados: list[str] = []
+    falhas_nossas: list[str] = []
     for candidato in candidatos:
         resposta = cliente.obter(candidato)
         testados.append(urlparse(candidato).hostname or candidato)
         if not resposta.ok:
+            # Uma falha nossa (proxy, timeout, sem rota) não diz nada sobre o
+            # domínio. Só "não resolve" é evidência de que o endereço não existe.
+            if getattr(resposta, "falha_nossa", False):
+                falhas_nossas.append(f"{candidato}: {resposta.erro}")
             continue
         if not _menciona_empresa(resposta.texto, lead.get("nome_empresa")):
             evidencia.append(
@@ -197,7 +202,19 @@ def detect_missing_website(
         evidencia.append(f"domínio candidato {candidato} responde e menciona a empresa")
         return _validar_http(candidato, lead, cliente, evidencia, adivinhado=True)
 
-    evidencia.append("domínios candidatos testados sem resposta: " + ", ".join(testados))
+    if falhas_nossas:
+        evidencia.append(
+            "não foi possível testar os domínios candidatos — a falha foi nossa, "
+            "não do destino (" + "; ".join(falhas_nossas[:3]) + ")"
+        )
+        return ResultadoSite(
+            SituacaoSite.SITE_NAO_CONFIRMADO, StatusWebsite.NAO_VERIFICADO, 0.0,
+            None, evidencia,
+        )
+
+    evidencia.append(
+        "domínios candidatos testados, nenhum resolve: " + ", ".join(testados)
+    )
     return ResultadoSite(
         SituacaoSite.SEM_SITE, StatusWebsite.NAO_ENCONTRADO, 0.6, None, evidencia
     )
@@ -220,9 +237,18 @@ def _validar_http(
 
     resposta = cliente.obter(url)
     if resposta.erro:
-        evidencia.append(f"não respondeu ({resposta.erro})")
+        if getattr(resposta, "falha_nossa", False):
+            evidencia.append(
+                f"não conseguimos acessar ({resposta.erro}) — a falha foi nossa, "
+                "o site pode estar no ar"
+            )
+            return ResultadoSite(
+                SituacaoSite.SITE_NAO_CONFIRMADO, StatusWebsite.NAO_VERIFICADO, 0.0,
+                url, evidencia,
+            )
+        evidencia.append(f"o domínio não resolve ({resposta.erro})")
         return ResultadoSite(
-            SituacaoSite.SITE_NAO_CONFIRMADO, StatusWebsite.INVALIDO, 0.4, url, evidencia
+            SituacaoSite.SITE_NAO_CONFIRMADO, StatusWebsite.INVALIDO, 0.5, url, evidencia
         )
 
     evidencia.append(f"HTTP {resposta.status} em {resposta.url_final or url}")

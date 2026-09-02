@@ -160,3 +160,39 @@ verificado, não dado de fonte: o app pede confirmação e registra a evidência
 
 **Consequência aceita.** Com OSM, lead HOT não existe. Quem precisa de HOT
 precisa da Places API.
+
+---
+
+## D12 — Falha nossa não é evidência sobre o destino
+
+**Contexto.** Rodando `scripts/qualificar --buscar-dominio` com a saída de rede
+bloqueada, o lead "Academia Corpo em Movimento" saiu de
+`SITE_NAO_CONFIRMADO / NAO_VERIFICADO` para **`SEM_SITE / NAO_ENCONTRADO`**, com
+a evidência *"domínios candidatos testados sem resposta"*. Nenhum domínio foi
+testado: o proxy recusou toda conexão. O lead ganhou os +30 do "sem site" e
+subiu de COLD para HOT — apoiado em evidência inventada.
+
+**Decisão.** O cliente HTTP passa a classificar a falha em `"dns"` (o domínio
+não resolve — isso fala do destino) ou `"rede"` (proxy, timeout, conexão
+recusada, sem rota — isso fala de nós), e o detector age diferente em cada uma:
+
+| Situação | Antes | Agora |
+|---|---|---|
+| Candidatos não resolvem | `SEM_SITE` | `SEM_SITE` (correto: foi testado) |
+| Não conseguimos sair | `SEM_SITE` ❌ | `SITE_NAO_CONFIRMADO / NAO_VERIFICADO` |
+| Site informado, domínio não resolve | `INVALIDO` | `INVALIDO` |
+| Site informado, rede fora | `INVALIDO` ❌ | `NAO_VERIFICADO` |
+
+`scripts/qualificar` também avisa quando **todas** as verificações de uma rodada
+falharam por rede, para score baixo por falta de conexão não passar por score
+baixo do lead.
+
+**Por quê.** É a regra D5 levada até o fim. Antes, o detector não concluía
+"sem site" por campo vazio, mas concluía por erro de conexão — o mesmo chute,
+por outra porta. E era o pior tipo de erro: silencioso, com aparência de
+evidência, empurrando o lead errado para o topo da fila de abordagem.
+
+**Como apareceu.** Executando o comando de qualificação de verdade, num
+ambiente sem rede. Nenhum teste pegava isso porque as fixtures devolviam um
+erro genérico, sem distinguir os dois casos — foram corrigidas para serem
+explícitas.

@@ -28,13 +28,25 @@ def test_site_no_ar_e_confirmado(cliente_falso):
     assert resultado.url_verificada == url
 
 
-def test_site_que_nao_responde_fica_invalido(cliente_falso):
+def test_dominio_que_nao_resolve_fica_invalido(cliente_falso):
     resultado = detect_missing_website(
         {"nome_empresa": "Empresa X", "website": "https://naoresponde.example.com"},
-        cliente_falso(),
+        cliente_falso(tipo_falha_padrao="dns"),
     )
     assert resultado.site_situacao == SituacaoSite.SITE_NAO_CONFIRMADO
     assert resultado.website_status == StatusWebsite.INVALIDO
+
+
+def test_rede_fora_nao_torna_o_site_invalido(cliente_falso):
+    """Se a falha foi nossa, o site pode estar perfeitamente no ar."""
+    resultado = detect_missing_website(
+        {"nome_empresa": "Empresa X", "website": "https://existe.example.com"},
+        cliente_falso(tipo_falha_padrao="rede"),
+    )
+    assert resultado.site_situacao == SituacaoSite.SITE_NAO_CONFIRMADO
+    assert resultado.website_status == StatusWebsite.NAO_VERIFICADO
+    assert resultado.confianca == 0.0
+    assert "a falha foi nossa" in " ".join(resultado.evidencia)
 
 
 def test_http_404_fica_invalido(cliente_falso):
@@ -76,15 +88,33 @@ def test_robots_bloqueado_nao_conclui(cliente_falso):
     assert resultado.website_status == StatusWebsite.NAO_VERIFICADO
 
 
-def test_busca_por_dominio_candidato_sem_resposta_conclui_sem_site(cliente_falso):
-    """Só aqui SEM_SITE é permitido: os candidatos foram testados de fato."""
+def test_candidatos_que_nao_resolvem_concluem_sem_site(cliente_falso):
+    """Só aqui SEM_SITE é permitido: os domínios foram testados e não existem."""
     resultado = detect_missing_website(
         {"nome_empresa": "Padaria Estrela", "website": None},
-        cliente_falso(), buscar_dominio=True,
+        cliente_falso(tipo_falha_padrao="dns"), buscar_dominio=True,
     )
     assert resultado.site_situacao == SituacaoSite.SEM_SITE
     assert resultado.website_status == StatusWebsite.NAO_ENCONTRADO
-    assert "candidatos testados" in " ".join(resultado.evidencia)
+    assert "nenhum resolve" in " ".join(resultado.evidencia)
+
+
+def test_sem_rede_nunca_conclui_sem_site(cliente_falso):
+    """O erro que este teste tranca.
+
+    Rodando a qualificação com a saída de rede bloqueada, o detector
+    interpretava "não consegui sair" como "os domínios não existem" e marcava
+    a empresa como SEM_SITE — inventando a evidência que sustenta +30 no score
+    e joga o lead para HOT. Falha nossa não é evidência sobre ninguém.
+    """
+    resultado = detect_missing_website(
+        {"nome_empresa": "Academia Corpo em Movimento", "website": None},
+        cliente_falso(tipo_falha_padrao="rede"), buscar_dominio=True,
+    )
+    assert resultado.site_situacao == SituacaoSite.SITE_NAO_CONFIRMADO
+    assert resultado.website_status == StatusWebsite.NAO_VERIFICADO
+    assert resultado.confianca == 0.0
+    assert "a falha foi nossa" in " ".join(resultado.evidencia)
 
 
 def test_dominio_candidato_que_responde_e_cita_a_empresa(cliente_falso):
