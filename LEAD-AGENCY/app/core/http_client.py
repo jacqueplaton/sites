@@ -7,6 +7,7 @@ mais rápido que o intervalo configurado.
 
 from __future__ import annotations
 
+import json
 import logging
 import socket
 import threading
@@ -197,6 +198,69 @@ class ClienteHTTP:
         resultado = Resposta(url=url, erro=erro, tipo_falha=tipo_falha)
         self._guardar(url, resultado)
         return resultado
+
+    def postar_json(
+        self,
+        url: str,
+        corpo: dict,
+        cabecalhos: dict[str, str] | None = None,
+        limite_bytes: int | None = None,
+    ) -> Resposta:
+        """POST com JSON, mesmas garantias do GET.
+
+        O cache é chaveado por URL **e** corpo. Numa API cobrada por
+        requisição, repetir a mesma busca por engano custa dinheiro.
+        """
+        import hashlib
+
+        limite = limite_bytes or self.max_bytes
+        assinatura = hashlib.sha256(
+            (url + json.dumps(corpo, sort_keys=True)).encode()
+        ).hexdigest()
+        chave_cache = f"POST:{assinatura}"
+
+        em_cache = self._do_cache(chave_cache)
+        if em_cache is not None:
+            logger.debug("cache (POST): %s", url)
+            return em_cache
+
+        host = urlparse(url).hostname or url
+        erro = "não foi possível acessar"
+        tipo_falha = "rede"
+        for tentativa in range(1, max(1, self.tentativas) + 1):
+            self._limiter.aguardar(host)
+            try:
+                with httpx.Client(
+                    timeout=self.timeout,
+                    follow_redirects=True,
+                    headers={
+                        "User-Agent": self.user_agent,
+                        "Content-Type": "application/json",
+                        **(cabecalhos or {}),
+                    },
+                    verify=True,
+                ) as cliente:
+                    resposta = cliente.post(url, json=corpo)
+                    resultado = Resposta(
+                        url=url,
+                        status=resposta.status_code,
+                        url_final=str(resposta.url),
+                        texto=resposta.text[:limite] if resposta.text else "",
+                        tamanho=len(resposta.content or b""),
+                    )
+                    # Só guarda o que deu certo: repetir uma falha de graça é
+                    # melhor que guardar um erro transitório por uma hora.
+                    if resultado.ok:
+                        self._guardar(chave_cache, resultado)
+                    return resultado
+            except httpx.HTTPError as exc:
+                erro = f"{type(exc).__name__}: {exc}"
+                tipo_falha = classificar_falha(exc)
+                logger.info("falha no POST %s (tentativa %s): %s", url, tentativa, erro)
+                if tentativa < self.tentativas:
+                    time.sleep(min(2 ** (tentativa - 1), 8))
+
+        return Resposta(url=url, erro=erro, tipo_falha=tipo_falha)
 
     def robots_permite(self, url: str) -> bool:
         """Consulta o robots.txt do host antes de ler a home page.

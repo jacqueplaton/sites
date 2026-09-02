@@ -204,8 +204,12 @@ def test_fonte_inexistente_e_recusada(cliente):
     ).status_code == 422
 
 
-def test_places_api_aparece_como_indisponivel(cliente):
+def test_places_api_indisponivel_sem_chave(cliente, monkeypatch):
+    """A suíte roda sem GOOGLE_MAPS_API_KEY; a fonte tem de refletir isso."""
+    from app.core.config import settings
+
+    monkeypatch.setattr(settings, "google_maps_api_key", "")
     fontes = {f["id"]: f for f in cliente.get("/api/busca/fontes").json()}
     assert fontes["openstreetmap"]["disponivel"] is True
     assert fontes["google_places"]["disponivel"] is False
-    assert "chave própria" in fontes["google_places"]["limitacao"]
+    assert "GOOGLE_MAPS_API_KEY" in fontes["google_places"]["limitacao"]

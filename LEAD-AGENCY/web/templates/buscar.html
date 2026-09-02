@@ -2,12 +2,14 @@
 {% block cabecalho %}Buscar Leads{% endblock %}
 {% block corpo %}
 <div class="alerta" id="aviso-fonte">
-  <strong>Fonte gratuita ligada: OpenStreetMap.</strong>
-  Cobertura irregular e <strong>sem nota e sem número de avaliações</strong> —
-  por isso ela é fraca justamente para separar lead com alto poder de compra.
-  Para isso a fonte adequada é a Google Places API, que exige chave própria e
-  conta de faturamento no Google Cloud; enquanto não houver chave, ela aparece
-  como indisponível e o app não finge que a integração existe.
+  <strong>Duas fontes.</strong>
+  A <strong>Google Places API</strong> é a única que traz site, telefone, nota e
+  número de avaliações na mesma resposta — é o que permite qualificar por
+  reputação e chegar a lead HOT. É paga, cobrada por requisição, e só fica
+  disponível com <code>GOOGLE_MAPS_API_KEY</code> no <code>.env</code>; sem
+  chave, nenhuma requisição é feita. O <strong>OpenStreetMap</strong> é gratuito
+  e não pede chave, mas não tem nota nem avaliações, então o teto de score dele
+  é WARM.
   <details>
     <summary>O que cada fonte entrega</summary>
     <div id="tabela-fontes"></div>

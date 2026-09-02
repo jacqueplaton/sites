@@ -21,6 +21,7 @@ os.environ["LM_HTTP_INTERVALO_HOST"] = "0"
 os.environ["LM_BUSCAR_DOMINIO_CANDIDATO"] = "false"
 os.environ.pop("ANTHROPIC_API_KEY", None)
 os.environ.pop("OPENAI_API_KEY", None)
+os.environ.pop("GOOGLE_MAPS_API_KEY", None)
 
 from fastapi.testclient import TestClient  # noqa: E402
 

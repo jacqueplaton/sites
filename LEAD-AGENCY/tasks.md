@@ -13,10 +13,15 @@ Ordem de execução. Quem pegar o projeto começa pelo primeiro item aberto.
 - [ ] **Escolher o corte da qualificação** sabendo do teto por fonte (D11):
       com OSM e `--buscar-dominio`, o máximo é 70; sem a opção, 40. O corte
       padrão de 60 não promove ninguém vindo do OSM sem `--buscar-dominio`.
-- [ ] **Decidir a fonte paga.** Sem Places API, não há nota nem número de
-      avaliações — e sem isso o score não separa lead com poder de compra (D9).
-      Se for seguir, criar chave no Google Cloud, pôr em `.env` e conferir
-      preço e termos vigentes antes de integrar.
+- [ ] **Criar a chave da Places API e colocar em `.env`.** A fonte já está
+      integrada (D13) e o caminho até o Google já foi exercitado deste ambiente;
+      falta só a chave. No Google Cloud: criar projeto, habilitar a Places API,
+      ativar faturamento, gerar a chave e **restringi-la** à Places API. Confira
+      a tabela de preços antes de rodar em volume — os campos que pedimos ficam
+      em faixas acima do Essentials.
+- [ ] **Rodar a primeira coleta de verdade** com a chave e conferir se a
+      resposta bate com as fixtures dos testes; ajustar o parser se algum campo
+      vier diferente.
 
 ## Fase 3 — auditoria e IA
 

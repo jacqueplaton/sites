@@ -47,8 +47,9 @@ class FonteDeLeads(Protocol):
 
 def fonte_por_nome(nome: str) -> FonteDeLeads:
     from app.prospecting.overpass import FonteOverpass
+    from app.prospecting.places import FontePlaces
 
-    fontes = {"openstreetmap": FonteOverpass()}
+    fontes = {"openstreetmap": FonteOverpass(), "google_places": FontePlaces()}
     if nome not in fontes:
         disponiveis = ", ".join(sorted(fontes))
         raise ValueError(f"fonte '{nome}' não existe. Disponíveis: {disponiveis}")
@@ -58,10 +59,12 @@ def fonte_por_nome(nome: str) -> FonteDeLeads:
 def fontes_disponiveis() -> list[dict[str, Any]]:
     """O que a interface mostra no seletor de fonte.
 
-    Places API aparece como indisponível de propósito: sem chave e sem conta
-    de faturamento no Google Cloud, não existe integração — e o app não
-    finge que existe.
+    A Places API só aparece como disponível quando há chave em
+    GOOGLE_MAPS_API_KEY. Sem chave, nenhuma requisição é feita — o app não
+    finge integração que não tem.
     """
+    from app.core.config import settings
+
     return [
         {
             "id": "openstreetmap",
@@ -74,9 +77,12 @@ def fontes_disponiveis() -> list[dict[str, Any]]:
         {
             "id": "google_places",
             "nome": "Google Places API",
-            "disponivel": False,
+            "disponivel": settings.tem_chave_places(),
             "custo": "paga, por requisição, com conta de faturamento no Google Cloud",
-            "limitacao": "não integrada: exige chave própria em .env e conferência "
-                         "da documentação e do preço oficiais vigentes",
+            "limitacao": "traz site, telefone, nota e nº de avaliações — é a única "
+                         "que permite qualificar por reputação. Máximo de 60 "
+                         "resultados por consulta. Exige GOOGLE_MAPS_API_KEY no "
+                         ".env; confira a tabela de preços oficial antes de rodar "
+                         "em volume",
         },
     ]

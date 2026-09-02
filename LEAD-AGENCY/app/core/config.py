@@ -69,6 +69,13 @@ class Settings:
             "LM_OVERPASS_URL", "https://overpass-api.de/api/interpreter"
         )
 
+        # Google Places API. Sem chave, a fonte aparece como indisponível e
+        # nenhuma requisição é feita — não existe modo "de mentira".
+        self.google_maps_api_key: str = os.getenv("GOOGLE_MAPS_API_KEY", "")
+        self.places_url: str = os.getenv(
+            "LM_PLACES_URL", "https://places.googleapis.com/v1/places:searchText"
+        )
+
         self.config_path: Path = Path(
             os.getenv("LM_CONFIG_PATH", "data/config.json")
         )
@@ -78,6 +85,9 @@ class Settings:
     @property
     def database_url(self) -> str:
         return f"sqlite:///{self.db_path}"
+
+    def tem_chave_places(self) -> bool:
+        return bool(self.google_maps_api_key.strip())
 
     def tem_chave_ia(self) -> bool:
         """Fase 3. Sem chave, a análise por IA fica desativada — nunca inventada."""

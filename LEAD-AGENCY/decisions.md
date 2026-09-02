@@ -114,10 +114,10 @@ de que a etapa existe. Recusar com o motivo é mais útil.
 
 ## D9 — Fontes de coleta
 
-**Decisão.** OpenStreetMap (Nominatim + Overpass) está ligado, é gratuito e não
-pede chave. Google Places API aparece como **indisponível** enquanto não houver
-chave própria em `.env`. Raspagem do Google Maps está fora, por violar os termos
-de uso.
+**Decisão (revista em D13).** OpenStreetMap (Nominatim + Overpass) está ligado,
+é gratuito e não pede chave. A Google Places API foi integrada e fica
+disponível assim que houver `GOOGLE_MAPS_API_KEY` no `.env`. Raspagem do Google
+Maps segue fora, por violar os termos de uso.
 
 **Consequência aceita.** O OSM não traz nota nem número de avaliações, então
 quatro regras do score não disparam e o app **não consegue qualificar por poder
@@ -196,3 +196,45 @@ evidência, empurrando o lead errado para o topo da fila de abordagem.
 ambiente sem rede. Nenhum teste pegava isso porque as fixtures devolviam um
 erro genérico, sem distinguir os dois casos — foram corrigidas para serem
 explícitas.
+
+---
+
+## D13 — Google Places API integrada; ela é a fonte recomendada
+
+**Contexto.** Faltava decidir a fonte paga. Ao testar a conectividade host a
+host, apareceu um fato que mudava a conta: neste ambiente
+`places.googleapis.com` **é alcançável**, enquanto os servidores do
+OpenStreetMap são bloqueados. Ou seja, a fonte paga é a que funciona aqui — e o
+que faltava para ela era só a chave.
+
+**Decisão.** Implementar a fonte `google_places` (`places:searchText` da Places
+API New), sob a mesma interface `FonteDeLeads`. Ela passa a ser a fonte
+recomendada, porque é a única que traz site, telefone, nota e nº de avaliações
+na mesma resposta — os quatro campos que faltavam para o score separar lead com
+poder de compra (D11).
+
+**Contenções de custo, já que a cobrança é por requisição:**
+
+- sem chave, **nenhuma requisição sai** — a fonte recusa antes de tentar;
+- o *field mask* pede exatamente os campos que o score e a abordagem consomem,
+  nada "por via das dúvidas" (campo a mais pode subir a faixa de cobrança);
+- no máximo 3 páginas por busca, respeitando o teto de 60 resultados da própria
+  API, e parando assim que a quantidade pedida for atingida;
+- cache de POST chaveado por URL **e** corpo: repetir a mesma busca por engano
+  não é cobrado duas vezes;
+- `./prospect` avisa que a fonte é paga e pede confirmação antes de sair;
+- o resultado informa quantas requisições foram feitas.
+
+**Sem `--source`, a fonte é escolhida sozinha:** Places quando há chave,
+OpenStreetMap quando não há. Configurar uma chave paga já é a escolha da fonte.
+
+**O que este código não faz:** estimar preço. A tabela e a calculadora oficiais
+são a referência, e os campos que pedimos ficam em faixas acima do Essentials.
+
+**Estado da verificação.** A requisição real foi executada contra
+`places.googleapis.com` deste ambiente: com chave vazia, a fonte recusa sem
+tentar; com chave inválida, o Google responde *"API key not valid"* e a
+mensagem dele é repassada literalmente. Ou seja, endpoint, cabeçalhos e corpo
+chegam ao Google e passam pela validação de formato — falta apenas uma chave
+válida para ver os dados. A conversão, os filtros, a paginação e os erros estão
+cobertos por 15 testes com fixtures no formato documentado.

@@ -1,6 +1,6 @@
 # Progresso
 
-Atualizado em 02/09/2026 · 120 testes passando (`.venv/bin/python -m pytest`)
+Atualizado em 02/09/2026 · 135 testes passando (`.venv/bin/python -m pytest`)
 
 ## Fase 1 — estrutura, banco, CRM, importação CSV, score ✅
 
@@ -28,9 +28,15 @@ Atualizado em 02/09/2026 · 120 testes passando (`.venv/bin/python -m pytest`)
 | Fonte OpenStreetMap (Nominatim + Overpass) | pronto | `app/prospecting/overpass.py` |
 | Rota `POST /api/busca` + tela Buscar Leads | pronto | `app/routers/busca.py` |
 | `scripts/prospect` e `scripts/qualificar` | pronto | `app/cli.py` |
-| Google Places API | **não integrada** | falta chave em `.env` (D9) |
+| Fonte Google Places (`places:searchText`) | **integrada** | falta só a chave em `.env` (D13) |
 
-**Ressalva de verificação:** a chamada HTTP aos servidores públicos do
+**Places API — estado da verificação.** A requisição real foi executada contra
+`places.googleapis.com`: sem chave a fonte recusa sem tentar; com chave
+inválida o Google responde *"API key not valid"*, e a mensagem dele é repassada
+literalmente. Endpoint, cabeçalhos e corpo chegam ao Google e passam pela
+validação de formato — falta apenas uma chave válida para ver os dados.
+
+**OpenStreetMap — ressalva de verificação:** a chamada HTTP aos servidores públicos do
 OpenStreetMap nunca foi executada — o ambiente de desenvolvimento bloqueia
 saída externa. O fluxo completo (`./prospect` → dedupe → score → dossiê em
 `leads/` → `scripts/qualificar` → `scripts/dashboard`) **foi** exercitado contra
@@ -68,7 +74,7 @@ auditoria, site e copy, que dependem das Fases 3 e 4.
 
 ## O que está testado
 
-120 testes, ~5 s, **sem nenhuma requisição de rede**: dedupe (11), detector de
+135 testes, ~5 s, **sem nenhuma requisição de rede**: dedupe (11), detector de
 site (11), score (11), API de leads (11), filtros (11), import/export (9),
 CRM e dashboard (8), configuração e robustez do cliente HTTP (11), coleta na
 fonte (16). Seeds fictícios permitem rodar o fluxo inteiro offline.

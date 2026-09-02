@@ -16,7 +16,7 @@ from typing import Any
 
 from sqlalchemy import select
 
-from app.core.config import BASE_DIR, configurar_logs
+from app.core.config import BASE_DIR, configurar_logs, settings
 from app.core.database import SessionLocal, criar_tabelas
 from app.crm import crud
 from app.crm.models import Faixa, Lead, StatusLead, StatusWebsite
@@ -94,20 +94,40 @@ def _confirmar(pergunta: str, automatico: bool) -> bool:
 # prospectar
 # --------------------------------------------------------------------------
 
+def escolher_fonte(pedida: str | None) -> str:
+    """Sem --source, usa a Places API quando há chave; senão, o OpenStreetMap.
+
+    Configurar uma chave paga já é a escolha da fonte: quem colocou
+    GOOGLE_MAPS_API_KEY no .env quer os dados que só ela traz. A confirmação
+    antes de sair avisa que a cobrança é por requisição.
+    """
+    if pedida:
+        return pedida
+    return "google_places" if settings.tem_chave_places() else "openstreetmap"
+
+
 def comando_prospectar(args: argparse.Namespace) -> int:
-    from app.prospecting.fontes import ParametrosBusca, fonte_por_nome
     from app.lead_scoring.dedupe import LeadDuplicadoError
+    from app.prospecting.fontes import ParametrosBusca, fonte_por_nome, fontes_disponiveis
 
     criar_tabelas()
+    nome_fonte = escolher_fonte(args.source)
     try:
-        fonte = fonte_por_nome(args.source)
+        fonte = fonte_por_nome(nome_fonte)
     except ValueError as exc:
         print(f"ERRO: {exc}")
         return 2
 
-    print(f"Fonte: {args.source} · {args.niche} em {args.city}/{args.state or '—'} "
+    ficha = {f["id"]: f for f in fontes_disponiveis()}.get(nome_fonte, {})
+    print(f"Fonte: {nome_fonte} · {args.niche} em {args.city}/{args.state or '—'} "
           f"· até {args.limit} leads · raio {args.radius} km")
-    if not _confirmar("Consultar a fonte externa agora?", args.sim):
+
+    pergunta = "Consultar a fonte externa agora?"
+    if "paga" in str(ficha.get("custo", "")):
+        print("  ATENÇÃO: fonte PAGA — a cobrança é por requisição, "
+              "até 20 resultados por página.")
+        pergunta = "Consultar a fonte PAGA agora?"
+    if not _confirmar(pergunta, args.sim):
         print("Cancelado.")
         return 1
 
@@ -297,7 +317,11 @@ def construir_parser() -> argparse.ArgumentParser:
         p.add_argument("--niche", required=True, help="nicho")
         p.add_argument("--limit", type=int, default=20, help="máximo de leads")
         p.add_argument("--radius", type=float, default=10, help="raio em km")
-        p.add_argument("--source", default="openstreetmap", help="fonte de coleta")
+        p.add_argument(
+            "--source", default=None,
+            help="fonte de coleta (padrão: google_places quando há chave, "
+                 "senão openstreetmap)",
+        )
         p.add_argument("--only-no-website", action="store_true")
         p.add_argument("--only-phone", action="store_true")
         p.add_argument("--sim", "-y", action="store_true", help="não perguntar nada")

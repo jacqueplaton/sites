@@ -74,7 +74,7 @@ O banco e a configuração ficam em `./data`, fora do contêiner.
 ### Testes
 
 ```bash
-.venv/bin/python -m pytest         # 120 testes, ~5 s, nenhuma requisição de rede
+.venv/bin/python -m pytest         # 135 testes, ~5 s, nenhuma requisição de rede
 ```
 
 Os testes usam banco temporário e um cliente HTTP falso: rodam offline, sem
@@ -122,7 +122,7 @@ LEAD-AGENCY/
 ├── sites/
 │   ├── templates/           templates de site da agência (Fase 4)
 │   └── clientes/            um diretório por cliente (Fase 4)
-├── tests/                   120 testes, todos offline
+├── tests/                   135 testes, todos offline
 └── data/                    leads.db e config.json (não versionados)
 ```
 
@@ -289,7 +289,7 @@ e erros por linha. O CSV que o app exporta pode ser reimportado.
   esse lead é interessante", "o que vender")
 - interface completa: Dashboard · Buscar Leads · Leads · CRM · Auditoria ·
   Configurações
-- 120 testes, seeds fictícios, logs, rate limit, retry, timeout e cache
+- 135 testes, seeds fictícios, logs, rate limit, retry, timeout e cache
 
 **Fase 2 — coleta: OpenStreetMap ligado, Places API pendente de chave**
 
@@ -298,15 +298,25 @@ quantidade, raio e os toggles, e os resultados entram na base passando pelo
 mesmo caminho de sempre (`criar_lead` → dedupe → detector → score). Nenhum lead
 entra por fora disso.
 
-| Fonte | Situação | Custo | Limitação |
+| Fonte | Situação | Custo | O que entrega |
 |---|---|---|---|
-| OpenStreetMap (Nominatim + Overpass) | **ligada** | gratuita | cobertura irregular; **não traz nota nem nº de avaliações**, e quase nunca traz Instagram ou URL do Maps |
-| Google Places API (Text Search + Place Details) | não integrada | paga por requisição, com conta de faturamento no Google Cloud | exige chave própria em `.env`; os termos restringem armazenamento e exibição de parte dos campos. Antes de integrar é obrigatório conferir a documentação e o preço oficiais vigentes |
+| **Google Places API** (`places:searchText`) | **integrada** — basta `GOOGLE_MAPS_API_KEY` no `.env` | paga, por requisição, com conta de faturamento no Google Cloud | nome, endereço, telefone, **site, nota e nº de avaliações**, horário e URL do Maps. É a única que permite qualificar por reputação |
+| OpenStreetMap (Nominatim + Overpass) | ligada | gratuita | nome, endereço, telefone, site quando etiquetado. **Sem nota e sem avaliações** |
 | Import de CSV | disponível | zero | depende de você já ter a lista |
+
+Sem `--source`, o app usa a Places quando há chave e o OpenStreetMap quando não
+há. Configurar a chave já é a escolha da fonte.
+
+**Custo sob controle** (a cobrança é por requisição): sem chave nenhuma
+requisição sai; o *field mask* pede só os campos que o score consome; no máximo
+3 páginas por busca (a API devolve até 60 resultados); cache por consulta, para
+uma busca repetida por engano não ser cobrada duas vezes; e `./prospect` avisa
+que a fonte é paga antes de sair. O app **não estima preço** — confira a tabela
+oficial.
 
 Raspagem do Google Maps está fora: viola os termos de uso.
 
-**Consequência prática de usar o OSM:** sem nota e sem nº de avaliações, quatro
+**Consequência prática de usar o OSM em vez da Places:** sem nota e sem nº de avaliações, quatro
 regras do score não têm como disparar (`muitas_avaliacoes`, `boa_nota`,
 `empresa_estabelecida`, `aparentemente_inativa`). O lead entra com score menor
 e os filtros de reputação da busca não se aplicam — a própria tela avisa isso
