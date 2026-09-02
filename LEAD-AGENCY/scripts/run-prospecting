@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Pipeline: coleta -> dedupe -> score -> seleção. Para nas Fases 3/4.
+#   scripts/run-prospecting --city Natal --state RN --niche dentista --limit 50
+source "$(dirname "${BASH_SOURCE[0]}")/_comum.sh"
+exec "$PY" -m app.cli pipeline "$@"

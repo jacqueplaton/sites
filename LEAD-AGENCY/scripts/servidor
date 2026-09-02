@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Sobe a interface web (dashboard, leads, CRM, auditoria, configurações).
+source "$(dirname "${BASH_SOURCE[0]}")/_comum.sh"
+exec "$PY" main.py "$@"

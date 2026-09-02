@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Coleta leads numa fonte permitida.
+#   scripts/prospect --city Natal --state RN --niche dentista --limit 100
+source "$(dirname "${BASH_SOURCE[0]}")/_comum.sh"
+exec "$PY" -m app.cli prospectar "$@"

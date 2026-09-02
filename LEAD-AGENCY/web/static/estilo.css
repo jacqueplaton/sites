@@ -1,0 +1,232 @@
+/* ==========================================================================
+   LEAD AGENCY — folha de estilo única. Sem framework, sem build.
+   ========================================================================== */
+
+:root {
+  --fundo: #f4f5f7;
+  --superficie: #ffffff;
+  --borda: #e2e5ea;
+  --texto: #16202c;
+  --texto-suave: #5b6875;
+  --primaria: #1d4ed8;
+  --primaria-escura: #1739a8;
+  --menu: #111827;
+  --menu-texto: #cbd5e1;
+  --hot: #dc2626;
+  --warm: #ea580c;
+  --cold: #0284c7;
+  --low: #64748b;
+  --ok: #15803d;
+  --alerta: #b45309;
+  --raio: 10px;
+  --sombra: 0 1px 2px rgba(16, 24, 40, .06), 0 4px 12px rgba(16, 24, 40, .05);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+a { color: var(--primaria); }
+
+.layout { display: flex; min-height: 100vh; }
+
+/* --- menu lateral ------------------------------------------------------- */
+.menu {
+  width: 232px;
+  flex: 0 0 232px;
+  background: var(--menu);
+  color: var(--menu-texto);
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.marca { display: flex; gap: 10px; align-items: center; color: #fff; }
+.marca-icone { font-size: 26px; }
+.marca strong { display: block; letter-spacing: .5px; font-size: 15px; }
+.marca small { color: #94a3b8; font-size: 12px; }
+.menu nav { display: flex; flex-direction: column; gap: 2px; }
+.menu nav a {
+  color: var(--menu-texto);
+  text-decoration: none;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.menu nav a:hover { background: #1f2937; color: #fff; }
+.menu nav a.ativo { background: var(--primaria); color: #fff; font-weight: 600; }
+.aviso-menu {
+  margin-top: auto;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #94a3b8;
+  border-top: 1px solid #1f2937;
+  padding-top: 14px;
+}
+
+/* --- conteúdo ----------------------------------------------------------- */
+.conteudo { flex: 1; padding: 22px 26px 60px; min-width: 0; }
+.topo {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 14px; flex-wrap: wrap; margin-bottom: 18px;
+}
+.topo h1 { font-size: 22px; margin: 0; }
+.topo-acoes { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.painel {
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 18px;
+  margin-bottom: 18px;
+  box-shadow: var(--sombra);
+}
+.painel h2 { font-size: 15px; margin: 0 0 12px; text-transform: uppercase; letter-spacing: .4px; color: var(--texto-suave); }
+.colunas-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 18px; }
+
+/* --- botões ------------------------------------------------------------- */
+.btn {
+  background: var(--primaria); color: #fff; border: 1px solid var(--primaria);
+  padding: 8px 14px; border-radius: 8px; font-size: 14px; cursor: pointer;
+}
+.btn:hover { background: var(--primaria-escura); }
+.btn-secundario { background: #fff; color: var(--texto); border-color: var(--borda); }
+.btn-secundario:hover { background: #eef2f7; }
+.btn-texto { background: none; border: none; color: var(--texto-suave); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn-mini { font-size: 12px; padding: 4px 8px; }
+
+/* --- cartões do dashboard ---------------------------------------------- */
+.cartoes { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 12px; margin-bottom: 18px; }
+.cartao {
+  background: var(--superficie); border: 1px solid var(--borda);
+  border-radius: var(--raio); padding: 14px; box-shadow: var(--sombra);
+}
+.cartao .rotulo { font-size: 12px; color: var(--texto-suave); text-transform: uppercase; letter-spacing: .4px; }
+.cartao .valor { font-size: 24px; font-weight: 700; margin-top: 4px; overflow-wrap: anywhere; }
+.cartao .nota { font-size: 12px; color: var(--texto-suave); }
+
+/* --- funil -------------------------------------------------------------- */
+.funil { display: flex; gap: 8px; flex-wrap: wrap; }
+.funil .etapa {
+  flex: 1 1 120px; background: #f8fafc; border: 1px solid var(--borda);
+  border-radius: 8px; padding: 10px;
+}
+.funil .etapa b { display: block; font-size: 20px; }
+.funil .etapa span { font-size: 11px; color: var(--texto-suave); letter-spacing: .3px; }
+
+/* --- tabelas ------------------------------------------------------------ */
+.tabela-scroll { overflow-x: auto; }
+.tabela { width: 100%; border-collapse: collapse; background: var(--superficie); font-size: 14px; }
+.tabela th, .tabela td { padding: 9px 10px; border-bottom: 1px solid var(--borda); text-align: left; white-space: nowrap; }
+.tabela th { font-size: 12px; text-transform: uppercase; letter-spacing: .4px; color: var(--texto-suave); background: #f8fafc; position: sticky; top: 0; }
+.tabela tbody tr:hover { background: #f8fafc; }
+.tabela .num { text-align: right; }
+/* usada quando a tabela precisa caber na largura do painel, quebrando texto */
+.tabela-fluida { table-layout: fixed; }
+.tabela-fluida td { white-space: normal; word-break: break-word; vertical-align: top; }
+.tabela-fluida td:first-child { width: 28%; }
+.tabela-fluida td:last-child { width: 100px; }
+
+/* --- etiquetas ---------------------------------------------------------- */
+.etiqueta {
+  display: inline-block; padding: 2px 8px; border-radius: 999px;
+  font-size: 11px; font-weight: 700; letter-spacing: .4px; color: #fff;
+}
+.etiqueta.HOT { background: var(--hot); }
+.etiqueta.WARM { background: var(--warm); }
+.etiqueta.COLD { background: var(--cold); }
+.etiqueta.LOW { background: var(--low); }
+.pastilha {
+  display: inline-block; padding: 2px 8px; border-radius: 999px;
+  font-size: 11px; border: 1px solid var(--borda); background: #f8fafc; color: var(--texto-suave);
+}
+.pastilha.ok { border-color: #bbf7d0; background: #f0fdf4; color: var(--ok); }
+.pastilha.ausente { border-color: #fecaca; background: #fef2f2; color: var(--hot); }
+.pastilha.indefinido { border-color: #fde68a; background: #fffbeb; color: var(--alerta); }
+
+/* --- filtros ------------------------------------------------------------ */
+.filtros {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  background: var(--superficie); border: 1px solid var(--borda);
+  border-radius: var(--raio); padding: 12px; margin-bottom: 14px; box-shadow: var(--sombra);
+}
+input, select, textarea {
+  font: inherit; padding: 7px 9px; border: 1px solid var(--borda);
+  border-radius: 8px; background: #fff; color: var(--texto); min-width: 0;
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid #bfdbfe; border-color: var(--primaria); }
+.filtros input[type="search"] { flex: 1 1 220px; }
+.filtros input[type="number"] { width: 120px; }
+.alternador { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--texto-suave); }
+.alternador input { width: auto; }
+.resumo-lista { color: var(--texto-suave); font-size: 13px; margin: 0 0 10px; }
+
+/* --- formulários -------------------------------------------------------- */
+.grade-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.grade-form label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--texto-suave); }
+.grade-form label.largo { grid-column: 1 / -1; }
+/* o alternador é caixa + texto na mesma linha, não empilhado como os campos */
+.grade-form label.alternador { flex-direction: row; align-items: center; }
+.grade-form .largo { grid-column: 1 / -1; }
+.ajuda { font-size: 13px; color: var(--texto-suave); }
+.erro-form { color: var(--hot); font-size: 13px; }
+
+/* --- diálogos ----------------------------------------------------------- */
+.dialogo { border: none; border-radius: 12px; padding: 22px; width: min(760px, 94vw); box-shadow: 0 20px 45px rgba(15, 23, 42, .25); }
+.dialogo::backdrop { background: rgba(15, 23, 42, .45); }
+.dialogo h2 { margin: 0 0 14px; font-size: 18px; }
+.dialogo menu { display: flex; justify-content: flex-end; gap: 8px; padding: 16px 0 0; margin: 0; }
+
+/* --- paginação ---------------------------------------------------------- */
+.paginacao { display: flex; gap: 8px; align-items: center; margin-top: 12px; font-size: 13px; color: var(--texto-suave); }
+
+/* --- auditoria ---------------------------------------------------------- */
+.audit-cabecalho { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.audit-score { font-size: 40px; font-weight: 800; line-height: 1; }
+.lista-evidencia { margin: 0; padding-left: 18px; }
+.lista-evidencia li { margin-bottom: 6px; }
+.regra { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px dashed var(--borda); font-size: 13px; }
+.regra.inativa { color: #9aa5b1; }
+.regra .peso { font-variant-numeric: tabular-nums; font-weight: 700; }
+.oportunidade { border-left: 3px solid var(--primaria); padding: 6px 0 6px 12px; margin-bottom: 12px; }
+.oportunidade b { display: block; }
+.oportunidade small { color: var(--texto-suave); }
+
+/* --- kanban ------------------------------------------------------------- */
+.kanban { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 14px; align-items: flex-start; }
+.coluna { flex: 0 0 250px; background: #eef1f5; border-radius: var(--raio); padding: 10px; }
+.coluna h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .4px; margin: 0 0 8px; color: var(--texto-suave); display: flex; justify-content: space-between; }
+.cartao-lead { background: #fff; border: 1px solid var(--borda); border-radius: 8px; padding: 10px; margin-bottom: 8px; font-size: 13px; }
+.cartao-lead b { display: block; margin-bottom: 2px; }
+.cartao-lead select { width: 100%; margin-top: 6px; font-size: 12px; }
+
+/* --- avisos ------------------------------------------------------------- */
+.alerta {
+  background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--raio);
+  padding: 14px; margin-bottom: 18px; font-size: 14px;
+}
+.alerta ul { margin: 8px 0 0; padding-left: 18px; }
+.alerta summary { cursor: pointer; margin-top: 8px; font-weight: 600; }
+.aviso {
+  position: fixed; right: 18px; bottom: 18px; z-index: 50;
+  background: var(--menu); color: #fff; padding: 12px 16px;
+  border-radius: 10px; box-shadow: 0 10px 30px rgba(15, 23, 42, .3);
+  max-width: 380px; font-size: 14px;
+}
+.aviso.erro { background: #b91c1c; }
+.chaves { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.vazio { padding: 26px; text-align: center; color: var(--texto-suave); }
+
+@media (max-width: 780px) {
+  .layout { flex-direction: column; }
+  .menu { width: auto; flex: none; }
+  .menu nav { flex-direction: row; flex-wrap: wrap; }
+  .aviso-menu { display: none; }
+}

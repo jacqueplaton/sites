@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Site-demo do lead (Fase 4 — ainda não implementado; o comando explica).
+#   scripts/criar_site 12
+source "$(dirname "${BASH_SOURCE[0]}")/_comum.sh"
+exec "$PY" -m app.cli criar-site "$@"
