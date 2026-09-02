@@ -59,6 +59,16 @@ class Settings:
         )
         self.buscar_dominio_candidato: bool = _bool("LM_BUSCAR_DOMINIO_CANDIDATO", False)
 
+        # Endereços das APIs do OpenStreetMap. Configuráveis porque a Overpass
+        # tem espelhos públicos com limites diferentes, e porque uma instância
+        # própria é a saída para quem coleta em volume.
+        self.nominatim_url: str = os.getenv(
+            "LM_NOMINATIM_URL", "https://nominatim.openstreetmap.org/search"
+        )
+        self.overpass_url: str = os.getenv(
+            "LM_OVERPASS_URL", "https://overpass-api.de/api/interpreter"
+        )
+
         self.config_path: Path = Path(
             os.getenv("LM_CONFIG_PATH", "data/config.json")
         )

@@ -101,12 +101,18 @@ def atualizar_lead(db: Session, lead: Lead, dados: dict[str, Any]) -> Lead:
     return lead
 
 
-def aplicar_detector(lead: Lead, verificar_http: bool = True, cliente=None) -> None:
+def aplicar_detector(
+    lead: Lead,
+    verificar_http: bool = True,
+    cliente=None,
+    buscar_dominio: bool | None = None,
+) -> None:
     """Roda detect_missing_website() e grava o resultado no lead."""
     resultado = detect_missing_website(
         {"website": lead.website, "nome_empresa": lead.nome_empresa},
         cliente=cliente,
         verificar_http=verificar_http,
+        buscar_dominio=buscar_dominio,
     )
     for campo, valor in resultado.como_dict().items():
         setattr(lead, campo, valor)
@@ -114,8 +120,12 @@ def aplicar_detector(lead: Lead, verificar_http: bool = True, cliente=None) -> N
         lead.website_verificado_em = datetime.now(timezone.utc)
 
 
-def verificar_site_do_lead(db: Session, lead: Lead, cliente=None) -> Lead:
-    aplicar_detector(lead, verificar_http=True, cliente=cliente)
+def verificar_site_do_lead(
+    db: Session, lead: Lead, cliente=None, buscar_dominio: bool | None = None
+) -> Lead:
+    aplicar_detector(
+        lead, verificar_http=True, cliente=cliente, buscar_dominio=buscar_dominio
+    )
     aplicar_score(lead)
     db.commit()
     db.refresh(lead)

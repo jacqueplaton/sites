@@ -145,3 +145,30 @@ def test_fonte_inexistente_devolve_codigo_de_erro(capsys):
     assert main(["prospectar", "--city", "X", "--niche", "dentista",
                  "--source", "maps_raspado", "--sim"]) == 2
     assert "não existe" in capsys.readouterr().out
+
+
+def test_qualificar_com_buscar_dominio_repassa_a_opcao(monkeypatch, db):
+    """--buscar-dominio tem de chegar ao detector: é o que destrava os +30."""
+    crud.criar_lead(db, {**LEAD, "website": None})
+    recebido = {}
+
+    def espiao(_db, lead, cliente=None, buscar_dominio=None):
+        recebido["buscar_dominio"] = buscar_dominio
+        return lead
+
+    monkeypatch.setattr("app.cli.crud.verificar_site_do_lead", espiao)
+    main(["qualificar", "--buscar-dominio", "--sim"])
+    assert recebido["buscar_dominio"] is True
+
+
+def test_qualificar_sem_a_opcao_nao_sai_adivinhando_dominio(monkeypatch, db):
+    crud.criar_lead(db, {**LEAD, "website": None})
+    recebido = {}
+
+    def espiao(_db, lead, cliente=None, buscar_dominio=None):
+        recebido["buscar_dominio"] = buscar_dominio
+        return lead
+
+    monkeypatch.setattr("app.cli.crud.verificar_site_do_lead", espiao)
+    main(["qualificar", "--sim"])
+    assert recebido["buscar_dominio"] is False

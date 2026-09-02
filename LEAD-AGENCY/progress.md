@@ -1,6 +1,6 @@
 # Progresso
 
-Atualizado em 02/09/2026 · 99 testes passando (`.venv/bin/python -m pytest`)
+Atualizado em 02/09/2026 · 115 testes passando (`.venv/bin/python -m pytest`)
 
 ## Fase 1 — estrutura, banco, CRM, importação CSV, score ✅
 
@@ -29,10 +29,17 @@ Atualizado em 02/09/2026 · 99 testes passando (`.venv/bin/python -m pytest`)
 | `scripts/prospect` e `scripts/qualificar` | pronto | `app/cli.py` |
 | Google Places API | **não integrada** | falta chave em `.env` (D9) |
 
-**Ressalva de verificação:** a chamada HTTP real ao Nominatim e à Overpass nunca
-foi executada — o ambiente de desenvolvimento bloqueia saída externa. Consulta,
-conversão, filtros, avisos e todos os caminhos de erro têm teste com fixture no
-formato documentado das APIs. O que falta validar é a viagem HTTP.
+**Ressalva de verificação:** a chamada HTTP aos servidores públicos do
+OpenStreetMap nunca foi executada — o ambiente de desenvolvimento bloqueia
+saída externa. O fluxo completo (`./prospect` → dedupe → score → dossiê em
+`leads/` → `scripts/qualificar` → `scripts/dashboard`) **foi** exercitado contra
+um servidor local que devolve as respostas no formato documentado das duas
+APIs, e foi assim que apareceu o defeito corrigido em D10. Falta apenas a
+viagem HTTP até `nominatim.openstreetmap.org` e `overpass-api.de`.
+
+Os endereços das duas APIs agora saem de `LM_NOMINATIM_URL` e `LM_OVERPASS_URL`
+— dá para trocar de espelho da Overpass ou apontar para instância própria sem
+tocar no código.
 
 ## Fase 3 — auditoria, IA, copy 🟡 em parte
 
@@ -60,7 +67,7 @@ auditoria, site e copy, que dependem das Fases 3 e 4.
 
 ## O que está testado
 
-99 testes, ~5 s, **sem nenhuma requisição de rede**: dedupe (11), detector de
+115 testes, ~5 s, **sem nenhuma requisição de rede**: dedupe (11), detector de
 site (11), score (11), API de leads (11), filtros (11), import/export (9),
 CRM e dashboard (8), configuração e robustez do cliente HTTP (11), coleta na
 fonte (16). Seeds fictícios permitem rodar o fluxo inteiro offline.

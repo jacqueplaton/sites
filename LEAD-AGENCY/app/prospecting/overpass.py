@@ -19,14 +19,18 @@ import logging
 from typing import Any
 from urllib.parse import quote_plus
 
-from app.prospecting.fontes import ParametrosBusca, ResultadoBusca
+from app.core.config import settings
 from app.core.http_client import ClienteHTTP, cliente_http
 from app.lead_scoring.niches import _slug
+from app.prospecting.fontes import ParametrosBusca, ResultadoBusca
 
 logger = logging.getLogger(__name__)
 
-URL_NOMINATIM = "https://nominatim.openstreetmap.org/search"
-URL_OVERPASS = "https://overpass-api.de/api/interpreter"
+# Vêm de LM_NOMINATIM_URL / LM_OVERPASS_URL (veja .env.example). Trocar de
+# espelho da Overpass, ou apontar para uma instância própria, é só variável
+# de ambiente — não exige mexer no código.
+URL_NOMINATIM = settings.nominatim_url
+URL_OVERPASS = settings.overpass_url
 
 # nicho do catálogo -> filtros de tag do OSM.
 # Só entra o que o OSM realmente etiqueta. Nicho sem tag boa fica de fora e o

@@ -122,3 +122,41 @@ de uso.
 **Consequência aceita.** O OSM não traz nota nem número de avaliações, então
 quatro regras do score não disparam e o app **não consegue qualificar por poder
 de compra** com essa fonte. Isso está dito na tela da busca, não escondido.
+
+---
+
+## D10 — "Não informado" não é "zero"
+
+**Contexto.** Rodando `./prospect` de ponta a ponta contra um servidor local
+que imita as APIs do OSM, todos os leads coletados caíram em score 0–35. A
+causa: `qtd_avaliacoes` vinha `None` (o OSM não tem esse campo) e o score
+tratava `None` como zero, disparando a penalidade de −20 por "negócio
+aparentemente inativo".
+
+**Decisão.** `None` e `0` passam a ser coisas diferentes. A penalidade só
+dispara quando sabemos que há zero avaliações; quando a fonte não informou, a
+regra não aplica e o motivo registrado diz exatamente isso.
+
+**Por quê.** É o mesmo princípio do detector de site (D5): ausência de dado não
+é evidência de ausência. Punir o lead pela limitação da fonte é errar duas
+vezes — o número fica errado e a explicação na auditoria fica mentirosa.
+
+**Como apareceu.** Executando o fluxo real, não escrevendo teste. Vale como
+lembrete: o Módulo 15 pede rodar o fluxo inteiro justamente por isso.
+
+---
+
+## D11 — Teto de score por fonte, e o `--buscar-dominio`
+
+**Medido** com os pesos atuais: OSM sem verificar site chega a **40** (COLD);
+OSM com `--buscar-dominio` chega a **70** (WARM); com nota e nº de avaliações
+chega a **95** (HOT).
+
+**Decisão.** `scripts/qualificar` ganhou `--buscar-dominio`, desligado por
+padrão. Ligado, o detector testa domínios derivados do nome
+(`empresa.com.br`, `empresa.com`) e pode concluir `SEM_SITE` — o único caminho
+para os +30. Fica opcional e explícito porque adivinhar domínio é palpite
+verificado, não dado de fonte: o app pede confirmação e registra a evidência.
+
+**Consequência aceita.** Com OSM, lead HOT não existe. Quem precisa de HOT
+precisa da Places API.

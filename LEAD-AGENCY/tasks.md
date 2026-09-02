@@ -7,7 +7,12 @@ Ordem de execução. Quem pegar o projeto começa pelo primeiro item aberto.
 - [ ] **Validar a coleta contra a rede real.** Rodar
       `./prospect --city Natal --state RN --niche dentista --limit 20` numa
       máquina com saída para a internet e conferir o retorno do Nominatim e da
-      Overpass. É o único ponto do sistema nunca exercitado de verdade.
+      Overpass. O fluxo inteiro já foi exercitado contra um servidor local que
+      imita as duas APIs (coleta → dedupe → score → dossiê → dashboard); o que
+      falta validar é só a viagem HTTP até os servidores públicos.
+- [ ] **Escolher o corte da qualificação** sabendo do teto por fonte (D11):
+      com OSM e `--buscar-dominio`, o máximo é 70; sem a opção, 40. O corte
+      padrão de 60 não promove ninguém vindo do OSM sem `--buscar-dominio`.
 - [ ] **Decidir a fonte paga.** Sem Places API, não há nota nem número de
       avaliações — e sem isso o score não separa lead com poder de compra (D9).
       Se for seguir, criar chave no Google Cloud, pôr em `.env` e conferir

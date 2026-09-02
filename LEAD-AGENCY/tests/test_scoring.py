@@ -93,10 +93,16 @@ def test_nicho_desconhecido_nao_ganha_alto_ticket():
     assert regra.motivo == "nicho não identificado"
 
 
-def test_cadastro_vazio_dispara_as_tres_penalidades():
+def test_cadastro_vazio_dispara_as_penalidades():
+    """Sem avaliações informadas, 'inativo' não dispara — só as outras duas."""
     lead = {"nome_empresa": "Empresa Fantasma", "categoria": "barbearia"}
     aplicadas = {r.regra for r in calcular_score(lead).regras if r.aplicado}
-    assert {"presenca_digital_fraca", "poucas_informacoes", "negocio_inativo"} <= aplicadas
+    assert {"presenca_digital_fraca", "poucas_informacoes"} <= aplicadas
+    assert "negocio_inativo" not in aplicadas
+
+    confirmado = {**lead, "qtd_avaliacoes": 0}
+    aplicadas = {r.regra for r in calcular_score(confirmado).regras if r.aplicado}
+    assert "negocio_inativo" in aplicadas
 
 
 def test_empresa_com_horario_publicado_conta_como_ativa():
@@ -104,3 +110,25 @@ def test_empresa_com_horario_publicado_conta_como_ativa():
     regras = {r.regra: r for r in calcular_score(lead).regras}
     assert regras["empresa_ativa"].aplicado
     assert not regras["negocio_inativo"].aplicado
+
+
+def test_fonte_sem_avaliacoes_nao_vira_negocio_inativo():
+    """None é 'não informado'; 0 é 'não tem'. Só o segundo penaliza.
+
+    O OpenStreetMap nunca traz avaliação. Tratar isso como zero puniria o
+    lead pela limitação da fonte — o mesmo erro que o detector de site evita
+    ao não concluir SEM_SITE por campo vazio.
+    """
+    do_osm = {"nome_empresa": "Consultório X", "categoria": "dentista",
+              "telefone": "(84) 5555-0001", "endereco": "Rua Teste, 100"}
+    regra = next(r for r in calcular_score(do_osm).regras if r.regra == "negocio_inativo")
+    assert not regra.aplicado
+    assert "não informou avaliações" in regra.motivo
+
+
+def test_zero_avaliacoes_informado_penaliza():
+    conhecido = {"nome_empresa": "Consultório Y", "categoria": "dentista",
+                 "telefone": "(84) 5555-0002", "endereco": "Rua Teste, 200",
+                 "qtd_avaliacoes": 0}
+    regra = next(r for r in calcular_score(conhecido).regras if r.regra == "negocio_inativo")
+    assert regra.aplicado

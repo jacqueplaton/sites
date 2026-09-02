@@ -159,9 +159,14 @@ def comando_qualificar(args: argparse.Namespace) -> int:
             return 0
 
         print(f"{len(leads)} lead(s) para qualificar.")
-        verificar = args.verificar_site and _confirmar(
-            f"Verificar o site de {len(leads)} lead(s) por HTTP?", args.sim
-        )
+        pergunta = f"Verificar o site de {len(leads)} lead(s) por HTTP?"
+        if args.buscar_dominio:
+            pergunta += (
+                "\n  Com --buscar-dominio: para quem não tem site na fonte, o app "
+                "testa\n  domínios derivados do nome (empresa.com.br, empresa.com). "
+                "É o único\n  caminho para concluir SEM_SITE e valer os +30 do score."
+            )
+        verificar = args.verificar_site and _confirmar(pergunta, args.sim)
         if args.verificar_site and not verificar:
             print("Seguindo sem verificação de site: nenhum lead será marcado "
                   "como SEM_SITE (ausência não verificada não é ausência).")
@@ -169,7 +174,7 @@ def comando_qualificar(args: argparse.Namespace) -> int:
         promovidos = 0
         for lead in leads:
             if verificar:
-                crud.verificar_site_do_lead(db, lead)
+                crud.verificar_site_do_lead(db, lead, buscar_dominio=args.buscar_dominio)
             else:
                 crud.aplicar_score_do_lead(db, lead)
             if lead.score >= args.corte:
@@ -296,6 +301,11 @@ def construir_parser() -> argparse.ArgumentParser:
     p.add_argument("--limit", type=int, default=50)
     p.add_argument("--corte", type=int, default=60, help="score mínimo para QUALIFICADO")
     p.add_argument("--sem-verificar-site", dest="verificar_site", action="store_false")
+    p.add_argument(
+        "--buscar-dominio", action="store_true",
+        help="testa domínios derivados do nome quando a fonte não traz website; "
+             "é o que permite concluir SEM_SITE",
+    )
     p.add_argument("--sim", "-y", action="store_true")
     p.set_defaults(funcao=comando_qualificar)
 
@@ -309,6 +319,7 @@ def construir_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("pipeline", help="coleta + qualificação em sequência")
     com_busca(p)
     p.add_argument("--corte", type=int, default=60)
+    p.add_argument("--buscar-dominio", action="store_true")
     p.set_defaults(funcao=comando_pipeline, lead_id=None, verificar_site=True)
 
     return parser

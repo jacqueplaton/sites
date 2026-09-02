@@ -74,7 +74,7 @@ O banco e a configuração ficam em `./data`, fora do contêiner.
 ### Testes
 
 ```bash
-.venv/bin/python -m pytest         # 111 testes, ~5 s, nenhuma requisição de rede
+.venv/bin/python -m pytest         # 115 testes, ~5 s, nenhuma requisição de rede
 ```
 
 Os testes usam banco temporário e um cliente HTTP falso: rodam offline, sem
@@ -122,7 +122,7 @@ LEAD-AGENCY/
 ├── sites/
 │   ├── templates/           templates de site da agência (Fase 4)
 │   └── clientes/            um diretório por cliente (Fase 4)
-├── tests/                   111 testes, todos offline
+├── tests/                   115 testes, todos offline
 └── data/                    leads.db e config.json (não versionados)
 ```
 
@@ -284,7 +284,7 @@ e erros por linha. O CSV que o app exporta pode ser reimportado.
   esse lead é interessante", "o que vender")
 - interface completa: Dashboard · Buscar Leads · Leads · CRM · Auditoria ·
   Configurações
-- 111 testes, seeds fictícios, logs, rate limit, retry, timeout e cache
+- 115 testes, seeds fictícios, logs, rate limit, retry, timeout e cache
 
 **Fase 2 — coleta: OpenStreetMap ligado, Places API pendente de chave**
 
@@ -321,6 +321,26 @@ devolver categoria errada.
 > respostas de fixture no formato documentado de cada API; o que falta validar,
 > na sua máquina, é a viagem HTTP de ida e volta. Se algo falhar, a tela mostra
 > a causa real (sem rede, cidade desconhecida, Overpass fora do ar).
+
+### Teto de score por fonte
+
+Rodando o fluxo de ponta a ponta, os pesos atuais impõem um teto que depende
+da fonte — vale conhecer antes de escolher o corte da qualificação:
+
+| Cenário | Teto alcançável | Faixa |
+|---|---|---|
+| OSM, qualificando sem verificar site | **40** | COLD |
+| OSM + `scripts/qualificar --buscar-dominio` | **70** | WARM |
+| Com nota e nº de avaliações (Places API) | **95** | HOT |
+
+Duas consequências práticas:
+
+1. **Sem `--buscar-dominio`, nenhum lead do OSM passa de COLD.** O detector não
+   conclui `SEM_SITE` por campo vazio (é a regra D5), então os +30 nunca
+   disparam e o corte padrão de 60 não promove ninguém. Ou você usa a opção, ou
+   baixa o corte conscientemente.
+2. **Lead HOT exige reputação**, que só a Places API traz. Com OSM, o topo é
+   WARM. Não é limitação do score: é o dado que não existe na fonte.
 
 **Atribuição obrigatória:** os dados do OpenStreetMap são ODbL. Em qualquer uso
 público do que sair dessa coleta, credite “© colaboradores do OpenStreetMap”.

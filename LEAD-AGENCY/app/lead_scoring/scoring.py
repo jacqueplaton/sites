@@ -68,7 +68,12 @@ def calcular_score(lead: dict[str, Any], config: dict[str, Any] | None = None) -
 
     site_situacao = lead.get("site_situacao") or SituacaoSite.SITE_NAO_CONFIRMADO
     website_status = lead.get("website_status") or StatusWebsite.NAO_VERIFICADO
-    avaliacoes = lead.get("qtd_avaliacoes") or 0
+    # None e 0 são coisas diferentes: "a fonte não informou avaliações" não é
+    # "esta empresa não tem avaliação". É o mesmo princípio do detector de
+    # site — ausência de dado não é evidência de ausência.
+    bruto_avaliacoes = lead.get("qtd_avaliacoes")
+    avaliacoes_conhecidas = bruto_avaliacoes is not None
+    avaliacoes = bruto_avaliacoes or 0
     nota = lead.get("avaliacao")
 
     canais = sum(
@@ -167,12 +172,22 @@ def calcular_score(lead: dict[str, Any], config: dict[str, Any] | None = None) -
         if profissional else f"situação atual: {site_situacao} / {website_status}",
     )
 
-    inativo = avaliacoes == 0 and nota is None and not _tem(lead.get("horario"))
-    registrar(
-        "negocio_inativo", "Negócio aparentemente inativo", inativo,
-        "nenhuma avaliação, nenhuma nota e nenhum horário publicado" if inativo
-        else f"{avaliacoes} avaliações",
+    inativo = (
+        avaliacoes_conhecidas
+        and avaliacoes == 0
+        and nota is None
+        and not _tem(lead.get("horario"))
     )
+    if inativo:
+        motivo_inativo = "nenhuma avaliação, nenhuma nota e nenhum horário publicado"
+    elif not avaliacoes_conhecidas:
+        motivo_inativo = (
+            "a fonte não informou avaliações — sem isso não dá para concluir "
+            "que o negócio está parado"
+        )
+    else:
+        motivo_inativo = f"{avaliacoes} avaliações"
+    registrar("negocio_inativo", "Negócio aparentemente inativo", inativo, motivo_inativo)
 
     poucas = campos_informativos < lim["campos_minimos"]
     registrar(
