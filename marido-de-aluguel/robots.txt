@@ -1,3 +1,5 @@
 # Marido de aluguel — Natal/RN
 User-agent: *
 Allow: /
+
+Sitemap: https://exemplo.com.br/sitemap.xml

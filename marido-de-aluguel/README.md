@@ -28,6 +28,9 @@ npx serve .
 index.html            a página inteira (todas as seções e todos os textos)
 favicon.svg           ícone da aba do navegador
 robots.txt            instruções para o Google
+sitemap.xml           mapa do site para o Google
+netlify.toml          configuração da publicação (veja "Publicar no Netlify")
+netlify-build.sh      script que monta a pasta publicada
 
 css/
   style.css           todo o visual: cores, tipografia, layout, animações
@@ -134,15 +137,75 @@ Não existe formulário na página: todo pedido vai direto para o WhatsApp, e na
 
 - [ ] Colocar as quatro fotos em `media/` (veja "As fotos" acima).
 - [ ] Testar os botões de WhatsApp num celular com o app instalado.
-- [ ] Trocar a linha `<link rel="canonical" href="https://exemplo.com.br/">` no
-      `index.html` pelo endereço real do site.
+- [ ] O endereço do site (`canonical`, Open Graph, sitemap) é ajustado sozinho
+      na publicação pelo Netlify — só precisa de atenção se você publicar em
+      outro lugar.
 - [ ] Decidir se entra o número da Av. Rui Barbosa (hoje o site não mostra
       número nenhum).
 
 ---
 
-## Publicar
+## Publicar no Netlify
 
-Como não tem build, qualquer hospedagem de arquivo estático serve: Netlify,
-Vercel, GitHub Pages, ou a hospedagem que o cliente já tiver. Basta enviar o
-conteúdo desta pasta (`index.html` na raiz do site).
+Este repositório tem **dois sites**: o do restaurante, na raiz, e este, na pasta
+`marido-de-aluguel/`. Por isso tem um passo que não dá para pular.
+
+### Pelo GitHub (recomendado — cada `git push` republica sozinho)
+
+1. No Netlify: **Add new site → Import an existing project → GitHub** e escolha
+   o repositório `jacqueplaton/sites`.
+2. Na tela de configuração, escolha a **branch** que quer publicar.
+3. **Abra "Configure" / "Advanced" e preencha o campo `Base directory` com:**
+
+   ```
+   marido-de-aluguel
+   ```
+
+   **Esse é o passo obrigatório.** Sem ele, o Netlify lê o `netlify.toml` da
+   raiz e publica o site do restaurante no lugar deste.
+4. Não preencha mais nada. Com o base directory definido, o Netlify acha o
+   comando de build (`bash netlify-build.sh`) e a pasta de publicação (`_site`)
+   sozinho, lendo o `netlify.toml` desta pasta.
+5. **Deploy site.** Em um minuto sai um endereço tipo
+   `https://nome-sorteado.netlify.app`, que dá para renomear em
+   *Site configuration → Change site name*.
+
+### Por arrastar e soltar (mais rápido para mostrar ao cliente)
+
+Sem GitHub, sem conta conectada:
+
+```
+bash netlify-build.sh
+```
+
+Isso cria a pasta `_site`. Arraste ela para <https://app.netlify.com/drop> e o
+site entra no ar na hora. Para atualizar depois, rode o comando de novo e
+arraste outra vez.
+
+### O que o build faz
+
+O `netlify-build.sh` separa em `_site` só o que vai para o ar — o `README.md` e
+o próprio script ficam de fora — e **troca o endereço provisório
+`https://exemplo.com.br` pelo endereço real do deploy** no `canonical`, no Open
+Graph, no `robots.txt` e no `sitemap.xml`. Ou seja: não precisa editar o
+canonical na mão, aquilo sai resolvido sozinho.
+
+Se alguma das quatro fotos ainda não estiver em `media/`, o build avisa no log
+e publica assim mesmo, com o espaço reservado no lugar. Não quebra o deploy.
+
+**Quando o site ganhar domínio próprio:** aponte o domínio no Netlify e troque
+`https://exemplo.com.br` nos três arquivos onde ele aparece — `index.html`,
+`sitemap.xml` e `robots.txt` — mais a linha `PROVISORIO=` do `netlify-build.sh`.
+
+---
+
+## Publicar em outro lugar
+
+O site é HTML puro, então qualquer hospedagem de arquivo estático serve —
+Vercel, GitHub Pages, ou a hospedagem que o cliente já tiver. Rode
+`bash netlify-build.sh` e envie o conteúdo da pasta `_site` (com o
+`index.html` na raiz do site).
+
+Fora do Netlify o script não sabe qual é o endereço final, então o
+`https://exemplo.com.br` continua escrito no `canonical`, no Open Graph, no
+`sitemap.xml` e no `robots.txt` — troque nesses quatro lugares antes de subir.
