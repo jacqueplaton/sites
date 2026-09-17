@@ -1,0 +1,3 @@
+# Marido de aluguel — Natal/RN
+User-agent: *
+Allow: /
