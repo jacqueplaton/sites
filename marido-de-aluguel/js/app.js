@@ -94,15 +94,24 @@
   /* ------------------------------------------------------------------
      3. FOTO QUE AINDA NÃO ESTÁ NA PASTA
      ------------------------------------------------------------------
-     Se o arquivo .jpg de uma foto não existir em media/, a imagem some e
-     fica à mostra o espaço reservado que está no fundo do quadro — em vez
-     do ícone de imagem quebrada. Quando a foto entrar, isto não faz nada.
+     Se o arquivo .jpg não existir em media/, a imagem some e o espaço
+     reservado (o endereço está no data-reserva da própria imagem) entra
+     como fundo do quadro — em vez do ícone de imagem quebrada.
+
+     O reservado só é pintado quando a foto falha de verdade. Se ele
+     ficasse sempre no fundo, apareceria por trás de cada foto enquanto
+     ela carrega, e numa rede lenta o visitante veria o retângulo azul
+     piscar antes da imagem.
      ------------------------------------------------------------------ */
   function fotosPendentes() {
-    $$('.card__foto img, .capa__foto img').forEach(function (img) {
-      function esconder() { img.classList.add('sem-foto'); }
-      if (img.complete && img.naturalWidth === 0) esconder();
-      img.addEventListener('error', esconder);
+    $$('img[data-reserva]').forEach(function (img) {
+      function marcar() {
+        var quadro = img.parentElement;
+        if (quadro) quadro.style.backgroundImage = 'url(' + img.dataset.reserva + ')';
+        img.classList.add('sem-foto');
+      }
+      if (img.complete && img.naturalWidth === 0) marcar();
+      img.addEventListener('error', marcar);
     });
   }
 

@@ -102,8 +102,8 @@
       <!-- IMAGEM PRINCIPAL — o arquivo media/montagem-moveis.jpg.
            Enquanto ele não estiver na pasta, aparece o espaço reservado
            que está em --reserva. Veja "As fotos" no README.md. -->
-      <figure class="capa__foto r-anima" style="--atraso:200ms; background-image:url(media/placeholder-montagem-moveis.svg)">
-        <img src="media/montagem-moveis.jpg" width="1536" height="1024"
+      <figure class="capa__foto r-anima" style="--atraso:200ms">
+        <img src="media/montagem-moveis.jpg" data-reserva="media/placeholder-montagem-moveis.svg" width="1536" height="1024"
              alt="Profissional de uniforme azul montando um móvel de madeira na sala, com a caixa de ferramentas ao lado."
              fetchpriority="high" decoding="async">
         <figcaption>Imagens ilustrativas</figcaption>
@@ -126,9 +126,9 @@
       <ul class="cards">
 
         <li class="card r-sobe">
-          <div class="card__foto" style="background-image:url(media/placeholder-eletrica.svg)">
+          <div class="card__foto">
             <!-- FOTO — elétrica: o arquivo media/eletrica.jpg -->
-            <img src="media/eletrica.jpg" width="1536" height="1024" loading="lazy" decoding="async"
+            <img src="media/eletrica.jpg" data-reserva="media/placeholder-eletrica.svg" width="1536" height="1024" loading="lazy" decoding="async"
                  alt="Profissional apertando com a chave de fenda o parafuso de uma tomada na parede.">
           </div>
           <div class="card__corpo">
@@ -146,9 +146,9 @@
         </li>
 
         <li class="card r-sobe">
-          <div class="card__foto" style="background-image:url(media/placeholder-hidraulica.svg)">
+          <div class="card__foto">
             <!-- FOTO — hidráulica: o arquivo media/hidraulica.jpg -->
-            <img src="media/hidraulica.jpg" width="1536" height="1024" loading="lazy" decoding="async"
+            <img src="media/hidraulica.jpg" data-reserva="media/placeholder-hidraulica.svg" width="1536" height="1024" loading="lazy" decoding="async"
                  alt="Profissional ajustando com um alicate o sifão sob a pia da cozinha.">
           </div>
           <div class="card__corpo">
@@ -166,9 +166,9 @@
         </li>
 
         <li class="card r-sobe">
-          <div class="card__foto" style="background-image:url(media/placeholder-pintura.svg)">
+          <div class="card__foto">
             <!-- FOTO — pintura: o arquivo media/pintura.jpg -->
-            <img src="media/pintura.jpg" width="1536" height="1024" loading="lazy" decoding="async"
+            <img src="media/pintura.jpg" data-reserva="media/placeholder-pintura.svg" width="1536" height="1024" loading="lazy" decoding="async"
                  alt="Profissional pintando a parede de um ambiente com rolo, sobre lona de proteção.">
           </div>
           <div class="card__corpo">
@@ -240,6 +240,14 @@
     </div>
   </section>
 
+  <!-- Faixa larga de transição para a seção escura. Foto decorativa: o alt
+       fica vazio de propósito, porque ela repete a foto do card de pintura
+       e o leitor de tela não deve ler a mesma coisa duas vezes.
+       O arquivo é media/pintura.jpg. -->
+  <div class="faixa-foto">
+    <img src="media/pintura.jpg" data-reserva="media/placeholder-pintura.svg" alt="" width="1536" height="1024" loading="lazy" decoding="async">
+  </div>
+
   <!-- ====================================================================
        COMO FUNCIONA
        ==================================================================== -->
@@ -310,6 +318,13 @@
       </div>
 
       <div class="sobre__lado r-sobe">
+
+        <!-- Foto decorativa (repete a do card de hidráulica), por isso o alt
+             vazio. O arquivo é media/hidraulica.jpg. -->
+        <figure class="sobre__foto">
+          <img src="media/hidraulica.jpg" data-reserva="media/placeholder-hidraulica.svg" alt="" width="1536" height="1024" loading="lazy" decoding="async">
+        </figure>
+
         <div class="sobre__cartao">
           <p class="sobre__cartao-rot">Sinal de que é hora de chamar</p>
           <ul class="lista-check">

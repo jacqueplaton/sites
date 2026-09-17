@@ -96,6 +96,21 @@ Enquanto um desses arquivos não estiver na pasta, aquele quadro mostra um
 espaço reservado azul escrito "FOTO 01", "FOTO 02"… — nunca o ícone de imagem
 quebrada. No instante em que o `.jpg` entra, a foto aparece sozinha.
 
+**As quatro fotos ocupam seis pontos da página**, porque duas aparecem duas
+vezes, em tratamentos diferentes para não parecer repetição:
+
+| Onde | Foto |
+|---|---|
+| Capa | montagem de móveis |
+| Card de elétrica | elétrica |
+| Card de hidráulica | hidráulica |
+| Card de pintura | pintura |
+| Faixa larga antes do "Como funciona" | pintura |
+| Coluna direita do "Sobre o serviço" | hidráulica |
+
+Nas duas repetições o `alt` está vazio de propósito: é foto decorativa, e o
+leitor de tela não deve ler a mesma descrição duas vezes.
+
 Para conferir o que já está no lugar, rode dentro desta pasta:
 
 ```

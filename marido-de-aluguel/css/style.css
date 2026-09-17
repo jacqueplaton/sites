@@ -609,6 +609,34 @@ address { font-style: normal; }
 .passo p { color: rgba(255, 255, 255, .76); font-size: .99rem; }
 
 /* --------------------------------------------------------------------------
+   9b. FAIXA LARGA DE FOTO
+   Transição entre a seção clara dos serviços e a escura do "como funciona".
+   O degradê no pé emenda a foto com o azul da seção seguinte.
+   -------------------------------------------------------------------------- */
+.faixa-foto {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--branco-2);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.faixa-foto img {
+  width: 100%;
+  height: clamp(190px, 26vw, 360px);
+  object-fit: cover;
+  object-position: center 42%;
+}
+.faixa-foto::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background: linear-gradient(to bottom, transparent, var(--marinho));
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
    10. SOBRE O SERVIÇO
    -------------------------------------------------------------------------- */
 .sobre__interno {
@@ -653,6 +681,22 @@ address { font-style: normal; }
 }
 .selo__estrela { color: var(--laranja); display: grid; place-items: center; }
 .selo__estrela svg { width: 1.15rem; height: 1.15rem; }
+
+.sobre__foto {
+  margin: 0 0 clamp(1rem, 2vw, 1.5rem);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background-color: var(--branco-2);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: var(--sombra);
+}
+.sobre__foto img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
 
 .sobre__cartao {
   background: var(--marinho);
