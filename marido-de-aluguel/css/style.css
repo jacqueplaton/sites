@@ -411,6 +411,12 @@ address { font-style: normal; }
   border-radius: var(--r-lg);
   z-index: -1;
 }
+.capa__foto {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: var(--r-lg);
+}
 .capa__foto img {
   width: 100%;
   aspect-ratio: 3 / 2;
@@ -491,7 +497,17 @@ address { font-style: normal; }
   box-shadow: var(--sombra);
 }
 
-.card__foto { overflow: hidden; background: var(--branco-2); }
+/* O fundo de cada quadro é o espaço reservado — a imagem em si vem do
+   atributo style no index.html, porque um endereço escrito dentro de uma
+   variável CSS seria procurado a partir da pasta css/, não da raiz do site.
+   O espaço reservado só aparece enquanto o .jpg não estiver em media/. */
+.card__foto {
+  overflow: hidden;
+  background-color: var(--branco-2);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 .card__foto img {
   width: 100%;
   aspect-ratio: 3 / 2;
@@ -757,6 +773,10 @@ a.dado__val { text-decoration-color: var(--laranja); text-underline-offset: 4px;
     white-space: nowrap;
   }
 }
+
+/* Foto ainda não entregue: o app.js marca a imagem e ela some, deixando à
+   mostra o espaço reservado que está no fundo do quadro. */
+.sem-foto { visibility: hidden; }
 
 /* --------------------------------------------------------------------------
    14. ANIMAÇÕES

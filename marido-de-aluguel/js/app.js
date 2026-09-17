@@ -92,7 +92,22 @@
   }
 
   /* ------------------------------------------------------------------
-     3. REVELAR AS SEÇÕES AO ROLAR
+     3. FOTO QUE AINDA NÃO ESTÁ NA PASTA
+     ------------------------------------------------------------------
+     Se o arquivo .jpg de uma foto não existir em media/, a imagem some e
+     fica à mostra o espaço reservado que está no fundo do quadro — em vez
+     do ícone de imagem quebrada. Quando a foto entrar, isto não faz nada.
+     ------------------------------------------------------------------ */
+  function fotosPendentes() {
+    $$('.card__foto img, .capa__foto img').forEach(function (img) {
+      function esconder() { img.classList.add('sem-foto'); }
+      if (img.complete && img.naturalWidth === 0) esconder();
+      img.addEventListener('error', esconder);
+    });
+  }
+
+  /* ------------------------------------------------------------------
+     4. REVELAR AS SEÇÕES AO ROLAR
      ------------------------------------------------------------------ */
   function revelar() {
     var alvos = $$('.r-sobe');
@@ -125,6 +140,7 @@
   /* ------------------------------------------------------------------ */
   function iniciar() {
     aplicarDados();
+    fotosPendentes();
     menu();
     revelar();
   }

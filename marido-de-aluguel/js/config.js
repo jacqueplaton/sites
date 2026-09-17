@@ -57,9 +57,9 @@ const SITE = {
   horarioFimDeSemana: 'Sábado e domingo: fechado',
 
   /* ---- Avaliação do Google ------------------------------------------
-     NÚMEROS INFORMADOS PELO CLIENTE, não conferidos automaticamente.
-     Confira no perfil do Google antes de publicar.
-     Para esconder o selo de avaliação do site, troque `nota` por null.
+     Números confirmados pelo cliente para esta apresentação.
+     Quando a nota mudar no Google, atualize aqui — o selo do site lê daqui.
+     Para esconder o selo de avaliação, troque `nota` por null.
      ------------------------------------------------------------------ */
   nota: 4.8,
   qtdAvaliacoes: 43

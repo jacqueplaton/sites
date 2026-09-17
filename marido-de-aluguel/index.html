@@ -98,10 +98,11 @@
         </p>
       </div>
 
-      <!-- IMAGEM PRINCIPAL — trocar pela foto da montagem de móveis.
-           Veja "Trocar as imagens" no README.md. -->
-      <figure class="capa__foto r-anima" style="--atraso:200ms">
-        <img src="media/placeholder-montagem-moveis.svg" width="1536" height="1024"
+      <!-- IMAGEM PRINCIPAL — o arquivo media/montagem-moveis.jpg.
+           Enquanto ele não estiver na pasta, aparece o espaço reservado
+           que está em --reserva. Veja "As fotos" no README.md. -->
+      <figure class="capa__foto r-anima" style="--atraso:200ms; background-image:url(media/placeholder-montagem-moveis.svg)">
+        <img src="media/montagem-moveis.jpg" width="1536" height="1024"
              alt="Profissional de uniforme azul montando um móvel de madeira na sala, com a caixa de ferramentas ao lado."
              fetchpriority="high" decoding="async">
         <figcaption>Imagens ilustrativas</figcaption>
@@ -124,9 +125,9 @@
       <ul class="cards">
 
         <li class="card r-sobe">
-          <div class="card__foto">
-            <!-- FOTO — elétrica -->
-            <img src="media/placeholder-eletrica.svg" width="1536" height="1024" loading="lazy" decoding="async"
+          <div class="card__foto" style="background-image:url(media/placeholder-eletrica.svg)">
+            <!-- FOTO — elétrica: o arquivo media/eletrica.jpg -->
+            <img src="media/eletrica.jpg" width="1536" height="1024" loading="lazy" decoding="async"
                  alt="Profissional apertando com a chave de fenda o parafuso de uma tomada na parede.">
           </div>
           <div class="card__corpo">
@@ -144,9 +145,9 @@
         </li>
 
         <li class="card r-sobe">
-          <div class="card__foto">
-            <!-- FOTO — hidráulica -->
-            <img src="media/placeholder-hidraulica.svg" width="1536" height="1024" loading="lazy" decoding="async"
+          <div class="card__foto" style="background-image:url(media/placeholder-hidraulica.svg)">
+            <!-- FOTO — hidráulica: o arquivo media/hidraulica.jpg -->
+            <img src="media/hidraulica.jpg" width="1536" height="1024" loading="lazy" decoding="async"
                  alt="Profissional ajustando com um alicate o sifão sob a pia da cozinha.">
           </div>
           <div class="card__corpo">
@@ -164,9 +165,9 @@
         </li>
 
         <li class="card r-sobe">
-          <div class="card__foto">
-            <!-- FOTO — pintura -->
-            <img src="media/placeholder-pintura.svg" width="1536" height="1024" loading="lazy" decoding="async"
+          <div class="card__foto" style="background-image:url(media/placeholder-pintura.svg)">
+            <!-- FOTO — pintura: o arquivo media/pintura.jpg -->
+            <img src="media/pintura.jpg" width="1536" height="1024" loading="lazy" decoding="async"
                  alt="Profissional pintando a parede de um ambiente com rolo, sobre lona de proteção.">
           </div>
           <div class="card__corpo">

@@ -65,9 +65,8 @@ qtdAvaliacoes: 43,
   que o WhatsApp usa.
 - `nota: null` esconde o selo de avaliação em vez de mostrar um número errado.
   Faça isso se a nota do Google mudar e você ainda não tiver conferido.
-- **A nota 4,8 e as 43 avaliações foram informadas para esta apresentação e
-  não foram conferidas automaticamente.** Confira no perfil do Google antes de
-  publicar.
+- A nota 4,8 e as 43 avaliações foram confirmadas pelo cliente. Quando mudarem
+  no Google, atualize aqui.
 - O endereço não tem número de rua porque o número não foi informado. O site
   trata a Av. Rui Barbosa como referência de atendimento e em nenhum momento
   afirma que existe loja aberta ao público.
@@ -78,45 +77,41 @@ um deles no `config.js`, mude também lá. São duas linhas, estão comentadas.
 
 ---
 
-## Trocar as imagens
+## As fotos
 
-As quatro imagens que estão no site agora são **espaços reservados**: retângulos
-azul-marinho escritos "FOTO 01", "FOTO 02"… Elas existem só para a página não
-ficar com buraco na apresentação. As fotos de verdade (montagem de móveis,
-elétrica, hidráulica e pintura) não puderam ser gravadas nesta pasta a partir da
-conversa, então precisam ser copiadas para cá na mão.
+O site já aponta para os arquivos finais. **Não precisa mexer em código:** é só
+salvar as quatro fotos dentro de `media/` com estes nomes exatos.
 
-**Passo a passo**
+| Foto                                  | Nome do arquivo        |
+|---------------------------------------|------------------------|
+| Profissional montando o móvel na sala | `montagem-moveis.jpg`  |
+| Manutenção de tomada na parede        | `eletrica.jpg`         |
+| Reparo do sifão sob a pia             | `hidraulica.jpg`       |
+| Pintura de parede com rolo            | `pintura.jpg`          |
 
-1. Salve as quatro fotos dentro de `media/` com estes nomes:
+Enquanto um desses arquivos não estiver na pasta, aquele quadro mostra um
+espaço reservado azul escrito "FOTO 01", "FOTO 02"… — nunca o ícone de imagem
+quebrada. No instante em que o `.jpg` entra, a foto aparece sozinha.
 
-   | Foto                                 | Nome do arquivo             |
-   |--------------------------------------|-----------------------------|
-   | Profissional montando o móvel na sala| `montagem-moveis.jpg`       |
-   | Manutenção de tomada na parede       | `eletrica.jpg`              |
-   | Reparo do sifão sob a pia            | `hidraulica.jpg`            |
-   | Pintura de parede com rolo           | `pintura.jpg`               |
+Para conferir o que já está no lugar, rode dentro desta pasta:
 
-2. Abra o `index.html` e troque o `src` de cada `<img>`. São quatro trocas, e
-   cada uma tem um comentário em cima dizendo qual foto é:
+```
+ls media/
+```
 
-   ```html
-   <!-- antes -->
-   <img src="media/placeholder-montagem-moveis.svg" ...>
-   <!-- depois -->
-   <img src="media/montagem-moveis.jpg" ...>
-   ```
+Depois que as quatro fotos estiverem lá, pode apagar os arquivos
+`media/placeholder-*.svg` — e, se quiser deixar limpo, as quatro linhas
+`--reserva:url(...)` no `index.html`.
 
-3. Se a foto tiver proporção diferente de 3 por 2, não precisa cortar: o CSS já
-   recorta pelo centro. Se quiser mudar a parte visível da foto principal,
-   ajuste `object-position` em `.capa__foto img` no `css/style.css`.
+**Sobre o recorte:** as fotos são 3 por 2, a mesma proporção dos quadros do
+site, então entram inteiras, sem corte. A única exceção é a foto principal no
+celular, que fica um pouco mais quadrada — se quiser mudar a parte visível,
+ajuste `object-position` em `.capa__foto img` no `css/style.css`.
 
-4. Apague os arquivos `media/placeholder-*.svg` depois da troca.
-
-**As imagens são ilustrativas, geradas por IA.** O site já diz isso em dois
+**As imagens são ilustrativas, geradas por IA.** O site diz isso em dois
 lugares (selo sobre a foto principal e rodapé). Elas não representam equipe,
-portfólio nem obra concluída — se um dia entrarem fotos reais dos serviços, vale
-tirar esses dois avisos.
+portfólio nem obra concluída — se um dia entrarem fotos reais dos serviços,
+vale tirar esses dois avisos.
 
 ---
 
@@ -137,8 +132,7 @@ Não existe formulário na página: todo pedido vai direto para o WhatsApp, e na
 
 ## Antes de publicar
 
-- [ ] Conferir a nota e a quantidade de avaliações no perfil do Google.
-- [ ] Trocar os quatro espaços reservados pelas fotos de verdade.
+- [ ] Colocar as quatro fotos em `media/` (veja "As fotos" acima).
 - [ ] Testar os botões de WhatsApp num celular com o app instalado.
 - [ ] Trocar a linha `<link rel="canonical" href="https://exemplo.com.br/">` no
       `index.html` pelo endereço real do site.
