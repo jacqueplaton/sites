@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jacqueplaton.github.io/sites/coutinho-pereira-advocacia/sitemap.xml

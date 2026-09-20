@@ -1,0 +1,828 @@
+/* ==========================================================================
+   COUTINHO PEREIRA ADVOCACIA
+   Visual do site: tinta, papel e latão. Tipografia editorial, linhas finas,
+   muito espaço em branco. Sem framework, sem dependência externa.
+
+   Sumário
+     1. Variáveis e base
+     2. Tipografia e utilitários
+     3. Cabeçalho e navegação
+     4. Capa (hero)
+     5. Seções de conteúdo
+     6. Áreas de atuação
+     7. Atendimento, horário e mapa
+     8. Rodapé
+     9. Animações e acessibilidade
+    10. Responsivo
+   ========================================================================== */
+
+/* ---- 1. Variáveis e base ------------------------------------------- */
+:root {
+  /* Cores */
+  --tinta:        #0b1a22;
+  --tinta-2:      #10242e;
+  --tinta-3:      #16303c;
+  --papel:        #fbf9f5;
+  --pergaminho:   #f1ece2;
+  --latao:        #a97c37;
+  --latao-claro:  #d2a75f;
+  --texto:        #16252c;
+  --texto-suave:  #55666f;
+  --texto-claro:  rgba(247, 243, 236, 0.72);
+  --linha:        rgba(22, 37, 44, 0.14);
+  --linha-clara:  rgba(247, 243, 236, 0.16);
+
+  /* Tipografia */
+  --serif:  'Instrument Serif', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --sans:   'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  /* Ritmo */
+  --gutter:  clamp(1.25rem, 5vw, 5rem);
+  --largura: 78rem;
+  --secao:   clamp(4.5rem, 10vw, 9rem);
+
+  /* Movimento */
+  --suave: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--texto);
+  font-family: var(--sans);
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img, svg, iframe { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+/* Textura de papel: ruído sutil em cima dos fundos escuros e claros. */
+.grao::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.32;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* ---- 2. Tipografia e utilitários ----------------------------------- */
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.02;
+  margin: 0;
+}
+
+h1 { font-size: clamp(2.9rem, 1.4rem + 7vw, 7.5rem); }
+h2 { font-size: clamp(2.1rem, 1.3rem + 3.4vw, 4rem); line-height: 1.06; }
+h3 { font-size: clamp(1.3rem, 1.1rem + 0.9vw, 1.7rem); line-height: 1.15; }
+
+p { margin: 0 0 1.1em; }
+p:last-child { margin-bottom: 0; }
+
+.env {
+  max-width: var(--largura);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Etiqueta miúda das seções: "01 — O escritório" */
+.etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--latao);
+  margin: 0 0 1.6rem;
+}
+.etiqueta::before {
+  content: '';
+  width: clamp(1.5rem, 4vw, 3rem);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}
+.sobre-tinta .etiqueta { color: var(--latao-claro); }
+
+.destaque { font-style: italic; color: var(--latao); }
+.sobre-tinta .destaque { color: var(--latao-claro); }
+
+.conduz {
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem);
+  line-height: 1.4;
+  color: var(--texto);
+}
+.sobre-tinta .conduz { color: rgba(247, 243, 236, 0.9); }
+
+.sobre-tinta {
+  background: var(--tinta);
+  color: var(--texto-claro);
+  position: relative;
+}
+.sobre-tinta h2,
+.sobre-tinta h3 { color: #f7f3ec; }
+
+/* Botões */
+.btn {
+  --cor: var(--tinta);
+  --fundo: transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65em;
+  padding: 0.95em 1.6em;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  color: var(--cor);
+  background: var(--fundo);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.4s var(--suave), border-color 0.4s var(--suave),
+              transform 0.3s var(--suave);
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--cor);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--suave);
+  z-index: -1;
+}
+.btn > * { position: relative; }
+.btn:hover { transform: translateY(-2px); }
+.btn:hover::before { transform: scaleX(1); }
+.btn:focus-visible { outline: 2px solid var(--latao); outline-offset: 3px; }
+
+.btn--solido {
+  --cor: var(--latao);
+  background: var(--latao);
+  border-color: var(--latao);
+  color: #fffdf8;
+}
+.btn--solido::before { background: #fffdf8; }
+.btn--solido:hover { color: var(--tinta); border-color: #fffdf8; }
+
+.btn--claro { --cor: rgba(247, 243, 236, 0.85); }
+.btn--claro::before { background: #f7f3ec; }
+.btn--claro:hover { color: var(--tinta); }
+
+.btn svg { width: 1em; height: 1em; flex: none; }
+
+/* Regra fina de largura total */
+.regra {
+  border: 0;
+  height: 1px;
+  background: var(--linha);
+  margin: 0;
+}
+.sobre-tinta .regra { background: var(--linha-clara); }
+
+/* ---- 3. Cabeçalho e navegação -------------------------------------- */
+.pular {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--tinta);
+  color: #f7f3ec;
+  padding: 0.8rem 1.2rem;
+  z-index: 100;
+}
+.pular:focus { left: 1rem; top: 1rem; }
+
+.topo {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  padding-block: clamp(0.9rem, 2vw, 1.5rem);
+  transition: background 0.45s var(--suave), padding 0.45s var(--suave),
+              box-shadow 0.45s var(--suave);
+}
+.topo--preso {
+  background: rgba(11, 26, 34, 0.92);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  padding-block: 0.7rem;
+  box-shadow: 0 1px 0 var(--linha-clara);
+}
+
+.topo__grade {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+  color: #f7f3ec;
+}
+.marca__sigla { width: 2.1rem; height: 2.1rem; flex: none; }
+.marca__nome {
+  font-family: var(--serif);
+  font-size: 1.22rem;
+  line-height: 1.05;
+  letter-spacing: 0.005em;
+}
+.marca__nome small {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.5625rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-top: 0.22rem;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.2vw, 2.1rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu a {
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(247, 243, 236, 0.78);
+  padding-block: 0.3rem;
+  position: relative;
+  transition: color 0.3s var(--suave);
+}
+.menu a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--latao-claro);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s var(--suave);
+}
+.menu a:hover,
+.menu a:focus-visible { color: #fffdf8; }
+.menu a:hover::after,
+.menu a:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+
+.topo__fone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #f7f3ec;
+  text-decoration: none;
+  border: 1px solid var(--linha-clara);
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  transition: border-color 0.35s var(--suave), background 0.35s var(--suave);
+}
+.topo__fone:hover { border-color: var(--latao-claro); background: rgba(210, 167, 95, 0.12); }
+.topo__fone svg { width: 0.95em; height: 0.95em; }
+
+/* Botão do menu no celular */
+.abrir-menu {
+  display: none;
+  background: none;
+  border: 1px solid var(--linha-clara);
+  border-radius: 999px;
+  color: #f7f3ec;
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* ---- 4. Capa (hero) ------------------------------------------------- */
+.capa {
+  position: relative;
+  background: var(--tinta);
+  color: var(--texto-claro);
+  padding-top: clamp(8rem, 16vw, 11rem);
+  padding-bottom: clamp(3.5rem, 7vw, 5.5rem);
+  overflow: hidden;
+  isolation: isolate;
+}
+/* Claridade quente vinda do canto superior direito */
+.capa::before {
+  content: '';
+  position: absolute;
+  top: -35%;
+  right: -12%;
+  width: min(60rem, 95vw);
+  aspect-ratio: 1;
+  background: radial-gradient(circle at center,
+              rgba(169, 124, 55, 0.3) 0%,
+              rgba(169, 124, 55, 0.08) 42%,
+              transparent 68%);
+  z-index: -1;
+  animation: respirar 14s ease-in-out infinite alternate;
+}
+@keyframes respirar {
+  from { transform: scale(1) translateY(0); opacity: 0.85; }
+  to   { transform: scale(1.12) translateY(2%); opacity: 1; }
+}
+
+/* Linhas verticais finíssimas, como pauta de papel timbrado */
+.capa__pauta {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  max-width: var(--largura);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  pointer-events: none;
+}
+.capa__pauta span { border-left: 1px solid rgba(247, 243, 236, 0.055); }
+.capa__pauta span:last-child { border-right: 1px solid rgba(247, 243, 236, 0.055); }
+
+.capa__grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: end;
+}
+
+.capa__local {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.1rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--latao-claro);
+  margin-bottom: clamp(1.5rem, 3vw, 2.4rem);
+}
+.capa__local i { font-style: normal; opacity: 0.5; }
+
+h1.capa__titulo {
+  margin: 0;
+  color: #f9f6f0;
+}
+h1.capa__titulo span { display: block; }
+h1.capa__titulo .linha-2 {
+  font-style: italic;
+  color: var(--latao-claro);
+  margin-left: clamp(0rem, 6vw, 5.5rem);
+}
+
+.capa__frase {
+  max-width: 34rem;
+  margin-top: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-size: clamp(1.02rem, 0.98rem + 0.25vw, 1.15rem);
+  color: rgba(247, 243, 236, 0.76);
+}
+
+.capa__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(2rem, 4vw, 2.8rem);
+}
+
+/* Selo de situação: aberto / fechado agora */
+.selo-situacao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: rgba(247, 243, 236, 0.8);
+  border: 1px solid var(--linha-clara);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+}
+.selo-situacao__ponto {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--texto-suave);
+  flex: none;
+}
+.selo-situacao[data-aberto='sim'] .selo-situacao__ponto {
+  background: #6fbf8b;
+  box-shadow: 0 0 0 0 rgba(111, 191, 139, 0.6);
+  animation: pulsar 2.6s ease-out infinite;
+}
+.selo-situacao[data-aberto='nao'] .selo-situacao__ponto { background: #c87b5a; }
+@keyframes pulsar {
+  to { box-shadow: 0 0 0 0.6rem rgba(111, 191, 139, 0); }
+}
+
+/* Balança desenhada em SVG — o único "ornamento" da página */
+.balanca {
+  width: clamp(12rem, 22vw, 20rem);
+  color: rgba(210, 167, 95, 0.85);
+  justify-self: end;
+}
+.balanca .fiel { transform-origin: 100px 34px; animation: equilibrar 9s var(--suave) infinite; }
+@keyframes equilibrar {
+  0%, 100% { transform: rotate(0deg); }
+  18%      { transform: rotate(-3.2deg); }
+  42%      { transform: rotate(2deg); }
+  66%      { transform: rotate(-0.8deg); }
+  84%      { transform: rotate(0.3deg); }
+}
+
+/* Faixa de dados no rodapé da capa */
+.capa__faixa {
+  margin-top: clamp(3rem, 7vw, 5rem);
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--linha-clara);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1.6rem 2rem;
+}
+.capa__dado dt {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 236, 0.45);
+  margin-bottom: 0.45rem;
+}
+.capa__dado dd {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(247, 243, 236, 0.9);
+}
+.capa__dado a { text-decoration: none; border-bottom: 1px solid rgba(210, 167, 95, 0.45); }
+.capa__dado a:hover { border-color: var(--latao-claro); color: #fffdf8; }
+
+.capa__dado a.nota-google { border-bottom: 0; }
+.nota-google {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+.nota-google__valor {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  color: var(--latao-claro);
+  line-height: 1;
+}
+.nota-google__estrelas { color: var(--latao-claro); letter-spacing: 0.1em; font-size: 0.8rem; }
+.nota-google:hover .nota-google__valor { color: #e8c68a; }
+#nota-quantidade { font-size: 0.8rem; color: rgba(247, 243, 236, 0.55); }
+
+/* ---- 5. Seções de conteúdo ------------------------------------------ */
+.secao { padding-block: var(--secao); position: relative; }
+
+.secao__grade {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
+/* Texto institucional */
+.sobre__texto p + p { margin-top: 1.1em; }
+.sobre__texto { max-width: 38rem; }
+
+.marcadores {
+  list-style: none;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+  counter-reset: item;
+}
+.marcadores li {
+  counter-increment: item;
+  display: grid;
+  grid-template-columns: 3.2rem minmax(0, 1fr);
+  gap: 1.2rem;
+  padding: 1.35rem 0;
+  border-top: 1px solid var(--linha);
+}
+.marcadores li:last-child { border-bottom: 1px solid var(--linha); }
+.marcadores li::before {
+  content: '0' counter(item);
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--latao);
+  line-height: 1.5;
+}
+.marcadores h3 { margin-bottom: 0.3rem; font-size: 1.22rem; }
+.marcadores p { font-size: 0.9375rem; color: var(--texto-suave); }
+
+/* ---- 6. Áreas de atuação -------------------------------------------- */
+.areas__lista {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--linha-clara);
+  border: 1px solid var(--linha-clara);
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+.area {
+  background: var(--tinta);
+  padding: clamp(1.6rem, 3vw, 2.3rem);
+  position: relative;
+  transition: background 0.45s var(--suave);
+}
+.area::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--latao);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s var(--suave);
+}
+.area:hover { background: var(--tinta-2); }
+.area:hover::after { transform: scaleY(1); }
+.area__num {
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  color: rgba(210, 167, 95, 0.7);
+  display: block;
+  margin-bottom: 1rem;
+}
+.area h3 { font-size: 1.35rem; margin-bottom: 0.55rem; }
+.area p { font-size: 0.9rem; color: rgba(247, 243, 236, 0.62); margin: 0; }
+
+@media (min-width: 44rem) { .areas__lista { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 70rem) { .areas__lista { grid-template-columns: repeat(3, 1fr); } }
+
+/* Aviso de conteúdo provisório */
+.aviso {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  margin-top: 1.8rem;
+  padding: 0.95rem 1.2rem;
+  border: 1px dashed rgba(210, 167, 95, 0.45);
+  border-radius: 3px;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: rgba(247, 243, 236, 0.66);
+  background: rgba(210, 167, 95, 0.05);
+}
+.aviso svg { width: 1.05rem; height: 1.05rem; flex: none; color: var(--latao-claro); margin-top: 0.12rem; }
+
+/* ---- 7. Atendimento, horário e mapa --------------------------------- */
+.contato { background: var(--pergaminho); }
+
+.horario {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 26rem;
+}
+.horario li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.72rem 0;
+  border-bottom: 1px solid var(--linha);
+  font-size: 0.9375rem;
+}
+.horario li:first-child { border-top: 1px solid var(--linha); }
+.horario__dia { color: var(--texto-suave); }
+.horario__hora { font-variant-numeric: tabular-nums; }
+.horario li[data-hoje='sim'] {
+  color: var(--latao);
+  font-weight: 500;
+}
+.horario li[data-hoje='sim'] .horario__dia { color: var(--latao); }
+.horario li[data-hoje='sim'] .horario__dia::after {
+  content: 'hoje';
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  margin-left: 0.65rem;
+  vertical-align: 0.1em;
+}
+
+.horario__nota {
+  max-width: 26rem;
+  margin-top: 1.4rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--texto-suave);
+}
+
+.ficha { display: grid; gap: 1.6rem; margin-top: clamp(2rem, 4vw, 2.6rem); }
+.ficha dt {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  margin-bottom: 0.4rem;
+}
+.ficha dd { margin: 0; font-size: 1rem; }
+.ficha dd a { text-decoration: none; border-bottom: 1px solid rgba(169, 124, 55, 0.5); }
+.ficha dd a:hover { color: var(--latao); }
+.ficha .discreto { display: block; color: var(--texto-suave); font-size: 0.875rem; margin-top: 0.15rem; }
+
+.mapa {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border: 1px solid var(--linha);
+  background: #e7e1d5;
+  position: relative;
+  aspect-ratio: 16 / 10;
+}
+.mapa iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.35) contrast(1.02); }
+
+.contato__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+/* Bloco final de chamada */
+.chamada { text-align: center; }
+.chamada h2 { max-width: 20ch; margin-inline: auto; }
+.chamada p { max-width: 46ch; margin-inline: auto; margin-top: 1.4rem; }
+.chamada .capa__acoes { justify-content: center; }
+.chamada .etiqueta { justify-content: center; }
+
+/* ---- 8. Rodapé ------------------------------------------------------ */
+.rodape {
+  background: var(--tinta);
+  color: rgba(247, 243, 236, 0.6);
+  padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
+  font-size: 0.875rem;
+  position: relative;
+}
+.rodape__grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--linha-clara);
+}
+.rodape h3 {
+  font-family: var(--sans);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 236, 0.4);
+  margin-bottom: 1rem;
+}
+.rodape ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.rodape a { text-decoration: none; transition: color 0.3s var(--suave); }
+.rodape a:hover { color: var(--latao-claro); }
+.rodape__fim {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.6rem;
+  font-size: 0.75rem;
+  color: rgba(247, 243, 236, 0.38);
+}
+.rodape__nota {
+  margin-top: 1.6rem;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: rgba(247, 243, 236, 0.38);
+  max-width: 60ch;
+}
+
+/* ---- 9. Animações e acessibilidade ---------------------------------- */
+.revelar {
+  opacity: 0;
+  transform: translateY(1.4rem);
+  transition: opacity 0.85s var(--suave), transform 0.85s var(--suave);
+}
+.revelar.aparece { opacity: 1; transform: none; }
+.revelar:nth-child(2) { transition-delay: 0.08s; }
+.revelar:nth-child(3) { transition-delay: 0.16s; }
+
+/* Entrada da capa, escalonada */
+.entra {
+  opacity: 0;
+  transform: translateY(1.6rem);
+  animation: entrar 1s var(--suave) forwards;
+}
+.entra--1 { animation-delay: 0.1s; }
+.entra--2 { animation-delay: 0.22s; }
+.entra--3 { animation-delay: 0.34s; }
+.entra--4 { animation-delay: 0.46s; }
+.entra--5 { animation-delay: 0.58s; }
+@keyframes entrar { to { opacity: 1; transform: none; } }
+
+:focus-visible { outline: 2px solid var(--latao); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .revelar, .entra { opacity: 1; transform: none; }
+}
+
+/* ---- 10. Responsivo -------------------------------------------------- */
+@media (max-width: 62rem) {
+  .secao__grade { grid-template-columns: 1fr; }
+  .capa__grade { grid-template-columns: 1fr; align-items: start; }
+  .balanca { justify-self: start; margin-top: 1.5rem; width: clamp(9rem, 34vw, 14rem); }
+  h1.capa__titulo .linha-2 { margin-left: clamp(0rem, 8vw, 3rem); }
+}
+
+@media (max-width: 52rem) {
+  .topo__fone span { display: none; }
+  .abrir-menu { display: inline-block; }
+
+  /* O painel do menu desce por trás da marca e do botão Fechar,
+     que ficam visíveis o tempo todo (por isso o z-index abaixo). */
+  .marca,
+  .topo__grade .topo__grade { position: relative; z-index: 2; }
+  .topo nav { position: static; }
+
+  .menu {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--tinta);
+    padding: 6rem var(--gutter) 2.5rem;
+    transform: translateY(-101%);
+    transition: transform 0.55s var(--suave);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+  .menu[data-aberto='sim'] { transform: none; }
+  .menu li { width: 100%; border-bottom: 1px solid var(--linha-clara); }
+  .menu a { display: block; padding: 1rem 0; font-size: 1rem; letter-spacing: 0.1em; }
+
+  .capa__pauta { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 34rem) {
+  /* Com o botão "Fechar" aberto, o nome do escritório não pode quebrar. */
+  .marca__nome { font-size: 1.05rem; white-space: nowrap; }
+  .marca__sigla { width: 1.8rem; height: 1.8rem; }
+
+  .marcadores li { grid-template-columns: 1fr; gap: 0.3rem; }
+  .marcadores li::before { font-size: 0.95rem; }
+  .btn { width: 100%; justify-content: center; }
+  .capa__acoes, .contato__acoes { flex-direction: column; align-items: stretch; }
+}
+
+@media print {
+  .topo, .capa__acoes, .contato__acoes, .mapa, .abrir-menu { display: none !important; }
+  body { background: #fff; color: #000; }
+  .sobre-tinta, .capa, .rodape { background: #fff !important; color: #000 !important; }
+}
+
+/* Compensa o cabeçalho fixo quando se chega por um link do menu */
+section[id], main[id] { scroll-margin-top: clamp(4.5rem, 9vw, 6rem); }

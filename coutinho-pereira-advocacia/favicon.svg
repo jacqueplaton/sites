@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="Coutinho Pereira Advocacia">
+  <rect width="40" height="40" rx="8" fill="#0b1a22"/>
+  <g stroke="#d2a75f" stroke-width="1.8" stroke-linecap="round" fill="none">
+    <path d="M20 11v19"/>
+    <path d="M9 15h22"/>
+    <path d="M14 30h12"/>
+    <path d="M5.5 15l3.5 6.5h-7z" fill="#d2a75f" fill-opacity=".25"/>
+    <path d="M31 15l3.5 6.5h-7z" fill="#d2a75f" fill-opacity=".25"/>
+  </g>
+</svg>

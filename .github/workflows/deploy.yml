@@ -28,6 +28,9 @@ jobs:
           mkdir -p _site
           cp -r index.html favicon.svg robots.txt sitemap.xml \
                 css js fonts media _site/
+          # segundo site do repositório, em sua própria pasta
+          cp -r coutinho-pereira-advocacia _site/
+          rm -f _site/coutinho-pereira-advocacia/README.md
           # impede o Jekyll de reprocessar (e de ignorar arquivos)
           touch _site/.nojekyll
           echo "Arquivos publicados:"

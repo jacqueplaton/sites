@@ -1,0 +1,10 @@
+Fontes hospedadas neste próprio site (não dependem do Google).
+
+  Instrument Serif  — Rodrigo Fuenzalida / Instrument
+  Archivo           — Omnibus-Type
+
+Ambas estão sob a SIL Open Font License 1.1, que permite uso comercial e
+hospedagem própria. Texto da licença: https://openfontlicense.org
+
+Os arquivos são recortes (subsets) latin e latin-ext gerados pelo Google Fonts.
+Para trocar de fonte, substitua os .woff2 e ajuste css/fonts.css.
