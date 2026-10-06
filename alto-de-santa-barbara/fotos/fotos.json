@@ -1,0 +1,149 @@
+{
+  "_leia": "Manifesto das fotografias reais. Cada entrada aponta para o arquivo-fonte nesta pasta. O script tools/gerar-imagens.py le esta lista e cria as versoes otimizadas em img/. Origem: A1 = Airbnb Chale 1 (rooms/17328945); A2 = Airbnb Chale 2 (rooms/17249906). Uso comercial sujeito a autorizacao do titular das fotos.",
+  "fotos": [
+    {
+      "id": "01-hero",
+      "arquivo": "01-HERO.webp",
+      "origem": "A1",
+      "acomodacao": "Chalé 1",
+      "cena": "Ofurô vazio diante das janelas de madeira, com a serra ao fundo",
+      "alt": "Ofurô do Chalé 1 diante das janelas e das montanhas",
+      "uso": "Hero; pequena referência na galeria do Chalé 1",
+      "larguras": [
+        640,
+        960,
+        1280,
+        1440
+      ]
+    },
+    {
+      "id": "02-hidro",
+      "arquivo": "02-HIDRO.webp",
+      "origem": "A2",
+      "acomodacao": "Chalé 2",
+      "cena": "Hidromassagem ligada, janelas de canto abertas para a mata e as montanhas",
+      "alt": "Ofurô com hidromassagem do Chalé 2, cercado de janelas para a mata e a serra",
+      "uso": "Imagem principal do Chalé 2",
+      "larguras": [
+        640,
+        960,
+        1440
+      ]
+    },
+    {
+      "id": "03-varanda",
+      "arquivo": "03-VARANDA-VISTA.webp",
+      "origem": "A2",
+      "acomodacao": "Chalé 2",
+      "cena": "Deck de madeira e portas de vidro abertas, serra ao fundo",
+      "alt": "Deck do Chalé 2 com portas de vidro abertas e a serra ao fundo",
+      "uso": "Sequência do Chalé 2",
+      "larguras": [
+        400,
+        720,
+        1080,
+        1440
+      ]
+    },
+    {
+      "id": "04-sala",
+      "arquivo": "04-SALA.webp",
+      "origem": "A2",
+      "acomodacao": "Chalé 2",
+      "cena": "Sala com sofá, mesa para dois e janelas para a mata, luz de sol no piso",
+      "alt": "Sala do Chalé 2 com sofá, mesa para dois e janelas abertas para a mata",
+      "uso": "Sequência do Chalé 2",
+      "larguras": [
+        400,
+        720,
+        1080,
+        1440
+      ]
+    },
+    {
+      "id": "05-quarto",
+      "arquivo": "05-QUARTO.webp",
+      "origem": "A1",
+      "acomodacao": "Chalé 1",
+      "cena": "Cama queen com enxoval branco e manta azul, numeral 1 na parede",
+      "alt": "Cama queen do Chalé 1 com enxoval branco, manta azul e roupões dobrados",
+      "uso": "Galeria do Chalé 1",
+      "larguras": [
+        400,
+        720,
+        1080,
+        1440
+      ]
+    },
+    {
+      "id": "06-banheiro",
+      "arquivo": "06-BANHEIRO.webp",
+      "origem": "A1",
+      "acomodacao": "Chalé 1",
+      "cena": "Box com duas duchas e janela de madeira para a mata",
+      "alt": "Box do banheiro do Chalé 1 com duas duchas e janela de madeira para a mata",
+      "uso": "Galeria do Chalé 1",
+      "larguras": [
+        400,
+        720,
+        1080
+      ]
+    },
+    {
+      "id": "07-cafe",
+      "arquivo": "07-CAFE-JANTAR.webp",
+      "origem": "A2",
+      "acomodacao": "Chalé 2",
+      "cena": "Mão segurando xícara de café diante do ofurô e das janelas para a serra",
+      "alt": "Xícara de café diante do ofurô e das janelas do Chalé 2, com a serra ao fundo",
+      "uso": "Capítulo da manhã. Não mostra o café da manhã completo",
+      "larguras": [
+        400,
+        720,
+        1080
+      ]
+    },
+    {
+      "id": "08-exterior",
+      "arquivo": "08-EXTERIOR.webp",
+      "origem": "A1",
+      "acomodacao": "Chalé 1",
+      "cena": "Chalé com telhado de telhas apoiado em pilares na encosta, entre árvores e samambaias",
+      "alt": "Chalé 1 apoiado em pilares na encosta, entre árvores e samambaias",
+      "uso": "Imagem dominante do Chalé 1",
+      "larguras": [
+        400,
+        720,
+        1080
+      ]
+    },
+    {
+      "id": "09-sauna",
+      "arquivo": "09-SAUNA.webp",
+      "origem": "A1",
+      "acomodacao": "Chalé 1",
+      "cena": "Porta de madeira da sauna com visor; não mostra o interior",
+      "alt": "Porta de madeira da sauna do Chalé 1",
+      "uso": "Detalhe na galeria do Chalé 1, legenda 'Acesso à sauna'",
+      "larguras": [
+        400,
+        720,
+        1080
+      ]
+    },
+    {
+      "id": "10-mirante",
+      "arquivo": "10-PAISAGEM-MIRANTE.webp",
+      "origem": "A2",
+      "acomodacao": "Área comum",
+      "cena": "Serra recortada no horizonte acima de um mar de nuvens, céu alaranjado",
+      "alt": "Vista do mirante: a serra no horizonte acima de um mar de nuvens",
+      "uso": "Capítulo do mirante. Condição de céu e neblina não garantida",
+      "larguras": [
+        640,
+        960,
+        1440
+      ]
+    }
+  ]
+}

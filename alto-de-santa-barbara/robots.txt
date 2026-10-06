@@ -1,0 +1,5 @@
+# Prévia: o rastreamento fica liberado de propósito. A página usa a meta tag
+# "noindex" para ficar fora do Google, e o robô precisa conseguir lê-la.
+# Na versão definitiva (INDEXAR=sim), o build acrescenta a linha do Sitemap.
+User-agent: *
+Allow: /

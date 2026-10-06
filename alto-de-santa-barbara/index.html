@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Alto de Santa Bárbara | Chalés em São Francisco Xavier</title>
+  <meta name="description" content="Chalés para dois em São Francisco Xavier, com hidro, vista para a Mantiqueira e café da manhã. Conheça o Alto de Santa Bárbara e consulte datas.">
+
+  <!-- Prévia: fora do índice do Google. O build.sh troca por index,follow quando INDEXAR=sim. -->
+  <meta name="robots" content="noindex, follow">
+
+  <meta name="theme-color" content="#F4F0E7">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <link rel="preload" href="fonts/newsreader-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/source-sans-3-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" type="image/avif"
+        imagesrcset="img/01-hero-640.avif 640w, img/01-hero-960.avif 960w, img/01-hero-1280.avif 1280w, img/01-hero-1440.avif 1440w"
+        imagesizes="(min-width: 960px) 66vw, 100vw" fetchpriority="high">
+  <link rel="stylesheet" href="css/site.css">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Alto de Santa Bárbara">
+  <meta property="og:title" content="Alto de Santa Bárbara | Chalés em São Francisco Xavier">
+  <meta property="og:description" content="Chalés para dois em São Francisco Xavier, com hidro, vista para a Mantiqueira e café da manhã. Conheça o Alto de Santa Bárbara e consulte datas.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Alto de Santa Bárbara | Chalés em São Francisco Xavier">
+  <meta name="twitter:description" content="Chalés para dois em São Francisco Xavier, com hidro, vista para a Mantiqueira e café da manhã.">
+
+  <!--
+    URLs ABSOLUTAS (canonical, Open Graph, JSON-LD)
+    O domínio definitivo ainda não foi informado. O build.sh troca o marcador
+    deste bloco pelo endereço real (variável SITE_URL ou o endereço do Netlify).
+    Sem endereço definido, o build remove o bloco em vez de publicar URL inventada.
+  -->
+  <!-- seo-url:inicio -->
+  <link rel="canonical" href="__SITE_URL__/">
+  <meta property="og:url" content="__SITE_URL__/">
+  <meta property="og:image" content="__SITE_URL__/img/og-01-hero.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ofurô do Chalé 1 diante das janelas e das montanhas">
+  <meta name="twitter:image" content="__SITE_URL__/img/og-01-hero.jpg">
+  <meta name="twitter:image:alt" content="Ofurô do Chalé 1 diante das janelas e das montanhas">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "__SITE_URL__/#site",
+        "url": "__SITE_URL__/",
+        "name": "Alto de Santa Bárbara",
+        "inLanguage": "pt-BR"
+      },
+      {
+        "@type": "LodgingBusiness",
+        "@id": "__SITE_URL__/#hospedagem",
+        "name": "Alto de Santa Bárbara",
+        "url": "__SITE_URL__/",
+        "description": "Dois chalés para até duas pessoas em São Francisco Xavier, na Serra da Mantiqueira, com ofurô com hidromassagem, lareira, deck e café da manhã entregue no chalé.",
+        "image": [
+          "__SITE_URL__/img/01-hero.jpg",
+          "__SITE_URL__/img/02-hidro.jpg",
+          "__SITE_URL__/img/08-exterior.jpg"
+        ],
+        "telephone": "+55 12 99220-4141",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "São José dos Campos",
+          "addressRegion": "SP",
+          "addressCountry": "BR"
+        },
+        "containedInPlace": {
+          "@type": "Place",
+          "name": "São Francisco Xavier, Serra da Mantiqueira"
+        },
+        "sameAs": ["https://www.instagram.com/altodesantabarbara/"],
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Café da manhã incluído, entregue no chalé", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Estacionamento na propriedade", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Trilha interna até o mirante", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true }
+        ],
+        "containsPlace": [
+          {
+            "@type": "Accommodation",
+            "@id": "__SITE_URL__/#chale-1",
+            "name": "Chalé 1",
+            "occupancy": { "@type": "QuantitativeValue", "maxValue": 2 },
+            "bed": { "@type": "BedDetails", "typeOfBed": "Queen", "numberOfBeds": 1 },
+            "amenityFeature": [
+              { "@type": "LocationFeatureSpecification", "name": "Ofurô com hidromassagem", "value": true },
+              { "@type": "LocationFeatureSpecification", "name": "Sauna seca", "value": true },
+              { "@type": "LocationFeatureSpecification", "name": "Lareira", "value": true },
+              { "@type": "LocationFeatureSpecification", "name": "Deck", "value": true }
+            ]
+          },
+          {
+            "@type": "Accommodation",
+            "@id": "__SITE_URL__/#chale-2",
+            "name": "Chalé 2",
+            "occupancy": { "@type": "QuantitativeValue", "maxValue": 2 },
+            "bed": { "@type": "BedDetails", "typeOfBed": "Queen", "numberOfBeds": 1 },
+            "amenityFeature": [
+              { "@type": "LocationFeatureSpecification", "name": "Ofurô com hidromassagem", "value": true },
+              { "@type": "LocationFeatureSpecification", "name": "Microcozinha", "value": true },
+              { "@type": "LocationFeatureSpecification", "name": "Lareira", "value": true },
+              { "@type": "LocationFeatureSpecification", "name": "Deck", "value": true }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- seo-url:fim -->
+
+  <script src="js/config.js" defer></script>
+  <script src="js/site.js" defer></script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35m-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.9a11.82 11.82 0 0 0-3.48-8.41Z"/></symbol>
+    <symbol id="i-seta-baixo" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M12 4v15m-6-6 6 6 6-6"/></symbol>
+    <symbol id="i-externo" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M8 6h10v10M18 6 6 18"/></symbol>
+    <symbol id="i-fechar" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-anterior" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="m15 5-7 7 7 7"/></symbol>
+    <symbol id="i-proxima" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M4 8h16M4 16h16"/></symbol>
+  </svg>
+
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo" id="topo">
+    <div class="wrap topo-linha">
+      <a class="marca" href="#conteudo">Alto de Santa Bárbara</a>
+      <nav class="nav" aria-label="Principal">
+        <ul role="list">
+          <li><a href="#experiencia">Experiência</a></li>
+          <li><a href="#chales">Chalés</a></li>
+          <li><a href="#avaliacoes">Avaliações</a></li>
+          <li><a href="#localizacao">Localização</a></li>
+        </ul>
+        <a class="btn btn-primario btn-compacto" href="#consulta">Consultar disponibilidade</a>
+      </nav>
+      <button class="menu-abrir" type="button" aria-haspopup="dialog" aria-controls="menu" hidden>
+        <span>Menu</span>
+        <svg aria-hidden="true" width="22" height="22"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <dialog class="menu" id="menu" aria-label="Menu">
+    <div class="wrap menu-topo">
+      <span class="marca">Alto de Santa Bárbara</span>
+      <button class="icone-btn menu-fechar" type="button" aria-label="Fechar menu">
+        <svg aria-hidden="true" width="24" height="24"><use href="#i-fechar"/></svg>
+      </button>
+    </div>
+    <nav class="wrap menu-corpo" aria-label="Menu principal">
+      <ul role="list">
+        <li><a href="#experiencia">Experiência</a></li>
+        <li><a href="#chales">Chalés</a></li>
+        <li><a href="#avaliacoes">Avaliações</a></li>
+        <li><a href="#localizacao">Localização</a></li>
+      </ul>
+      <a class="btn btn-primario btn-largo" href="#consulta">Consultar disponibilidade</a>
+      <p class="menu-telefone">WhatsApp <a href="https://wa.me/5512992204141?text=Ol%C3%A1!%20Conheci%20o%20Alto%20de%20Santa%20B%C3%A1rbara%20pelo%20site%20e%20gostaria%20de%20consultar%20disponibilidade%20para%20uma%20hospedagem." data-wa="menu">(12) 99220-4141</a></p>
+    </nav>
+  </dialog>
+
+  <main id="conteudo" tabindex="-1">
+
+    <!-- 1 · HERO + PRIMEIRA PROVA -->
+    <section class="hero" aria-labelledby="titulo-principal">
+      <div class="hero-grade">
+        <div class="hero-foto">
+          <picture>
+            <source type="image/avif" srcset="img/01-hero-640.avif 640w, img/01-hero-960.avif 960w, img/01-hero-1280.avif 1280w, img/01-hero-1440.avif 1440w" sizes="(min-width: 960px) 66vw, 100vw">
+            <source type="image/webp" srcset="img/01-hero-640.webp 640w, img/01-hero-960.webp 960w, img/01-hero-1280.webp 1280w, img/01-hero-1440.webp 1440w" sizes="(min-width: 960px) 66vw, 100vw">
+            <img src="img/01-hero.jpg" width="1440" height="960" alt="Ofurô do Chalé 1 diante das janelas e das montanhas" fetchpriority="high" decoding="async">
+          </picture>
+        </div>
+        <div class="hero-texto">
+          <p class="rotulo">Alto de Santa Bárbara</p>
+          <div class="hero-titulo">
+            <h1 id="titulo-principal" class="h1">Privacidade no alto da Mantiqueira.</h1>
+            <p class="hero-local">São Francisco Xavier · SP</p>
+          </div>
+          <div class="hero-acoes">
+            <a class="btn btn-primario" href="https://wa.me/5512992204141?text=Ol%C3%A1!%20Conheci%20o%20Alto%20de%20Santa%20B%C3%A1rbara%20pelo%20site%20e%20gostaria%20de%20consultar%20disponibilidade%20para%20uma%20hospedagem." data-wa="hero">
+              <svg aria-hidden="true" width="20" height="20"><use href="#i-whatsapp"/></svg>
+              Consultar disponibilidade
+            </a>
+            <a class="link-seta" href="#chales">
+              Conheça os chalés
+              <svg aria-hidden="true" width="18" height="18"><use href="#i-seta-baixo"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="wrap">
+        <p class="prova">
+          <span>Dois chalés para duas pessoas.</span>
+          <span>Hidromassagem com vista.</span>
+          <span>Café da manhã incluído.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- 2 · EXPERIÊNCIA -->
+    <section class="experiencia" id="experiencia" aria-labelledby="titulo-experiencia">
+      <div class="wrap experiencia-grade">
+        <p class="rotulo revela">A experiência</p>
+        <h2 id="titulo-experiencia" class="h2 revela">A paisagem faz parte da estadia.</h2>
+        <p class="destaque revela">Entre a madeira, a água e a luz que atravessa as janelas, o convite é ficar um pouco mais.</p>
+      </div>
+    </section>
+
+    <!-- 3 · ESCOLHA DO CHALÉ -->
+    <section class="chales" id="chales" aria-labelledby="titulo-chales">
+      <div class="wrap">
+        <header class="chales-abertura">
+          <p class="rotulo revela">Os chalés</p>
+          <h2 id="titulo-chales" class="h2 revela">Qual será o seu lugar na montanha?</h2>
+          <dl class="compara revela">
+            <div>
+              <dt>Nos dois</dt>
+              <dd>Até duas pessoas, cama queen, ofurô com hidromassagem, lareira, deck e café da manhã entregue no chalé.</dd>
+            </div>
+            <div>
+              <dt>A diferença</dt>
+              <dd>Sauna seca no Chalé&nbsp;1. Microcozinha no Chalé&nbsp;2.</dd>
+            </div>
+          </dl>
+        </header>
+
+        <!-- Chalé 1: vertical, número grande, foto dominante da fachada -->
+        <article class="chale chale-1" id="chale-1" aria-labelledby="titulo-chale-1">
+          <header class="c1-cabeca">
+            <p class="numeral" aria-hidden="true">01</p>
+            <h3 id="titulo-chale-1" class="h3"><span class="h3-nome">Chalé 1</span> Uma pausa com sauna.</h3>
+          </header>
+
+          <figure class="c1-foto revela-foto">
+            <a class="foto-link" href="img/08-exterior-1080.webp" data-galeria="chale-1" aria-label="Ampliar foto: o Chalé 1 na encosta">
+              <picture>
+                <source type="image/avif" srcset="img/08-exterior-400.avif 400w, img/08-exterior-720.avif 720w, img/08-exterior-1080.avif 1080w" sizes="(min-width: 960px) min(46vw, 620px), calc(100vw - 40px)">
+                <source type="image/webp" srcset="img/08-exterior-400.webp 400w, img/08-exterior-720.webp 720w, img/08-exterior-1080.webp 1080w" sizes="(min-width: 960px) min(46vw, 620px), calc(100vw - 40px)">
+                <img src="img/08-exterior.jpg" width="1080" height="1440" alt="Chalé 1 apoiado em pilares na encosta, entre árvores e samambaias" loading="lazy" decoding="async">
+              </picture>
+            </a>
+            <figcaption>O Chalé 1 na encosta</figcaption>
+          </figure>
+
+          <div class="c1-corpo">
+            <p class="chale-descricao">Um espaço para aquecer o corpo e descansar o olhar.</p>
+            <ul class="comodidades" role="list">
+              <li>Até 2 pessoas</li>
+              <li>Cama queen</li>
+              <li>Ofurô com hidromassagem</li>
+              <li>Sauna seca</li>
+              <li>Café da manhã incluído</li>
+            </ul>
+            <details class="mais">
+              <summary>Mais sobre o Chalé 1</summary>
+              <ul role="list">
+                <li>Lareira e deck</li>
+                <li>Wi-Fi via Starlink</li>
+                <li>Estacionamento na propriedade</li>
+                <li>Trilha interna até o mirante</li>
+              </ul>
+            </details>
+
+            <ul class="miniaturas" role="list" aria-label="Mais fotos do Chalé 1">
+              <li>
+                <a class="foto-link" href="img/05-quarto-1440.webp" data-galeria="chale-1">
+                  <picture>
+                    <source type="image/avif" srcset="img/05-quarto-400.avif 400w, img/05-quarto-720.avif 720w, img/05-quarto-1080.avif 1080w, img/05-quarto-1440.avif 1440w" sizes="(min-width: 960px) 128px, 30vw">
+                    <source type="image/webp" srcset="img/05-quarto-400.webp 400w, img/05-quarto-720.webp 720w, img/05-quarto-1080.webp 1080w, img/05-quarto-1440.webp 1440w" sizes="(min-width: 960px) 128px, 30vw">
+                    <img src="img/05-quarto.jpg" width="1440" height="1920" alt="Cama queen do Chalé 1 com enxoval branco, manta azul e roupões dobrados" loading="lazy" decoding="async">
+                  </picture>
+                  <span class="legenda">Quarto</span>
+                </a>
+              </li>
+              <li>
+                <a class="foto-link" href="img/06-banheiro-1080.webp" data-galeria="chale-1">
+                  <picture>
+                    <source type="image/avif" srcset="img/06-banheiro-400.avif 400w, img/06-banheiro-720.avif 720w, img/06-banheiro-1080.avif 1080w" sizes="(min-width: 960px) 128px, 30vw">
+                    <source type="image/webp" srcset="img/06-banheiro-400.webp 400w, img/06-banheiro-720.webp 720w, img/06-banheiro-1080.webp 1080w" sizes="(min-width: 960px) 128px, 30vw">
+                    <img src="img/06-banheiro.jpg" width="1080" height="1440" alt="Box do banheiro do Chalé 1 com duas duchas e janela de madeira para a mata" loading="lazy" decoding="async">
+                  </picture>
+                  <span class="legenda">Banheiro</span>
+                </a>
+              </li>
+              <li>
+                <a class="foto-link" href="img/09-sauna-1080.webp" data-galeria="chale-1">
+                  <picture>
+                    <source type="image/avif" srcset="img/09-sauna-400.avif 400w, img/09-sauna-720.avif 720w, img/09-sauna-1080.avif 1080w" sizes="(min-width: 960px) 128px, 30vw">
+                    <source type="image/webp" srcset="img/09-sauna-400.webp 400w, img/09-sauna-720.webp 720w, img/09-sauna-1080.webp 1080w" sizes="(min-width: 960px) 128px, 30vw">
+                    <img src="img/09-sauna.jpg" width="1080" height="1440" alt="Porta de madeira da sauna do Chalé 1" loading="lazy" decoding="async">
+                  </picture>
+                  <span class="legenda">Acesso à sauna</span>
+                </a>
+              </li>
+              <li>
+                <a class="foto-link" href="img/01-hero-1440.webp" data-galeria="chale-1">
+                  <picture>
+                    <source type="image/avif" srcset="img/01-hero-640.avif 640w, img/01-hero-960.avif 960w, img/01-hero-1440.avif 1440w" sizes="(min-width: 960px) 200px, 40vw">
+                    <source type="image/webp" srcset="img/01-hero-640.webp 640w, img/01-hero-960.webp 960w, img/01-hero-1440.webp 1440w" sizes="(min-width: 960px) 200px, 40vw">
+                    <img src="img/01-hero.jpg" width="1440" height="960" alt="Ofurô do Chalé 1 diante das janelas e das montanhas" loading="lazy" decoding="async">
+                  </picture>
+                  <span class="legenda">Ofurô</span>
+                </a>
+              </li>
+            </ul>
+
+            <div class="chale-acoes">
+              <a class="btn btn-primario" href="https://wa.me/5512992204141?text=Ol%C3%A1!%20Conheci%20o%20Chal%C3%A9%201%20pelo%20site%20do%20Alto%20de%20Santa%20B%C3%A1rbara%20e%20gostaria%20de%20consultar%20disponibilidade." data-wa="chale-1">
+                <svg aria-hidden="true" width="20" height="20"><use href="#i-whatsapp"/></svg>
+                Quero este chalé
+              </a>
+              <button class="link-texto galeria-abrir" type="button" data-abre-galeria="chale-1" hidden>Ver as 5 fotos</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Chalé 2: leitura horizontal, sequência de fotos lado a lado -->
+        <article class="chale chale-2" id="chale-2" aria-labelledby="titulo-chale-2">
+          <header class="c2-cabeca">
+            <p class="numeral" aria-hidden="true">02</p>
+            <h3 id="titulo-chale-2" class="h3"><span class="h3-nome">Chalé 2</span> Tempo para fazer do seu jeito.</h3>
+          </header>
+
+          <ul class="filme" role="list" aria-label="Fotos do Chalé 2">
+            <li class="filme-h revela-foto">
+              <a class="foto-link" href="img/02-hidro-1440.webp" data-galeria="chale-2">
+                <picture>
+                  <source type="image/avif" srcset="img/02-hidro-640.avif 640w, img/02-hidro-960.avif 960w, img/02-hidro-1440.avif 1440w" sizes="(min-width: 960px) 50vw, calc(100vw - 40px)">
+                  <source type="image/webp" srcset="img/02-hidro-640.webp 640w, img/02-hidro-960.webp 960w, img/02-hidro-1440.webp 1440w" sizes="(min-width: 960px) 50vw, calc(100vw - 40px)">
+                  <img src="img/02-hidro.jpg" width="1440" height="960" alt="Ofurô com hidromassagem do Chalé 2, cercado de janelas para a mata e a serra" loading="lazy" decoding="async">
+                </picture>
+                <span class="legenda">Hidromassagem</span>
+              </a>
+            </li>
+            <li class="filme-v revela-foto">
+              <a class="foto-link" href="img/03-varanda-1440.webp" data-galeria="chale-2">
+                <picture>
+                  <source type="image/avif" srcset="img/03-varanda-400.avif 400w, img/03-varanda-720.avif 720w, img/03-varanda-1080.avif 1080w, img/03-varanda-1440.avif 1440w" sizes="(min-width: 960px) 25vw, calc(50vw - 26px)">
+                  <source type="image/webp" srcset="img/03-varanda-400.webp 400w, img/03-varanda-720.webp 720w, img/03-varanda-1080.webp 1080w, img/03-varanda-1440.webp 1440w" sizes="(min-width: 960px) 25vw, calc(50vw - 26px)">
+                  <img src="img/03-varanda.jpg" width="1440" height="1920" alt="Deck do Chalé 2 com portas de vidro abertas e a serra ao fundo" loading="lazy" decoding="async">
+                </picture>
+                <span class="legenda">Deck</span>
+              </a>
+            </li>
+            <li class="filme-v revela-foto">
+              <a class="foto-link" href="img/04-sala-1440.webp" data-galeria="chale-2">
+                <picture>
+                  <source type="image/avif" srcset="img/04-sala-400.avif 400w, img/04-sala-720.avif 720w, img/04-sala-1080.avif 1080w, img/04-sala-1440.avif 1440w" sizes="(min-width: 960px) 25vw, calc(50vw - 26px)">
+                  <source type="image/webp" srcset="img/04-sala-400.webp 400w, img/04-sala-720.webp 720w, img/04-sala-1080.webp 1080w, img/04-sala-1440.webp 1440w" sizes="(min-width: 960px) 25vw, calc(50vw - 26px)">
+                  <img src="img/04-sala.jpg" width="1440" height="1920" alt="Sala do Chalé 2 com sofá, mesa para dois e janelas abertas para a mata" loading="lazy" decoding="async">
+                </picture>
+                <span class="legenda">Sala</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="c2-corpo">
+            <p class="chale-descricao">Prepare algo, abra a porta para o deck e deixe a tarde passar.</p>
+            <div class="c2-lista">
+              <ul class="comodidades" role="list">
+                <li>Até 2 pessoas</li>
+                <li>Cama queen</li>
+                <li>Ofurô com hidromassagem</li>
+                <li>Microcozinha</li>
+                <li>Café da manhã incluído</li>
+              </ul>
+              <details class="mais">
+                <summary>Mais sobre o Chalé 2</summary>
+                <ul role="list">
+                  <li>Lareira e deck</li>
+                  <li>Wi-Fi via Starlink</li>
+                  <li>Estacionamento na propriedade</li>
+                  <li>Trilha interna até o mirante</li>
+                </ul>
+              </details>
+            </div>
+            <div class="chale-acoes">
+              <a class="btn btn-primario" href="https://wa.me/5512992204141?text=Ol%C3%A1!%20Conheci%20o%20Chal%C3%A9%202%20pelo%20site%20do%20Alto%20de%20Santa%20B%C3%A1rbara%20e%20gostaria%20de%20consultar%20disponibilidade." data-wa="chale-2">
+                <svg aria-hidden="true" width="20" height="20"><use href="#i-whatsapp"/></svg>
+                Quero este chalé
+              </a>
+              <button class="link-texto galeria-abrir" type="button" data-abre-galeria="chale-2" hidden>Ver as 3 fotos</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4 · A MANHÃ (passagem escura) -->
+    <section class="manha" id="manha" aria-labelledby="titulo-manha">
+      <div class="wrap manha-grade">
+        <div class="manha-texto">
+          <p class="rotulo revela">Café da manhã incluído</p>
+          <h2 id="titulo-manha" class="h2 revela">A manhã pode começar devagar.</h2>
+          <p class="destaque revela">O café da manhã chega ao chalé. O resto do dia pode esperar.</p>
+        </div>
+        <figure class="manha-foto revela-foto">
+          <picture>
+            <source type="image/avif" srcset="img/07-cafe-400.avif 400w, img/07-cafe-720.avif 720w, img/07-cafe-1080.avif 1080w" sizes="(min-width: 960px) min(38vw, 520px), calc(100vw - 40px)">
+            <source type="image/webp" srcset="img/07-cafe-400.webp 400w, img/07-cafe-720.webp 720w, img/07-cafe-1080.webp 1080w" sizes="(min-width: 960px) min(38vw, 520px), calc(100vw - 40px)">
+            <img src="img/07-cafe.jpg" width="1080" height="1440" alt="Xícara de café diante do ofurô e das janelas do Chalé 2, com a serra ao fundo" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Um café com a vista do Chalé&nbsp;2.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 5 · O MIRANTE -->
+    <section class="mirante" id="mirante" aria-labelledby="titulo-mirante">
+      <div class="wrap mirante-texto">
+        <p class="rotulo revela">O mirante</p>
+        <h2 id="titulo-mirante" class="h2 revela">Há mais horizonte lá em cima.</h2>
+        <div class="mirante-apoio revela">
+          <p class="destaque">Uma trilha dentro da propriedade leva ao mirante. Consulte as orientações dos anfitriões antes de sair.</p>
+          <p class="nota">Cerca de 30 minutos de caminhada, pela estimativa dos anfitriões.</p>
+        </div>
+      </div>
+      <figure class="mirante-foto revela-foto">
+        <picture>
+          <source type="image/avif" srcset="img/10-mirante-640.avif 640w, img/10-mirante-960.avif 960w, img/10-mirante-1440.avif 1440w" sizes="100vw">
+          <source type="image/webp" srcset="img/10-mirante-640.webp 640w, img/10-mirante-960.webp 960w, img/10-mirante-1440.webp 1440w" sizes="100vw">
+          <img src="img/10-mirante.jpg" width="1440" height="1080" alt="Vista do mirante: a serra no horizonte acima de um mar de nuvens" loading="lazy" decoding="async">
+        </picture>
+        <figcaption class="wrap">Vista registrada no mirante da propriedade. Céu e neblina mudam a cada dia.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 6 · QUEM JÁ ESTEVE -->
+    <section class="avaliacoes" id="avaliacoes" aria-labelledby="titulo-avaliacoes">
+      <div class="wrap avaliacoes-grade">
+        <div class="avaliacoes-texto">
+          <p class="rotulo revela">Avaliações</p>
+          <h2 id="titulo-avaliacoes" class="h2 revela">O cuidado também fica na memória.</h2>
+          <p class="destaque destaque-serifa revela">Hospitalidade, café da manhã e vista aparecem nos resumos das avaliações dos hóspedes.</p>
+        </div>
+        <div class="avaliacoes-notas revela">
+          <ul class="notas" role="list">
+            <li>
+              <p class="nota-numero">4,98 <span>de 5</span></p>
+              <p class="nota-origem">Chalé&nbsp;1 · 258 avaliações no Airbnb</p>
+              <a class="link-externo" href="https://www.airbnb.com.br/rooms/17328945" target="_blank" rel="noopener" data-saida="avaliacoes-chale-1">
+                Ler avaliações do Chalé&nbsp;1<span class="sr-only"> (abre o Airbnb em nova aba)</span>
+                <svg aria-hidden="true" width="16" height="16"><use href="#i-externo"/></svg>
+              </a>
+            </li>
+            <li>
+              <p class="nota-numero">4,96 <span>de 5</span></p>
+              <p class="nota-origem">Chalé&nbsp;2 · 192 avaliações no Airbnb</p>
+              <a class="link-externo" href="https://www.airbnb.com.br/rooms/17249906" target="_blank" rel="noopener" data-saida="avaliacoes-chale-2">
+                Ler avaliações do Chalé&nbsp;2<span class="sr-only"> (abre o Airbnb em nova aba)</span>
+                <svg aria-hidden="true" width="16" height="16"><use href="#i-externo"/></svg>
+              </a>
+            </li>
+          </ul>
+          <p class="fonte">Notas e número de avaliações exibidos em cada anúncio do Airbnb, consultados em 06/10/2026. Cada chalé tem sua própria nota.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 · DESTINO, CHEGADA E PERGUNTAS -->
+    <section class="localizacao" id="localizacao" aria-labelledby="titulo-localizacao">
+      <div class="wrap localizacao-grade">
+        <div class="localizacao-texto">
+          <p class="rotulo revela">Localização</p>
+          <h2 id="titulo-localizacao" class="h2 revela">São Francisco Xavier, por outro ritmo.</h2>
+          <p class="revela">Na Serra da Mantiqueira, o distrito de São José dos Campos reúne paisagem de montanha e vida de interior. Planeje a chegada com os anfitriões para aproveitar o caminho com tranquilidade.</p>
+          <div class="chegada revela">
+            <h3 class="h4">Como chegar</h3>
+            <p>A referência publicada é de cerca de 25 minutos do centro de São Francisco Xavier. Confirme a rota e as condições do acesso antes de viajar.</p>
+          </div>
+        </div>
+
+        <div class="faq">
+          <h3 class="h4">Perguntas frequentes</h3>
+          <details>
+            <summary>Quantas pessoas cada chalé acomoda?</summary>
+            <p>Até duas pessoas por chalé.</p>
+          </details>
+          <details>
+            <summary>O café da manhã está incluído?</summary>
+            <p>Sim. O café da manhã está incluído e é entregue no chalé.</p>
+          </details>
+          <details>
+            <summary>Há estacionamento?</summary>
+            <p>Sim, há estacionamento na propriedade.</p>
+          </details>
+          <details>
+            <summary>Existe Wi-Fi?</summary>
+            <p>Sim. Os dois chalés têm Wi-Fi via Starlink.</p>
+          </details>
+          <details>
+            <summary>Os dois chalés têm hidromassagem?</summary>
+            <p>Sim. Os dois têm ofurô com hidromassagem.</p>
+          </details>
+          <details>
+            <summary>Qual chalé tem sauna?</summary>
+            <p>O Chalé&nbsp;1 tem sauna seca.</p>
+          </details>
+          <details>
+            <summary>Qual chalé tem cozinha?</summary>
+            <p>O Chalé&nbsp;2 tem microcozinha.</p>
+          </details>
+          <details>
+            <summary>Quanto tempo até o centro?</summary>
+            <p>A referência publicada é de aproximadamente 25 minutos. O tempo depende do percurso e das condições da estrada.</p>
+          </details>
+          <details>
+            <summary>Como reservar?</summary>
+            <p>Consulte datas e valores pelo WhatsApp e confirme as condições com os anfitriões. <a href="#consulta">Ir para a consulta de datas</a>.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 · CONSULTA DE DATAS -->
+    <section class="consulta" id="consulta" aria-labelledby="titulo-consulta">
+      <div class="wrap consulta-grade">
+        <div class="consulta-texto">
+          <p class="rotulo">Consulta de datas</p>
+          <h2 id="titulo-consulta" class="h2">Vamos encontrar seus dias na montanha?</h2>
+          <p>Envie suas datas pelo WhatsApp. A disponibilidade e os valores serão confirmados na conversa.</p>
+          <p class="consulta-direto">
+            Prefere escrever do seu jeito?
+            <a href="https://wa.me/5512992204141?text=Ol%C3%A1!%20Conheci%20o%20Alto%20de%20Santa%20B%C3%A1rbara%20pelo%20site%20e%20gostaria%20de%20consultar%20disponibilidade%20para%20uma%20hospedagem." data-wa="consulta-direto">Abra a conversa no WhatsApp</a>
+            ou anote o número <span class="telefone">(12) 99220-4141</span>.
+          </p>
+        </div>
+
+        <!-- O formulário só aparece com JavaScript ativo: sem ele os campos não teriam efeito. -->
+        <form class="formulario" id="formulario" novalidate hidden>
+          <div class="campos-datas">
+            <div class="campo">
+              <label for="entrada">Entrada</label>
+              <input type="date" id="entrada" name="entrada" aria-describedby="entrada-erro datas-dica">
+              <p class="erro" id="entrada-erro" hidden></p>
+            </div>
+            <div class="campo">
+              <label for="saida">Saída</label>
+              <input type="date" id="saida" name="saida" aria-describedby="saida-erro datas-dica">
+              <p class="erro" id="saida-erro" hidden></p>
+            </div>
+          </div>
+          <p class="dica" id="datas-dica">As datas são opcionais. Sem elas, a conversa começa do mesmo jeito.</p>
+
+          <div class="campo">
+            <label for="hospedes">Hóspedes</label>
+            <select id="hospedes" name="hospedes">
+              <option value="">Selecione</option>
+              <option value="1">1 hóspede</option>
+              <option value="2">2 hóspedes</option>
+            </select>
+          </div>
+
+          <fieldset class="escolha">
+            <legend>Chalé de interesse</legend>
+            <div class="escolha-opcoes">
+              <label><input type="radio" name="chale" value="" checked> <span>Ainda não decidi</span></label>
+              <label><input type="radio" name="chale" value="1"> <span>Chalé 1</span></label>
+              <label><input type="radio" name="chale" value="2"> <span>Chalé 2</span></label>
+            </div>
+          </fieldset>
+
+          <button class="btn btn-primario btn-largo" type="submit">
+            <svg aria-hidden="true" width="20" height="20"><use href="#i-whatsapp"/></svg>
+            Consultar disponibilidade
+          </button>
+          <p class="formulario-apoio">Abre o WhatsApp com a mensagem pronta. Nada é enviado até você tocar em enviar por lá.</p>
+          <div class="formulario-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- 9 · FECHAMENTO -->
+  <footer class="rodape">
+    <div class="wrap">
+      <p class="rodape-marca">Alto de Santa Bárbara</p>
+      <p class="rodape-local">São Francisco Xavier · Serra da Mantiqueira</p>
+      <ul class="rodape-links" role="list">
+        <li><a href="#consulta">Consultar disponibilidade</a></li>
+        <li><a href="https://wa.me/5512992204141?text=Ol%C3%A1!%20Conheci%20o%20Alto%20de%20Santa%20B%C3%A1rbara%20pelo%20site%20e%20gostaria%20de%20consultar%20disponibilidade%20para%20uma%20hospedagem." data-wa="rodape">WhatsApp (12) 99220-4141</a></li>
+        <li><a href="https://www.instagram.com/altodesantabarbara/" target="_blank" rel="noopener">Instagram<span class="sr-only"> (abre em nova aba)</span></a></li>
+      </ul>
+      <p class="rodape-nota">Comodidades conforme os anúncios dos chalés, consultados em 06/10/2026.</p>
+    </div>
+  </footer>
+
+  <a class="whatsapp-flutuante" href="https://wa.me/5512992204141?text=Ol%C3%A1!%20Conheci%20o%20Alto%20de%20Santa%20B%C3%A1rbara%20pelo%20site%20e%20gostaria%20de%20consultar%20disponibilidade%20para%20uma%20hospedagem." aria-label="Consultar disponibilidade pelo WhatsApp" data-wa="flutuante">
+    <svg aria-hidden="true" width="26" height="26"><use href="#i-whatsapp"/></svg>
+  </a>
+
+  <dialog class="galeria" id="galeria" aria-label="Fotos">
+    <div class="galeria-barra">
+      <p class="galeria-contador" aria-live="polite"></p>
+      <button class="icone-btn galeria-fechar" type="button" aria-label="Fechar fotos">
+        <svg aria-hidden="true" width="24" height="24"><use href="#i-fechar"/></svg>
+      </button>
+    </div>
+    <figure class="galeria-figura">
+      <div class="galeria-imagem"></div>
+      <figcaption class="galeria-legenda"></figcaption>
+    </figure>
+    <button class="icone-btn galeria-anterior" type="button" aria-label="Foto anterior">
+      <svg aria-hidden="true" width="28" height="28"><use href="#i-anterior"/></svg>
+    </button>
+    <button class="icone-btn galeria-proxima" type="button" aria-label="Próxima foto">
+      <svg aria-hidden="true" width="28" height="28"><use href="#i-proxima"/></svg>
+    </button>
+  </dialog>
+</body>
+</html>
