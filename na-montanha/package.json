@@ -1,0 +1,16 @@
+{
+  "name": "na-montanha-eco-space",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Site oficial da Na Montanha Eco Space — cabanas em Igrejinha, na Serra Gaúcha, perto de Gramado.",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "media": "node scripts/media.mjs",
+    "serve": "python3 -m http.server 8080 -d dist"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.0"
+  }
+}

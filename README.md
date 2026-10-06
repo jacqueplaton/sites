@@ -1,3 +1,7 @@
+> **Este repositório tem dois sites.** A raiz é o site do Delícias Brasil Florida
+> (abaixo). O site da **Na Montanha Eco Space** está na pasta
+> [`na-montanha/`](na-montanha/README.md), com documentação própria.
+
 # Delícias Brasil Florida — site
 
 Site institucional do restaurante, bilíngue (português / inglês), responsivo e

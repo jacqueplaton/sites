@@ -1,0 +1,69 @@
+{
+  "cabana-dos-sonhos-entardecer": {
+    "name": "cabana-dos-sonhos-entardecer",
+    "width": 800,
+    "height": 1000,
+    "widths": [
+      480,
+      640,
+      800
+    ]
+  },
+  "cabana-dia-deck": {
+    "name": "cabana-dia-deck",
+    "width": 750,
+    "height": 1000,
+    "widths": [
+      480,
+      640,
+      750
+    ]
+  },
+  "cabana-noite": {
+    "name": "cabana-noite",
+    "width": 576,
+    "height": 768,
+    "widths": [
+      400,
+      576
+    ]
+  },
+  "sala-lareira": {
+    "name": "sala-lareira",
+    "width": 1082,
+    "height": 1408,
+    "widths": [
+      480,
+      800,
+      1082
+    ]
+  },
+  "quarto-banheira": {
+    "name": "quarto-banheira",
+    "width": 660,
+    "height": 900,
+    "widths": [
+      480,
+      660
+    ]
+  },
+  "cabana-dos-sonhos-video": {
+    "name": "cabana-dos-sonhos-video",
+    "width": 1920,
+    "height": 1080,
+    "widths": [
+      640,
+      1280,
+      1920
+    ]
+  },
+  "cabana-dos-sonhos-entardecer-retrato": {
+    "name": "cabana-dos-sonhos-entardecer-retrato",
+    "width": 496,
+    "height": 1000,
+    "widths": [
+      400,
+      496
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+# ==========================================================================
+# Netlify — Na Montanha Eco Space
+# --------------------------------------------------------------------------
+# Ao conectar o repositório na Netlify, preencha só um campo:
+#   Base directory: na-montanha
+# O resto (comando e pasta publicada) vem daqui.
+# ==========================================================================
+
+[build]
+  command = "node scripts/build.mjs"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Cabeçalhos de segurança para todas as páginas.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+
+# CSS e JS têm um código no nome que muda a cada alteração: cache de 1 ano.
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Fotos e vídeo: 30 dias. Ao trocar uma foto, use um nome de arquivo novo.
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+[[headers]]
+  for = "/assets/video/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
