@@ -1,0 +1,14 @@
+{
+  "name": "Glamping Toca do Tucano",
+  "short_name": "Toca do Tucano",
+  "description": "Glamping com dois chalés em A no alto da montanha, em Paraibuna (SP).",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "display": "browser",
+  "background_color": "#f2ebdf",
+  "theme_color": "#16130f",
+  "icons": [
+    { "src": "media/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "media/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

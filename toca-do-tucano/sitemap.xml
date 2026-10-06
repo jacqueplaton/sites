@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://toca-do-tucano.netlify.app/</loc>
+    <lastmod>2026-10-06</lastmod>
+    <image:image><image:loc>https://toca-do-tucano.netlify.app/media/img/toca-do-tucano-ofuro-deck-vista-mata-atlantica-1200.jpg</image:loc></image:image>
+    <image:image><image:loc>https://toca-do-tucano.netlify.app/media/img/toca-do-tucano-chale-em-a-fachada-675.jpg</image:loc></image:image>
+    <image:image><image:loc>https://toca-do-tucano.netlify.app/media/img/toca-do-tucano-interior-chale-vista-vale-1200.jpg</image:loc></image:image>
+    <image:image><image:loc>https://toca-do-tucano.netlify.app/media/img/toca-do-tucano-portas-vermelhas-vista-montanhas-1081.jpg</image:loc></image:image>
+    <image:image><image:loc>https://toca-do-tucano.netlify.app/media/img/toca-do-tucano-deck-ofuro-portas-abertas-720.jpg</image:loc></image:image>
+  </url>
+</urlset>

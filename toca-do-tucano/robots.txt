@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://toca-do-tucano.netlify.app/sitemap.xml
