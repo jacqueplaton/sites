@@ -117,7 +117,14 @@ O site é estático e roda em qualquer hospedagem. O `build.sh` gera `_site/`:
 | `SITE_URL=https://dominio bash build.sh` | prévia com canonical, Open Graph e JSON-LD apontando para o domínio |
 | `SITE_URL=https://dominio INDEXAR=sim bash build.sh` | versão definitiva: `index, follow`, `sitemap.xml` e linha `Sitemap:` no robots |
 
-**Netlify:** *Add new site → Import an existing project*, escolha este
+**Netlify Drop (mais rápido, sem Git):** rode `bash build.sh --zip`, entre em
+https://app.netlify.com/drop com a sua conta e arraste o arquivo
+`alto-de-santa-barbara-netlify.zip` (ou a pasta `_site`, se preferir). Sem
+conta, o Netlify apaga o site em cerca de uma hora. Nesse modo não há endereço
+definido no momento do build, então a página sobe sem canonical, Open Graph
+absoluto e JSON-LD, e continua `noindex`. Para uma prévia, isso basta.
+
+**Netlify pelo Git:** *Add new site → Import an existing project*, escolha este
 repositório e a branch, e em **Base directory** preencha
 `alto-de-santa-barbara`. Comando e pasta vêm do `netlify.toml`. O Netlify
 preenche o endereço sozinho. Para a versão definitiva, defina `SITE_URL` e

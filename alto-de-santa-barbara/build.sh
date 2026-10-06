@@ -7,6 +7,8 @@
 #                                      prévia com canonical/OG/JSON-LD
 #   SITE_URL=https://exemplo.com.br INDEXAR=sim bash build.sh
 #                                      versão definitiva: index,follow + sitemap
+#   bash build.sh --zip                também gera alto-de-santa-barbara-netlify.zip
+#                                      para arrastar no Netlify Drop
 #
 # No Netlify o endereço vem sozinho ($URL em produção, $DEPLOY_PRIME_URL em
 # prévias de branch). Sem endereço conhecido, o bloco de URLs absolutas é
@@ -20,6 +22,30 @@ rm -rf _site
 mkdir -p _site
 cp -r index.html favicon.svg robots.txt css js fonts img _site/
 rm -f _site/img/relatorio.json
+
+# Cabeçalhos de cache e segurança. O Netlify Drop lê este arquivo; no deploy
+# pelo Git valem também os do netlify.toml.
+cat > _site/_headers <<'HEADERS'
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/*
+  Cache-Control: public, max-age=604800
+HEADERS
 
 if [ -n "${SITE_URL:-}" ]; then
   ENDERECO="$SITE_URL"
@@ -62,6 +88,21 @@ fi
 if grep -q "__SITE_URL__" _site/index.html; then
   echo "ERRO: sobrou __SITE_URL__ no HTML." >&2
   exit 1
+fi
+
+# Aviso se alguma foto referenciada na página ainda não foi gerada.
+FALTANDO=$(grep -o 'img/[A-Za-z0-9._-]*' _site/index.html | sort -u | while read -r f; do
+  [ -f "_site/$f" ] || echo "$f"
+done)
+if [ -n "$FALTANDO" ]; then
+  echo "ATENÇÃO: imagens referenciadas que ainda não existem (rode tools/gerar-imagens.py):"
+  echo "$FALTANDO" | sed 's/^/    /'
+fi
+
+if [ "${1:-}" = "--zip" ]; then
+  rm -f alto-de-santa-barbara-netlify.zip
+  (cd _site && zip -qr -X ../alto-de-santa-barbara-netlify.zip .)
+  echo "==> Pacote: $(pwd)/alto-de-santa-barbara-netlify.zip"
 fi
 
 echo "==> Pronto"
