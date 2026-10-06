@@ -17,6 +17,8 @@ terra-dourada/
   css/fonts.css     Newsreader (títulos) e Public Sans (interface)
   js/config.js  ←   WhatsApp, modo da prévia, mensagens, links, galerias
   js/app.js         comportamento (raramente precisa mexer)
+  _headers          noindex e cache (Netlify / Cloudflare Pages)
+  empacotar.sh      gera o zip de deploy
   media/video/      abertura: MP4 + WebM, 1280 e 854 px, sem áudio, e pôster
   media/fotos/      fotos em WebP, 3 larguras
   media/og/         imagem de compartilhamento 1200×630
@@ -243,6 +245,30 @@ Não testado aqui: Safari/iOS real, navegadores internos do Instagram e do
 WhatsApp, e leitores de tela reais.
 
 ---
+
+## Pacote de deploy
+
+```bash
+./empacotar.sh                 # gera terra-dourada-deploy.zip (abre no modo cliente)
+./empacotar.sh revisao         # mesmo pacote, abrindo no modo revisão
+```
+
+- O zip traz os arquivos do site na raiz, sem README e sem este script.
+- Por padrão abre no **modo cliente**, porque um link publicado tende a ser
+  compartilhado. A equipe vê as marcações com `?modo=revisao`.
+- As notas de revisão continuam no código-fonte (escondidas por CSS) e
+  `js/config.js` guarda o número encontrado na pesquisa como referência.
+  Para um link aberto ao público, remova os elementos `rev` antes.
+- `_headers` (Netlify e Cloudflare Pages) envia `X-Robots-Tag: noindex` e o
+  cache. Outros hosts ignoram esse arquivo; o `noindex` continua no HTML.
+- Todos os caminhos são relativos: funciona na raiz do domínio ou numa
+  subpasta.
+
+Onde subir:
+- **Netlify Drop:** arraste o zip em https://app.netlify.com/drop.
+- **Hostinger / cPanel:** envie o zip para `public_html` (ou para uma
+  subpasta) e use "Extrair".
+- **Cloudflare Pages:** em *Upload assets*, envie a pasta extraída.
 
 ## Antes de publicar (não feito nesta etapa)
 - Remover `<meta name="robots" content="noindex, nofollow">`.
