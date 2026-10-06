@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="pt-BR" data-modo="revisao">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Terra Dourada: hospedagem no Lago Oeste, Brasília</title>
+  <meta name="description" content="Conheça a Casa Rosa e o Chalé Kaliandra, no Lago Oeste, Brasília. Piscinas de água natural e contato com o Cerrado. Consulte sua estadia diretamente.">
+
+  <!-- PRÉVIA: não indexar. Remover esta linha só na versão comercial final,
+       depois de resolver as pendências (ver README.md). -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Na publicação final, trocar pelos endereços absolutos do domínio real:
+  <link rel="canonical" href="https://DOMINIO-FINAL/">
+  -->
+  <meta name="theme-color" content="#233C32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- Open Graph. Na publicação final, og:url e og:image precisam ser URLs absolutas. -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Terra Dourada">
+  <meta property="og:title" content="Terra Dourada · Lago Oeste, Brasília">
+  <meta property="og:description" content="Casa Rosa e Chalé Kaliandra: duas formas de viver o Cerrado, com piscinas de água natural.">
+  <meta property="og:image" content="media/og/terra-dourada-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Piscina de água natural com deck de madeira e o pavilhão rosa da Casa Rosa ao fundo">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preload" href="fonts/newsreader-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="media/video/chegada-poster-1280.webp"
+        imagesrcset="media/video/chegada-poster-854.webp 854w, media/video/chegada-poster-1280.webp 1280w" imagesizes="100vw">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Configuração central (pequena, carregada antes do conteúdo para aplicar
+       o modo da prévia sem piscar marcações de revisão). -->
+  <script src="js/config.js"></script>
+  <script>
+    (function () {
+      var d = document.documentElement, c = window.TERRA_DOURADA || {};
+      var p = new URLSearchParams(location.search).get('modo');
+      d.dataset.modo = (p === 'cliente' || p === 'revisao') ? p : (c.modo || 'revisao');
+      d.classList.add('js');
+    })();
+  </script>
+
+  <!-- Dados estruturados: somente fatos confirmados na pesquisa.
+       Sem preço, nota, coordenadas ou capacidade do Kaliandra / conjunta.
+       Na publicação final, trocar os @id e image por URLs absolutas. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LodgingBusiness",
+        "@id": "#terra-dourada",
+        "name": "Terra Dourada",
+        "description": "Hospedagem com duas acomodações, Casa Rosa e Chalé Kaliandra, e piscinas de água natural no Lago Oeste, Brasília (DF).",
+        "image": "media/og/terra-dourada-og.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Brasília",
+          "addressRegion": "DF",
+          "addressCountry": "BR"
+        },
+        "sameAs": ["https://www.instagram.com/terradouradabrasilia/"],
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Piscinas de água natural corrente, sem aquecimento", "value": true }
+        ],
+        "containsPlace": [
+          {
+            "@type": "Accommodation",
+            "name": "Casa Rosa",
+            "numberOfRooms": 4,
+            "numberOfBathroomsTotal": 4,
+            "occupancy": { "@type": "QuantitativeValue", "maxValue": 12 }
+          },
+          {
+            "@type": "Accommodation",
+            "name": "Chalé Kaliandra",
+            "numberOfRooms": 2,
+            "numberOfBathroomsTotal": 2
+          }
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "#website",
+        "name": "Terra Dourada",
+        "inLanguage": "pt-BR",
+        "publisher": { "@id": "#terra-dourada" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "#webpage",
+        "name": "Terra Dourada: hospedagem no Lago Oeste, Brasília",
+        "isPartOf": { "@id": "#website" },
+        "about": { "@id": "#terra-dourada" },
+        "inLanguage": "pt-BR"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ======================================================================
+     CABEÇALHO
+     ====================================================================== -->
+<header class="topo" data-topo>
+  <div class="topo__interno">
+    <!-- Logotipo oficial não recebido: nome em tipografia simples (não redesenhar). -->
+    <a class="marca" href="#chegada" aria-label="Terra Dourada, início">
+      <span class="marca__nome">Terra Dourada</span>
+      <span class="marca__local">Lago Oeste · Brasília</span>
+    </a>
+
+    <nav class="nav" aria-label="Principal">
+      <ul class="nav__lista">
+        <li><a href="#estadias">As estadias</a></li>
+        <li><a href="#a-agua">A água</a></li>
+        <li><a href="#o-lugar">O lugar</a></li>
+        <li><a href="#como-chegar">Como chegar</a></li>
+      </ul>
+      <a class="botao botao--topo" href="#consultar" data-consulta="geral" data-origem="cabecalho">Consultar disponibilidade</a>
+    </nav>
+
+    <button class="topo__menu js-only" type="button" aria-haspopup="dialog" aria-controls="menu" data-abrir-menu>
+      Menu
+    </button>
+  </div>
+</header>
+
+<dialog class="menu" id="menu" aria-labelledby="menu-titulo">
+  <div class="menu__interno">
+    <h2 class="sr-only" id="menu-titulo">Menu</h2>
+    <div class="menu__topo">
+      <span class="marca__nome">Terra Dourada</span>
+      <button class="menu__fechar" type="button" data-fechar-menu>Fechar</button>
+    </div>
+    <nav aria-label="Menu móvel">
+      <ul class="menu__lista">
+        <li><a href="#estadias">As estadias</a></li>
+        <li><a href="#a-agua">A água</a></li>
+        <li><a href="#o-lugar">O lugar</a></li>
+        <li><a href="#como-chegar">Como chegar</a></li>
+      </ul>
+    </nav>
+    <a class="botao botao--claro botao--largo" href="#consultar" data-consulta="geral" data-origem="menu">Consultar disponibilidade</a>
+    <p class="menu__local">Terra Dourada · Lago Oeste, Brasília — DF</p>
+  </div>
+</dialog>
+
+<main id="conteudo">
+
+<!-- ======================================================================
+     01 — A CHEGADA PELA ÁGUA
+     Vídeo silencioso (8 s, sem áudio), carregado só depois do pôster.
+     Com "movimento reduzido" ou economia de dados, não inicia sozinho.
+     ====================================================================== -->
+<section class="chegada" id="chegada" aria-labelledby="chegada-titulo" data-chegada>
+  <div class="chegada__midia">
+    <img class="chegada__poster"
+         src="media/video/chegada-poster-1280.webp"
+         srcset="media/video/chegada-poster-854.webp 854w, media/video/chegada-poster-1280.webp 1280w"
+         sizes="100vw" width="1280" height="720" fetchpriority="high" decoding="async"
+         alt="Vista aérea da piscina natural e do pavilhão envidraçado da Casa Rosa, cercados de vegetação">
+    <video class="chegada__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"
+           data-mp4="media/video/chegada-1280.mp4" data-mp4-movel="media/video/chegada-854.mp4"
+           data-webm="media/video/chegada-1280.webm" data-webm-movel="media/video/chegada-854.webm"></video>
+
+    <div class="chegada__controles js-only">
+      <button class="chegada__pausa" type="button" data-video-botao aria-label="Pausar vídeo">
+        <svg class="icone-pausa" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg>
+        <svg class="icone-play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg>
+      </button>
+      <p class="chegada__credito">Animação criada a partir de fotografias da propriedade</p>
+    </div>
+  </div>
+
+  <div class="chegada__texto">
+    <div class="chegada__bloco">
+      <p class="chegada__local">Terra Dourada · Lago Oeste, Brasília</p>
+      <h1 class="chegada__titulo" id="chegada-titulo">Deixe a pressa.<br> Entre na água.</h1>
+      <p class="chegada__apoio">Casa Rosa e Chalé Kaliandra: duas formas de viver o Cerrado.</p>
+      <div class="acoes">
+        <a class="botao botao--claro" href="#consultar" data-consulta="geral" data-origem="abertura">Consultar disponibilidade</a>
+        <a class="link link--claro" href="#estadias">Conheça as acomodações</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<aside class="rev rev-faixa" aria-label="Nota de revisão">
+  <div class="conteiner">
+    <p class="rev-nota"><strong>Revisão · vídeo de abertura.</strong> Animação gerada a partir das fotos: aprovar a fidelidade com a propriedade. O plano do deck (1,5–2,8 s) mostra casas rosas enfileiradas atrás da piscina e o do terraço (6–8 s) mostra guarda-corpo de cabos e paisagem diferentes da foto original. Duração atual 8 s (direção pede 12–18 s). Não há versão vertical: no celular o vídeo aparece em recorte 4:3.</p>
+  </div>
+</aside>
+
+<!-- ======================================================================
+     02 — A ASSINATURA DA ÁGUA
+     ====================================================================== -->
+<section class="agua secao" id="a-agua" aria-labelledby="agua-titulo">
+  <div class="conteiner agua__grade">
+    <figure class="agua__foto revela">
+      <img src="media/fotos/piscina-deck-800.webp"
+           srcset="media/fotos/piscina-deck-480.webp 480w, media/fotos/piscina-deck-800.webp 800w, media/fotos/piscina-deck-1200.webp 1200w"
+           sizes="(min-width: 960px) 62vw, 100vw" width="1200" height="799" loading="lazy" decoding="async"
+           alt="Piscina de água natural com deck de madeira, mesa com guarda-sol e o pavilhão rosa ao fundo">
+      <figcaption>Casa Rosa · piscina e deck</figcaption>
+    </figure>
+
+    <div class="agua__texto revela">
+      <p class="rotulo"><span class="rotulo__n" aria-hidden="true">02</span> Como funcionam as piscinas</p>
+      <h2 class="titulo" id="agua-titulo">A água dá o ritmo.</h2>
+      <p class="lead">As piscinas da Terra Dourada são abastecidas por água natural corrente. Sem tratamento químico, a água não tem o azul de uma piscina convencional: reflete a vegetação, o céu e a luz do dia.</p>
+      <dl class="ficha ficha--linhas">
+        <div><dt>Origem</dt><dd>Água natural corrente</dd></div>
+        <div><dt>Tratamento</dt><dd>Sem adição de produtos químicos</dd></div>
+        <div><dt>Temperatura</dt><dd>Sem aquecimento; acompanha o clima</dd></div>
+      </dl>
+      <a class="link link--seta" href="#faq-piscinas" data-abrir-faq>Entenda a experiência</a>
+
+      <p class="rev rev-nota"><strong>Revisão.</strong> Validar com os anfitriões o funcionamento atual das duas piscinas e qual pertence a cada unidade. A atribuição desta foto à Casa Rosa foi inferida pela pesquisa.</p>
+      <figure class="rev rev-foto rev-foto--3x2">
+        <figcaption><span>Espaço de revisão</span> Detalhe real do abastecimento da água (entrada da água corrente), se existir. Horizontal 3:2.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     03 — A ESCOLHA DO RITMO
+     ====================================================================== -->
+<section class="escolha secao secao--verde" id="estadias" aria-labelledby="escolha-titulo">
+  <div class="conteiner">
+    <div class="escolha__cabeca revela">
+      <p class="rotulo"><span class="rotulo__n" aria-hidden="true">03</span> As acomodações</p>
+      <h2 class="titulo" id="escolha-titulo">Como você quer estar aqui?</h2>
+    </div>
+
+    <ul class="escolha__lista" role="list">
+      <li class="escolha__item escolha__item--rosa revela">
+        <a href="#casa-rosa" class="escolha__link">
+          <span class="escolha__intencao">Reunir</span>
+          <span class="escolha__nome">Casa Rosa</span>
+          <span class="escolha__desc">Uma casa para famílias e grupos estarem juntos.</span>
+          <span class="escolha__dados">12 hóspedes · 4 quartos · 4 banheiros</span>
+          <span class="escolha__ir">Ver a Casa Rosa</span>
+        </a>
+      </li>
+      <li class="escolha__item escolha__item--agua revela">
+        <a href="#kaliandra" class="escolha__link">
+          <span class="escolha__intencao">Desacelerar</span>
+          <span class="escolha__nome">Chalé Kaliandra</span>
+          <span class="escolha__desc">Uma pausa a dois ou com poucas pessoas.</span>
+          <span class="escolha__dados">2 quartos · 2 banheiros</span>
+          <span class="escolha__ir">Ver o Kaliandra</span>
+        </a>
+      </li>
+      <li class="escolha__item escolha__item--palha revela">
+        <a href="#duas-estadias" class="escolha__link">
+          <span class="escolha__intencao">Ficar nas duas</span>
+          <span class="escolha__nome">Locação conjunta</span>
+          <span class="escolha__desc">As duas acomodações para o mesmo grupo, cada uma com seus espaços.</span>
+          <span class="escolha__dados">Capacidade e condições na consulta</span>
+          <span class="escolha__ir">Entender a locação conjunta</span>
+        </a>
+      </li>
+    </ul>
+
+    <p class="rev rev-nota rev-nota--escura"><strong>Revisão.</strong> Capacidade do Kaliandra (7 no anúncio individual, 6 no conjunto) e da locação conjunta não confirmadas: ficam fora da interface. Não somar capacidades.</p>
+  </div>
+</section>
+
+<!-- ======================================================================
+     04 — CASA ROSA: CONVIVÊNCIA
+     Composição ampla, acento rosa.
+     ====================================================================== -->
+<section class="casa-rosa secao" id="casa-rosa" aria-labelledby="casa-rosa-titulo">
+  <div class="conteiner">
+    <figure class="casa-rosa__panorama revela">
+      <img src="media/fotos/casa-rosa-panorama-800.webp"
+           srcset="media/fotos/casa-rosa-panorama-480.webp 480w, media/fotos/casa-rosa-panorama-800.webp 800w, media/fotos/casa-rosa-panorama-1200.webp 1200w"
+           sizes="(min-width: 1320px) 1240px, 94vw" width="1200" height="700" loading="lazy" decoding="async"
+           alt="Vista aérea do pavilhão envidraçado com telhado de cerâmica sobre a piscina natural, com a casa rosa ao fundo entre a mata">
+      <figcaption>Casa Rosa · pavilhão sobre a piscina, visto do alto</figcaption>
+    </figure>
+
+    <div class="casa-rosa__grade">
+      <div class="casa-rosa__texto revela">
+        <p class="rotulo rotulo--rosa"><span class="rotulo__n" aria-hidden="true">04</span> Casa Rosa — acomodação no Lago Oeste</p>
+        <h2 class="titulo" id="casa-rosa-titulo">Casa Rosa.<br> Tempo para estar junto.</h2>
+        <p class="lead">Uma estadia para reunir os seus.</p>
+        <p>Junto à piscina, uma área envidraçada com mesa longa recebe as refeições e as conversas do grupo, com o deck e a água a poucos passos.</p>
+
+        <dl class="ficha ficha--numeros">
+          <div><dt>Hóspedes</dt><dd>12</dd></div>
+          <div><dt>Quartos</dt><dd>4</dd></div>
+          <div><dt>Banheiros</dt><dd>4</dd></div>
+        </dl>
+
+        <div class="acoes">
+          <a class="botao botao--rosa" href="#consultar" data-consulta="casa-rosa" data-origem="casa-rosa">Consultar Casa Rosa</a>
+          <button class="link link--seta js-only" type="button" data-galeria="casa-rosa">Ver ambientes e detalhes</button>
+        </div>
+
+        <p class="rev rev-nota"><strong>Revisão.</strong> Reconfirmar a distribuição das camas e esclarecer, na página da unidade, o quarto acessado por outra suíte e o banheiro compartilhado. Não apresentar como quatro suítes independentes.</p>
+      </div>
+
+      <div class="casa-rosa__fotos">
+        <figure class="casa-rosa__foto casa-rosa__foto--a revela">
+          <img src="media/fotos/area-gourmet-674.webp"
+               srcset="media/fotos/area-gourmet-480.webp 480w, media/fotos/area-gourmet-674.webp 674w"
+               sizes="(min-width: 960px) 30vw, 60vw" width="674" height="900" loading="lazy" decoding="async"
+               alt="Área envidraçada com mesa longa de madeira, cadeiras, aparador e parede rosa, aberta para a piscina">
+          <figcaption>Casa Rosa · área envidraçada junto à piscina</figcaption>
+        </figure>
+        <figure class="casa-rosa__foto casa-rosa__foto--b revela">
+          <img src="media/fotos/pavilhao-rede-480.webp"
+               srcset="media/fotos/pavilhao-rede-480.webp 480w, media/fotos/pavilhao-rede-674.webp 674w"
+               sizes="(min-width: 960px) 20vw, 40vw" width="674" height="900" loading="lazy" decoding="async"
+               alt="Pavilhão rosa visto do deck, com rede azul atrás das portas de vidro e vegetação ao redor">
+          <figcaption>Casa Rosa · pavilhão e deck</figcaption>
+        </figure>
+        <figure class="rev rev-foto rev-foto--4x5 casa-rosa__foto--c">
+          <figcaption><span>Espaço de revisão</span> Quarto representativo da Casa Rosa. Retrato 4:5.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     05 — KALIANDRA: CONTEMPLAÇÃO
+     Mais respiro, coluna de texto curta, paisagem aberta, acento água.
+     ====================================================================== -->
+<section class="kaliandra secao" id="kaliandra" aria-labelledby="kaliandra-titulo">
+  <div class="kaliandra__grade">
+    <div class="kaliandra__texto revela">
+      <p class="rotulo rotulo--agua"><span class="rotulo__n" aria-hidden="true">05</span> Chalé Kaliandra — acomodação no Lago Oeste</p>
+      <h2 class="titulo" id="kaliandra-titulo">Kaliandra.<br> Espaço para desacelerar.</h2>
+      <p class="lead">Uma pausa a dois — ou com quem cabe no seu descanso.</p>
+      <p>Do terraço, o olhar atravessa a mata até o horizonte. O tempo passa a ser medido pela luz.</p>
+
+      <dl class="ficha ficha--numeros ficha--agua">
+        <div><dt>Quartos</dt><dd>2</dd></div>
+        <div><dt>Banheiros</dt><dd>2</dd></div>
+      </dl>
+
+      <div class="acoes">
+        <a class="botao botao--agua" href="#consultar" data-consulta="kaliandra" data-origem="kaliandra">Consultar Chalé Kaliandra</a>
+      </div>
+
+      <p class="rev rev-nota"><strong>Revisão.</strong> Capacidade (6 ou 7) e metragem (80 ou 100 m²) divergem entre anúncios: fora da interface até confirmar. Atribuição do terraço ao Kaliandra inferida pela pesquisa. Galeria "Ver ambientes e detalhes" aguarda fotos.</p>
+    </div>
+
+    <figure class="kaliandra__vista revela">
+      <img src="media/fotos/kaliandra-terraco-800.webp"
+           srcset="media/fotos/kaliandra-terraco-480.webp 480w, media/fotos/kaliandra-terraco-800.webp 800w, media/fotos/kaliandra-terraco-1200.webp 1200w"
+           sizes="(min-width: 960px) 64vw, 100vw" width="1200" height="899" loading="lazy" decoding="async"
+           alt="Terraço com espreguiçadeira turquesa e vista aberta sobre a mata até o horizonte, sob céu azul">
+      <figcaption>Chalé Kaliandra · terraço e vista</figcaption>
+    </figure>
+  </div>
+
+  <div class="conteiner rev kaliandra__pendentes">
+    <figure class="rev-foto rev-foto--4x5">
+      <figcaption><span>Espaço de revisão</span> Retrato vertical de um detalhe da varanda (rede, madeira, vidro). 4:5.</figcaption>
+    </figure>
+    <figure class="rev-foto rev-foto--3x2">
+      <figcaption><span>Espaço de revisão</span> Suíte do Kaliandra. Horizontal 3:2.</figcaption>
+    </figure>
+    <figure class="rev-foto rev-foto--3x2">
+      <figcaption><span>Espaço de revisão</span> Piscina correspondente ao Kaliandra e o caminho de acesso. Horizontal 3:2.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================================================================
+     06 — AS DUAS ESTADIAS (LOCAÇÃO CONJUNTA)
+     Díptico com nomes; sem sugerir continuidade física nem terceira casa.
+     ====================================================================== -->
+<section class="duas secao secao--palha" id="duas-estadias" aria-labelledby="duas-titulo">
+  <div class="conteiner duas__grade">
+    <div class="duas__diptico revela">
+      <figure>
+        <img src="media/fotos/pavilhao-rede-480.webp"
+             srcset="media/fotos/pavilhao-rede-480.webp 480w, media/fotos/pavilhao-rede-674.webp 674w"
+             sizes="(min-width: 960px) 26vw, 50vw" width="674" height="900" loading="lazy" decoding="async"
+             alt="Pavilhão rosa da Casa Rosa com rede azul atrás das portas de vidro">
+        <figcaption>Casa Rosa</figcaption>
+      </figure>
+      <figure>
+        <img src="media/fotos/kaliandra-terraco-retrato-480.webp"
+             srcset="media/fotos/kaliandra-terraco-retrato-480.webp 480w, media/fotos/kaliandra-terraco-retrato-674.webp 674w"
+             sizes="(min-width: 960px) 26vw, 50vw" width="674" height="899" loading="lazy" decoding="async"
+             alt="Espreguiçadeira turquesa no terraço do Chalé Kaliandra, com a mata ao fundo">
+        <figcaption>Chalé Kaliandra</figcaption>
+      </figure>
+      <p class="duas__legenda">Duas acomodações distintas da Terra Dourada, cada uma com seus próprios ambientes.</p>
+    </div>
+
+    <div class="duas__texto revela">
+      <p class="rotulo"><span class="rotulo__n" aria-hidden="true">06</span> Locação conjunta</p>
+      <h2 class="titulo" id="duas-titulo">Duas casas.<br> Uma estadia compartilhada.</h2>
+      <p class="lead">Consulte a possibilidade de reservar Casa Rosa e Kaliandra para o mesmo grupo.</p>
+      <p>Cada acomodação mantém seus próprios espaços, e o grupo combina como quer conviver. Capacidade, exclusividade e condições da locação conjunta são informadas na consulta.</p>
+      <div class="acoes">
+        <a class="botao" href="#consultar" data-consulta="conjunta" data-origem="conjunta">Consultar as duas acomodações</a>
+      </div>
+      <p class="rev rev-nota"><strong>Revisão.</strong> Nome comercial proposto: "Terra Dourada por inteiro" — usar só depois de validar o alcance real da exclusividade. Não somar 12 + 6 ou 12 + 7. Não promover festas, casamentos ou retiros sem autorização.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     07 — O CUIDADO COM O LUGAR
+     Só práticas confirmadas e documentadas entram para o hóspede.
+     ====================================================================== -->
+<section class="lugar secao" id="o-lugar" aria-labelledby="lugar-titulo">
+  <div class="conteiner lugar__grade">
+    <div class="lugar__texto revela">
+      <p class="rotulo"><span class="rotulo__n" aria-hidden="true">07</span> O lugar</p>
+      <h2 class="titulo" id="lugar-titulo">Cuidar faz parte de receber.</h2>
+      <p class="lead">Mata, árvores frutíferas, pássaros e vistas abertas fazem parte da rotina da Terra Dourada.</p>
+      <p>Casas entre as árvores, água corrente e caminhos de madeira: a estadia acontece dentro da paisagem do Lago Oeste.</p>
+      <a class="link link--seta" href="https://www.instagram.com/terradouradabrasilia/" target="_blank" rel="noopener" data-link="instagram">Conheça o lugar no Instagram</a>
+    </div>
+
+    <figure class="lugar__foto revela">
+      <img src="media/fotos/jardim-560.webp"
+           srcset="media/fotos/jardim-480.webp 480w, media/fotos/jardim-560.webp 560w"
+           sizes="(min-width: 960px) 40vw, 100vw" width="560" height="480" loading="lazy" decoding="async"
+           alt="Jardim visto do alto, com flores vermelhas, pedras e plantas junto ao deck da piscina">
+      <figcaption>Jardim junto à piscina, visto do alto</figcaption>
+    </figure>
+
+    <ol class="rev lugar__praticas">
+      <li>
+        <span class="rev-foto rev-foto--mini" aria-hidden="true"></span>
+        <p><strong>Prática 1 · reaproveitamento da água para irrigação.</strong> Citada em publicação oficial. Confirmar como funciona, documentar com foto e aprovar o texto.</p>
+      </li>
+      <li>
+        <span class="rev-foto rev-foto--mini" aria-hidden="true"></span>
+        <p><strong>Prática 2 · a definir com os proprietários.</strong> Somente prática real, com evidência. Painéis visíveis nas fotos não autorizam falar em autossuficiência.</p>
+      </li>
+      <li>
+        <span class="rev-foto rev-foto--mini" aria-hidden="true"></span>
+        <p><strong>Prática 3 · a definir com os proprietários.</strong> Sem certificações, porcentagens ou selos sem prova.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ======================================================================
+     08 — O QUE OS HÓSPEDES ENCONTRARAM
+     Notas por unidade e plataforma, com data de consulta. Nada é somado.
+     Atualize os números e a data juntos.
+     ====================================================================== -->
+<section class="avaliacoes secao secao--verde" id="avaliacoes" aria-labelledby="avaliacoes-titulo">
+  <div class="conteiner">
+    <div class="avaliacoes__cabeca revela">
+      <p class="rotulo"><span class="rotulo__n" aria-hidden="true">08</span> Avaliações</p>
+      <h2 class="titulo" id="avaliacoes-titulo">Quem fica conta.</h2>
+    </div>
+
+    <ul class="avaliacoes__lista" role="list">
+      <li class="nota revela">
+        <p class="nota__valor"><span>4,95</span> <span class="nota__de">de 5</span></p>
+        <p class="nota__quem">Casa Rosa · Airbnb</p>
+        <p class="nota__qtd">95 avaliações</p>
+        <a class="link link--claro link--externo" href="https://www.airbnb.com.br/rooms/803740962310126110" target="_blank" rel="noopener" data-link="airbnbCasaRosa">Ler avaliações no Airbnb</a>
+      </li>
+      <li class="nota revela">
+        <p class="nota__valor"><span>4,93</span> <span class="nota__de">de 5</span></p>
+        <p class="nota__quem">Chalé Kaliandra · Airbnb</p>
+        <p class="nota__qtd">74 avaliações</p>
+        <a class="link link--claro link--externo" href="https://www.airbnb.com.br/rooms/803738197701849036" target="_blank" rel="noopener" data-link="airbnbKaliandra">Ler avaliações no Airbnb</a>
+      </li>
+      <li class="nota revela">
+        <p class="nota__valor"><span>4,8</span> <span class="nota__de">de 5</span></p>
+        <p class="nota__quem">Terra Dourada · Google</p>
+        <p class="nota__qtd">22 avaliações</p>
+        <a class="link link--claro link--externo" href="#" target="_blank" rel="noopener" data-link="avaliacoesGoogle" hidden>Ver avaliações no Google</a>
+      </li>
+    </ul>
+
+    <p class="avaliacoes__nota">Notas consultadas em 6 de outubro de 2026, sujeitas a atualização nas plataformas. Cada nota se refere à acomodação e à plataforma indicadas.</p>
+
+    <p class="rev rev-nota rev-nota--escura"><strong>Revisão.</strong> Revalidar notas e quantidades antes de publicar. Link público da ficha Google a validar. Depoimentos: nenhum autorizado — no máximo dois, com texto original e atribuição conferida. Nunca criar rostos ou citações.</p>
+  </div>
+</section>
+
+<!-- ======================================================================
+     09 — O CAMINHO ATÉ AQUI
+     Sem tempo de viagem prometido e sem mapa até validar o pin.
+     ====================================================================== -->
+<section class="caminho secao" id="como-chegar" aria-labelledby="caminho-titulo">
+  <div class="conteiner caminho__grade">
+    <div class="caminho__texto revela">
+      <p class="rotulo"><span class="rotulo__n" aria-hidden="true">09</span> Localização e acesso</p>
+      <h2 class="titulo" id="caminho-titulo">Lago Oeste.<br> Um outro lado de Brasília.</h2>
+      <p class="lead">A Terra Dourada fica no Lago Oeste, na área rural de Brasília, no Distrito Federal.</p>
+    </div>
+
+    <div class="caminho__quadro revela">
+      <dl class="ficha ficha--linhas">
+        <div><dt>Localização</dt><dd>Lago Oeste, área rural de Brasília — DF</dd></div>
+        <div><dt>Antes de ir</dt><dd>Combine o trajeto e tire dúvidas sobre o acesso com a equipe.</dd></div>
+      </dl>
+      <div class="acoes">
+        <a class="botao" href="#" target="_blank" rel="noopener" data-link="rota" hidden>Ver rota</a>
+        <a class="link link--seta" href="#consultar" data-consulta="acesso" data-origem="como-chegar">Tirar dúvida sobre o acesso</a>
+      </div>
+      <p class="rev rev-nota"><strong>Revisão.</strong> Confirmar pin, grafia do endereço (Núcleo Rural Lago Oeste, Sobradinho II?) e instruções seguras de chegada. O botão "Ver rota" aparece sozinho quando o link for preenchido em js/config.js. Não informar tempo de viagem.</p>
+    </div>
+
+    <div class="rev caminho__pendentes">
+      <figure class="rev-foto rev-foto--3x2">
+        <figcaption><span>Espaço de revisão</span> Foto real do acesso / portão. Horizontal 3:2.</figcaption>
+      </figure>
+      <figure class="rev-foto rev-foto--3x2">
+        <figcaption><span>Espaço de revisão</span> Mapa oficial, carregado sob demanda, depois de validar o pin.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     10 — ANTES DE ARRUMAR A MALA
+     Só respostas confirmadas aparecem para o hóspede.
+     ====================================================================== -->
+<section class="duvidas secao secao--suave" id="duvidas" aria-labelledby="duvidas-titulo">
+  <div class="conteiner duvidas__grade">
+    <div class="duvidas__cabeca revela">
+      <p class="rotulo"><span class="rotulo__n" aria-hidden="true">10</span> Informações para sua estadia</p>
+      <h2 class="titulo" id="duvidas-titulo">Para planejar com tranquilidade.</h2>
+      <p class="duvidas__contato">Ficou alguma dúvida? <a class="link" href="#consultar" data-consulta="duvida" data-origem="duvidas">Fale com a Terra Dourada.</a></p>
+    </div>
+
+    <div class="duvidas__grupos">
+      <div class="duvidas__grupo revela">
+        <h3 class="duvidas__tema">As estadias</h3>
+        <details class="faq">
+          <summary>Qual acomodação escolher?</summary>
+          <div class="faq__resposta">
+            <p>A Casa Rosa recebe até 12 hóspedes em 4 quartos e favorece a convivência de famílias e grupos. O Chalé Kaliandra, com 2 quartos, é pensado para desacelerar a dois ou com poucas pessoas. Para o mesmo grupo, também é possível consultar as duas acomodações.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>Qual é a capacidade?</summary>
+          <div class="faq__resposta">
+            <p>Casa Rosa: até 12 hóspedes. Para o Chalé Kaliandra e para a locação conjunta, a capacidade é informada na consulta.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>Como funciona a locação conjunta?</summary>
+          <div class="faq__resposta">
+            <p>Você pode consultar a reserva da Casa Rosa e do Chalé Kaliandra para o mesmo grupo. Capacidade, condições e disponibilidade são informadas diretamente pela equipe.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="duvidas__grupo revela">
+        <h3 class="duvidas__tema">As piscinas</h3>
+        <details class="faq" id="faq-piscinas">
+          <summary>As piscinas são aquecidas?</summary>
+          <div class="faq__resposta">
+            <p>Não. As piscinas são abastecidas por água natural corrente, sem adição de produtos químicos e sem aquecimento. A temperatura da água acompanha o clima.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>Como é a água?</summary>
+          <div class="faq__resposta">
+            <p>Natural e corrente. Por não receber tratamento químico, ela não tem o azul de uma piscina tratada: reflete a vegetação, o céu e a luz do dia.</p>
+          </div>
+        </details>
+
+        <div class="rev">
+          <h3 class="duvidas__tema">Chegada e regras <span class="rev-tag">respostas pendentes</span></h3>
+          <ul class="duvidas__pendentes">
+            <li>Há alimentação incluída?</li>
+            <li>Pode levar pets?</li>
+            <li>Como é o acesso? Qual a condição da estrada?</li>
+            <li>Qual o horário de chegada e saída?</li>
+            <li>Quais as condições de pagamento e cancelamento na reserva direta?</li>
+            <li>Cada acomodação tem piscina e área privativas?</li>
+          </ul>
+          <p class="rev-nota">Respostas ficam no documento interno até serem confirmadas; nunca como texto fictício no site.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     11 — O CONVITE PARA FICAR
+     Campos opcionais personalizam a mensagem; nada é enviado sozinho.
+     ====================================================================== -->
+<section class="convite" id="consultar" aria-labelledby="convite-titulo">
+  <figure class="convite__imagem">
+    <img src="media/fotos/entardecer-800.webp"
+         srcset="media/fotos/entardecer-480.webp 480w, media/fotos/entardecer-800.webp 800w, media/fotos/entardecer-1200.webp 1200w"
+         sizes="100vw" width="1200" height="560" loading="lazy" decoding="async"
+         alt="Telhados de cerâmica e paredes rosas entre a mata, sob luz dourada">
+  </figure>
+
+  <div class="convite__faixa">
+    <div class="conteiner convite__grade">
+      <div class="convite__texto revela">
+        <p class="rotulo"><span class="rotulo__n" aria-hidden="true">11</span> Consultar disponibilidade</p>
+        <h2 class="titulo" id="convite-titulo">Vamos planejar seus dias aqui?</h2>
+        <p class="lead">Conte suas datas e com quem você vem.</p>
+        <p class="convite__aviso">Todos os campos são opcionais. A conversa abre no WhatsApp com a mensagem pronta para você revisar — nada é enviado automaticamente.</p>
+      </div>
+
+      <form class="convite__form" data-form-consulta novalidate>
+        <fieldset class="campo campo--opcoes">
+          <legend>Acomodação</legend>
+          <div class="opcoes">
+            <label><input type="radio" name="unidade" value="geral" checked><span>Ainda não sei</span></label>
+            <label><input type="radio" name="unidade" value="casa-rosa"><span>Casa Rosa</span></label>
+            <label><input type="radio" name="unidade" value="kaliandra"><span>Chalé Kaliandra</span></label>
+            <label><input type="radio" name="unidade" value="conjunta"><span>As duas</span></label>
+          </div>
+        </fieldset>
+
+        <div class="campos-linha">
+          <div class="campo">
+            <label for="f-chegada">Chegada</label>
+            <input id="f-chegada" name="chegada" type="date">
+          </div>
+          <div class="campo">
+            <label for="f-saida">Saída</label>
+            <input id="f-saida" name="saida" type="date">
+          </div>
+          <div class="campo campo--curto">
+            <label for="f-adultos">Adultos</label>
+            <input id="f-adultos" name="adultos" type="number" inputmode="numeric" min="1" max="30" step="1">
+          </div>
+          <div class="campo campo--curto">
+            <label for="f-criancas">Crianças</label>
+            <input id="f-criancas" name="criancas" type="number" inputmode="numeric" min="0" max="30" step="1">
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="f-mensagem">Sua mensagem</label>
+          <textarea id="f-mensagem" name="mensagem" rows="4" data-mensagem></textarea>
+          <p class="campo__ajuda">Você pode editar o texto antes de abrir a conversa.</p>
+        </div>
+
+        <button class="botao botao--claro botao--largo" type="submit">Consultar disponibilidade</button>
+
+        <div class="convite__status" data-status tabindex="-1" hidden>
+          <p class="rev rev-nota rev-nota--escura"><strong>Revisão · WhatsApp desativado.</strong> O número +55 61 99158-7093 aparece em fonte pública, mas não foi confirmado como canal de reservas. Ative em <code>js/config.js</code> → <code>whatsapp.numero</code>.</p>
+          <p class="convite__alternativa">A consulta direta pelo WhatsApp da Terra Dourada está sendo configurada. Enquanto isso, a disponibilidade pode ser consultada nos anúncios oficiais:</p>
+          <ul class="convite__links" role="list">
+            <li><a class="link link--claro link--externo" href="https://www.airbnb.com.br/rooms/803740962310126110" target="_blank" rel="noopener" data-link="airbnbCasaRosa">Casa Rosa no Airbnb</a></li>
+            <li><a class="link link--claro link--externo" href="https://www.airbnb.com.br/rooms/803738197701849036" target="_blank" rel="noopener" data-link="airbnbKaliandra">Chalé Kaliandra no Airbnb</a></li>
+            <li><a class="link link--claro link--externo" href="https://www.airbnb.com.br/rooms/1017530888939475423" target="_blank" rel="noopener" data-link="airbnbConjunto">As duas acomodações no Airbnb</a></li>
+          </ul>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================================================================
+     RODAPÉ
+     ====================================================================== -->
+<footer class="rodape">
+  <div class="conteiner rodape__grade">
+    <div class="rodape__marca">
+      <p class="marca__nome">Terra Dourada</p>
+      <p>Hospedagens no Lago Oeste, Brasília — DF</p>
+    </div>
+    <nav class="rodape__col" aria-label="Acomodações">
+      <h2 class="rodape__titulo">Acomodações</h2>
+      <ul role="list">
+        <li><a href="#casa-rosa">Casa Rosa</a></li>
+        <li><a href="#kaliandra">Chalé Kaliandra</a></li>
+        <li><a href="#duas-estadias">Locação conjunta</a></li>
+        <li><a href="#duvidas">Informações para sua estadia</a></li>
+      </ul>
+    </nav>
+    <div class="rodape__col">
+      <h2 class="rodape__titulo">Canais oficiais</h2>
+      <ul role="list">
+        <li><a href="https://www.instagram.com/terradouradabrasilia/" target="_blank" rel="noopener" data-link="instagram">Instagram</a></li>
+        <li><a href="https://www.airbnb.com.br/rooms/803740962310126110" target="_blank" rel="noopener" data-link="airbnbCasaRosa">Casa Rosa no Airbnb</a></li>
+        <li><a href="https://www.airbnb.com.br/rooms/803738197701849036" target="_blank" rel="noopener" data-link="airbnbKaliandra">Chalé Kaliandra no Airbnb</a></li>
+        <li><a href="https://www.airbnb.com.br/rooms/1017530888939475423" target="_blank" rel="noopener" data-link="airbnbConjunto">As duas acomodações no Airbnb</a></li>
+      </ul>
+    </div>
+    <div class="rodape__col">
+      <h2 class="rodape__titulo">Contato</h2>
+      <ul role="list">
+        <li data-whatsapp-rodape hidden><a href="#consultar" data-consulta="geral" data-origem="rodape">WhatsApp <span data-whatsapp-numero></span></a></li>
+        <li><a href="#consultar">Consultar disponibilidade</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="conteiner rodape__base rev">
+    <p>Prévia de site · não indexada · conteúdo sujeito à validação da propriedade.</p>
+  </div>
+</footer>
+
+<!-- Botão flutuante do WhatsApp: sem pulsar, sem balão, sem notificação. -->
+<a class="whats" href="#consultar" data-consulta="geral" data-origem="flutuante" data-whats aria-label="Falar com a Terra Dourada no WhatsApp">
+  <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M16.04 3C8.86 3 3.03 8.82 3.03 16c0 2.29.6 4.53 1.74 6.5L3 29l6.68-1.75A13 13 0 0 0 16.04 29C23.2 29 29.03 23.18 29.03 16S23.2 3 16.04 3Zm0 23.8c-2.01 0-3.97-.54-5.69-1.56l-.41-.24-3.96 1.04 1.06-3.86-.27-.4A10.78 10.78 0 0 1 5.23 16c0-5.96 4.85-10.8 10.81-10.8 5.95 0 10.8 4.84 10.8 10.8 0 5.96-4.85 10.8-10.8 10.8Zm5.93-8.09c-.33-.16-1.93-.95-2.23-1.06-.3-.11-.52-.16-.73.17-.22.32-.84 1.05-1.03 1.27-.19.22-.38.24-.7.08-.33-.16-1.38-.51-2.62-1.62-.97-.86-1.62-1.93-1.81-2.25-.19-.33-.02-.5.14-.66.15-.15.33-.38.49-.57.16-.19.22-.33.33-.54.11-.22.05-.41-.03-.57-.08-.16-.73-1.76-1-2.41-.27-.63-.54-.55-.73-.56h-.62c-.22 0-.57.08-.87.41-.3.32-1.14 1.11-1.14 2.71s1.17 3.15 1.33 3.36c.16.22 2.3 3.51 5.57 4.92.78.34 1.39.54 1.86.69.78.25 1.49.21 2.05.13.63-.09 1.93-.79 2.2-1.55.27-.76.27-1.42.19-1.55-.08-.14-.3-.22-.62-.38Z"/></svg>
+</a>
+
+<!-- Alternador de modo (só aparece em revisão). -->
+<div class="modo rev js-only">
+  <span>Prévia · modo revisão</span>
+  <button type="button" data-modo-cliente>Ver como cliente</button>
+</div>
+
+<!-- Galeria (preenchida por js/config.js → galerias). -->
+<dialog class="galeria" data-galeria-dialog aria-labelledby="galeria-titulo">
+  <div class="galeria__interno">
+    <div class="galeria__topo">
+      <p class="galeria__titulo" id="galeria-titulo"></p>
+      <p class="galeria__contador" aria-live="polite" data-galeria-contador></p>
+      <button class="galeria__fechar" type="button" data-galeria-fechar>Fechar</button>
+    </div>
+    <figure class="galeria__figura" data-galeria-figura>
+      <figcaption data-galeria-legenda></figcaption>
+    </figure>
+    <div class="galeria__nav">
+      <button type="button" data-galeria-anterior aria-label="Foto anterior">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      </button>
+      <button type="button" data-galeria-proxima aria-label="Próxima foto">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      </button>
+    </div>
+  </div>
+</dialog>
+
+<script src="js/app.js" defer></script>
+</body>
+</html>
