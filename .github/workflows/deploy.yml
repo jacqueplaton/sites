@@ -28,6 +28,8 @@ jobs:
           mkdir -p _site
           cp -r index.html favicon.svg robots.txt sitemap.xml \
                 css js fonts media _site/
+          # prévia da Gariba em /gariba/ (sem o README interno)
+          if [ -d gariba ]; then cp -r gariba _site/ && rm -f _site/gariba/README.md; fi
           # impede o Jekyll de reprocessar (e de ignorar arquivos)
           touch _site/.nojekyll
           echo "Arquivos publicados:"

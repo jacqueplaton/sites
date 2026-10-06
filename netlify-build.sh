@@ -21,6 +21,12 @@ rm -rf _site
 mkdir -p _site
 cp -r index.html favicon.svg robots.txt sitemap.xml css js fonts media _site/
 
+# Prévia da Gariba em /gariba/ (o README interno fica fora do ar)
+if [ -d gariba ]; then
+  cp -r gariba _site/
+  rm -f _site/gariba/README.md
+fi
+
 # Escolhe a URL: deploys de produção usam $URL; previews de branch e de pull
 # request usam $DEPLOY_PRIME_URL, que aponta para aquele deploy específico.
 DESTINO="${DEPLOY_PRIME_URL:-${URL:-}}"

@@ -6,6 +6,10 @@ sem dependências externas.
 **Tecnologia:** HTML, CSS e JavaScript puro. Sem framework, sem build, sem
 `npm install`. Basta subir os arquivos em qualquer hospedagem — o site funciona.
 
+> **Outro site neste repositório:** a prévia da **Gariba** (cabanas em Encantado, RS)
+> fica em [`gariba/`](gariba/README.md) e é publicada em `/gariba/` pelos mesmos
+> deploys (Netlify e GitHub Pages).
+
 ---
 
 ## Estrutura dos arquivos
