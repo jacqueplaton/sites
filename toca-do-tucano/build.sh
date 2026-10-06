@@ -18,7 +18,7 @@ ORIGEM="https://toca-do-tucano.netlify.app"
 
 rm -rf dist
 mkdir -p dist
-cp -r index.html 404.html favicon.svg site.webmanifest robots.txt sitemap.xml css js fonts media dist/
+cp -r _headers index.html 404.html favicon.svg site.webmanifest robots.txt sitemap.xml css js fonts media dist/
 
 DESTINO="${SITE_URL:-${URL:-}}"
 if [ -z "$DESTINO" ] && [ -n "${VERCEL_PROJECT_PRODUCTION_URL:-}" ]; then
