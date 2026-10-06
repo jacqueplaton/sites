@@ -1001,7 +1001,7 @@ html:not(.js) .escolha { display: none; }
 .pagina-cabanas .comparar { margin: 0 0 clamp(3rem, 6vw, 5rem); }
 .pagina-cabanas .tabela th:first-child { background: var(--papel-2); }
 
-.erro { min-height: 70vh; padding-block: clamp(5rem, 12vw, 9rem); }
+.pagina-404 main.erro { min-height: 70vh; padding-top: calc(var(--topo-h) + clamp(3rem, 8vw, 6rem)); padding-bottom: clamp(5rem, 12vw, 9rem); }
 .erro__acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; margin-top: 2rem; }
 
 /* --------------------------------------------------------------------------
