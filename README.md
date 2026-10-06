@@ -1,5 +1,8 @@
 # Delícias Brasil Florida — site
 
+> Este repositório também guarda o site das **Cabanas do Alto** (Cunha, SP),
+> na pasta [`cabanas-do-alto/`](cabanas-do-alto/README.md).
+
 Site institucional do restaurante, bilíngue (português / inglês), responsivo e
 sem dependências externas.
 

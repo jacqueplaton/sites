@@ -28,6 +28,9 @@ jobs:
           mkdir -p _site
           cp -r index.html favicon.svg robots.txt sitemap.xml \
                 css js fonts media _site/
+          # Cabanas do Alto: publicado em /cabanas-do-alto/
+          mkdir -p _site/cabanas-do-alto
+          cp -r cabanas-do-alto/site/. _site/cabanas-do-alto/
           # impede o Jekyll de reprocessar (e de ignorar arquivos)
           touch _site/.nojekyll
           echo "Arquivos publicados:"
