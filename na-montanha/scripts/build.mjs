@@ -164,6 +164,30 @@ Sitemap: ${abs('/sitemap.xml')}
 `
 );
 
+// ------------------------------------------------------------ _headers ---
+// Mesmas regras do netlify.toml, para quando o site é publicado arrastando a
+// pasta na Netlify Drop (nesse modo o netlify.toml não é lido).
+writeFileSync(
+  join(DIST, '_headers'),
+  `/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/img/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+/assets/video/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+`
+);
+
 // ------------------------------------------------------------- llms.txt ---
 // Resumo em texto simples para assistentes de IA (proposta llmstxt.org).
 const a = site.address;
