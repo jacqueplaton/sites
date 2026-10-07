@@ -42,76 +42,7 @@
       flutuante.target = '_blank';
       flutuante.rel = 'noopener';
       flutuante.hidden = false;
-      html.classList.add('tem-whats');
-      iniciarDesvio(flutuante);
     }
-  }
-
-  /* O flutuante não fica sobre o texto do topo nem sobre os botões de
-     consulta: o resumo do topo só se afasta nas telas em que seria coberto,
-     e o flutuante se recolhe enquanto estiver sobre um botão que abre o
-     mesmo WhatsApp. */
-  function iniciarDesvio(flutuante) {
-    var resumo = $('.hero__resumo');
-    var alvos = $$('[data-cta], [data-enviar]');
-    var folga = 6;
-    var pendente = false;
-
-    function cruza(a, b) {
-      return a.left < b.right + folga && a.right > b.left - folga &&
-             a.top < b.bottom + folga && a.bottom > b.top - folga;
-    }
-
-    // Mede como se a página estivesse no topo, linha por linha do texto.
-    // Sem transição durante a medição: com "reduzir movimento" o CSS dá uma
-    // transição curta a todas as propriedades, o que falsearia a leitura.
-    function medirResumo() {
-      if (!resumo) return;
-      resumo.style.setProperty('transition', 'none', 'important');
-      html.classList.remove('whats-afasta-resumo');
-      var f = flutuante.getBoundingClientRect();
-      var cobre = false;
-      if (f.width) {
-        var y = window.scrollY;
-        var faixa = document.createRange();
-        faixa.selectNodeContents(resumo);
-        cobre = Array.prototype.some.call(faixa.getClientRects(), function (r) {
-          return cruza(f, { left: r.left, right: r.right, top: r.top + y, bottom: r.bottom + y });
-        });
-      }
-      html.classList.toggle('whats-afasta-resumo', cobre);
-      void getComputedStyle(resumo).paddingRight;   // aplica já, sem transição
-      resumo.style.removeProperty('transition');
-    }
-
-    function recolher() {
-      pendente = false;
-      var f = flutuante.getBoundingClientRect();
-      if (!f.width) return;   // escondido (galeria ou menu abertos)
-      var cobre = alvos.some(function (el) {
-        var r = el.getBoundingClientRect();
-        return r.width > 0 && cruza(f, r);
-      });
-      flutuante.classList.toggle('is-recolhido', cobre);
-    }
-
-    function aoRolar() {
-      if (!pendente) { pendente = true; window.requestAnimationFrame(recolher); }
-    }
-    function remedir() { medirResumo(); recolher(); }
-
-    window.addEventListener('scroll', aoRolar, { passive: true });
-    window.addEventListener('resize', remedir);
-    window.addEventListener('load', remedir);
-    // mede de novo quando as fontes terminam de carregar e quando a
-    // animação de entrada do topo acaba (ela desloca o texto por um instante)
-    if (document.fonts) {
-      if (document.fonts.ready) document.fonts.ready.then(remedir);
-      if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', remedir);
-    }
-    var acoes = $('.hero__acoes');
-    if (acoes) acoes.addEventListener('animationend', remedir);
-    remedir();
   }
 
   /* ======================================================================

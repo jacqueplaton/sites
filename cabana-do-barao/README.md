@@ -90,11 +90,7 @@ em **`js/config.js`** (`validado: true`) e link fixo nos botões do `index.html`
 - O formulário do fim da página usa a mesma mensagem e acrescenta só as datas
   preenchidas (`Entrada: 20/12/2026`, `Saída: 23/12/2026`).
 - O botão flutuante (56 px, canto inferior direito, em todas as telas) some
-  enquanto a galeria ou o menu do celular estão abertos, e se recolhe só
-  enquanto estiver sobre um botão "Consultar disponibilidade" (que abre o
-  mesmo WhatsApp), para nunca cobrir um botão. Nas telas em que cobriria o
-  texto curto do topo, esse texto ganha um recuo à direita (medido no
-  carregamento). No celular, o rodapé tem um respiro extra no fim.
+  enquanto a galeria ou o menu do celular estão abertos.
 
 Para trocar o número: edite `numero` em `js/config.js` **e** os links `wa.me`
 do `index.html` (são 5).

@@ -565,9 +565,10 @@ button, input { font: inherit; color: inherit; }
   color: var(--pedra);
 }
 
-/* WhatsApp flutuante: o JS liga esta classe só nas telas em que o botão
-   ficaria sobre o resumo do topo (medido ao carregar e ao redimensionar) */
-html.whats-afasta-resumo .hero__resumo { padding-right: 68px; }
+/* com o WhatsApp flutuante ativo, o botão do topo não fica sob ele no celular */
+@media (max-width: 599px) {
+  html.tem-whats .hero__acoes { padding-right: 68px; }
+}
 
 @media (min-width: 600px) {
   .hero__acoes .botao { flex: 0 0 auto; }
@@ -1311,9 +1312,7 @@ html.lightbox-aberta, html.menu-aberto { overflow: hidden; }
 .rodape__links a { color: var(--marfim); }
 .rodape__links a { display: inline-block; padding: .6rem 0; }
 .rodape__nota { max-width: 48em; margin-top: 1rem; font-size: .8125rem; }
-@media (max-width: 767px) {
-  html.tem-whats .rodape { padding-bottom: calc(6.5rem + env(safe-area-inset-bottom)); }
-}
+html.tem-whats .rodape { padding-bottom: calc(6.5rem + env(safe-area-inset-bottom)); }
 
 @media (min-width: 960px) {
   .rodape__marca { grid-column: 1 / span 4; }
@@ -1337,11 +1336,9 @@ html.lightbox-aberta, html.menu-aberto { overflow: hidden; }
   background: var(--carvao);
   color: var(--marfim);
   box-shadow: 0 0 0 1px var(--amarelo), 0 6px 18px rgba(0, 0, 0, .28);
-  transition: transform .2s ease, background-color .2s ease, opacity .2s ease, visibility .2s;
+  transition: transform .2s ease, background-color .2s ease;
 }
 .whats[hidden] { display: none; }
-/* recolhido enquanto estiver sobre um botão que abre o mesmo WhatsApp */
-.whats.is-recolhido { opacity: 0; visibility: hidden; pointer-events: none; }
 .whats:hover { transform: translateY(-2px); background: #2C312D; }
 .whats:focus-visible { outline: 3px solid var(--amarelo); outline-offset: 4px; }
 html.lightbox-aberta .whats,
@@ -1349,10 +1346,6 @@ html.menu-aberto .whats { display: none; }
 
 @media (min-width: 960px) {
   .whats { right: calc(28px + env(safe-area-inset-right)); bottom: calc(28px + env(safe-area-inset-bottom)); }
-}
-/* telas largas: o botão cabe na margem livre ao lado do conteúdo (1.280 px) */
-@media (min-width: 1416px) {
-  .whats { right: calc(12px + env(safe-area-inset-right)); }
 }
 
 /* ==========================================================================
