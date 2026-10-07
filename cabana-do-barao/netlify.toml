@@ -1,0 +1,44 @@
+# ==========================================================================
+# Netlify — Cabana do Barão
+# --------------------------------------------------------------------------
+# Ao criar o site no Netlify, defina "Base directory" = cabana-do-barao.
+# O Netlify lê este arquivo e roda o build.sh.
+#
+# Prévia (padrão): fica com noindex.
+# Domínio final: em Site configuration → Environment variables, crie
+#   SITE_URL = https://seu-dominio
+#   INDEXAR  = sim
+# e publique de novo.
+# ==========================================================================
+
+[build]
+  command = "bash build.sh"
+  publish = "_site"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+    X-Frame-Options        = "SAMEORIGIN"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Fotos e vídeo podem ser trocados mantendo o mesmo nome: cache de 7 dias.
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

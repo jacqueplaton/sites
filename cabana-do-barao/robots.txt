@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Enquanto o site for prévia, a página tem "noindex" (os buscadores precisam
+# conseguir ler a página para respeitar isso, por isso nada é bloqueado aqui).
+# A linha "Sitemap:" é adicionada pelo build.sh quando rodar com INDEXAR=sim.

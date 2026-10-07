@@ -1,5 +1,8 @@
 # Delícias Brasil Florida — site
 
+> Este repositório também guarda a prévia do site da **Cabana do Barão**, na
+> pasta [`cabana-do-barao/`](cabana-do-barao/README.md), com documentação própria.
+
 Site institucional do restaurante, bilíngue (português / inglês), responsivo e
 sem dependências externas.
 
