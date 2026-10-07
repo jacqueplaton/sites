@@ -4,8 +4,8 @@ Prévia funcional do site da Cabana do Barão (São Bento do Sapucaí/SP, bairro
 Paiol Grande, região da Pedra do Baú). Página única em HTML, CSS e JavaScript
 puro: sem framework, sem `npm install`, sem rastreamento.
 
-**Status:** prévia com `noindex`. O WhatsApp **não** está ativo porque o número
-ainda não foi validado (veja "Pendências").
+**Status:** prévia com `noindex`. Reserva direta pelo WhatsApp **ativa** no
+número oficial +55 12 98825-2042 (informado pelo cliente em 07/10/2026).
 
 Conceito: **"A montanha em cena. Vocês no próprio tempo."** A linguagem visual
 vem da arquitetura das fotos: fachada preta (carvão), porta de madeira
@@ -63,7 +63,7 @@ aparece com a fonte ao lado.
 
 | # | Item | Situação | O que fazer |
 |---|---|---|---|
-| 1 | **WhatsApp** | (12) 98825-2042 foi publicado por um agregador (pousadastop.com.br). **Sem validação primária.** | Confirmar com o anfitrião e seguir "Ativar o WhatsApp" abaixo. Até lá, o botão flutuante fica escondido e a consulta mostra a mensagem pronta + link do Instagram. |
+| 1 | **WhatsApp** | **Resolvido em 07/10/2026:** número oficial +55 12 98825-2042 informado pelo cliente. Botões de consulta, formulário e botão flutuante abrem o WhatsApp. | — |
 | 2 | **Notas e totais de avaliação** | Airbnb 4,98/5 (118) e Booking 9,8/10 (13), consultados em 06/10/2026. Não consegui reconferir: o acesso a Airbnb, Booking, pousadastop e site da prefeitura é bloqueado no ambiente onde a prévia foi feita. | Conferir nas plataformas e atualizar no `index.html` (bloco "7. AVALIAÇÕES"), com a nova data. |
 | 3 | **Vídeo do topo** | O filme recebido mostra ambientes que não aparecem nas 12 fotos (cozinha com ilha branca, mesa de jantar) e diferenças em relação a elas (sofá cinza no vídeo, verde ou preto nas fotos). Também mostra meias de Natal, balões de coração e pétalas. | Pedir ao anfitrião para confirmar que o vídeo representa a cabana como está hoje. O site informa, discretamente, que o filme foi "feito a partir de fotografias da cabana" e que enfeites não fazem parte da descrição da hospedagem. |
 | 4 | **Entrada 15h / saída 11h** | Indicado pela Booking. | Confirmar para a reserva direta. Os horários estão na ficha e no FAQ com a ressalva "confirme na consulta"; não estão no JSON-LD. |
@@ -78,28 +78,22 @@ aparece com a fonte ao lado.
 
 ---
 
-## Ativar o WhatsApp
+## WhatsApp (reserva direta)
 
-Em **`js/config.js`**:
+Ativo desde 07/10/2026 com o número oficial **+55 12 98825-2042**. Configuração
+em **`js/config.js`** (`validado: true`) e link fixo nos botões do `index.html`
+(procure por `wa.me`), para funcionar mesmo antes do JavaScript carregar.
 
-```js
-whatsapp: {
-  numero: '5512988252042',   // confira: 55 + DDD + número, só dígitos
-  validado: true,            // ← trocar para true
-  confirmacao: 'Confirmado por Moacir em DD/MM/AAAA',
-  ...
-}
-```
+- Os 4 botões "Consultar disponibilidade" e o botão flutuante abrem
+  `https://wa.me/5512988252042` com a mensagem
+  *"Olá! Vim pelo site da Cabana do Barão e gostaria de consultar disponibilidade e valores para uma reserva."*
+- O formulário do fim da página usa a mesma mensagem e acrescenta só as datas
+  preenchidas (`Entrada: 20/12/2026`, `Saída: 23/12/2026`).
+- O botão flutuante (56 px, canto inferior direito, em todas as telas) some
+  enquanto a galeria ou o menu do celular estão abertos.
 
-Com `validado: true`:
-
-- aparece o botão flutuante do WhatsApp (56 px, em todas as telas, some quando a galeria está aberta);
-- todos os botões "Consultar disponibilidade" abrem o WhatsApp com a mensagem
-  *"Olá! Vi a Cabana do Barão pelo site e gostaria de consultar disponibilidade."*;
-- o formulário acrescenta só as datas preenchidas (`Entrada: 20/12/2026`, `Saída: 23/12/2026`).
-
-Esse comportamento já foi testado com o número simulado como validado (sem
-alterar o arquivo).
+Para trocar o número: edite `numero` em `js/config.js` **e** os links `wa.me`
+do `index.html` (são 5).
 
 ---
 

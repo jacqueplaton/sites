@@ -44,11 +44,6 @@
       flutuante.hidden = false;
       html.classList.add('tem-whats');
     }
-
-    var ajuda = $('[data-ajuda]');
-    if (ajuda) {
-      ajuda.textContent = 'As datas são opcionais. O botão abre o WhatsApp com a mensagem pronta; valores e reserva são confirmados no atendimento.';
-    }
   }
 
   /* ======================================================================

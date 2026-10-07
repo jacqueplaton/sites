@@ -565,9 +565,13 @@ button, input { font: inherit; color: inherit; }
   color: var(--pedra);
 }
 
-/* com o WhatsApp flutuante ativo, o botão do topo não fica sob ele no celular */
+/* com o WhatsApp flutuante ativo, o texto do topo não fica sob ele no celular;
+   em celulares baixos o botão do topo também se afasta do canto */
 @media (max-width: 599px) {
-  html.tem-whats .hero__acoes { padding-right: 68px; }
+  html.tem-whats .hero__resumo { padding-right: 68px; }
+}
+@media (max-width: 599px) and (max-height: 700px) {
+  html.tem-whats .hero__acoes .botao { margin-right: 68px; }
 }
 
 @media (min-width: 600px) {
@@ -1346,6 +1350,10 @@ html.menu-aberto .whats { display: none; }
 
 @media (min-width: 960px) {
   .whats { right: calc(28px + env(safe-area-inset-right)); bottom: calc(28px + env(safe-area-inset-bottom)); }
+}
+/* telas largas: o botão cabe na margem livre ao lado do conteúdo (1.280 px) */
+@media (min-width: 1416px) {
+  .whats { right: calc(12px + env(safe-area-inset-right)); }
 }
 
 /* ==========================================================================

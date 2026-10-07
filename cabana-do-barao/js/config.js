@@ -11,26 +11,24 @@ var CABANA = {
   nome: 'Cabana do Barão',
 
   /* ---- WhatsApp ---------------------------------------------------------
-     STATUS: NÃO VALIDADO.
+     STATUS: VALIDADO — número oficial da Cabana do Barão informado pelo
+     cliente em 07/10/2026: +55 12 98825-2042.
 
-     O número abaixo foi publicado por um agregador (pousadastop.com.br) e
-     ainda não foi confirmado pelo anfitrião nem por uma fonte primária.
-     Enquanto `validado` for false:
-       - o botão flutuante de WhatsApp NÃO aparece;
-       - os botões "Consultar disponibilidade" levam ao bloco de consulta;
-       - o formulário mostra a mensagem pronta e oferece o Instagram.
+     Com `validado: true`:
+       - aparece o botão flutuante de WhatsApp;
+       - todos os botões "Consultar disponibilidade" abrem o WhatsApp com a
+         mensagem abaixo;
+       - o formulário de consulta abre o WhatsApp com a mesma mensagem e
+         acrescenta só as datas preenchidas.
 
-     Depois que o anfitrião confirmar o número:
-       1. confira/edite `numero` (só dígitos, com 55 + DDD);
-       2. troque `validado` para true;
-       3. anote quem confirmou e quando em `confirmacao`.
-     Todos os botões passam a abrir o WhatsApp com a mensagem padrão.
+     Para trocar o número: edite `numero` (só dígitos, 55 + DDD + número)
+     e também o link fixo nos botões do index.html (procure por wa.me).
      -------------------------------------------------------------------- */
   whatsapp: {
     numero: '5512988252042',
-    validado: false,
-    confirmacao: '',   // ex.: 'Confirmado por Moacir em 10/10/2026'
-    mensagem: 'Olá! Vi a Cabana do Barão pelo site e gostaria de consultar disponibilidade.'
+    validado: true,
+    confirmacao: 'Número oficial informado pelo cliente em 07/10/2026',
+    mensagem: 'Olá! Vim pelo site da Cabana do Barão e gostaria de consultar disponibilidade e valores para uma reserva.'
   },
 
   /* ---- Instagram (perfil identificado na pesquisa) ---------------------- */
