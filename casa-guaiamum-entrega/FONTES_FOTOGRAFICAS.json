@@ -1,0 +1,207 @@
+{
+  "imagens": [
+    {
+      "arquivo": "fotos/01_exteriores/01_capa_piscina_deck.jpg",
+      "alt": "Piscina e deck junto à água",
+      "origem": "https://a0.muscache.com/im/pictures/hosting/Hosting-53432967/original/760f9522-e2df-48de-877f-ddc8b409ddce.jpeg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1440,
+      "altura": 1920,
+      "bytes": 274465,
+      "sha256": "ba88c414d20611e2495c4bea223a52dbac9849f5fadd033819fdc1535cde7246"
+    },
+    {
+      "arquivo": "fotos/01_exteriores/02_piscina_noturna.jpg",
+      "alt": "Piscina iluminada à noite",
+      "origem": "https://a0.muscache.com/im/pictures/hosting/Hosting-53432967/original/9cd57bf7-9797-4bfd-b786-24158caa6cbb.jpeg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1440,
+      "altura": 1920,
+      "bytes": 274075,
+      "sha256": "bd56774c8501beb345aa0213385b54a3259472502b443edbae716ef9209816c2"
+    },
+    {
+      "arquivo": "fotos/01_exteriores/03_deck_vista_superior.jpg",
+      "alt": "Vista superior do deck",
+      "origem": "https://a0.muscache.com/im/pictures/hosting/Hosting-53432967/original/7317925a-c4df-43b4-a97d-bb73ed7416f1.jpeg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1440,
+      "altura": 1920,
+      "bytes": 521969,
+      "sha256": "71db2c241178e30151fd6c5b728b6b2e3c8a48da7adacaf2063faba7a71aff76"
+    },
+    {
+      "arquivo": "fotos/01_exteriores/04_por_do_sol.jpg",
+      "alt": "Pôr do sol sobre a água",
+      "origem": "https://a0.muscache.com/im/pictures/1333cdc1-9e75-4169-b3ec-e17b8e9e8f55.jpg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1211,
+      "altura": 2200,
+      "bytes": 290871,
+      "sha256": "92f1335352876280a33a21def1cd64d6d2f37d45d760fad61787c1b54fde4d2c"
+    },
+    {
+      "arquivo": "fotos/01_exteriores/05_jardim_e_agua.jpg",
+      "alt": "Jardim e vista para a água",
+      "origem": "https://a0.muscache.com/im/pictures/d56e5bfd-a475-4735-91bf-e9ee719c0cc9.jpg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1215,
+      "altura": 2200,
+      "bytes": 474537,
+      "sha256": "95778c83689a152d5b4d418abb3d18890eae4812b45b2290995d7de30bb0141e"
+    },
+    {
+      "arquivo": "fotos/01_exteriores/06_deck_espreguicadeiras.jpg",
+      "alt": "Deck com espreguiçadeiras",
+      "origem": "https://a0.muscache.com/im/pictures/ff75c9c1-fbae-4906-bd73-9ab2a50e1883.jpg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1440,
+      "altura": 1080,
+      "bytes": 305518,
+      "sha256": "66e6534cda2c9dae92b8c84d95161b8e3f4ffd12d33f1d732335c9576298afb0"
+    },
+    {
+      "arquivo": "fotos/01_exteriores/07_acesso_escada.jpg",
+      "alt": "Escada de acesso externa",
+      "origem": "https://a0.muscache.com/im/pictures/de04f526-e87e-492e-a554-90a48e32191d.jpg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1440,
+      "altura": 1741,
+      "bytes": 505161,
+      "sha256": "5221428b76b50dbae962414f111fbfbda7596bcff26daa58782653e9eaf7273a"
+    },
+    {
+      "arquivo": "fotos/02_areas_sociais/08_sala_panoramica.jpg",
+      "alt": "Sala com abertura para a paisagem",
+      "origem": "https://a0.muscache.com/im/pictures/aaa49498-ce3f-4a62-b47a-13329f5b4ae9.jpg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1440,
+      "altura": 811,
+      "bytes": 204748,
+      "sha256": "594327190c798f56db42006094af813eeb08e3f7be8b1ea834cd52104f938571"
+    },
+    {
+      "arquivo": "fotos/02_areas_sociais/09_circulacao_interna.jpg",
+      "alt": "Circulação e escada interna",
+      "origem": "https://a0.muscache.com/im/pictures/40b289a5-44cc-4665-ace5-7beccfd1b6e4.jpg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1440,
+      "altura": 1920,
+      "bytes": 171530,
+      "sha256": "58059f3fb6bb3390bafafdf672e6cbaad41c9af05e72e6548c2c865f63bed6f8"
+    },
+    {
+      "arquivo": "fotos/02_areas_sociais/10_varanda.jpg",
+      "alt": "Varanda coberta junto à água",
+      "origem": "https://a0.muscache.com/im/pictures/81fceeef-fde7-45e2-87e9-3504928e4634.jpg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1440,
+      "altura": 1080,
+      "bytes": 314551,
+      "sha256": "e02156e5f037ff8b213adbae75e722c54f8c5a3549db7a1495863f5afc9abefe"
+    },
+    {
+      "arquivo": "fotos/03_quartos/11_quarto_vista_agua.jpg",
+      "alt": "Quarto com vista para a água",
+      "origem": "https://a0.muscache.com/im/pictures/23384b96-7eea-477f-8be7-63f9c66349d1.jpg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1440,
+      "altura": 955,
+      "bytes": 65013,
+      "sha256": "e055e75a834b4571602a3bc21b5b4314745c13079d75904cd8494740a5614e42"
+    },
+    {
+      "arquivo": "fotos/03_quartos/12_quarto_camas.jpg",
+      "alt": "Quarto com camas",
+      "origem": "https://a0.muscache.com/im/pictures/864bb051-78be-4687-becd-92719317b47d.jpg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1238,
+      "altura": 2200,
+      "bytes": 238955,
+      "sha256": "668e6d86769cfcd05a325102f6451e1f9fbd52ec47bf574f30039da292f10585"
+    },
+    {
+      "arquivo": "fotos/03_quartos/13_quarto_parede_pedra.jpg",
+      "alt": "Quarto com parede de pedra",
+      "origem": "https://a0.muscache.com/im/pictures/5fabe46d-6d86-4570-accb-b0896d3bc699.jpg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1440,
+      "altura": 811,
+      "bytes": 109724,
+      "sha256": "aa7679461306185bcbcb71553b9ae52134fcd477664aa4a33fba07cc3340098d"
+    },
+    {
+      "arquivo": "fotos/03_quartos/14_vista_interior_suite.jpg",
+      "alt": "Vista do interior da suíte",
+      "origem": "https://a0.muscache.com/im/pictures/f7668bb3-6ec4-487a-8918-2a99ac95d42e.jpg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1440,
+      "altura": 1080,
+      "bytes": 211765,
+      "sha256": "615305dd48a7761437223f0cb718555c6383dfc7a2f7ba14411959aa8d7a2204"
+    },
+    {
+      "arquivo": "fotos/04_banheiros/15_lavabo.jpg",
+      "alt": "Lavabo junto à vegetação",
+      "origem": "https://a0.muscache.com/im/pictures/193a758c-ee58-4b8b-a427-63292a431438.jpg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1440,
+      "altura": 1920,
+      "bytes": 347900,
+      "sha256": "ac64a8a621b03d880cd7b23bf48ca3bd3036b1f56c6d3985e050b0821f2c9bd8"
+    },
+    {
+      "arquivo": "fotos/04_banheiros/16_banheiro_madeira.jpg",
+      "alt": "Banheiro com acabamento em madeira",
+      "origem": "https://a0.muscache.com/im/pictures/e69f9d08-5908-43e1-95a1-00e06eeba704.jpg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1440,
+      "altura": 1920,
+      "bytes": 375290,
+      "sha256": "4432556e803be46cbf84314b058ab679d2bfcbe27da56959898a41d75fef6b00"
+    },
+    {
+      "arquivo": "fotos/04_banheiros/17_banheiro_bancada.jpg",
+      "alt": "Banheiro com bancada",
+      "origem": "https://a0.muscache.com/im/pictures/57e54dbc-cae8-4e3b-bf3c-202c6939e342.jpg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1440,
+      "altura": 1920,
+      "bytes": 310501,
+      "sha256": "36fe9a48bfdc55331791681e1abeca4b5b399a600b49ebf86c11bd096e4adee6"
+    },
+    {
+      "arquivo": "fotos/04_banheiros/18_bancada_detalhe.jpg",
+      "alt": "Detalhe de bancada e espelho",
+      "origem": "https://a0.muscache.com/im/pictures/915f008b-6fe2-4a5d-9abd-bfc93b28138b.jpg",
+      "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+      "consulta": "2026-10-08",
+      "largura": 1238,
+      "altura": 2200,
+      "bytes": 366643,
+      "sha256": "0aefd0d2f23d7c4ab768a9ad55d258255afeee716b0c6e1c4c996aa806aa91ac"
+    }
+  ],
+  "evidencia_whatsapp": {
+    "arquivo": "evidencias/contato-divulgado-no-anuncio.jpg",
+    "origem": "https://a0.muscache.com/im/pictures/hosting/Hosting-53432967/original/ecf10b3a-3e4d-4c56-805e-4ec94eb8ab7c.png",
+    "numero_visivel": "21 960158360"
+  }
+}

@@ -1,0 +1,11 @@
+# Casa Guaiamum — prévia comercial.
+# A página está com <meta name="robots" content="noindex, follow">, por isso o
+# rastreamento precisa continuar liberado: é lendo a página que o buscador
+# enxerga o noindex. Bloquear aqui teria o efeito contrário.
+User-agent: *
+Allow: /
+
+# Depois de aprovar a prévia e publicar no domínio definitivo:
+#   1. remova a linha <meta name="robots"> do index.html;
+#   2. crie o sitemap.xml com a URL real e descomente a linha abaixo.
+# Sitemap: https://SEU-DOMINIO/sitemap.xml

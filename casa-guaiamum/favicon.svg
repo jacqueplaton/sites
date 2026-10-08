@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Casa Guaiamum">
+  <rect width="32" height="32" rx="6" fill="#173E38"/>
+  <!-- folha: o verde da vegetação -->
+  <path d="M16 5c5 3.6 5 11.4 0 15-5-3.6-5-11.4 0-15z" fill="#F6F2E9"/>
+  <path d="M16 6.5v12" stroke="#173E38" stroke-width="1.1" stroke-linecap="round"/>
+  <!-- água: a faixa diante da casa -->
+  <path d="M5 24.5c2.8 0 2.8 1.8 5.5 1.8s2.7-1.8 5.5-1.8 2.8 1.8 5.5 1.8 2.7-1.8 5.5-1.8"
+        fill="none" stroke="#87B5BD" stroke-width="2.2" stroke-linecap="round"/>
+</svg>
