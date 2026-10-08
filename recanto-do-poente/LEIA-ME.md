@@ -17,6 +17,10 @@ entregar o site funcionando, cada um dos 16 lugares de foto recebeu um painel
 neutro, na proporção exata da fotografia que vai ali, com o nome do arquivo
 impresso.
 
+**Quatro já foram substituídos por fotografias reais**, enviadas depois:
+`06-loft-integrado`, `07-cozinha-jantar`, `08-cama-madeira` e
+`10-banheiro-vista`. Os outros doze continuam com painel.
+
 Os painéis **não são fotos**: não há imagem gerada por IA nem banco de
 imagens. São superfícies de cor da paleta, só para sustentar o layout.
 
@@ -44,11 +48,21 @@ assets/exterior/15-poltronas-deck.webp     5:4    interlúdio
 assets/agua/16-agua-deck.webp              3:4    água (detalhe)
 ```
 
-**Mantenha a proporção da coluna do meio.** Ela é a mesma da curadoria, e é
-ela que o HTML reserva com `width`/`height` para a página não dar solavanco
-enquanto carrega. Se um arquivo vier com proporção diferente, ajuste o par
-`width`/`height` daquela imagem no `index.html` e na lista `FOTOS` do
-`js/app.js` — os dois usam os mesmos números.
+A proporção da coluna do meio é a da curadoria, e é ela que o HTML reserva
+com `width`/`height` para a página não dar solavanco enquanto carrega. Se um
+arquivo vier com proporção diferente, não precisa editar nada à mão:
+
+```bash
+python3 ferramentas/sincronizar-dimensoes.py
+```
+
+O script lê o tamanho real de cada arquivo em `assets/` e grava esses números
+no `index.html` e na lista `FOTOS` do `js/app.js`. Rode sempre depois de
+trocar fotos. Com `--conferir` ele só relata, sem escrever.
+
+**O texto alternativo continua sendo manual.** Ele descreve o que a foto
+mostra, para quem usa leitor de tela: está no `alt` do `index.html` e no campo
+`alt` da lista `FOTOS` em `js/app.js`, nos dois lugares com o mesmo texto.
 
 Depois que as fotos entrarem, a pasta `ferramentas/` pode ser apagada: ela só
 serve para gerar os painéis provisórios.
