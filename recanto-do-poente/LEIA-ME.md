@@ -9,65 +9,51 @@ e no cabeçalho do Netlify. Nenhum buscador vai indexá-la.
 
 ---
 
-## 1. O que falta: as 16 fotografias
+## 1. As fotografias
 
-O ZIP com `fotos_originais/`, `assets/` e `assets_manifest.json` **não chegou
-junto com o comando** — veio só o documento de direção. Como o pedido era
-entregar o site funcionando, cada um dos 16 lugares de foto recebeu um painel
-neutro, na proporção exata da fotografia que vai ali, com o nome do arquivo
-impresso.
+**Os dezesseis lugares de foto estão preenchidos com fotografias reais da
+propriedade.** Nenhum painel provisório, nenhuma imagem de banco, nada gerado
+por IA. Total de 3,6 MB em WebP.
 
-**Quatro já foram substituídos por fotografias reais**, enviadas depois:
-`06-loft-integrado`, `07-cozinha-jantar`, `08-cama-madeira` e
-`10-banheiro-vista`. Os outros doze continuam com painel.
+| Arquivo | Dimensões | Onde aparece |
+|---|---|---|
+| `assets/exterior/01-hero-deck.webp` | 1920 × 1280 | abertura (desktop) |
+| `assets/exterior/02-piscina-vertical.webp` | 1200 × 1600 | abertura (celular) |
+| `assets/exterior/03-fachada-jardim.webp` | 1600 × 1200 | apresentação |
+| `assets/agua/04-vista-piscina.webp` | 1920 × 1280 | água |
+| `assets/paisagem/05-poente-agua.webp` | 900 × 1600 | interlúdio |
+| `assets/interior/06-loft-integrado.webp` | 2000 × 1333 | ambientes |
+| `assets/cozinha/07-cozinha-jantar.webp` | 2000 × 1333 | dupla editorial |
+| `assets/quarto/08-cama-madeira.webp` | 2000 × 1333 | dupla editorial |
+| `assets/banheiro/09-banheiro.webp` | 1800 × 1200 | galeria |
+| `assets/banheiro/10-banheiro-vista.webp` | 1800 × 1200 | galeria |
+| `assets/detalhes/11-roupoes.webp` | 1200 × 1800 | galeria |
+| `assets/exterior/12-fogueira-noite.webp` | 1200 × 1600 | galeria |
+| `assets/paisagem/13-horizonte-jardim.webp` | 1200 × 1600 | galeria |
+| `assets/exterior/14-chegada-poente.webp` | 1800 × 1200 | chegada |
+| `assets/exterior/15-poltronas-deck.webp` | 1600 × 1280 | interlúdio |
+| `assets/agua/16-agua-deck.webp` | 1200 × 1600 | água (detalhe) |
 
-Os painéis **não são fotos**: não há imagem gerada por IA nem banco de
-imagens. São superfícies de cor da paleta, só para sustentar o layout.
+As treze recebidas em JPEG foram convertidas para WebP com qualidade 82,
+redimensionadas para baixo (nenhuma foi ampliada) e mantendo a proporção
+original de cada uma — que já vinha igual à da curadoria.
 
-### Como colocar as fotos de verdade
+### Para trocar uma foto
 
-Copie cada WebP por cima do arquivo de mesmo nome. Nada no HTML ou no CSS
-precisa mudar.
-
-```
-assets/exterior/01-hero-deck.webp          3:2    abertura (desktop)
-assets/exterior/02-piscina-vertical.webp   3:4    abertura (celular)
-assets/exterior/03-fachada-jardim.webp     4:3    apresentação
-assets/agua/04-vista-piscina.webp          3:2    água
-assets/paisagem/05-poente-agua.webp        9:16   interlúdio
-assets/interior/06-loft-integrado.webp     3:2    ambientes
-assets/cozinha/07-cozinha-jantar.webp      3:2    dupla editorial + galeria
-assets/quarto/08-cama-madeira.webp         3:2    dupla editorial
-assets/banheiro/09-banheiro.webp           3:2    galeria
-assets/banheiro/10-banheiro-vista.webp     3:2    galeria ampliada
-assets/detalhes/11-roupoes.webp            2:3    galeria
-assets/exterior/12-fogueira-noite.webp     3:4    galeria
-assets/paisagem/13-horizonte-jardim.webp   3:4    galeria
-assets/exterior/14-chegada-poente.webp     3:2    chegada
-assets/exterior/15-poltronas-deck.webp     5:4    interlúdio
-assets/agua/16-agua-deck.webp              3:4    água (detalhe)
-```
-
-A proporção da coluna do meio é a da curadoria, e é ela que o HTML reserva
-com `width`/`height` para a página não dar solavanco enquanto carrega. Se um
-arquivo vier com proporção diferente, não precisa editar nada à mão:
+Copie o novo arquivo por cima do de mesmo nome e rode:
 
 ```bash
 python3 ferramentas/sincronizar-dimensoes.py
 ```
 
 O script lê o tamanho real de cada arquivo em `assets/` e grava esses números
-no `index.html` e na lista `FOTOS` do `js/app.js`. Rode sempre depois de
-trocar fotos. Com `--conferir` ele só relata, sem escrever.
+no `width`/`height` do `index.html` e na lista `FOTOS` do `js/app.js`. É o que
+impede o solavanco de layout enquanto a página carrega. Com `--conferir` ele
+só relata, sem escrever.
 
 **O texto alternativo continua sendo manual.** Ele descreve o que a foto
 mostra, para quem usa leitor de tela: está no `alt` do `index.html` e no campo
 `alt` da lista `FOTOS` em `js/app.js`, nos dois lugares com o mesmo texto.
-
-Depois que as fotos entrarem, a pasta `ferramentas/` pode ser apagada: ela só
-serve para gerar os painéis provisórios.
-
----
 
 ## 2. Arquivos
 
@@ -80,7 +66,7 @@ favicon.svg         ícone da aba (provisório, só tipográfico)
 robots.txt          bloqueado enquanto é prévia
 netlify.toml        cache e cabeçalhos do Netlify
 montar-pacote.sh    gera o ZIP de publicação
-ferramentas/        gerador dos painéis provisórios (temporário)
+ferramentas/        sincronizador das dimensões das imagens
 ```
 
 Dois lugares concentram o que muda no dia a dia:
@@ -220,9 +206,8 @@ roda em laço, esse botão não desaparece.
 - **H.264 em `.mp4`**, com `faststart`, que é o que todo navegador toca.
 - O ideal é por volta de 8 segundos e poucos megabytes.
 
-O pôster sai sozinho da fotografia de abertura (`01-hero-deck.webp`). Como
-esse lugar ainda está com painel provisório, **o pôster só será uma
-fotografia real depois que a foto da abertura entrar**.
+O pôster sai sozinho da fotografia de abertura (`01-hero-deck.webp`), que já
+é a fotografia real do deck com a piscina.
 
 ### Os três clipes do Flow
 

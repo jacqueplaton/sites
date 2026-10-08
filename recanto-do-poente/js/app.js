@@ -58,15 +58,15 @@
      Textos alternativos e proporções vêm da curadoria das 16 imagens.
      ====================================================================== */
   var FOTOS = [
-    { src: 'assets/exterior/01-hero-deck.webp', w: 2400, h: 1600,
+    { src: 'assets/exterior/01-hero-deck.webp', w: 1920, h: 1280,
       alt: 'Deck de madeira com espreguiçadeira, piscina e fachada envidraçada' },
     { src: 'assets/exterior/02-piscina-vertical.webp', w: 1200, h: 1600,
       alt: 'Espreguiçadeira e mesa junto à piscina com paisagem ao fundo' },
     { src: 'assets/exterior/03-fachada-jardim.webp', w: 1600, h: 1200,
       alt: 'Fachada do Recanto vista do jardim, com piscina e deck' },
-    { src: 'assets/agua/04-vista-piscina.webp', w: 2400, h: 1600,
+    { src: 'assets/agua/04-vista-piscina.webp', w: 1920, h: 1280,
       alt: 'Piscina e deck vistos a partir do interior, com árvores ao fundo' },
-    { src: 'assets/paisagem/05-poente-agua.webp', w: 1080, h: 1920,
+    { src: 'assets/paisagem/05-poente-agua.webp', w: 900, h: 1600,
       alt: 'Horizonte alaranjado acima da água azul da piscina' },
     { src: 'assets/interior/06-loft-integrado.webp', w: 2000, h: 1333,
       alt: 'Cama e poltronas em ambiente integrado com madeira e luz natural' },
@@ -76,20 +76,20 @@
       alt: 'Cama com roupa branca diante da parede terracota, com armário de madeira ao lado' },
     { src: 'assets/banheiro/09-banheiro.webp', w: 1800, h: 1200,
       alt: 'Bancada de pedra, espelho e box de vidro no banheiro' },
-    { src: 'assets/banheiro/10-banheiro-vista.webp', w: 2000, h: 1333,
-      alt: 'Box de vidro do banheiro, poltronas e a abertura para o deck, com a vista ao fundo' },
+    { src: 'assets/banheiro/10-banheiro-vista.webp', w: 1800, h: 1200,
+      alt: 'Do banheiro, pela porta de vidro, o deck, a piscina e o horizonte' },
     { src: 'assets/detalhes/11-roupoes.webp', w: 1200, h: 1800,
       alt: 'Roupões brancos pendurados em armário de madeira iluminado' },
     { src: 'assets/exterior/12-fogueira-noite.webp', w: 1200, h: 1600,
       alt: 'Poltronas alaranjadas junto à fogueira na área externa à noite' },
     { src: 'assets/paisagem/13-horizonte-jardim.webp', w: 1200, h: 1600,
       alt: 'Duas poltronas no jardim diante da paisagem e do céu com nuvens' },
-    { src: 'assets/exterior/14-chegada-poente.webp', w: 2400, h: 1600,
+    { src: 'assets/exterior/14-chegada-poente.webp', w: 1800, h: 1200,
       alt: 'Fachada e jardim iluminados pelo sol baixo entre as árvores' },
     { src: 'assets/exterior/15-poltronas-deck.webp', w: 1600, h: 1280,
       alt: 'Duas poltronas alaranjadas sob ombrelone no deck com vista aberta' },
     { src: 'assets/agua/16-agua-deck.webp', w: 1200, h: 1600,
-      alt: 'Áreas de água junto ao deck, com ombrelone e poltronas ao fundo' }
+      alt: 'Áreas de água junto ao deck, com ombrelone e poltrona ao fundo' }
   ];
 
   /* ======================================================================
