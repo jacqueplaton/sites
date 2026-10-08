@@ -1,0 +1,4 @@
+# Prévia para revisão: nada entra em buscador.
+# Na versão final, troque por "Allow: /" e aponte o Sitemap do domínio real.
+User-agent: *
+Disallow: /

@@ -1,0 +1,46 @@
+# ==========================================================================
+# Recanto do Poente — configuração do Netlify
+# --------------------------------------------------------------------------
+# Esta pasta já é o site pronto: index.html está na raiz, não há build.
+# Vale tanto para o deploy manual (arrastar o ZIP em Deploys) quanto para
+# uma eventual ligação direta com o repositório.
+#
+# PRÉVIA: o cabeçalho X-Robots-Tag reforça o noindex do HTML. Ao aprovar o
+# domínio final, apague o bloco marcado "PRÉVIA" e revise o robots.txt.
+# ==========================================================================
+
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+    X-Frame-Options        = "SAMEORIGIN"
+
+# PRÉVIA — remover na publicação definitiva
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

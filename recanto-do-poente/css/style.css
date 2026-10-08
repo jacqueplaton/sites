@@ -1,0 +1,806 @@
+/* ==========================================================================
+   RECANTO DO POENTE — Pirenópolis, Goiás
+   --------------------------------------------------------------------------
+   Direção visual: o fim de tarde como ritual a dois.
+   Fundo marfim, madeira quente, terracota, verde-oliva de apoio.
+   A fotografia carrega a apresentação; o texto fica curto e fora dela.
+   Sem framework, sem build, sem dependência externa.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+  /* Paleta aprovada */
+  --marfim:    #F5F0E8;   /* fundo principal */
+  --tinta:     #282622;   /* texto e rodapé */
+  --acao:      #82492F;   /* botão principal */
+  --terracota: #A75F3D;   /* detalhe — só traço e texto grande (ver nota) */
+  --oliva:     #67705A;   /* apoio discreto */
+  --linha:     #D9CEC0;   /* linhas e divisores */
+
+  /* Dois tons derivados da mesma família, para separar superfícies.
+     Não são cores novas da marca: só o marfim um passo acima e abaixo. */
+  --marfim-fundo:    #EDE6DA;   /* faixas de respiro (FAQ, avaliações) */
+  --superficie:      #FBF8F3;   /* campos do formulário */
+
+  /* Tipografia — fontes do sistema, nenhum download bloqueando a página */
+  --titulo: Georgia, 'Times New Roman', Times, serif;
+  --corpo:  Arial, system-ui, -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+
+  /* Ritmo */
+  --limite:  1280px;
+  --gutter:  48px;
+  --secao:   104px;
+  --coluna:  24px;
+  --raio:    3px;
+
+  --cabecalho-altura: 66px;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --gutter: 20px;
+    --secao:  64px;
+    --coluna: 16px;
+    --cabecalho-altura: 58px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--cabecalho-altura) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--marfim);
+  color: var(--tinta);
+  font-family: var(--corpo);
+  font-size: 17px;
+  line-height: 1.65;
+  overflow-x: hidden;           /* nenhuma composição deve rolar na horizontal */
+}
+
+@media (max-width: 720px) { body { font-size: 16px; } }
+
+img, picture, svg { display: block; max-width: 100%; }
+img { height: auto; }
+
+h1, h2, h3 {
+  font-family: var(--titulo);
+  font-weight: normal;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(42px, 5.4vw, 76px);
+  line-height: 1.02;
+  letter-spacing: -0.012em;
+}
+
+h2 {
+  font-size: clamp(32px, 3.4vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.008em;
+}
+
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+a { color: inherit; }
+
+button { font: inherit; color: inherit; }
+
+/* Um único anel de foco, igual no site inteiro. */
+:focus-visible {
+  outline: 2px solid var(--acao);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.sr {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.pular {
+  position: absolute;
+  left: 50%;
+  top: -100px;
+  transform: translateX(-50%);
+  z-index: 60;
+  background: var(--acao);
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 22px;
+  border-radius: var(--raio);
+}
+.pular:focus { top: 10px; }
+
+/* --------------------------------------------------------------------------
+   3. ESTRUTURA
+   -------------------------------------------------------------------------- */
+.limite {
+  max-width: var(--limite);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Cada faixa carrega só o espaço abaixo de si: o intervalo entre duas
+   seções é sempre --secao, sem somar margens. */
+.faixa { padding-block: 0 var(--secao); }
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--coluna);
+}
+
+.leitura { max-width: 58ch; }
+
+.sobretitulo {
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--oliva);
+  margin-bottom: 18px;
+}
+
+h2 + .leitura, h1 + .leitura { margin-top: 20px; }
+
+/* --------------------------------------------------------------------------
+   4. CABEÇALHO
+   -------------------------------------------------------------------------- */
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--marfim);
+  border-bottom: 1px solid transparent;
+  transition: border-color .25s ease;
+}
+.cabecalho.is-rolado { border-bottom-color: var(--linha); }
+
+.cabecalho__interno {
+  min-height: var(--cabecalho-altura);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.marca {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--titulo);
+  font-size: clamp(17px, 2vw, 21px);
+  letter-spacing: 0.015em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.menu ul {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.menu a {
+  text-decoration: none;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  padding: 10px 0;
+  border-bottom: 1px solid transparent;
+}
+.menu a:hover { border-bottom-color: var(--terracota); }
+
+.menu__destaque { color: var(--acao); }
+
+.menu-botao {
+  display: none;
+  width: 48px; height: 48px;
+  margin-right: -12px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+}
+.menu-botao__traco,
+.menu-botao__traco::before,
+.menu-botao__traco::after {
+  content: '';
+  position: absolute;
+  left: 13px;
+  width: 22px;
+  height: 1.5px;
+  background: var(--tinta);
+}
+.menu-botao__traco { top: 23px; }
+.menu-botao__traco::before { left: 0; top: -7px; }
+.menu-botao__traco::after  { left: 0; top:  7px; }
+
+@media (max-width: 860px) {
+  .menu-botao { display: block; }
+
+  .menu {
+    position: absolute;
+    left: 0; right: 0;
+    top: 100%;
+    background: var(--marfim);
+    border-bottom: 1px solid var(--linha);
+    display: none;
+  }
+  .menu.is-aberto { display: block; }
+
+  .menu ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 6px var(--gutter) 18px;
+  }
+  .menu a {
+    display: block;
+    padding: 14px 0;
+    font-size: 17px;
+    border-bottom: 1px solid var(--linha);
+  }
+  .menu li:last-child a { border-bottom: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   5. BOTÕES E LINKS DE AÇÃO
+   -------------------------------------------------------------------------- */
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 18px;
+  align-items: center;
+  margin-top: 34px;
+}
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 28px;
+  background: var(--acao);
+  color: #fff;
+  border: 1px solid var(--acao);
+  border-radius: var(--raio);
+  text-decoration: none;
+  font-size: 16px;
+  letter-spacing: 0.015em;
+  cursor: pointer;
+  transition: background-color .2s ease;
+}
+.botao:hover { background: #6E3D27; border-color: #6E3D27; }
+
+.botao--linha {
+  background: transparent;
+  color: var(--acao);
+  border-color: var(--linha);
+}
+.botao--linha:hover { background: transparent; border-color: var(--acao); }
+
+.botao--largo { width: 100%; }
+
+.link-forte {
+  display: inline-block;
+  min-height: 48px;
+  line-height: 48px;
+  color: var(--acao);
+  text-decoration: none;
+  border-bottom: 1px solid var(--linha);
+}
+.link-forte:hover { border-bottom-color: var(--acao); }
+
+/* --------------------------------------------------------------------------
+   6. FIGURAS E MOVIMENTO
+   -------------------------------------------------------------------------- */
+.figura { margin: 0; }
+.figura img { width: 100%; border-radius: var(--raio); }
+
+.figura figcaption {
+  margin-top: 12px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--oliva);
+}
+
+/* Fotografia de largura generosa: ocupa toda a faixa de 1280 px. */
+.figura--larga {
+  max-width: var(--limite);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Aproximação de 2% em 12 segundos, uma única vez, sem translação.
+   O contêiner corta o excedente; a imagem não distorce. */
+.movimento { overflow: hidden; }
+.movimento img { transform-origin: 50% 50%; }
+
+html.movimento-ativo .movimento.is-animando img {
+  animation: aproximar 12s linear forwards;
+}
+html.movimento-pausado .movimento img { animation-play-state: paused; }
+
+@keyframes aproximar {
+  from { transform: scale(1); }
+  to   { transform: scale(1.02); }
+}
+
+.movimento-controle {
+  position: fixed;
+  left: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 35;
+  min-height: 48px;
+  padding: 0 18px;
+  background: var(--marfim);
+  color: var(--tinta);
+  border: 1px solid var(--linha);
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.movimento-controle:hover { border-color: var(--acao); }
+
+@media (max-width: 480px) {
+  .movimento-controle { font-size: 13px; padding: 0 14px; }
+}
+
+/* --------------------------------------------------------------------------
+   7. ABERTURA
+   -------------------------------------------------------------------------- */
+.abertura { padding-top: clamp(44px, 5.5vw, 80px); }
+.abertura__texto { font-size: clamp(18px, 1.6vw, 21px); }
+.abertura__figura { margin-top: 56px; }
+
+@media (max-width: 720px) {
+  .abertura__figura { margin-top: 36px; }
+}
+
+/* --------------------------------------------------------------------------
+   8. IMAGEM + TEXTO LATERAL
+   -------------------------------------------------------------------------- */
+.grade--imagem-texto .grade__imagem { grid-column: 1 / 8; }
+.grade--imagem-texto .grade__texto  { grid-column: 9 / 13; align-self: center; }
+
+.grade--invertida .grade__imagem { grid-column: 6 / 13; grid-row: 1; }
+.grade--invertida .grade__texto  { grid-column: 1 / 5; grid-row: 1; align-self: center; }
+
+.especificacoes {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--linha);
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  color: var(--oliva);
+}
+
+@media (max-width: 860px) {
+  .grade--imagem-texto .grade__imagem,
+  .grade--imagem-texto .grade__texto,
+  .grade--invertida .grade__imagem,
+  .grade--invertida .grade__texto { grid-column: 1 / -1; }
+
+  /* empilhado, cada um na sua linha; a foto continua vindo primeiro */
+  .grade--invertida .grade__imagem { grid-row: auto; order: -1; }
+  .grade--invertida .grade__texto  { grid-row: auto; }
+  .grade__texto { margin-top: 8px; }
+}
+
+/* --------------------------------------------------------------------------
+   9. ÁGUA
+   -------------------------------------------------------------------------- */
+.agua__composicao {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--coluna);
+  align-items: end;
+  margin-top: 48px;
+}
+.agua__principal { grid-column: 1 / 9; }
+.agua__detalhe   { grid-column: 9 / 13; }
+
+@media (max-width: 860px) {
+  .agua__principal, .agua__detalhe { grid-column: 1 / -1; }
+  .agua__detalhe { max-width: 72%; }
+}
+
+/* --------------------------------------------------------------------------
+   10. INTERIOR — dupla editorial
+   -------------------------------------------------------------------------- */
+.figura--larga + .dupla { margin-top: var(--coluna); }
+
+.dupla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--coluna);
+  margin-top: 48px;
+}
+
+@media (max-width: 720px) {
+  .dupla { grid-template-columns: 1fr; gap: 36px; }
+}
+
+#ambientes .figura--larga { margin-top: 48px; }
+
+/* --------------------------------------------------------------------------
+   11. INTERLÚDIO
+   -------------------------------------------------------------------------- */
+.interludio__composicao {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--coluna);
+  align-items: end;
+  margin-top: 48px;
+}
+.interludio__larga { grid-column: 1 / 9; }
+.interludio__alta  { grid-column: 9 / 13; }
+
+@media (max-width: 860px) {
+  .interludio__larga, .interludio__alta { grid-column: 1 / -1; }
+  .interludio__alta { width: 64%; justify-self: center; }
+}
+
+/* --------------------------------------------------------------------------
+   12. GALERIA
+   -------------------------------------------------------------------------- */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--coluna);
+  margin-top: 44px;
+}
+
+.galeria__item {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: var(--raio);
+  overflow: hidden;
+}
+.galeria__item img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 0;
+  transition: opacity .25s ease;
+}
+.galeria__item:hover img { opacity: .88; }
+
+@media (max-width: 720px) {
+  .galeria { grid-template-columns: 1fr 1fr; gap: 12px; }
+}
+
+/* --------------------------------------------------------------------------
+   13. AVALIAÇÕES
+   -------------------------------------------------------------------------- */
+.avaliacoes { padding-top: var(--secao); background: var(--marfim-fundo); }
+
+.avaliacoes__nota {
+  margin-top: 26px;
+  font-family: var(--titulo);
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.3;
+  color: var(--acao);
+}
+.avaliacoes__apoio {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--oliva);
+}
+.avaliacoes .acoes { margin-top: 18px; }
+
+/* --------------------------------------------------------------------------
+   14. PERGUNTAS FREQUENTES
+   -------------------------------------------------------------------------- */
+.perguntas h2 { margin-bottom: 36px; }
+
+.pergunta {
+  border-top: 1px solid var(--linha);
+  padding: 4px 0;
+}
+.pergunta:last-of-type { border-bottom: 1px solid var(--linha); }
+
+.pergunta summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  min-height: 52px;
+  padding: 10px 0;
+  font-family: var(--titulo);
+  font-size: clamp(18px, 1.8vw, 22px);
+  cursor: pointer;
+  list-style: none;
+}
+.pergunta summary::-webkit-details-marker { display: none; }
+.pergunta summary::after {
+  content: '+';
+  flex: none;
+  font-family: var(--corpo);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--acao);
+}
+.pergunta[open] summary::after { content: '–'; }
+.pergunta p { padding-bottom: 20px; }
+
+/* --------------------------------------------------------------------------
+   15. FORMULÁRIO DE CONSULTA
+   -------------------------------------------------------------------------- */
+.consultar { padding-bottom: var(--secao); }
+
+.formulario {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px var(--coluna);
+  margin-top: 40px;
+  max-width: 820px;
+}
+
+.campo { display: flex; flex-direction: column; }
+.campo--acao { grid-column: 1 / -1; max-width: 340px; }
+
+.campo label {
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--oliva);
+  margin-bottom: 8px;
+}
+
+.campo input,
+.campo select {
+  min-height: 52px;
+  padding: 0 14px;
+  font-family: var(--corpo);
+  font-size: 16px;
+  color: var(--tinta);
+  background: var(--superficie);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  width: 100%;
+}
+.campo input:hover, .campo select:hover { border-color: var(--oliva); }
+
+.campo input[aria-invalid="true"],
+.campo select[aria-invalid="true"] { border-color: var(--acao); }
+
+.campo__erro {
+  margin-top: 7px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--acao);
+}
+
+.formulario__nota {
+  margin-top: 22px;
+  font-size: 14px;
+  color: var(--oliva);
+  max-width: 58ch;
+}
+
+@media (max-width: 720px) {
+  .formulario { grid-template-columns: 1fr; }
+  .campo--acao { max-width: none; }
+}
+
+/* --------------------------------------------------------------------------
+   16. RODAPÉ
+   -------------------------------------------------------------------------- */
+.rodape {
+  background: var(--tinta);
+  color: var(--marfim);
+  padding-block: 56px;
+  /* espaço para o botão flutuante não encostar no conteúdo */
+  padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+}
+
+.rodape__interno {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px 40px;
+}
+
+.rodape__marca {
+  font-family: var(--titulo);
+  font-size: 22px;
+}
+.rodape__local { color: #C9C2B5; font-size: 15px; }
+
+.rodape__links { display: flex; flex-wrap: wrap; gap: 10px 28px; }
+.rodape__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 15px;
+  text-decoration: none;
+  border-bottom: 1px solid #55514A;
+}
+.rodape__links a:hover { border-bottom-color: var(--marfim); }
+.rodape :focus-visible { outline-color: var(--marfim); }
+
+@media (max-width: 720px) {
+  .rodape__interno { flex-direction: column; align-items: flex-start; }
+}
+
+/* --------------------------------------------------------------------------
+   17. BOTÃO FLUTUANTE DO WHATSAPP
+   -------------------------------------------------------------------------- */
+.zap {
+  position: fixed;
+  right: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 36;
+  width: 56px; height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--acao);
+  color: #fff;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: opacity .25s ease, visibility .25s ease, transform .25s ease;
+}
+.zap:hover { background: #6E3D27; }
+.zap__icone { width: 28px; height: 28px; }
+
+/* Sai de cena enquanto o formulário está à vista e enquanto a galeria
+   ampliada está aberta: nunca cobre campo nem controle. */
+.zap.is-oculto {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+}
+
+/* --------------------------------------------------------------------------
+   18. GALERIA AMPLIADA
+   -------------------------------------------------------------------------- */
+body.modal-aberto { overflow: hidden; }
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: #1B1916;
+  color: var(--marfim);
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+}
+.modal[hidden] { display: none; }
+
+.modal__barra {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.modal__contador {
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: #C9C2B5;
+  padding-left: 6px;
+}
+
+.modal__fechar {
+  width: 48px; height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid #55514A;
+  border-radius: 50%;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+.modal__fechar:hover { border-color: var(--marfim); }
+
+.modal__palco {
+  flex: 1;
+  min-height: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding-inline: 76px;      /* espaço para as setas não pisarem na foto */
+}
+
+/* O quadro ocupa a altura que sobra; a foto cabe inteira dentro dele. */
+.modal__quadro {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__palco img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;       /* a foto ampliada aparece inteira */
+  border-radius: var(--raio);
+}
+
+.modal__legenda {
+  flex: none;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #C9C2B5;
+  max-width: 60ch;
+  padding: 0 60px;
+}
+
+.modal__seta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px; height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(27, 25, 22, .6);
+  border: 1px solid #55514A;
+  border-radius: 50%;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+.modal__seta:hover { border-color: var(--marfim); }
+.modal__seta--anterior { left: 16px; }
+.modal__seta--proxima  { right: 16px; }
+
+.modal :focus-visible { outline-color: var(--marfim); }
+
+@media (max-width: 720px) {
+  .modal__legenda { padding: 0 8px; }
+  .modal__palco { padding-inline: 0; }
+  .modal__seta { width: 48px; height: 48px; bottom: 16px; top: auto; transform: none; }
+  .modal__seta--anterior { left: 20px; }
+  .modal__seta--proxima  { right: 20px; }
+  .modal__palco { padding-bottom: 56px; }
+}
+
+/* --------------------------------------------------------------------------
+   19. QUEM PEDE MENOS MOVIMENTO
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}
