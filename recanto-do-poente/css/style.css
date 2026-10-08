@@ -376,6 +376,31 @@ html.movimento-pausado .movimento img { animation-play-state: paused; }
   .abertura__figura { margin-top: 36px; }
 }
 
+/* Vídeo da abertura: cobre exatamente o retângulo da fotografia, por cima
+   dela. A foto continua embaixo — é o pôster, a alternativa e quem reserva
+   a altura, então nada se move quando o vídeo entra.
+   O recuo lateral acompanha o da figura, senão o vídeo invadiria a margem. */
+.abertura__figura { position: relative; }
+
+.abertura__video {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--gutter);
+  right: var(--gutter);
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--raio);
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+.abertura__video.is-visivel { opacity: 1; }
+
+/* Uma fonte de movimento por vez: com o vídeo rodando, a aproximação de 2%
+   da fotografia de abertura não entra. */
+html.hero-video .abertura__figura.movimento.is-animando img { animation: none; }
+
 /* --------------------------------------------------------------------------
    8. IMAGEM + TEXTO LATERAL
    -------------------------------------------------------------------------- */

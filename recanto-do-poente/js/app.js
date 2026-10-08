@@ -28,6 +28,29 @@
     if (!janela) window.location.href = url;   // pop-up bloqueado
   }
 
+  /* Estado do movimento, compartilhado entre a animação das fotos e o
+     vídeo da abertura: um só botão de pausa governa os dois. */
+  var MOVIMENTO = {
+    habilitado: false,
+    pausado: false,
+    reterControle: false,
+    ouvintes: [],
+
+    aoAlternar: function (fn) { this.ouvintes.push(fn); },
+
+    alternar: function (pausado) {
+      this.pausado = pausado;
+      this.ouvintes.forEach(function (fn) { fn(pausado); });
+    },
+
+    /* Enquanto o vídeo roda em laço, o controle de pausa não some. */
+    reter: function () {
+      this.reterControle = true;
+      var controle = document.getElementById('movimento-controle');
+      if (controle && this.habilitado) controle.hidden = false;
+    }
+  };
+
   /* ======================================================================
      1. FOTOS
      A ordem desta lista é a ordem da galeria ampliada. O atributo
@@ -123,12 +146,14 @@
     var menos = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (menos.matches) return;          // nada de animação, nada de controle
 
+    MOVIMENTO.habilitado = true;
     html.classList.add('movimento-ativo');
     controle.hidden = false;
 
     controle.addEventListener('click', function () {
       var pausado = html.classList.toggle('movimento-pausado');
       rotulo.textContent = pausado ? 'Retomar movimento' : 'Pausar movimento';
+      MOVIMENTO.alternar(pausado);
     });
 
     if (!('IntersectionObserver' in window)) {
@@ -150,7 +175,10 @@
           rodando = false;
           concluidas += 1;
           // Nada mais se move: o controle sai de cena e libera o rodapé.
-          if (concluidas === alvos.length) controle.hidden = true;
+          // Com o vídeo da abertura em laço, ele continua necessário.
+          if (concluidas === alvos.length && !MOVIMENTO.reterControle) {
+            controle.hidden = true;
+          }
         }, 12000);
       });
     }, { threshold: 0.35 });
@@ -400,6 +428,103 @@
         }
       });
     }, { threshold: 0.12 }).observe(secao);
+  })();
+
+  /* ======================================================================
+     7. VÍDEO DA ABERTURA
+     A fotografia continua sendo a base: carrega primeiro, serve de pôster
+     e permanece embaixo como alternativa. O vídeo entra por cima só quando
+     vale a pena, e nunca muda a altura do quadro.
+
+     Não entra quando: não há arquivo configurado, a pessoa pediu menos
+     movimento, a tela é de celular (a abertura ali é a foto vertical, que
+     o vídeo horizontal não cobre sem cortar a arquitetura), o aparelho
+     está em economia de dados ou em conexão lenta.
+     ====================================================================== */
+  (function videoAbertura() {
+    /* Caminho do vídeo da abertura. Vazio = a abertura fica só com a
+       fotografia, exatamente como antes. Ver LEIA-ME.md, seção "Vídeo". */
+    var ARQUIVO = '';
+
+    if (!ARQUIVO) return;
+    if (!MOVIMENTO.habilitado) return;                        // menos movimento
+    if (window.matchMedia('(max-width: 720px)').matches) return;
+
+    var rede = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (rede && (rede.saveData || /(^|-)2g$/.test(rede.effectiveType || ''))) return;
+
+    var figura = $('.abertura__figura');
+    var foto   = figura && $('img', figura);
+    if (!figura || !foto) return;
+
+    var video = document.createElement('video');
+    var tipo = /\.webm$/i.test(ARQUIVO) ? 'video/webm' : 'video/mp4';
+    if (!video.canPlayType || !video.canPlayType(tipo)) return;
+
+    video.className = 'abertura__video';
+    video.muted = true;              // precisa valer antes do play, senão o
+    video.defaultMuted = true;       // navegador bloqueia o autoplay
+    video.loop = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.preload = 'metadata';
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    video.setAttribute('disablepictureinpicture', '');
+    video.setAttribute('tabindex', '-1');
+    video.setAttribute('aria-hidden', 'true');   // a foto embaixo já descreve a cena
+    video.poster = foto.currentSrc || foto.src;
+
+    function desistir() {
+      if (video.parentNode) video.parentNode.removeChild(video);
+      html.classList.remove('hero-video');
+    }
+
+    video.addEventListener('error', desistir);
+
+    video.addEventListener('playing', function () {
+      video.classList.add('is-visivel');
+      html.classList.add('hero-video');   // uma fonte de movimento por vez
+      MOVIMENTO.reter();
+    }, { once: true });
+
+    function tocar() {
+      if (MOVIMENTO.pausado || !video.paused) return;
+      var p = video.play();
+      /* play() rejeitado — autoplay recusado pelo navegador, ou a promessa
+         interrompida por um pause() logo em seguida — não derruba nada: o
+         vídeo simplesmente não aparece e a fotografia embaixo continua
+         sendo o que se vê. Só o evento 'error' remove o elemento. */
+      if (p && p.catch) p.catch(function () {});
+    }
+
+    MOVIMENTO.aoAlternar(function (pausado) {
+      if (pausado) video.pause(); else tocar();
+    });
+
+    /* Só depois que a página terminou de carregar: o vídeo nunca disputa
+       banda com a fotografia da abertura, que é o que a pessoa vê antes. */
+    function iniciar() {
+      video.src = ARQUIVO;
+      figura.appendChild(video);
+      tocar();
+
+      /* Fora da tela, o vídeo para: economiza bateria e dados. */
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (entrada) {
+            if (entrada.isIntersecting) tocar(); else video.pause();
+          });
+        }, { threshold: 0.15 }).observe(figura);
+      }
+    }
+
+    if (document.readyState === 'complete') {
+      window.setTimeout(iniciar, 0);
+    } else {
+      window.addEventListener('load', function () { window.setTimeout(iniciar, 0); });
+    }
   })();
 
 })();

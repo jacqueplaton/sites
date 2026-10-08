@@ -157,22 +157,79 @@ Publish deploy*.
 
 ---
 
-## 6. Movimento e vídeos
+## 6. Movimento e vídeo da abertura
 
 As fotos da abertura, da água e do interior recebem uma aproximação de 2%
 que dura 12 segundos, roda uma vez só e nunca com duas ao mesmo tempo.
 Quem configurou o sistema para menos movimento não recebe animação nenhuma;
-para os demais há um botão **Pausar movimento** no canto inferior esquerdo,
-que some quando as três já rodaram.
+para os demais há um botão **Pausar movimento** no canto inferior esquerdo.
 
-Os três clipes do Flow não vêm no pacote e **não são necessários**: a página
-está completa sem eles. Se forem aprovados depois, cada um entra no lugar da
-foto correspondente como `<video>` com `muted`, `playsinline`,
-`preload="metadata"`, pôster na foto real e controle de pausa — e a foto
-continua sendo o que aparece se o vídeo falhar. Qualquer clipe que mexa em
-geometria, móveis, água, reflexos ou paisagem deve ser descartado.
+### Ligar o vídeo da abertura
 
----
+A integração já está pronta e testada. Para ativar, dois passos:
+
+1. Coloque o arquivo em `assets/video/abertura.mp4` (H.264, sem áudio).
+2. Em `js/app.js`, no bloco **7. VÍDEO DA ABERTURA**, troque
+
+```js
+var ARQUIVO = '';
+```
+
+por
+
+```js
+var ARQUIVO = 'assets/video/abertura.mp4';
+```
+
+Com a linha vazia, a abertura fica exatamente como está hoje: só a
+fotografia. Nada mais precisa mudar — nem HTML, nem CSS.
+
+### Como ele se comporta
+
+A **fotografia continua sendo a base**. Ela carrega primeiro, é o pôster do
+vídeo e permanece embaixo dele. Quem decide a altura do quadro é ela, então
+o vídeo entrar não empurra nada na página.
+
+O vídeo entra por cima, com `autoplay`, `muted`, `loop` e `playsinline`, e
+só aparece depois que começa de fato a tocar — surge num esmaecimento de
+0,8 s. **Não entra** quando:
+
+- a pessoa pediu menos movimento no sistema;
+- a tela é de celular — ali a abertura é a foto vertical, e um vídeo
+  horizontal não a cobre sem cortar a arquitetura;
+- o aparelho está em economia de dados ou em conexão 2G;
+- o navegador não sabe tocar o formato.
+
+Se o arquivo faltar ou não decodificar, o elemento é removido e fica a
+fotografia. Se o navegador recusar o autoplay, o vídeo simplesmente não
+aparece — e, de novo, fica a fotografia. Ele só começa a carregar depois
+que a página terminou de carregar, para não disputar banda com a imagem de
+abertura, e **para quando sai da tela**, poupando bateria e dados.
+
+O botão **Pausar movimento** governa o vídeo junto com as animações das
+fotos: é um controle só para todo o movimento da página, como pede a regra
+de acessibilidade para movimento acima de cinco segundos. Enquanto o vídeo
+roda em laço, esse botão não desaparece.
+
+### O que o vídeo precisa ter
+
+- **Proporção 3:2**, a mesma do quadro da abertura. Outra proporção obriga
+  a cortar as bordas para preencher — e corte em arquitetura é justamente o
+  que a direção original proíbe.
+- **Sem áudio** na trilha: o site nunca liga som.
+- **H.264 em `.mp4`**, com `faststart`, que é o que todo navegador toca.
+- O ideal é por volta de 8 segundos e poucos megabytes.
+
+O pôster sai sozinho da fotografia de abertura (`01-hero-deck.webp`). Como
+esse lugar ainda está com painel provisório, **o pôster só será uma
+fotografia real depois que a foto da abertura entrar**.
+
+### Os três clipes do Flow
+
+Continuam valendo como opção para as seções da água e do interior. Se forem
+aprovados, cada um entra no lugar da foto correspondente com as mesmas
+regras acima. Qualquer clipe que mexa em geometria, móveis, água, reflexos
+ou paisagem deve ser descartado.
 
 ## 7. O que foi conferido
 
@@ -187,6 +244,11 @@ Chromium, nas larguras 1440, 390 e 360:
   erro ligado ao campo por `aria-describedby`;
 - os dois links do WhatsApp foram conferidos no texto, **sem enviar mensagem**;
 - `prefers-reduced-motion`: sem animação e sem botão de pausa;
+- vídeo da abertura, com um clipe de teste descartável: entra no desktop,
+  toca mudo e em laço, usa a fotografia como pôster, não entra no celular
+  nem com movimento reduzido, obedece ao botão de pausa, para fora da tela,
+  e some deixando a fotografia quando o arquivo falha ou o autoplay é
+  recusado;
 - um `<h1>`, `<h2>` em ordem, textos alternativos em todas as imagens, âncoras
   apontando para seções que existem.
 
