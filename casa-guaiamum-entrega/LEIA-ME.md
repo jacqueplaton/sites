@@ -9,6 +9,7 @@ publicado — o que é proposital, principalmente para a evidência do WhatsApp.
 |---|---|
 | `casa-guaiamum-fotos.zip` | As 18 fotografias organizadas por ambiente, mais o manifesto e um LEIA-ME. 26 itens, 5,0 MB, integridade verificada. |
 | `FONTES_FOTOGRAFICAS.json` | Origem de cada imagem: URL, anúncio, data da consulta, dimensões, bytes e SHA-256. |
+| `MANUAL-DO-SITE.md` | Manual de operação e publicação do site: como trocar o número do WhatsApp, como publicar na Netlify, decisões de conteúdo e pendências. Fica aqui, e não em `casa-guaiamum/`, porque tudo que está na pasta publicável vai para o ar. |
 | `evidencia-whatsapp.jpg` | Fotografia da galeria do anúncio com “21 960158360 / wathsapp” sobreposto. É a confirmação documental do destino do botão de WhatsApp. Não publicar: a numeração já aparece como link no site. |
 
 ## Conferência feita

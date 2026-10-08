@@ -1,4 +1,4 @@
-# Casa Guaiamum — prévia comercial
+# Casa Guaiamum — manual do site (documento interno)
 
 Página única, estática, em português, com galeria fotográfica por ambiente e
 consulta de reserva direta pelo WhatsApp.
@@ -14,6 +14,11 @@ publicá-la.
 ---
 
 ## Arquivos
+
+Este manual fica **fora** da pasta publicável, em `casa-guaiamum-entrega/`, de
+propósito: com `publish = "."` todo arquivo de `casa-guaiamum/` vai para o ar, e
+um `.md` não carrega `<meta name="robots">` — ele seria a única peça do deploy
+indexável pelo Google, com as pendências internas em texto aberto.
 
 ```
 index.html                 a página inteira
@@ -105,14 +110,26 @@ sempre a pasta completa, nunca só o `index.html`.
 
 **B) Repositório conectado** — em *Site configuration → Build & deploy*:
 
-| Campo            | Valor           |
-|------------------|-----------------|
-| Base directory   | `casa-guaiamum` |
-| Build command    | (vazio)         |
-| Publish directory| `casa-guaiamum` |
+| Campo             | Valor           |
+|-------------------|-----------------|
+| Base directory    | `casa-guaiamum` |
+| Build command     | (vazio)         |
+| Publish directory | `.` ou vazio    |
 
-A Netlify passa a ler o `netlify.toml` desta pasta. Documentação:
-<https://docs.netlify.com/deploy/create-deploys/>
+**Atenção ao Publish directory.** A Netlify resolve esse campo *relativo ao base
+directory*. Preencher `casa-guaiamum` nos dois campos aponta para
+`casa-guaiamum/casa-guaiamum`, que não existe — o deploy sai vazio ou falha.
+Com o base correto, o `netlify.toml` desta pasta (`publish = "."`) já resolve
+sozinho. Documentação: <https://docs.netlify.com/deploy/create-deploys/>
+
+> **Cuidado com o Base directory.** A raiz do repositório tem outro
+> `netlify.toml` e um `netlify-build.sh` que publicam o site do Delícias Brasil
+> (`publish = "_site"`). Se o Base directory não for exatamente `casa-guaiamum`,
+> a Netlify roda o build da raiz, termina com sucesso e publica **o site
+> errado** — falha silenciosa, sem mensagem de erro. Confira esse campo antes
+> do primeiro build. O mesmo vale para o botão “Run workflow” em
+> `.github/workflows/deploy.yml`: ele publica o site da raiz no GitHub Pages,
+> não a Casa Guaiamum.
 
 > Se já existir uma prévia deste projeto na Netlify, atualize **esse** projeto.
 > Não crie um novo: o endereço enviado ao proprietário mudaria.
