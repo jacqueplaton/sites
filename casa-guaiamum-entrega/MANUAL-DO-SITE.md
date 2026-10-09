@@ -168,6 +168,16 @@ domínio estiver definido:
   porque nada disso foi confirmado.
 - **A nota 4,93/5 em 69 avaliações** aparece atribuída ao Airbnb e datada. Ela
   **não** entra nos dados estruturados: são avaliações do Airbnb, não do site.
+- **O perfil do Instagram** (`casa.guaiamum`) veio do briefing do cliente, que o
+  registra como "Instagram associado". Aparece no rodapé e no `sameAs` dos dados
+  estruturados. Não deu para abrir o perfil daqui (rede bloqueada), então vale um
+  clique de conferência antes da publicação definitiva. A procedência está em
+  `FONTES_FOTOGRAFICAS.json`, em `perfis_oficiais`.
+- **As legendas descrevem só o que a foto mostra.** Três descrições afirmavam
+  benfeitoria inexistente e foram corrigidas depois de abrir os arquivos: a
+  bancada tem uma cuba e um espelho amplo (não duas cubas); o quarto de solteiro
+  tem prateleira de madeira clara (não armário); e o banheiro da foto 16 é de
+  pedra e madeira (não tijolo — o tijolo está nas fotos 17 e 18).
 - **Barco, bolo e cachorro** aparecem em fotografias, mas não são anunciados
   como serviço, cortesia ou passeio incluído.
 

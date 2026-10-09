@@ -6,8 +6,10 @@
    Contraste verificado (WCAG 2.1):
      verde #173E38 sobre off-white #F6F2E9 ....... 10,54:1  (AAA)
      off-white sobre verde ....................... 10,54:1  (AAA)
-     madeira-texto #7A4B31 sobre off-white ........ 6,53:1  (AA/AAA)
+     verde-suave #3D5B55 sobre off-white .......... 6,65:1  (AA)
+     madeira-texto #7A4B31 sobre off-white ........ 6,53:1  (AA)
      agua #87B5BD sobre verde ..................... 5,26:1  (AA)
+   Medidos, não estimados. Nenhum chega a AAA (7:1) fora os dois primeiros.
    As cores madeira #A36B49 (3,95:1) e água #87B5BD (2,01:1) reprovam para
    texto sobre o fundo claro: são usadas apenas como elementos decorativos.
    ========================================================================= */
@@ -15,7 +17,7 @@
 :root{
   --verde:        #173E38;   /* texto, botões, rodapé */
   --verde-fundo:  #102E2A;   /* rodapé, lightbox */
-  --verde-suave:  #3D5B55;   /* texto secundário (7,00:1 sobre off-white) */
+  --verde-suave:  #3D5B55;   /* texto secundário (6,65:1 sobre off-white) */
   --off:          #F6F2E9;   /* fundo principal */
   --off-2:        #EFEADD;   /* fundo alternado */
   --branco:       #FFFFFF;
@@ -59,6 +61,14 @@ ul{ margin:0; padding:0; list-style:none; }
 
 a{ color:inherit; }
 :focus-visible{ outline:3px solid var(--madeira-txt); outline-offset:3px; border-radius:var(--raio); }
+/* Sobre os blocos verdes o filete de madeira praticamente some (1,61:1 contra
+   #173E38), abaixo do 3:1 que a WCAG 1.4.11 exige para indicador de foco.
+   Nesses trechos o anel passa a ser claro: off-white sobre verde dá 10,54:1. */
+.resumo :focus-visible,
+.reserva :focus-visible,
+.rodape :focus-visible,
+.lb :focus-visible,
+.zap:focus-visible{ outline-color:var(--off); }
 
 .pular{
   position:absolute; left:-9999px; top:0; z-index:100;
@@ -327,8 +337,12 @@ figcaption{
 }
 .rodape .marca__nome{ font-family:var(--serif); font-size:1.3rem; margin:0; }
 .rodape .marca__local{ color:var(--agua); margin-top:.3rem; }
-.rodape__links{ display:flex; flex-wrap:wrap; gap:.4rem 1.5rem; }
-.rodape__links a{ font-size:.95rem; text-decoration:none; border-bottom:1px solid var(--agua); padding-bottom:1px; }
+.rodape__links{ display:flex; flex-wrap:wrap; gap:0 1.5rem; }
+.rodape__links a{
+  font-size:.95rem; text-decoration:none; padding:.6rem 0;
+  display:inline-flex; align-items:center; min-height:2.75rem;
+  box-shadow:inset 0 -1px 0 var(--agua);   /* sublinhado sem encolher o alvo */
+}
 .rodape__links a:hover{ color:var(--agua); }
 .rodape__nota{
   max-width:var(--larg); margin:2.5rem auto 0; padding-top:1.4rem;
@@ -348,6 +362,10 @@ figcaption{
   font-size:.92rem; font-weight:600;
 }
 .zap:hover{ background:var(--verde-fundo); }
+/* Com o formulário ou o rodapé na tela o botão flutuante é redundante — e em
+   360px ele cobriria o próprio CTA. O script marca o body; sem JavaScript o
+   botão simplesmente continua visível. */
+body.zap-oculto .zap{ display:none; }
 .zap svg{ flex:0 0 auto; }
 @media (max-width:460px){
   .zap__texto{

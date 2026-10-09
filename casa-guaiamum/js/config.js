@@ -9,7 +9,7 @@
    do anfitrião, numa fotografia com o texto "21 960158360 / wathsapp"
    (arquivo guardado em casa-guaiamum-entrega/evidencia-whatsapp.jpg).
    Nenhuma mensagem de teste foi enviada. Se o número mudar, atualize-o aqui
-   e reveja o rodapé, o README e esta observação.
+   e reveja o rodapé, o MANUAL-DO-SITE.md e esta observação.
    ========================================================================= */
 window.CASA_GUAIAMUM = {
   whatsappNumber: "5521960158360",   // só dígitos: país + DDD + número

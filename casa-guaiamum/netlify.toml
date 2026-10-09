@@ -4,7 +4,7 @@
 # O site é estático: não há build, nem npm, nem framework. O index.html já
 # está na raiz desta pasta.
 #
-# Duas formas de publicar (veja o README.md):
+# Duas formas de publicar (veja casa-guaiamum-entrega/MANUAL-DO-SITE.md):
 #
 #  A) Deploy manual: arraste a PASTA casa-guaiamum inteira para a área de
 #     deploy do projeto na Netlify. Este arquivo é ignorado nesse modo.

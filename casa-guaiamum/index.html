@@ -8,14 +8,15 @@
 <meta name="description" content="Conheça a Casa Guaiamum em Barra de Guaratiba, Rio de Janeiro. Veja os ambientes e consulte datas para sua próxima estadia.">
 
 <!-- PRÉVIA COMERCIAL: não indexar enquanto o site não for aprovado e publicado
-     no domínio definitivo. Retirar esta linha na publicação final. -->
+     no domínio definitivo. Retirar esta linha na publicação final.
+     Manual: casa-guaiamum-entrega/MANUAL-DO-SITE.md, fora desta pasta. -->
 <meta name="robots" content="noindex, follow">
 
 <meta name="theme-color" content="#173E38">
 <meta name="author" content="Casa Guaiamum">
 
 <!-- Open Graph. og:url e a URL absoluta da imagem devem ser preenchidas
-     quando o domínio definitivo existir (veja README.md). -->
+     quando o domínio definitivo existir (veja MANUAL-DO-SITE.md). -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Casa Guaiamum">
 <meta property="og:locale" content="pt_BR">
@@ -272,7 +273,7 @@
              srcset="media/fotos/03_quartos/12_quarto_camas-800.jpg 800w, media/fotos/03_quartos/12_quarto_camas.jpg 1238w"
              sizes="(min-width:900px) 30vw, (min-width:640px) 46vw, 92vw"
              width="1238" height="2200" loading="lazy" decoding="async"
-             alt="Quarto com duas camas de solteiro, ventilador de teto e armário de madeira.">
+             alt="Quarto com duas camas de solteiro, ventilador de teto e prateleira de madeira clara ao longo da parede.">
       </button>
       <figcaption>Quarto com duas camas de solteiro.</figcaption>
     </figure>
@@ -314,14 +315,14 @@
     </figure>
 
     <figure class="item col-2 desloca">
-      <button type="button" class="zoom" data-foto="14" aria-label="Ampliar: banheiro com revestimento de tijolo e madeira">
+      <button type="button" class="zoom" data-foto="14" aria-label="Ampliar: banheiro com box de vidro, parede de pedra e revestimento de madeira">
         <img src="media/fotos/04_banheiros/16_banheiro_madeira-800.jpg"
              srcset="media/fotos/04_banheiros/16_banheiro_madeira-800.jpg 800w, media/fotos/04_banheiros/16_banheiro_madeira.jpg 1440w"
              sizes="(min-width:900px) 30vw, (min-width:640px) 46vw, 92vw"
              width="1440" height="1920" loading="lazy" decoding="async"
-             alt="Banheiro com box de vidro, revestimento de tijolo e madeira e luminárias pendentes.">
+             alt="Banheiro com box de vidro, parede de pedra, revestimento de madeira escura e luminárias pendentes.">
       </button>
-      <figcaption>Tijolo e madeira no banheiro.</figcaption>
+      <figcaption>Pedra e madeira no banheiro.</figcaption>
     </figure>
 
     <figure class="item col-2">
@@ -336,19 +337,19 @@
     </figure>
 
     <figure class="item col-3">
-      <button type="button" class="zoom" data-foto="16" aria-label="Ampliar: bancada com duas cubas diante de parede de tijolo">
+      <button type="button" class="zoom" data-foto="16" aria-label="Ampliar: bancada com cuba de apoio e espelho amplo diante de parede de tijolo">
         <img src="media/fotos/04_banheiros/18_bancada_detalhe-800.jpg"
              srcset="media/fotos/04_banheiros/18_bancada_detalhe-800.jpg 800w, media/fotos/04_banheiros/18_bancada_detalhe.jpg 1238w"
              sizes="(min-width:900px) 46vw, 92vw"
              width="1238" height="2200" loading="lazy" decoding="async"
-             alt="Bancada longa com duas cubas de apoio diante de parede de tijolo aparente.">
+             alt="Bancada branca longa com uma cuba de apoio e espelho amplo, diante de parede de tijolo aparente.">
       </button>
-      <figcaption>Bancada com duas cubas.</figcaption>
+      <figcaption>Bancada com espelho amplo e tijolo aparente.</figcaption>
     </figure>
 
     <div class="item col-3 cartao-texto">
       <p class="rotulo">Quatro banheiros</p>
-      <p>Os acabamentos se repetem pela casa: tijolo aparente, pedra, madeira e louças
+      <p>Os acabamentos se repetem pela casa: pedra, tijolo aparente, madeira e louças
         brancas, com a vegetação sempre à vista.</p>
     </div>
   </div>
@@ -416,7 +417,7 @@
       <div class="campo">
         <label for="checkin">Check-in</label>
         <input type="date" id="checkin" name="checkin" required
-               aria-describedby="erro-checkin" autocomplete="off">
+               aria-describedby="fmt-checkin erro-checkin" autocomplete="off">
         <p class="dica" id="fmt-checkin" hidden></p>
         <p class="erro" id="erro-checkin" hidden></p>
       </div>
@@ -424,7 +425,7 @@
       <div class="campo">
         <label for="checkout">Check-out</label>
         <input type="date" id="checkout" name="checkout" required
-               aria-describedby="erro-checkout" autocomplete="off">
+               aria-describedby="fmt-checkout erro-checkout" autocomplete="off">
         <p class="dica" id="fmt-checkout" hidden></p>
         <p class="erro" id="erro-checkout" hidden></p>
       </div>
@@ -482,7 +483,7 @@
 <!-- Lightbox manual, sem transições animadas -->
 <dialog class="lb" id="lightbox" aria-label="Fotografia ampliada">
   <div class="lb__barra">
-    <p class="lb__contador" id="lb-contador"></p>
+    <p class="lb__contador" id="lb-contador" role="status" aria-live="polite"></p>
     <button type="button" class="lb__fechar" id="lb-fechar" aria-label="Fechar">Fechar</button>
   </div>
   <figure class="lb__fig">

@@ -203,5 +203,12 @@
     "arquivo": "evidencias/contato-divulgado-no-anuncio.jpg",
     "origem": "https://a0.muscache.com/im/pictures/hosting/Hosting-53432967/original/ecf10b3a-3e4d-4c56-805e-4ec94eb8ab7c.png",
     "numero_visivel": "21 960158360"
+  },
+  "perfis_oficiais": {
+    "instagram": "https://www.instagram.com/casa.guaiamum/",
+    "anuncio": "https://www.airbnb.com.br/rooms/53432967",
+    "origem": "Ambos informados pelo briefing do cliente (LEIA_PRIMEIRO_CLAUDE.md, secao 1 'Identificacao e fatos': 'Instagram associado'). O diretorio pousadastop.com.br/Casa-Guaiamum liga o mesmo nome ao perfil e ao anuncio, mas sua descricao textual foi descartada por conter dados incorretos sobre outra cidade.",
+    "usado_em": "rodape do site e sameAs dos dados estruturados",
+    "pendencia": "Nao foi possivel abrir o perfil para conferir deste ambiente (saida de rede bloqueada). Vale um clique de confirmacao antes da publicacao definitiva."
   }
 }

@@ -97,6 +97,9 @@
     [checkin, checkout, hospedes].forEach(function (c) {
       c.addEventListener("input", function () {
         if (c.getAttribute("aria-invalid") === "true") { mostraErro(c, ""); }
+        // O banner é região viva: deixá-lo com "Revise os 2 campos destacados."
+        // depois da correção faz o leitor de tela anunciar estado que já passou.
+        if (status.textContent) { status.textContent = ""; }
       });
     });
 
@@ -166,6 +169,24 @@
     });
   }
 
+  /* --------------------------------------------- 2b. Botão flutuante e o CTA */
+  // Em 360px o botão flutuante fica sobre o botão de enviar do formulário: um
+  // toque errado ali perde as datas já digitadas. Com o formulário ou o rodapé
+  // visível ele também é redundante, porque os dois já trazem o WhatsApp.
+  var zap = document.querySelector(".zap");
+  var alvos = [document.getElementById("reserva"), document.querySelector(".rodape")]
+                .filter(Boolean);
+  if (zap && alvos.length && "IntersectionObserver" in window) {
+    var visiveis = new Set();
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) { visiveis.add(e.target); } else { visiveis.delete(e.target); }
+      });
+      document.body.classList.toggle("zap-oculto", visiveis.size > 0);
+    }, { threshold: 0 });
+    alvos.forEach(function (el) { observador.observe(el); });
+  }
+
   /* ----------------------------------------------------------------- 3. Lightbox */
   var dlg = document.getElementById("lightbox");
   var botoes = Array.prototype.slice.call(document.querySelectorAll(".zoom"));
@@ -231,9 +252,13 @@
       if (origem) { origem.focus(); origem = null; }
     });
   } else if (dlg) {
-    // Sem suporte a <dialog>: as fotografias continuam visíveis na página.
+    // Sem suporte a <dialog>: as fotografias continuam visíveis na página, mas
+    // os botões não podem continuar anunciando "Ampliar" sem fazer nada.
     Array.prototype.forEach.call(botoes, function (b) {
       b.style.cursor = "default";
+      b.removeAttribute("aria-label");
+      b.setAttribute("tabindex", "-1");
+      b.setAttribute("aria-hidden", "true");
     });
   }
 })();
