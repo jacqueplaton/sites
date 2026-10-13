@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Espaço Gariba — marca: pinheiro em dois tons sobre verde mata -->
+  <rect width="64" height="64" rx="13" fill="#16221A"/>
+  <path d="M32 13 L43 36 H21 Z" fill="#9E5736"/>
+  <path d="M32 24 L47 50 H17 Z" fill="#E2D6C3"/>
+  <rect x="30.4" y="49" width="3.2" height="7" rx="0.6" fill="#E2D6C3"/>
+</svg>

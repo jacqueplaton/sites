@@ -1,0 +1,62 @@
+# ==========================================================================
+# Configuração do Netlify — Espaço Gariba
+# --------------------------------------------------------------------------
+# DUAS FORMAS DE PUBLICAR, as duas funcionam:
+#
+# 1) Arrastando o ZIP em app.netlify.com/drop
+#    O Netlify serve os arquivos na hora. O build abaixo não roda, então as
+#    URLs de SEO continuam apontando para espacogariba.netlify.app — veja a
+#    seção "Domínio" do README.md se o endereço final for outro.
+#
+# 2) Conectando o repositório (Add new site → Import an existing project)
+#    O Netlify lê este arquivo e publica sozinho: nada para preencher na
+#    interface, nem comando de build, nem pasta. O netlify-build.sh ainda
+#    ajusta as URLs de SEO para o endereço real do site.
+# ==========================================================================
+
+[build]
+  command = "bash netlify-build.sh"
+  publish = "_site"
+
+# --------------------------------------------------------------------------
+# Segurança — cabeçalhos aplicados a tudo
+# --------------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options    = "nosniff"
+    Referrer-Policy           = "strict-origin-when-cross-origin"
+    X-Frame-Options           = "SAMEORIGIN"
+    Permissions-Policy        = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+# --------------------------------------------------------------------------
+# Cache
+# Mídia e fontes não mudam de conteúdo sem mudar de nome: podem ficar um ano
+# guardadas no navegador. O HTML e o config precisam ser revalidados sempre,
+# senão uma troca de texto ou de telefone demora a aparecer.
+# --------------------------------------------------------------------------
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

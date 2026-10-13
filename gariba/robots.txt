@@ -1,0 +1,5 @@
+# Espaço Gariba — Encantado/RS
+User-agent: *
+Allow: /
+
+Sitemap: https://espacogariba.netlify.app/sitemap.xml
