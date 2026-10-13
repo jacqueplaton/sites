@@ -1,22 +1,46 @@
 # ==========================================================================
 # Configuração do Netlify — Espaço Gariba
 # --------------------------------------------------------------------------
+# O site NÃO TEM ETAPA DE BUILD. São arquivos prontos: o Netlify só precisa
+# servi-los. É assim de propósito — build é coisa que pode falhar, e aqui
+# não há nada para compilar.
+#
 # DUAS FORMAS DE PUBLICAR, as duas funcionam:
 #
 # 1) Arrastando o ZIP em app.netlify.com/drop
-#    O Netlify serve os arquivos na hora. O build abaixo não roda, então as
-#    URLs de SEO continuam apontando para espacogariba.netlify.app — veja a
-#    seção "Domínio" do README.md se o endereço final for outro.
+#    Publica na hora. As URLs de SEO continuam apontando para
+#    espacogariba.netlify.app — se o endereço final for outro, veja a seção
+#    "Domínio" do README.md (é um localizar-e-substituir em 3 arquivos).
 #
 # 2) Conectando o repositório (Add new site → Import an existing project)
-#    O Netlify lê este arquivo e publica sozinho: nada para preencher na
-#    interface, nem comando de build, nem pasta. O netlify-build.sh ainda
-#    ajusta as URLs de SEO para o endereço real do site.
+#    Base directory: gariba    ·    Build command: (deixe vazio)
+#    Publish directory: gariba
+#
+# ATENÇÃO: se você escrever um comando de build aqui embaixo, o Netlify vai
+# tentar executá-lo nas DUAS formas de publicar, inclusive no arrasto do ZIP.
+# Um comando que aponte para um arquivo que não está no ZIP derruba o deploy
+# com "Build script returned non-zero exit code: 2". Deixe vazio.
 # ==========================================================================
 
 [build]
-  command = "bash netlify-build.sh"
-  publish = "_site"
+  publish = "."
+
+# --------------------------------------------------------------------------
+# OPCIONAL — ajuste automático das URLs de SEO
+# --------------------------------------------------------------------------
+# O netlify-build.sh troca "espacogariba.netlify.app" pelo endereço real que
+# o Netlify atribuiu, em canonical, Open Graph, Twitter, JSON-LD, sitemap.xml
+# e robots.txt. Só vale a pena se o site for publicado num endereço diferente
+# desse — e SÓ com o repositório conectado (opção 2 acima).
+#
+# Para ligar: apague o bloco [build] acima e descomente este:
+#
+# [build]
+#   command = "bash netlify-build.sh"
+#   publish = "_site"
+#
+# O netlify-build.sh precisa estar junto dos arquivos para isso funcionar.
+# Ele vai no ZIP, então está sempre à mão.
 
 # --------------------------------------------------------------------------
 # Segurança — cabeçalhos aplicados a tudo

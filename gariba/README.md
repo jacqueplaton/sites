@@ -16,8 +16,8 @@ index.html              a página inteira (todas as seções)
 favicon.svg             ícone da aba do navegador
 robots.txt              instruções para o Google
 sitemap.xml             mapa do site para o Google
-netlify.toml            configuração de deploy (cache e segurança)
-netlify-build.sh        ajusta as URLs de SEO no deploy automático
+netlify.toml            configuração de deploy (cache e segurança, sem build)
+netlify-build.sh        opcional: ajusta as URLs de SEO (veja "Domínio")
 
 css/
   style.css             todo o visual: cores, tipografia, layout, animações
@@ -148,30 +148,42 @@ existe — ele continua funcionando normalmente, em paralelo.
 
 ## Publicar
 
+**O site não tem etapa de build.** São arquivos prontos — o Netlify só
+precisa servi-los. Se algum dia aparecer um erro de deploy falando em
+*"Build script returned non-zero exit code"*, é porque alguém escreveu um
+comando de build no `netlify.toml`: apague o comando e o deploy volta.
+
 ### Opção A — arrastar o ZIP (mais rápido)
 
 1. Abra [app.netlify.com/drop](https://app.netlify.com/drop).
-2. Arraste o ZIP (ou a pasta) para a área indicada.
+2. Arraste o ZIP (ou a pasta `gariba` descompactada) para a área indicada.
 3. Pronto: o Netlify devolve um endereço `.netlify.app` na hora.
 
-### Opção B — conectar o repositório (atualiza sozinho)
+### Opção B — conectar o repositório (atualiza sozinho a cada push)
 
 No Netlify: **Add new site → Import an existing project**, escolha o
-repositório e aponte a pasta base para `gariba/`. Ele lê o `netlify.toml` e
-publica sozinho — não precisa preencher comando de build nem pasta.
+repositório e preencha:
 
-A vantagem: o `netlify-build.sh` troca as URLs de SEO pelo endereço real do
-site a cada deploy, inclusive em domínio próprio.
+| Campo | Valor |
+|---|---|
+| Base directory | `gariba` |
+| Build command | *(deixe vazio)* |
+| Publish directory | `gariba` |
 
 ### Domínio
 
 As URLs de SEO (canonical, Open Graph, sitemap) apontam hoje para
-`https://espacogariba.netlify.app`.
+`https://espacogariba.netlify.app`. Se o endereço final for outro, troque-o
+em três arquivos — é um localizar-e-substituir:
 
-- **Deploy conectado ao repositório:** nada a fazer, o build ajusta sozinho.
-- **Deploy pelo ZIP e endereço diferente:** troque o endereço em
-  `index.html` (canonical, `og:url`, `twitter:url` e o JSON-LD),
-  `sitemap.xml` e `robots.txt`. É um localizar-e-substituir só.
+- `index.html` — canonical, `og:url`, `twitter:url` e o JSON-LD
+- `sitemap.xml`
+- `robots.txt`
+
+Quem preferir que isso seja automático tem o `netlify-build.sh`: ele faz a
+troca sozinho a cada deploy. Para ligar, siga as instruções comentadas no
+fim do `netlify.toml` — mas **só com o repositório conectado** (opção B).
+Com um comando de build ligado, o deploy por arrasto também tenta executá-lo.
 
 ---
 
