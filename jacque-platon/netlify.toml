@@ -1,0 +1,55 @@
+# ==========================================================================
+# Netlify — site Jacque Platon
+# --------------------------------------------------------------------------
+# O site é estático e já vem pronto no repositório: não há build.
+# Se este repositório guarda mais de um site, aponte a "Base directory"
+# do Netlify para a pasta jacque-platon.
+# ==========================================================================
+
+[build]
+  command  = ""
+  publish  = "."
+
+# A barra no fim faz parte do endereço canônico de cada página
+# (/sobre/, /pesquisa/ ...). Mantém sitemap, canonical e URL servida iguais.
+[build.processing]
+  skip_processing = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+    X-Frame-Options        = "SAMEORIGIN"
+
+# robots.txt e sitemap.xml mudam com o conteúdo: nunca ficam em cache longo.
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Imagens e logos têm nome com data: podem ficar guardados por um ano.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/style.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/app.js"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

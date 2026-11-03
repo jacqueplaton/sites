@@ -1,0 +1,120 @@
+# robots.txt — Jacque Platon
+# Decisão: TODOS os robôs de busca e de inteligência artificial estão
+# liberados para ler e citar este site. Nada aqui é privado.
+# Revisado em 2026-11-03
+
+# ---------------------------------------------------------------
+# Regra geral: qualquer robô, qualquer página.
+# ---------------------------------------------------------------
+User-agent: *
+Allow: /
+
+# ---------------------------------------------------------------
+# Liberação nominal. Redundante com a regra acima de propósito:
+# alguns robôs só obedecem o bloco que traz o próprio nome.
+# ---------------------------------------------------------------
+
+# Googlebot — busca do Google
+User-agent: Googlebot
+Allow: /
+
+# Google-Extended — respostas de IA do Google (Gemini e AI Overviews)
+User-agent: Google-Extended
+Allow: /
+
+# Googlebot-Image — imagens no Google
+User-agent: Googlebot-Image
+Allow: /
+
+# Bingbot — busca do Bing
+User-agent: Bingbot
+Allow: /
+
+# GPTBot — indexação da OpenAI
+User-agent: GPTBot
+Allow: /
+
+# OAI-SearchBot — busca do ChatGPT
+User-agent: OAI-SearchBot
+Allow: /
+
+# ChatGPT-User — visita feita a pedido de quem usa o ChatGPT
+User-agent: ChatGPT-User
+Allow: /
+
+# ClaudeBot — indexação da Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+# Claude-SearchBot — busca do Claude
+User-agent: Claude-SearchBot
+Allow: /
+
+# Claude-User — visita feita a pedido de quem usa o Claude
+User-agent: Claude-User
+Allow: /
+
+# PerplexityBot — indexação da Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Perplexity-User — visita feita a pedido de quem usa a Perplexity
+User-agent: Perplexity-User
+Allow: /
+
+# Applebot — busca e Siri da Apple
+User-agent: Applebot
+Allow: /
+
+# Applebot-Extended — treinamento e respostas de IA da Apple
+User-agent: Applebot-Extended
+Allow: /
+
+# Amazonbot — Alexa e busca da Amazon
+User-agent: Amazonbot
+Allow: /
+
+# meta-externalagent — IA da Meta
+User-agent: meta-externalagent
+Allow: /
+
+# DuckAssistBot — respostas do DuckDuckGo
+User-agent: DuckAssistBot
+Allow: /
+
+# YandexBot — busca do Yandex
+User-agent: YandexBot
+Allow: /
+
+# CCBot — Common Crawl, base usada por vários modelos
+User-agent: CCBot
+Allow: /
+
+# cohere-ai — Cohere
+User-agent: cohere-ai
+Allow: /
+
+# MistralAI-User — visita feita a pedido de quem usa o Mistral
+User-agent: MistralAI-User
+Allow: /
+
+# YouBot — You.com
+User-agent: YouBot
+Allow: /
+
+# Bytespider — IA da ByteDance
+User-agent: Bytespider
+Allow: /
+
+# Diffbot — extração estruturada
+User-agent: Diffbot
+Allow: /
+
+# Timpibot — Timpi
+User-agent: Timpibot
+Allow: /
+
+# ---------------------------------------------------------------
+# Mapa do site
+# ---------------------------------------------------------------
+Sitemap: https://jacquepatonmkt.com.br/sitemap.xml

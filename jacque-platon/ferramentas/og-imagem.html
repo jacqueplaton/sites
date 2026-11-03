@@ -1,0 +1,52 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+body{width:1200px;height:630px;background:#0b0b0d;color:#f7f7f5;
+ font-family:Inter,Arial,sans-serif;overflow:hidden;position:relative}
+.grid{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 99px,#ffffff08 100px,transparent 101px)}
+.diag{position:absolute;right:-180px;top:-200px;width:520px;height:860px;border:1px solid #ff79004d;transform:rotate(32deg)}
+.wrap{position:relative;padding:62px 70px;height:100%;display:flex;flex-direction:column;justify-content:space-between}
+.top{display:flex;align-items:center;gap:18px}
+.mono{width:60px;height:60px}
+.name{font:800 24px/1.04 Montserrat,Arial,sans-serif;letter-spacing:1.4px}
+.dot{color:#ff7900}
+.eyebrow{font-size:14px;letter-spacing:3.4px;font-weight:600;color:#b9bcc3;margin-top:4px}
+h1{font:700 76px/1.06 Montserrat,Arial,sans-serif;letter-spacing:-3.4px;max-width:17ch}
+h1 em{font-style:normal;color:#ff7900}
+.sub{font-size:21px;color:#b8bbc3;margin-top:24px;max-width:46ch;line-height:1.55}
+.bottom{display:flex;align-items:flex-end;justify-content:space-between;
+ border-top:1px solid #2b2d32;padding-top:26px}
+.bottom .tags{font-size:15px;letter-spacing:2.4px;color:#c3c5cc}
+.bottom .tags i{font-style:normal;color:#ff7900;margin:0 12px}
+.site{font:600 17px Montserrat,Arial,sans-serif;color:#ff7900;letter-spacing:.4px}
+</style></head><body>
+<div class="grid"></div><div class="diag"></div>
+<div class="wrap">
+ <div>
+  <div class="top">
+   <img class="mono" src="../assets/jp.svg" alt="">
+   <div><div class="name">JACQUE PLATON<span class="dot">.</span></div>
+   <div class="eyebrow">ESTRATEGISTA DIGITAL</div></div>
+  </div>
+ </div>
+ <div>
+  <h1>Presença digital<br>que <em>gera negócios.</em></h1>
+  <p class="sub">Criação de sites profissionais, presença no Google e inteligência
+  artificial aplicada ao seu negócio.</p>
+ </div>
+ <div class="bottom">
+  <div class="tags">SITES<i>✳</i>GOOGLE<i>✳</i>INTELIGÊNCIA ARTIFICIAL</div>
+  <div class="site">@jacqueplatonmkt</div>
+ </div>
+</div></body></html>
+<!--
+Fonte da imagem social (Open Graph) de 1200x630 px, em assets/og-jacque-platon.png.
+Para gerar de novo depois de mudar algo aqui, com o Chromium do Playwright:
+
+  node -e "const{chromium}=require('playwright');(async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:1200,height:630},deviceScaleFactor:1});await p.goto('file://'+process.cwd()+'/ferramentas/og-imagem.html');await p.waitForTimeout(2500);await p.screenshot({path:'assets/og-jacque-platon.png'});await b.close()})()"
+
+Rode a partir da raiz do site (jacque-platon/). O caminho assets/jp.svg no <img>
+é resolvido em relação a esta pasta, por isso o arquivo fica em ferramentas/
+com o src apontando para ../assets/jp.svg quando aberto direto no navegador.
+-->
