@@ -19,7 +19,7 @@ ORIGEM="https://jacqueplaton.github.io/sites"
 echo "==> Separando os arquivos do site"
 rm -rf _site
 mkdir -p _site
-cp -r index.html favicon.svg robots.txt sitemap.xml css js fonts media _site/
+cp -r index.html favicon.svg robots.txt sitemap.xml css js fonts media jacque-platon _site/
 
 # Escolhe a URL: deploys de produção usam $URL; previews de branch e de pull
 # request usam $DEPLOY_PRIME_URL, que aponta para aquele deploy específico.
