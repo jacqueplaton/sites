@@ -301,19 +301,3 @@ Nada aqui foi inventado. Estes pontos ficaram propositalmente em aberto:
   [Karla](https://fonts.google.com/specimen/Karla) (texto), ambas sob licença
   SIL Open Font License 1.1, hospedadas no próprio site.
 - Vídeos e fotos: material enviado pelo cliente, reprocessado para web.
-
----
-
-## Página de vendas da consultoria (`consultoria/`)
-
-Página única e independente do site do restaurante, publicada em `/consultoria/`.
-Tudo está em `consultoria/index.html` (HTML, CSS e JS no mesmo arquivo).
-
-Antes de publicar, preencha o bloco `CONFIG` no final do arquivo:
-
-- `whatsapp`: número confirmado, só dígitos, com DDI e DDD (ex.: `5511999998888`).
-  Enquanto estiver vazio, os botões não abrem conversa e a página mostra um aviso.
-- `foto`: caminho da foto real (ex.: `media/jacque.jpg`, dentro de `consultoria/`).
-
-Os blocos tracejados marcados com "Substituir" (apresentação profissional e rodapé)
-devem ser trocados por informações reais direto no HTML.
