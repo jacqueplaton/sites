@@ -1,0 +1,161 @@
+<!doctype html>
+<!-- ==========================================================================
+     SUTILY MAIS — composição do filme em três cenas
+     Não é uma página do site: é a "mesa de montagem" usada por filme.cjs para
+     renderizar os arquivos media/filme-sutily-*.mp4, quadro a quadro.
+     Só fotografias reais da clínica; o movimento é de câmera (aproximação e
+     deslocamento lentos). Nenhum rosto ou imagem é alterado ou gerado por IA.
+     Abrir com ?f=v para a versão vertical (9:16). window.seek(segundos).
+     ========================================================================== -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Filme Sutily Mais</title>
+<style>
+@font-face{font-family:"Newsreader";src:url("../fonts/newsreader-normal.woff2") format("woff2");font-weight:300 500}
+@font-face{font-family:"Newsreader";src:url("../fonts/newsreader-italic.woff2") format("woff2");font-weight:300 500;font-style:italic}
+@font-face{font-family:"Jost";src:url("../fonts/jost.woff2") format("woff2");font-weight:400 500}
+*{box-sizing:border-box;margin:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#241B19;color:#F3ECE2}
+body{--u:1vh;font-family:"Jost",sans-serif}
+body.v{--u:.5625vh}
+.cena{position:absolute;inset:0}
+.rot{font:500 calc(var(--u)*1.75)/1 "Jost";letter-spacing:.26em;text-transform:uppercase;color:#C5A36B;white-space:nowrap}
+.tit{font:400 calc(var(--u)*12.5)/1 "Newsreader",serif;letter-spacing:-.02em}
+.tit i{color:#C5A36B}
+.sub{font:400 calc(var(--u)*2.9)/1.45 "Jost";color:#B9ACA0}
+.lin{display:block;overflow:hidden;padding:.08em 0 .16em;margin:-.08em 0 -.16em}
+.lin>span{display:block;will-change:transform}
+.q{position:absolute;overflow:hidden;background:#302B29}
+.q img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+.arco{border-radius:999vh 999vh .4vh .4vh}
+.fio{position:absolute;border:1px solid #C5A36B;opacity:.5}
+.tx{position:absolute;display:grid;gap:calc(var(--u)*3.2);align-content:center}
+.traco{width:calc(var(--u)*9);height:1px;background:#C5A36B;transform-origin:0 50%}
+.pilula{justify-self:start;display:inline-flex;align-items:center;height:calc(var(--u)*7.4);padding:0 calc(var(--u)*4);border-radius:99vh;background:#C5A36B;color:#241B19;font:500 calc(var(--u)*1.75)/1 "Jost";letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.logo{width:calc(var(--u)*56);height:auto;display:block}
+.ass{font:500 calc(var(--u)*1.55)/1 "Jost";letter-spacing:.42em;text-transform:uppercase;color:#B9ACA0;margin-top:calc(var(--u)*-1.4)}
+
+/* horizontal 16:9 */
+#c1 .q{right:9vw;top:9vh;bottom:0;width:36vw}
+#c1 .fio{right:7.8vw;top:7vh;bottom:4vh;width:36vw}
+#c1 .tx{left:8vw;top:0;bottom:0;width:42vw}
+#c2 .q.a{left:8vw;top:8vh;bottom:8vh;width:38vw;border-radius:.4vh 22vh .4vh .4vh}
+#c2 .q.b{left:38vw;bottom:13vh;width:21vw;aspect-ratio:3/2;border-radius:.4vh;box-shadow:0 3vh 7vh -2vh rgba(0,0,0,.6)}
+#c2 .tx{right:6vw;top:0;bottom:0;width:31vw}
+#c2 .tit{font-size:calc(var(--u)*10)}
+#c3 .q{left:9vw;top:9vh;bottom:0;width:33vw}
+#c3 .fio{left:7.8vw;top:7vh;bottom:4vh;width:33vw}
+#c3 .tx{left:50vw;top:0;bottom:0;width:42vw}
+
+/* vertical 9:16 */
+.v #c1 .q{left:11vw;right:11vw;width:auto;top:5vh;bottom:39vh}
+.v #c3 .q{left:11vw;right:11vw;width:auto;top:5vh;bottom:44vh}
+.v #c1 .fio{left:14vw;right:8vw;width:auto;top:3.8vh;bottom:41vh}
+.v #c3 .fio{left:14vw;right:8vw;width:auto;top:3.8vh;bottom:46vh}
+.v #c1 .tx{left:11vw;right:8vw;width:auto;top:61vh;bottom:5vh;align-content:start;padding-top:5vh}
+.v #c3 .tx{left:11vw;right:8vw;width:auto;top:56vh;bottom:4vh;align-content:start;padding-top:4.5vh}
+.v #c2 .q.a{left:9vw;right:22vw;width:auto;top:5vh;bottom:46vh;border-radius:.4vh 16vh .4vh .4vh}
+.v #c2 .q.b{left:auto;right:8vw;bottom:41vh;width:44vw}
+.v #c2 .tx{left:11vw;right:8vw;width:auto;top:59vh;bottom:4vh;align-content:start;padding-top:4vh}
+.v .tit{font-size:calc(var(--u)*13.5)}
+.v #c2 .tit{font-size:calc(var(--u)*11.5)}
+.v .rot{font-size:calc(var(--u)*2.6)}
+.v .sub{font-size:calc(var(--u)*4.1)}
+.v .logo{width:76vw}
+.v .ass{font-size:calc(var(--u)*2.3)}
+.v .pilula{height:calc(var(--u)*10.5);font-size:calc(var(--u)*2.5);padding:0 calc(var(--u)*5.5)}
+</style>
+</head>
+<body>
+<div class="cena" id="c1">
+  <div class="fio arco" data-a="f"></div>
+  <div class="q arco" data-a="m"><img src="../img/joycce-retrato-1122.webp" alt="" style="object-position:50% 20%"></div>
+  <div class="tx">
+    <p class="rot" data-a="t0">Cena 1 · A profissional</p>
+    <h1 class="tit"><span class="lin"><span data-a="l0">Joycce</span></span><span class="lin"><span data-a="l1"><i>Gomes</i></span></span></h1>
+    <div class="traco" data-a="tr"></div>
+    <p class="sub" data-a="t1">Cirurgiã-dentista à frente<br>da Sutily Mais</p>
+  </div>
+</div>
+<div class="cena" id="c2">
+  <div class="q a" data-a="m"><img src="../img/cuidado-760.webp" alt="" style="object-position:40% 30%"></div>
+  <div class="q b" data-a="m2"><img src="../img/instrumentos-650.webp" alt=""></div>
+  <div class="tx">
+    <p class="rot" data-a="t0">Cena 2 · O cuidado</p>
+    <h1 class="tit"><span class="lin"><span data-a="l0">Atenção</span></span><span class="lin"><span data-a="l1">em cada</span></span><span class="lin"><span data-a="l2"><i>detalhe.</i></span></span></h1>
+    <div class="traco" data-a="tr"></div>
+    <p class="sub" data-a="t1">Odontologia integrada,<br>cuidado individualizado</p>
+  </div>
+</div>
+<div class="cena" id="c3">
+  <div class="fio arco" data-a="f"></div>
+  <div class="q arco" data-a="m"><img src="../img/fachada-790.webp" alt="" style="object-position:50% 12%"></div>
+  <div class="tx">
+    <p class="rot" data-a="t0">Cena 3 · A clínica</p>
+    <div data-a="lg"><svg class="logo" id="logo"></svg></div>
+    <p class="ass" data-a="t2">Clínica Integrada</p>
+    <div class="traco" data-a="tr"></div>
+    <p class="sub" data-a="t1">Nova Parnamirim · nº 2874<br>Parnamirim/RN</p>
+    <span class="pilula" data-a="bt">Agende sua consulta</span>
+  </div>
+</div>
+<script>
+const vertical = new URLSearchParams(location.search).get('f') === 'v';
+if (vertical) document.body.classList.add('v');
+const DUR = 15, CENA = 5;
+const ease = (x) => (x < 0 ? 0 : x > 1 ? 1 : 1 - Math.pow(1 - x, 4));          // saída suave
+const io = (x) => (x < 0 ? 0 : x > 1 ? 1 : x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+const seg = (t, a, b) => (t - a) / (b - a);
+
+function cena(el, t) {                    // t = tempo dentro da cena (0–5 s)
+  const g = (k) => el.querySelector(`[data-a="${k}"]`);
+  const sai = io(seg(t, 4.35, 4.95));     // 0 → 1 na saída
+  el.style.visibility = t < 0 || t >= CENA ? 'hidden' : 'visible';
+  if (t < 0 || t >= CENA) return;
+
+  // moldura: abre de baixo para cima, fecha para cima; a foto aproxima devagar
+  const abre = io(seg(t, .1, 1.35));
+  const m = g('m');
+  m.style.clipPath = `inset(${(100 - abre * 100).toFixed(2)}% 0 ${(sai * 100).toFixed(2)}% 0)`;
+  const z = 1.17 - .11 * (t / CENA), dy = 2.2 - 4.4 * (t / CENA);
+  m.firstElementChild.style.transform = `translate3d(0,${dy.toFixed(3)}%,0) scale(${z.toFixed(4)})`;
+  const m2 = g('m2');
+  if (m2) {
+    const a2 = io(seg(t, .75, 1.9));
+    m2.style.clipPath = `inset(0 ${(100 - a2 * 100).toFixed(2)}% 0 ${(sai * 100).toFixed(2)}%)`;
+    m2.style.transform = `translate3d(0,${(3 - 6 * (t / CENA)).toFixed(3)}%,0)`;
+    m2.firstElementChild.style.transform = `scale(${(1.12 - .08 * (t / CENA)).toFixed(4)})`;
+  }
+  const f = g('f');
+  if (f) { f.style.opacity = (.5 * ease(seg(t, 1.0, 2.2)) * (1 - sai)).toFixed(3); f.style.transform = `translate3d(0,${((1 - ease(seg(t, 1.0, 2.4))) * 2).toFixed(3)}%,0)`; }
+
+  // textos: entram em cascata, saem juntos
+  const entra = (k, t0, d = .9) => { const e = g(k); if (!e) return; const p = ease(seg(t, t0, t0 + d)); e.style.opacity = (p * (1 - sai)).toFixed(3); e.style.transform = `translate3d(0,${((1 - p) * 26 - sai * 18).toFixed(2)}px,0)`; };
+  const linha = (k, t0) => { const e = g(k); if (!e) return; const p = ease(seg(t, t0, t0 + 1.05)); e.style.transform = `translate3d(0,${((1 - p) * 112 - sai * 112).toFixed(2)}%,0)`; };
+  entra('t0', .45); linha('l0', .7); linha('l1', .86); linha('l2', 1.02);
+  entra('lg', .8, 1.2); entra('t2', 1.2); entra('t1', 1.55); entra('bt', 2.0);
+  const tr = g('tr');
+  tr.style.transform = `scaleX(${(io(seg(t, 1.25, 2.2)) * (1 - sai)).toFixed(4)})`;
+}
+window.seek = (t) => {
+  t = ((t % DUR) + DUR) % DUR;
+  ['c1', 'c2', 'c3'].forEach((id, i) => cena(document.getElementById(id), t - i * CENA));
+};
+
+// logotipo original (mesmo traçado usado no site)
+window.pronto = fetch('logo.json').then((r) => r.json()).then((L) => {
+  const s = document.getElementById('logo');
+  s.setAttribute('viewBox', `0 0 ${L.w} ${L.h}`);
+  s.innerHTML = `<path fill="#D6C56F" fill-rule="evenodd" d="${L.gold}"/><path fill="#CFE6D6" fill-rule="evenodd" d="${L.mint}"/>`;
+  return Promise.all([document.fonts.ready, ...[...document.images].map((i) => i.decode().catch(() => {}))]);
+}).then(() => { window.seek(0); return true; });
+
+// prévia ao vivo no navegador (o renderizador usa ?render=1 e chama seek)
+if (!new URLSearchParams(location.search).has('render')) {
+  const t0 = performance.now();
+  (function laco() { window.seek((performance.now() - t0) / 1000); requestAnimationFrame(laco); })();
+}
+</script>
+</body>
+</html>
