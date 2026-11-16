@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Implantação Comercial Digital</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Consultoria de Jacque Platon: Perfil da Empresa no Google, Google Ads e CRM implementados, com treinamento e entrega da operação. De R$ 2.500 a R$ 4.000, pagamento único, sem mensalidade pelos serviços.">
+<meta name="theme-color" content="#0b0a09">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Implantação Comercial Digital | Jacque Platon">
+<meta property="og:description" content="Perfil da Empresa no Google, Google Ads e CRM implementados, com treinamento e entrega da operação à sua equipe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&family=Schibsted+Grotesk:wght@400..600&display=swap">
+<style>
+/* Layout: coluna editorial estreita sobre fundo quase preto; títulos serifados grandes,
+   fios finos como divisores, um único acento em latão reservado a ações e valores. */
+:root {
+  color-scheme: dark;
+  --bg: #0b0a09;
+  --surface: #141311;
+  --surface-2: #1b1917;
+  --line: #2b2824;
+  --text: #ece6da;
+  --muted: #a69f91;
+  --accent: #c9a56b;
+  --accent-strong: #dcbb84;
+  --accent-ink: #14100a;
+  --font-display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-body: "Schibsted Grotesk", "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+  --wrap: 1120px;
+  --gap: clamp(72px, 11vw, 136px);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body::before { /* faixa da área segura acima do cabeçalho fixo */
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 30; background: var(--bg);
+}
+body::after { /* brilho quente e discreto no topo */
+  content: ""; position: absolute; inset: 0 0 auto; height: 900px; z-index: -1; pointer-events: none;
+  background: radial-gradient(60% 55% at 78% 0%, rgba(201,165,107,.13), transparent 70%);
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 3px; border-radius: 4px; }
+
+.wrap {
+  max-width: var(--wrap); margin-inline: auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+section { padding-block: calc(var(--gap) / 2); }
+.rule { border-top: 1px solid var(--line); }
+
+/* Tipografia */
+h1, h2, .display {
+  font-family: var(--font-display); font-weight: 350; letter-spacing: -0.015em;
+  line-height: 1.06; text-wrap: balance;
+}
+h1 { font-size: clamp(2.5rem, 8.6vw, 4.9rem); }
+h2 { font-size: clamp(2rem, 5.6vw, 3.3rem); max-width: 20ch; }
+h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; line-height: 1.2; letter-spacing: -0.01em; }
+em { font-style: italic; color: var(--accent-strong); }
+.eyebrow {
+  font-size: .75rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent);
+}
+.lead { font-size: clamp(1.0625rem, 2.4vw, 1.25rem); color: var(--muted); max-width: 60ch; }
+.muted { color: var(--muted); }
+.head { display: grid; gap: 18px; margin-bottom: clamp(36px, 6vw, 64px); }
+
+/* Botões */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 54px; padding: 14px 26px; border-radius: 999px;
+  font: 600 1rem/1.2 var(--font-body); text-decoration: none; text-align: center;
+  transition: background-color .25s, color .25s, border-color .25s, transform .25s;
+}
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover { background: var(--accent-strong); transform: translateY(-1px); }
+.btn-ghost { border: 1px solid var(--line); color: var(--text); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent-strong); }
+.btn svg { width: 18px; height: 18px; flex: none; }
+
+/* Cabeçalho */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: rgba(11,10,9,.86); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; }
+.brand { text-decoration: none; display: grid; line-height: 1.15; }
+.brand b { font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; letter-spacing: -0.01em; }
+.brand span { font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.top nav { display: none; gap: 28px; font-size: .9375rem; }
+.top nav a { text-decoration: none; color: var(--muted); transition: color .2s; }
+.top nav a:hover { color: var(--text); }
+.top .btn { min-height: 42px; padding: 9px 18px; font-size: .875rem; white-space: nowrap; }
+@media (max-width: 479px) { .brand span { display: none; } }
+
+/* Abertura */
+.hero { padding-block: clamp(48px, 9vw, 104px) calc(var(--gap) / 2); }
+.hero-copy { display: grid; gap: 26px; }
+.hero .lead strong { color: var(--text); font-weight: 500; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.actions .btn { flex: 1 1 240px; }
+.answers { margin-top: clamp(48px, 8vw, 88px); display: grid; border-top: 1px solid var(--line); }
+.answers div { padding-block: 22px; border-bottom: 1px solid var(--line); display: grid; gap: 6px; min-width: 0; }
+.answers dt { font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.answers dd { font-size: 1rem; line-height: 1.5; }
+
+/* Problemas */
+.problems { display: grid; border-top: 1px solid var(--line); }
+.problem { display: grid; gap: 14px; padding-block: 30px; border-bottom: 1px solid var(--line); }
+.problem p { color: var(--muted); max-width: 52ch; }
+.fix { display: grid; gap: 4px; padding-left: 18px; border-left: 1px solid var(--accent); }
+.fix b { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.fix span { color: var(--text); }
+
+/* Solução: fluxo conectado */
+.flow { display: grid; gap: 0; position: relative; }
+.node { position: relative; display: grid; gap: 8px; padding: 0 0 36px 44px; min-width: 0; }
+.node::before { /* ponto */
+  content: ""; position: absolute; left: 0; top: 6px; width: 15px; height: 15px; border-radius: 50%;
+  border: 1px solid var(--accent); background: var(--bg); box-shadow: inset 0 0 0 4px var(--bg), inset 0 0 0 8px var(--accent);
+}
+.node::after { /* linha de ligação */
+  content: ""; position: absolute; left: 7px; top: 24px; bottom: -4px; width: 1px; background: var(--line);
+}
+.node:last-child { padding-bottom: 0; }
+.node:last-child::after { display: none; }
+.node small { font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.node p { color: var(--muted); }
+.flow-note { margin-top: 44px; padding: 24px; background: var(--surface); border-radius: 14px; color: var(--muted); max-width: 70ch; }
+.flow-note strong { color: var(--text); font-weight: 500; }
+
+/* Entregas */
+.deliveries { display: grid; gap: 16px; }
+.delivery { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: clamp(24px, 4vw, 36px); display: grid; gap: 22px; min-width: 0; }
+.delivery > p { color: var(--muted); }
+.cols { display: grid; gap: 22px; }
+.cols h4 { margin: 0 0 10px; font: 600 .75rem/1.3 var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.list { display: grid; gap: 9px; font-size: 1rem; line-height: 1.5; }
+.list li { position: relative; padding-left: 20px; }
+.list li::before { content: ""; position: absolute; left: 0; top: .72em; width: 9px; height: 1px; background: var(--accent); }
+.list.no li::before { background: var(--muted); }
+
+/* Processo */
+.steps { display: grid; counter-reset: step; border-top: 1px solid var(--line); }
+.step { counter-increment: step; display: grid; gap: 10px; padding-block: 30px; border-bottom: 1px solid var(--line); }
+.step::before { content: "0" counter(step); font-family: var(--font-display); font-style: italic; font-size: 1.75rem; line-height: 1; color: var(--accent); }
+.step p { color: var(--muted); max-width: 56ch; }
+
+/* Sobre */
+.about { display: grid; gap: 36px; align-items: start; }
+.photo { aspect-ratio: 4 / 5; max-width: 100%; width: 100%; border-radius: 18px; overflow: hidden; background: var(--surface); }
+.photo img { width: 100%; height: 100%; object-fit: cover; }
+.about-copy { display: grid; gap: 20px; }
+.about-copy p { max-width: 58ch; }
+
+/* Espaços a substituir antes de publicar */
+.todo {
+  border: 1px dashed var(--accent); border-radius: 12px; padding: 16px 18px;
+  color: var(--muted); font-size: .9375rem; line-height: 1.5; display: grid; gap: 4px;
+}
+.todo b { font-size: .6875rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.photo.todo { place-content: center; text-align: center; padding: 28px; border-radius: 18px; }
+
+/* Investimento */
+.price { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: clamp(26px, 5vw, 56px); display: grid; gap: 36px; }
+.price-top { display: grid; gap: 14px; }
+.amount { font-family: var(--font-display); font-weight: 350; font-size: clamp(2.4rem, 9vw, 4.6rem); line-height: 1; letter-spacing: -0.02em; font-variant-numeric: lining-nums; }
+.amount small { font-size: .42em; color: var(--muted); letter-spacing: 0; }
+.price-top p { color: var(--muted); max-width: 56ch; }
+.price-top p strong { color: var(--text); font-weight: 500; }
+.price-grid { display: grid; gap: 32px; padding-top: 32px; border-top: 1px solid var(--line); }
+.price-grid h3 { font-size: 1.25rem; margin-bottom: 14px; }
+
+/* Perguntas */
+.faq { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary {
+  list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 20px; align-items: baseline;
+  padding-block: 22px; font-family: var(--font-display); font-size: 1.3rem; line-height: 1.3;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--font-body); font-weight: 400; color: var(--accent); flex: none; transition: transform .25s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { padding-bottom: 24px; color: var(--muted); max-width: 66ch; }
+.faq details p + p { margin-top: -10px; }
+
+/* Chamada final */
+.final { text-align: left; }
+.final-box { border: 1px solid var(--line); border-radius: 22px; padding: clamp(28px, 6vw, 72px); display: grid; gap: 24px; background: linear-gradient(160deg, var(--surface-2), var(--surface) 60%); }
+.final-box h2 { max-width: 18ch; }
+.final-box .btn { justify-self: start; width: 100%; max-width: 420px; }
+
+footer { border-top: 1px solid var(--line); padding-block: 36px 120px; color: var(--muted); font-size: .875rem; }
+footer .wrap { display: grid; gap: 14px; }
+
+/* Barra de ação fixa no celular */
+.bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 25;
+  padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  background: rgba(11,10,9,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--line);
+  transform: translateY(110%); transition: transform .35s ease;
+}
+.bar.on { transform: none; }
+.bar .btn { width: 100%; min-height: 50px; }
+
+/* Entrada discreta: só quando o script confirma que pode animar */
+.anim .rv { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+.anim .rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .anim .rv { opacity: 1; transform: none; transition: none; }
+  .bar, .btn { transition: none; }
+}
+
+@media (min-width: 760px) {
+  body { font-size: 1.125rem; }
+  .top nav { display: flex; }
+  .actions .btn { flex: 0 0 auto; }
+  .answers { grid-template-columns: repeat(2, 1fr); column-gap: 48px; }
+  .problem { grid-template-columns: 1fr 1fr; column-gap: 56px; align-items: start; }
+  .problem h3 { grid-column: 1 / -1; }
+  .flow { grid-template-columns: repeat(3, 1fr); }
+  .node { padding: 40px 28px 0 0; }
+  .node::before { top: 0; }
+  .node::after { left: 24px; right: 0; top: 7px; bottom: auto; width: auto; height: 1px; }
+  .cols, .price-grid { grid-template-columns: 1fr 1fr; column-gap: 48px; }
+  .step { grid-template-columns: 90px 1fr; column-gap: 24px; }
+  .step::before { grid-row: 1 / span 2; }
+  .about { grid-template-columns: minmax(0, 360px) 1fr; column-gap: 64px; }
+  footer { padding-bottom: 48px; }
+  .bar { display: none; }
+}
+@media (min-width: 1040px) {
+  .answers { grid-template-columns: repeat(4, 1fr); column-gap: 36px; }
+  .deliveries { grid-template-columns: 1fr 1fr; }
+  .hero-copy { max-width: 900px; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Jacque Platon, início da página">
+      <b>Jacque Platon</b>
+      <span>Implantação Comercial Digital</span>
+    </a>
+    <nav aria-label="Seções">
+      <a href="#entregas">Entregas</a>
+      <a href="#processo">Processo</a>
+      <a href="#investimento">Investimento</a>
+      <a href="#perguntas">Perguntas</a>
+    </nav>
+    <a class="btn btn-primary" data-wa href="#contato">Falar no WhatsApp</a>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <!-- 1. ABERTURA -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">Consultoria de implementação para empresas de serviços</p>
+        <h1>Google e CRM implementados na sua empresa. <em>E sua equipe sabendo operar.</em></h1>
+        <p class="lead">Eu configuro o seu Perfil da Empresa no Google, a estrutura inicial de Google Ads e o funil comercial no CRM. Depois treino você e sua equipe e entrego os acessos. <strong>Pagamento único, de R$&nbsp;2.500 a R$&nbsp;4.000 conforme o escopo. Sem mensalidade pelos meus serviços.</strong></p>
+        <div class="actions">
+          <a class="btn btn-primary" data-wa href="#contato">Quero estruturar meu negócio</a>
+          <a class="btn btn-ghost" href="#entregas">Ver o que está incluído</a>
+        </div>
+      </div>
+
+      <dl class="answers">
+        <div><dt>O que você recebe</dt><dd>Perfil no Google, campanha de Pesquisa e CRM configurados e ligados em um só processo.</dd></div>
+        <div><dt>Quanto custa</dt><dd>De R$&nbsp;2.500 a R$&nbsp;4.000, uma vez. Verba de anúncios e ferramentas são custos à parte.</dd></div>
+        <div><dt>O que você aprende</dt><dd>A atualizar o perfil, ler a campanha e conduzir cada contato no CRM.</dd></div>
+        <div><dt>Quem opera depois</dt><dd>Você, sua equipe ou um profissional contratado por você. As contas são suas.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 2. PROBLEMAS -->
+  <section id="problemas" class="rule">
+    <div class="wrap">
+      <div class="head rv">
+        <p class="eyebrow">O que costuma travar</p>
+        <h2>Quatro situações que custam vendas todos os meses</h2>
+        <p class="lead">Se você se reconhece em pelo menos duas, o problema dificilmente é falta de esforço. Falta estrutura.</p>
+      </div>
+      <div class="problems">
+        <article class="problem rv">
+          <h3>Sua empresa aparece no Google de qualquer jeito</h3>
+          <p>O perfil foi criado há anos, está com horário errado, categoria genérica, poucas fotos. Ou nem existe. Quem procura pelo seu serviço na região encontra o concorrente com as informações em ordem.</p>
+          <div class="fix"><b>O que eu faço</b><span>Configuro ou otimizo o Perfil da Empresa no Google e ensino a rotina para mantê-lo atualizado.</span></div>
+        </article>
+        <article class="problem rv">
+          <h3>Você quer anunciar e não sabe por onde começar</h3>
+          <p>A conta do Google Ads pede decisões que não fazem sentido para quem nunca usou: tipo de campanha, palavras-chave, lances, conversões. O medo de gastar a verba sem entender o que aconteceu é razoável.</p>
+          <div class="fix"><b>O que eu faço</b><span>Monto a conta e a estrutura inicial de uma campanha de Pesquisa e explico o que cada número significa.</span></div>
+        </article>
+        <article class="problem rv">
+          <h3>Os contatos chegam e se perdem no caminho</h3>
+          <p>Alguém pediu orçamento pelo WhatsApp na terça. Ficou de responder, ninguém retomou, a conversa desceu na lista. Você só percebe quando o mês fecha abaixo do esperado.</p>
+          <div class="fix"><b>O que eu faço</b><span>Organizo os contatos no CRM, com etapas de atendimento e uma rotina de acompanhamento definida.</span></div>
+        </article>
+        <article class="problem rv">
+          <h3>Cada ferramenta vive isolada e o processo está na cabeça de alguém</h3>
+          <p>Planilha de um lado, caderno de outro, WhatsApp pessoal do vendedor. Não dá para saber de onde veio o cliente, em que ponto parou a negociação nem o que fazer se a pessoa que atende sair.</p>
+          <div class="fix"><b>O que eu faço</b><span>Desenho o funil comercial com você e deixo o caminho do contato registrado, do primeiro clique ao fechamento.</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SOLUÇÃO -->
+  <section id="solucao" class="rule">
+    <div class="wrap">
+      <div class="head rv">
+        <p class="eyebrow">A solução</p>
+        <h2>Três ferramentas, um processo comercial</h2>
+        <p class="lead">Perfil no Google, anúncios e CRM costumam ser contratados separadamente e nunca conversam. Aqui eles são montados na ordem em que o cliente chega até você.</p>
+      </div>
+      <div class="flow rv">
+        <div class="node">
+          <small>Ser encontrado</small>
+          <h3>Perfil da Empresa no Google</h3>
+          <p>O antigo Google Meu Negócio. É o que aparece na busca e no Maps quando alguém procura pelo seu serviço ou pelo nome da empresa.</p>
+        </div>
+        <div class="node">
+          <small>Gerar contato</small>
+          <h3>Google Ads, rede de Pesquisa</h3>
+          <p>Anúncios exibidos para quem digita o que você vende. A estrutura inicial fica pronta para rodar com a verba que você definir.</p>
+        </div>
+        <div class="node">
+          <small>Acompanhar até fechar</small>
+          <h3>CRM com funil comercial</h3>
+          <p>Cada contato entra em uma etapa, tem um responsável e uma próxima ação. Nada depende da memória de ninguém.</p>
+        </div>
+      </div>
+      <p class="flow-note rv"><strong>O que você passa a enxergar:</strong> por onde o contato chegou, em que etapa ele está e qual é o próximo passo. É isso que permite decidir onde investir e onde corrigir.</p>
+    </div>
+  </section>
+
+  <!-- 4. ENTREGAS -->
+  <section id="entregas" class="rule">
+    <div class="wrap">
+      <div class="head rv">
+        <p class="eyebrow">Entregas</p>
+        <h2>O que eu implemento e o que eu ensino</h2>
+        <p class="lead">O escopo exato é fechado no diagnóstico. Estas são as quatro frentes do trabalho.</p>
+      </div>
+      <div class="deliveries">
+        <article class="delivery rv">
+          <h3>Perfil da Empresa no Google</h3>
+          <div class="cols">
+            <div><h4>Implemento</h4>
+              <ul class="list">
+                <li>Criação ou otimização de um perfil elegível pelas regras do Google</li>
+                <li>Categorias, serviços, área de atendimento, horários e descrição</li>
+                <li>Organização de fotos e informações de contato</li>
+              </ul></div>
+            <div><h4>Ensino</h4>
+              <ul class="list">
+                <li>Como publicar atualizações e manter os dados corretos</li>
+                <li>Como pedir e responder avaliações</li>
+                <li>O que acompanhar nos dados do perfil</li>
+              </ul></div>
+          </div>
+        </article>
+        <article class="delivery rv">
+          <h3>Google Ads</h3>
+          <div class="cols">
+            <div><h4>Implemento</h4>
+              <ul class="list">
+                <li>Configuração da conta em nome da sua empresa</li>
+                <li>Estrutura inicial de campanha de Pesquisa: grupos, palavras-chave e anúncios</li>
+                <li>Acompanhamento de conversões, quando tecnicamente viável</li>
+              </ul></div>
+            <div><h4>Ensino</h4>
+              <ul class="list">
+                <li>Como ler os principais números da campanha</li>
+                <li>Como controlar a verba e pausar ou retomar anúncios</li>
+                <li>Que ajustes fazer no acompanhamento de rotina</li>
+              </ul></div>
+          </div>
+        </article>
+        <article class="delivery rv">
+          <h3>CRM</h3>
+          <div class="cols">
+            <div><h4>Implemento</h4>
+              <ul class="list">
+                <li>Funil comercial com as etapas do seu atendimento</li>
+                <li>Organização dos contatos e dos campos que importam</li>
+                <li>Rotina básica de acompanhamento e retomada</li>
+              </ul></div>
+            <div><h4>Ensino</h4>
+              <ul class="list">
+                <li>Como registrar e mover cada contato no funil</li>
+                <li>Como usar tarefas e lembretes para não perder retornos</li>
+                <li>Como revisar o funil e ver onde as vendas param</li>
+              </ul></div>
+          </div>
+        </article>
+        <article class="delivery rv">
+          <h3>Treinamento e entrega</h3>
+          <div class="cols">
+            <div><h4>Implemento</h4>
+              <ul class="list">
+                <li>Transferência de todos os acessos para você</li>
+                <li>Orientações práticas sobre o que foi configurado</li>
+                <li>Contas e dados no nome da sua empresa desde o início</li>
+              </ul></div>
+            <div><h4>Ensino</h4>
+              <ul class="list">
+                <li>O uso da estrutura, na prática, com as suas contas</li>
+                <li>A rotina de manutenção de cada frente</li>
+                <li>O que observar ao contratar alguém para dar continuidade</li>
+              </ul></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PROCESSO -->
+  <section id="processo" class="rule">
+    <div class="wrap">
+      <div class="head rv">
+        <p class="eyebrow">Processo</p>
+        <h2>Do diagnóstico à entrega, em quatro etapas</h2>
+      </div>
+      <ol class="steps">
+        <li class="step rv"><h3>Diagnóstico</h3><p>Entendo o que a empresa vende, como atende hoje e o que já existe de perfil, anúncios, site e ferramentas. Daqui saem o escopo e o valor da implementação.</p></li>
+        <li class="step rv"><h3>Implementação</h3><p>Configuro o Perfil da Empresa no Google, a conta e a campanha de Pesquisa no Google Ads e o funil no CRM, com as informações que você fornece.</p></li>
+        <li class="step rv"><h3>Treinamento</h3><p>Mostro como usar cada parte nas suas próprias contas. Você e quem atende os clientes aprendem a rotina que mantém a estrutura funcionando.</p></li>
+        <li class="step rv"><h3>Entrega</h3><p>Transfiro os acessos e as orientações. A partir daqui a operação é sua: você conduz, delega para a equipe ou contrata um profissional para acompanhar.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 6. SOBRE -->
+  <section id="sobre" class="rule">
+    <div class="wrap about">
+      <!-- FOTO: salve a foto real em consultoria/media/jacque.jpg e preencha CONFIG.foto no final do arquivo -->
+      <div class="photo todo rv" id="foto">
+        <b>Substituir</b>
+        <span>Foto real de Jacque Platon<br>Formato vertical, 4:5</span>
+      </div>
+      <div class="about-copy rv">
+        <p class="eyebrow">Quem implementa</p>
+        <h2>Jacque Platon</h2>
+        <p>Nesta consultoria, o diagnóstico, a implementação e o treinamento são feitos por mim, diretamente com você. Meu trabalho termina quando a estrutura está funcionando e você sabe operá-la.</p>
+        <div class="todo">
+          <b>Substituir antes de publicar</b>
+          <span>Apresentação profissional de Jacque: formação, tempo de atuação, áreas atendidas e certificações. Incluir apenas informações reais e confirmadas.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. INVESTIMENTO -->
+  <section id="investimento" class="rule">
+    <div class="wrap">
+      <div class="price rv">
+        <div class="price-top">
+          <p class="eyebrow">Investimento</p>
+          <p class="amount"><small>De </small>R$&nbsp;2.500 <small>a </small>R$&nbsp;4.000</p>
+          <p><strong>Implementação e treinamento, sem mensalidade pelos meus serviços.</strong> Pagamento único. O valor dentro dessa faixa depende do escopo definido no diagnóstico, e você recebe o orçamento fechado antes de qualquer trabalho começar.</p>
+          <div class="actions"><a class="btn btn-primary" data-wa href="#contato">Quero estruturar meu negócio</a></div>
+        </div>
+        <div class="price-grid">
+          <div>
+            <h3>O que faz o valor variar</h3>
+            <ul class="list">
+              <li>Perfil no Google criado do zero ou apenas otimizado</li>
+              <li>Quantidade de unidades ou endereços da empresa</li>
+              <li>Quantidade de serviços anunciados na campanha inicial</li>
+              <li>Tipos de conversão a acompanhar e acesso técnico ao site</li>
+              <li>Etapas do funil, volume de contatos a organizar e pessoas a treinar</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Custos à parte, pagos a terceiros</h3>
+            <ul class="list no">
+              <li>Verba de anúncios, paga diretamente ao Google</li>
+              <li>Assinatura do CRM e de outras ferramentas, que pode ser recorrente</li>
+              <li>Site ou página de destino, que não faz parte desta consultoria</li>
+              <li>Acompanhamento das campanhas depois da entrega</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. PERGUNTAS FREQUENTES -->
+  <section id="perguntas" class="rule">
+    <div class="wrap">
+      <div class="head rv">
+        <p class="eyebrow">Perguntas frequentes</p>
+        <h2>Antes de conversar, o que você precisa saber</h2>
+      </div>
+      <div class="faq rv">
+        <details>
+          <summary>O que exatamente está incluído?</summary>
+          <p>Configuração ou otimização do Perfil da Empresa no Google, configuração da conta e da estrutura inicial de uma campanha de Pesquisa no Google Ads, configuração do funil comercial no CRM e o treinamento para você operar tudo isso. O detalhamento é fechado no diagnóstico e registrado no orçamento.</p>
+        </details>
+        <details>
+          <summary>Isso é um curso ou uma gestão mensal?</summary>
+          <p>Nenhum dos dois. Eu implemento a estrutura nas suas contas, ensino você a usar e entrego. Não vendo aulas avulsas e não assumo a gestão contínua das suas campanhas.</p>
+        </details>
+        <details>
+          <summary>A criação de site está incluída?</summary>
+          <p>Não. Para anunciar na rede de Pesquisa, a empresa precisa de um site ou página de destino. No diagnóstico eu avalio o que você já tem e digo se é suficiente para começar.</p>
+        </details>
+        <details>
+          <summary>A verba de anúncios está no valor?</summary>
+          <p>Não. A verba é definida por você e paga diretamente ao Google, na sua conta. O valor da consultoria cobre o meu trabalho de implementação e treinamento.</p>
+        </details>
+        <details>
+          <summary>Qual CRM será usado? Quem paga a assinatura?</summary>
+          <p>A ferramenta é escolhida no diagnóstico, de acordo com o tamanho da equipe e a forma como você atende. Se ela tiver assinatura, o pagamento é feito por você diretamente ao fornecedor e pode ser recorrente.</p>
+        </details>
+        <details>
+          <summary>Quem cuida das campanhas depois da entrega?</summary>
+          <p>Você ou um profissional contratado por você. Campanhas de Google Ads precisam de acompanhamento contínuo para funcionar bem, e essa rotina não faz parte desta consultoria. O treinamento mostra o que observar e que ajustes fazer.</p>
+        </details>
+        <details>
+          <summary>Você garante resultado?</summary>
+          <p>Não prometo faturamento, quantidade de clientes nem posição no Google. Esses resultados dependem do mercado, da verba, da oferta e do atendimento. O que eu garanto é a entrega: a estrutura configurada conforme o escopo e o treinamento para operá-la.</p>
+        </details>
+        <details>
+          <summary>As contas ficam no nome de quem?</summary>
+          <p>No seu. Perfil no Google, conta de anúncios e CRM são criados ou organizados com os dados da sua empresa, e todos os acessos são transferidos na entrega.</p>
+        </details>
+        <details>
+          <summary>O acompanhamento de conversões sempre é possível?</summary>
+          <p>Depende do acesso ao site e de como os contatos chegam. Quando é tecnicamente viável, eu configuro. Quando não é, explico o motivo e o que seria necessário para viabilizar.</p>
+        </details>
+        <details>
+          <summary>Toda empresa pode ter um Perfil no Google?</summary>
+          <p>Não. O Google define quais negócios são elegíveis e pode exigir verificação. Eu avalio a elegibilidade no diagnóstico. A aprovação e a verificação são decisões do Google.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. CHAMADA FINAL -->
+  <section id="contato" class="final">
+    <div class="wrap">
+      <div class="final-box rv">
+        <p class="eyebrow">Próximo passo</p>
+        <h2>Vamos definir o escopo da sua empresa</h2>
+        <p class="lead">Me chame no WhatsApp e conte o que você vende e como atende hoje. A partir do diagnóstico você recebe o escopo e o valor, dentro da faixa de R$&nbsp;2.500 a R$&nbsp;4.000.</p>
+        <a class="btn btn-primary" data-wa href="#contato">
+          Quero estruturar meu negócio
+        </a>
+        <div class="todo" id="wa-pendente">
+          <b>Substituir antes de publicar</b>
+          <span>O número de WhatsApp de Jacque ainda não foi configurado. Enquanto isso, os botões desta página não abrem conversa. Preencha <code>CONFIG.whatsapp</code> no final do arquivo.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Jacque Platon · Implantação Comercial Digital</p>
+    <p>Google, Google Ads e Perfil da Empresa no Google são marcas do Google LLC. Esta consultoria é um serviço independente, sem vínculo com o Google.</p>
+    <p class="todo"><b>Substituir antes de publicar</b><span>Razão social e CNPJ, cidade de atendimento e link da política de privacidade.</span></p>
+  </div>
+</footer>
+
+<div class="bar" id="bar"><a class="btn btn-primary" data-wa href="#contato">Quero estruturar meu negócio</a></div>
+
+<script>
+/* ===== CONFIGURAÇÃO — preencha antes de publicar =====
+   whatsapp: número confirmado com DDI e DDD, só dígitos. Ex.: '5511999998888'
+   foto:     caminho da foto real. Ex.: 'media/jacque.jpg'                    */
+var CONFIG = {
+  whatsapp: '',
+  mensagem: 'Olá, Jacque. Quero estruturar meu negócio e gostaria de fazer o diagnóstico.',
+  foto: ''
+};
+
+(function () {
+  var numero = (CONFIG.whatsapp || '').replace(/\D/g, '');
+  if (numero.length >= 12) {
+    var url = 'https://wa.me/' + numero + '?text=' + encodeURIComponent(CONFIG.mensagem);
+    document.querySelectorAll('[data-wa]').forEach(function (a) {
+      a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    });
+    document.getElementById('wa-pendente').hidden = true;
+  }
+
+  if (CONFIG.foto) {
+    var box = document.getElementById('foto');
+    var img = new Image();
+    img.alt = 'Jacque Platon';
+    img.onload = function () { box.className = 'photo rv in'; box.textContent = ''; box.appendChild(img); };
+    img.src = CONFIG.foto;
+  }
+
+  var bar = document.getElementById('bar');
+  var hero = document.querySelector('.hero .actions');
+  var fim = document.getElementById('contato');
+  var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if ('IntersectionObserver' in window) {
+    var visiveis = { hero: true, fim: false };
+    var atualiza = function () { bar.classList.toggle('on', !visiveis.hero && !visiveis.fim); };
+    new IntersectionObserver(function (e) { visiveis.hero = e[0].isIntersecting; atualiza(); }).observe(hero);
+    new IntersectionObserver(function (e) { visiveis.fim = e[0].isIntersecting; atualiza(); }).observe(fim);
+
+    if (!reduz) {
+      document.documentElement.classList.add('anim');
+      var io = new IntersectionObserver(function (itens) {
+        itens.forEach(function (i) { if (i.isIntersecting) { i.target.classList.add('in'); io.unobserve(i.target); } });
+      }, { rootMargin: '0px 0px -8% 0px' });
+      document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+      /* segurança: nada fica invisível se o observador falhar */
+      setTimeout(function () { document.querySelectorAll('.rv').forEach(function (el) { el.classList.add('in'); }); }, 4000);
+    }
+  }
+})();
+</script>
+</body>
+</html>
