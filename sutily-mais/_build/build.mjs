@@ -70,7 +70,7 @@ function foto(nome, { alt, sizes, cls = '', lazy = true, attrs = '' }) {
   return `<picture><source type="image/avif" srcset="${set('avif')}" sizes="${sizes}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img class="${cls}" src="${RAIZ}img/${nome}-${maior}.webp" width="${m.w}" height="${m.h}" alt="${esc(alt)}" ${lazy ? 'loading="lazy" decoding="async"' : 'fetchpriority="high" decoding="sync"'} ${attrs}></picture>`;
 }
 
-// título com palavras animadas. *asteriscos* = itálico champagne
+// título com palavras animadas. *asteriscos* = itálico na cor de destaque
 function palavras(txt) {
   let em = false, i = 0;
   return txt.split(/\s+/).filter(Boolean).map((tok) => {
@@ -154,7 +154,7 @@ function pagina({ caminho, title, desc, corpo, grafo = [], classe = '', zona = '
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${canon}">
 <meta name="robots" content="${noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'}">
-<meta name="theme-color" content="#241B19">
+<meta name="theme-color" content="#17362A">
 <meta name="geo.region" content="BR-RN">
 <meta name="geo.placename" content="${E.cidade}">
 <meta name="format-detection" content="telephone=no">
@@ -264,7 +264,7 @@ function blocoFaq(faq, titulo = 'Perguntas frequentes') {
 }
 
 function blocoFinal(titulo, msg, rotulo, local_) {
-  return `<section class="final" data-zona="escuro">
+  return `<section class="final" data-zona="verde">
   <div class="wrap">
     <p class="rot" data-rev>Agendamento</p>
     <h2 class="t1 final-t" data-pal>${palavras(titulo)}</h2>
@@ -366,7 +366,7 @@ function home() {
   </div>
 </section>
 
-<section class="historia" id="joycce" data-zona="bege">
+<section class="historia" id="joycce" data-zona="menta">
   <div class="wrap historia-grid">
     <figure class="historia-fig" data-mask>
       <div class="quadro"><div class="par" data-par="0.07">${foto('joycce-historia', { alt: 'Joycce Gomes em sua mesa de trabalho, com o consultório ao fundo', sizes: '(min-width: 1000px) 38vw, 92vw' })}</div></div>
@@ -400,7 +400,7 @@ function home() {
   </div>
 </section>
 
-<section class="visita" data-zona="escuro">
+<section class="visita" data-zona="verde">
   <div class="wrap">
     <header class="visita-cab">
       <p class="rot" data-rev>Primeira consulta</p>
@@ -431,7 +431,7 @@ function home() {
   </div>
 </section>
 
-<section class="onde" id="contato" data-zona="bege">
+<section class="onde" id="contato" data-zona="menta">
   <div class="wrap onde-grid">
     <div class="onde-tx">
       <p class="rot" data-rev>Onde estamos</p>
@@ -477,7 +477,7 @@ ${blocoFinal('Seu próximo sorriso começa com *uma conversa.*', MSG.geral, 'Age
 function listaTratamentos() {
   RAIZ = '../';
   const corpo = `
-<section class="cab-pg" data-zona="bege">
+<section class="cab-pg" data-zona="menta">
   <div class="wrap">
     <nav class="trilha" aria-label="Você está em"><a class="lk" href="../">Início</a><span aria-hidden="true">/</span><span aria-current="page">Tratamentos</span></nav>
     <h1 class="t0">${palavras(`Tratamentos odontológicos em *${E.bairro}*`)}</h1>
@@ -499,7 +499,7 @@ ${blocoFinal('Não sabe por onde começar? *Fale com a gente.*', MSG.geral, 'Age
     caminho: 'tratamentos/',
     title: `Tratamentos Odontológicos em ${E.bairro} | Sutily Mais`,
     desc: `Conheça as 12 especialidades da Sutily Mais em ${E.bairro}, ${E.cidade}/${E.uf}: clínico geral, ortodontia, implantes, estética, odontopediatria e mais.`,
-    corpo, classe: 'pg-lista', zona: 'bege', tipo: 'lista',
+    corpo, classe: 'pg-lista', zona: 'menta', tipo: 'lista',
     grafo: [
       ldTrilha([['Início', abs()], ['Tratamentos', abs('tratamentos/')]]),
       { '@type': 'CollectionPage', '@id': abs('tratamentos/#pagina'), url: abs('tratamentos/'), name: `Tratamentos odontológicos em ${E.bairro}`, inLanguage: 'pt-BR', isPartOf: { '@id': abs('#site') }, about: { '@id': idClinica } },
@@ -521,7 +521,7 @@ function paginaTratamento(t, i) {
     : t.slug === 'clinico-geral' ? { n: 'cuidado', alt: 'Profissional da Sutily Mais realizando atendimento odontológico', leg: 'Atendimento na Sutily Mais.' } : null;
 
   const corpo = `
-<section class="cab-t" data-zona="bege">
+<section class="cab-t" data-zona="menta">
   <div class="wrap cab-t-grid">
     <div class="cab-t-tx">
       <nav class="trilha" aria-label="Você está em"><a class="lk" href="../../">Início</a><span aria-hidden="true">/</span><a class="lk" href="../">Tratamentos</a><span aria-hidden="true">/</span><span aria-current="page">${t.nome}</span></nav>
@@ -568,7 +568,7 @@ function paginaTratamento(t, i) {
   </div>
 </section>
 
-<section class="duvidas" id="duvidas" data-zona="bege">
+<section class="duvidas" id="duvidas" data-zona="menta">
   <div class="wrap duvidas-in">${blocoFaq(t.faq, `Dúvidas sobre ${t.nome.toLowerCase()}`)}</div>
 </section>
 
@@ -592,7 +592,7 @@ ${blocoFinal(t.slug === 'urgencia-odontologica' ? 'Precisa de ajuda *agora?*' : 
 
   return pagina({
     caminho: `tratamentos/${t.slug}/`,
-    title: t.title, desc: t.desc, corpo, classe: 'pg-trat', zona: 'bege', tipo: 'tratamento', ogTipo: 'article',
+    title: t.title, desc: t.desc, corpo, classe: 'pg-trat', zona: 'menta', tipo: 'tratamento', ogTipo: 'article',
     grafo: [
       ldTrilha([['Início', abs()], ['Tratamentos', abs('tratamentos/')], [t.nome, url]]),
       { '@type': 'MedicalWebPage', '@id': `${url}#pagina`, url, name: semMarca(t.h1), description: t.desc, inLanguage: 'pt-BR', isPartOf: { '@id': abs('#site') }, about: { '@type': 'MedicalProcedure', name: t.nome }, audience: { '@type': 'Patient' }, publisher: { '@id': idClinica } },
@@ -607,7 +607,7 @@ function privacidade() {
   RAIZ = '../';
   const quem = site.razaoSocial || site.nomeCompleto;
   const corpo = `
-<section class="cab-pg" data-zona="bege">
+<section class="cab-pg" data-zona="menta">
   <div class="wrap">
     <nav class="trilha" aria-label="Você está em"><a class="lk" href="../">Início</a><span aria-hidden="true">/</span><span aria-current="page">Política de privacidade</span></nav>
     <h1 class="t0">${palavras('Política de *privacidade*')}</h1>
@@ -635,7 +635,7 @@ function privacidade() {
     caminho: 'politica-de-privacidade/',
     title: 'Política de Privacidade | Sutily Mais',
     desc: 'Saiba como o site da Sutily Mais trata as suas informações, quais cookies utiliza e como exercer os seus direitos previstos na LGPD.',
-    corpo, classe: 'pg-legal', zona: 'bege',
+    corpo, classe: 'pg-legal', zona: 'menta',
     grafo: [ldTrilha([['Início', abs()], ['Política de privacidade', abs('politica-de-privacidade/')]])],
   });
 }

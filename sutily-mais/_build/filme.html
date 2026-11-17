@@ -16,25 +16,32 @@
 @font-face{font-family:"Newsreader";src:url("../fonts/newsreader-italic.woff2") format("woff2");font-weight:300 500;font-style:italic}
 @font-face{font-family:"Jost";src:url("../fonts/jost.woff2") format("woff2");font-weight:400 500}
 *{box-sizing:border-box;margin:0}
-html,body{width:100%;height:100%;overflow:hidden;background:#241B19;color:#F3ECE2}
+html,body{width:100%;height:100%;overflow:hidden;background:#17362A;color:#F2F8F3}
 body{--u:1vh;font-family:"Jost",sans-serif}
 body.v{--u:.5625vh}
 .cena{position:absolute;inset:0}
-.rot{font:500 calc(var(--u)*1.75)/1 "Jost";letter-spacing:.26em;text-transform:uppercase;color:#C5A36B;white-space:nowrap}
+.rot{font:500 calc(var(--u)*1.75)/1 "Jost";letter-spacing:.26em;text-transform:uppercase;color:#D6C56F;white-space:nowrap}
 .tit{font:400 calc(var(--u)*12.5)/1 "Newsreader",serif;letter-spacing:-.02em}
-.tit i{color:#C5A36B}
-.sub{font:400 calc(var(--u)*2.9)/1.45 "Jost";color:#B9ACA0}
+.tit i{color:#D6C56F}
+.sub{font:400 calc(var(--u)*2.9)/1.45 "Jost";color:#A9C4B4}
 .lin{display:block;overflow:hidden;padding:.08em 0 .16em;margin:-.08em 0 -.16em}
 .lin>span{display:block;will-change:transform}
-.q{position:absolute;overflow:hidden;background:#302B29}
+.q{position:absolute;overflow:hidden;background:#1F4535}
 .q img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
 .arco{border-radius:999vh 999vh .4vh .4vh}
-.fio{position:absolute;border:1px solid #C5A36B;opacity:.5}
+.fio{position:absolute;border:1px solid #D6C56F;opacity:.5}
 .tx{position:absolute;display:grid;gap:calc(var(--u)*3.2);align-content:center}
-.traco{width:calc(var(--u)*9);height:1px;background:#C5A36B;transform-origin:0 50%}
-.pilula{justify-self:start;display:inline-flex;align-items:center;height:calc(var(--u)*7.4);padding:0 calc(var(--u)*4);border-radius:99vh;background:#C5A36B;color:#241B19;font:500 calc(var(--u)*1.75)/1 "Jost";letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.traco{width:calc(var(--u)*9);height:1px;background:#D6C56F;transform-origin:0 50%}
+.pilula{justify-self:start;display:inline-flex;align-items:center;height:calc(var(--u)*7.4);padding:0 calc(var(--u)*4);border-radius:99vh;background:#17362A;color:#F2F8F3;font:500 calc(var(--u)*1.75)/1 "Jost";letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
 .logo{width:calc(var(--u)*56);height:auto;display:block}
-.ass{font:500 calc(var(--u)*1.55)/1 "Jost";letter-spacing:.42em;text-transform:uppercase;color:#B9ACA0;margin-top:calc(var(--u)*-1.4)}
+.ass{font:500 calc(var(--u)*1.55)/1 "Jost";letter-spacing:.42em;text-transform:uppercase;color:#fff;margin-top:calc(var(--u)*-1.4)}
+
+/* cena 3: sobre o verde do logotipo, com a marca nas cores originais */
+.fundo{position:absolute;inset:0;background:#66A583}
+#c3 .rot{color:#0F2E20}
+#c3 .sub{color:#14291F}
+#c3 .traco{background:#0F2E20}
+#c3 .fio{border-color:#F2F8F3}
 
 /* horizontal 16:9 */
 #c1 .q{right:9vw;top:9vh;bottom:0;width:36vw}
@@ -89,6 +96,7 @@ body.v{--u:.5625vh}
   </div>
 </div>
 <div class="cena" id="c3">
+  <div class="fundo" data-a="bg"></div>
   <div class="fio arco" data-a="f"></div>
   <div class="q arco" data-a="m"><img src="../img/fachada-790.webp" alt="" style="object-position:50% 12%"></div>
   <div class="tx">
@@ -113,6 +121,9 @@ function cena(el, t) {                    // t = tempo dentro da cena (0–5 s)
   const sai = io(seg(t, 4.35, 4.95));     // 0 → 1 na saída
   el.style.visibility = t < 0 || t >= CENA ? 'hidden' : 'visible';
   if (t < 0 || t >= CENA) return;
+
+  const bg = g('bg');
+  if (bg) bg.style.clipPath = `inset(${(100 - io(seg(t, 0, .8)) * 100).toFixed(2)}% 0 ${(io(seg(t, 4.4, 5)) * 100).toFixed(2)}% 0)`;
 
   // moldura: abre de baixo para cima, fecha para cima; a foto aproxima devagar
   const abre = io(seg(t, .1, 1.35));

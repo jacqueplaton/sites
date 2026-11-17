@@ -14,7 +14,7 @@ export const tratamentos = [
   {
     slug: 'clinico-geral',
     nome: 'Clínico Geral',
-    tom: 'bege',
+    tom: 'menta',
     foto: '',
     h1: 'Clínico geral em Nova Parnamirim: o começo de todo cuidado',
     title: 'Clínico Geral em Nova Parnamirim | Sutily Mais',
@@ -49,7 +49,7 @@ export const tratamentos = [
   {
     slug: 'cirurgia-oral',
     nome: 'Cirurgia Oral',
-    tom: 'grafite',
+    tom: 'profundo',
     foto: '',
     h1: 'Cirurgia oral em Parnamirim, com planejamento e acolhimento',
     title: 'Cirurgia Oral em Parnamirim/RN | Sutily Mais',
@@ -119,7 +119,7 @@ export const tratamentos = [
   {
     slug: 'endodontia',
     nome: 'Endodontia',
-    tom: 'espresso',
+    tom: 'noite',
     foto: '',
     h1: 'Endodontia em Nova Parnamirim: tratamento de canal para preservar o seu dente',
     title: 'Endodontia (Tratamento de Canal) em Nova Parnamirim | Sutily Mais',
@@ -154,7 +154,7 @@ export const tratamentos = [
   {
     slug: 'estetica',
     nome: 'Estética',
-    tom: 'champagne',
+    tom: 'ouro',
     foto: '',
     h1: 'Estética dental em Nova Parnamirim: harmonia que respeita o seu sorriso',
     title: 'Estética Dental em Nova Parnamirim | Sutily Mais',
@@ -189,7 +189,7 @@ export const tratamentos = [
   {
     slug: 'harmonizacao-orofacial',
     nome: 'Harmonização Orofacial',
-    tom: 'bege',
+    tom: 'menta',
     foto: '',
     h1: 'Harmonização orofacial em Parnamirim: equilíbrio entre o rosto e o sorriso',
     title: 'Harmonização Orofacial em Parnamirim/RN | Sutily Mais',
@@ -224,7 +224,7 @@ export const tratamentos = [
   {
     slug: 'implante-dentario',
     nome: 'Implante Dentário',
-    tom: 'grafite',
+    tom: 'profundo',
     foto: '',
     h1: 'Implante dentário em Nova Parnamirim: reabilitação planejada do começo ao fim',
     title: 'Implante Dentário em Nova Parnamirim | Sutily Mais',
@@ -259,7 +259,7 @@ export const tratamentos = [
   {
     slug: 'odontopediatria',
     nome: 'Odontopediatria',
-    tom: 'salvia',
+    tom: 'verde',
     foto: '',
     h1: 'Odontopediatria em Nova Parnamirim: o dentista das crianças',
     title: 'Odontopediatria em Nova Parnamirim | Sutily Mais',
@@ -329,7 +329,7 @@ export const tratamentos = [
   {
     slug: 'periodontia',
     nome: 'Periodontia',
-    tom: 'salvia',
+    tom: 'verde',
     foto: '',
     h1: 'Periodontia em Parnamirim: a saúde da gengiva como base do sorriso',
     title: 'Periodontia e Tratamento de Gengiva em Parnamirim | Sutily Mais',
@@ -364,7 +364,7 @@ export const tratamentos = [
   {
     slug: 'protese-dentaria',
     nome: 'Prótese Dentária',
-    tom: 'champagne',
+    tom: 'ouro',
     foto: '',
     h1: 'Prótese dentária em Nova Parnamirim: reabilitar o sorriso por inteiro',
     title: 'Prótese Dentária em Nova Parnamirim | Sutily Mais',
@@ -399,7 +399,7 @@ export const tratamentos = [
   {
     slug: 'urgencia-odontologica',
     nome: 'Urgência Odontológica',
-    tom: 'espresso',
+    tom: 'noite',
     foto: '',
     h1: 'Urgência odontológica em Nova Parnamirim e Parnamirim/RN',
     title: 'Urgência Odontológica em Parnamirim/RN | Sutily Mais',

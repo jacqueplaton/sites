@@ -13,6 +13,24 @@ terceiros antes do consentimento do visitante.
 
 ---
 
+## Identidade
+
+As cores são as do logotipo original e ficam todas no início de `css/site.css`:
+
+| Cor | Código | Onde aparece |
+|---|---|---|
+| Verde do logotipo | `#66A583` | faixas "Primeira consulta" e chamada final, pranchas, ícone do site |
+| Dourado | `#D6C56F` | letras do logotipo, botões e destaques sobre o verde profundo |
+| Menta | `#CFE6D6` | detalhes do logotipo, fundos claros de seção |
+| Branco | `#F6FAF6` | fundo principal |
+| Verde profundo | `#17362A` | hero, filme e rodapé (mesmo matiz do logotipo, mais fechado) |
+
+Sobre fundo claro o dourado não tem contraste suficiente para texto, então títulos em
+destaque e botões usam verde; o dourado fica para os fundos escuros. Todos os textos
+passam no nível AA de contraste.
+
+---
+
 ## Estrutura
 
 ```
