@@ -31,6 +31,7 @@ Depois abra o Claude Code na pasta e rode `/skills` para conferir se apareceram.
 | `excalidraw-diagram` | Diagrama editável (.excalidraw) | Não |
 | `visualizations` | PNG estilo desenhado à mão | API key kie.ai |
 | `excalidraw-visuals` | Idem, versão com script | API key kie.ai |
+| `cold-outreach` | Playbooks de vendas B2B: e-mail frio, LinkedIn, objeções, qualificação (do Sellbird/Harvey, AGPL-3.0) | Não |
 
 ## Antes de usar video-to-website
 
