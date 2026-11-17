@@ -21,6 +21,13 @@ rm -rf _site
 mkdir -p _site
 cp -r index.html favicon.svg robots.txt sitemap.xml css js fonts media _site/
 
+# Sutily Mais: publicada em /sutily-mais/, só os arquivos públicos
+# (sem a pasta de fontes _build e sem o README).
+if [ -d sutily-mais ]; then
+  cp -r sutily-mais _site/
+  rm -r _site/sutily-mais/_build _site/sutily-mais/README.md
+fi
+
 # Escolhe a URL: deploys de produção usam $URL; previews de branch e de pull
 # request usam $DEPLOY_PRIME_URL, que aponta para aquele deploy específico.
 DESTINO="${DEPLOY_PRIME_URL:-${URL:-}}"

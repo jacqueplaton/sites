@@ -177,15 +177,15 @@ Requer Playwright (Chromium) e FFmpeg.
 A pasta funciona em qualquer hospedagem de arquivos estáticos: basta enviar o
 conteúdo dela, **sem** `_build/` e sem este `README.md`.
 
-Os scripts de publicação que já existem na raiz do repositório
-(`.github/workflows/deploy.yml` e `netlify-build.sh`) publicam apenas o site do
-restaurante e **não foram alterados**. Para a prévia sair junto, em
-`…/sites/sutily-mais/`, acrescente a cada um, logo depois do `cp -r` existente:
+Os scripts de publicação da raiz do repositório (`.github/workflows/deploy.yml` e
+`netlify-build.sh`) já copiam esta pasta para a publicação, sem `_build/` e sem o
+`README.md`. O site sai junto com o do restaurante, no endereço
 
-```bash
-cp -r sutily-mais _site/
-rm -r _site/sutily-mais/_build _site/sutily-mais/README.md
-```
+**https://jacqueplaton.github.io/sites/sutily-mais/**
+
+O GitHub Pages publica a cada `push` nas branches `claude/session-x6jjir` e
+`claude/gifted-gauss-thmaxz`. Se o Pages ainda não estiver ligado, falta o clique
+descrito no README da raiz: **Settings → Pages → Source → GitHub Actions**.
 
 Ao mudar para domínio próprio, publique o conteúdo desta pasta na raiz do domínio e
 atualize `url` no `config.mjs`. A página `404.html` usa caminhos absolutos calculados
