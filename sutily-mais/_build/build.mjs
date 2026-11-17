@@ -17,7 +17,7 @@ const AQUI = path.dirname(fileURLToPath(import.meta.url));
 const SAIDA = path.resolve(AQUI, '..');
 const IMG = JSON.parse(fs.readFileSync(path.join(AQUI, 'images.json'), 'utf8'));
 const LOGO = JSON.parse(fs.readFileSync(path.join(AQUI, 'logo.json'), 'utf8'));
-const V = '1'; // versão dos arquivos css/js (mude para forçar atualização do cache)
+const V = '2'; // versão dos arquivos css/js (mude para forçar atualização do cache)
 
 // ------------------------------------------------------------------ utilidades
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -42,6 +42,8 @@ const mapaEmbed = `https://www.google.com/maps?q=${q}&output=embed`;
 // Sem número confirmado, o link abre o WhatsApp para a pessoa escolher o
 // contato — nunca aponta para um número inventado.
 const wa = (msg) => `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(msg)}`;
+// número do WhatsApp como as pessoas leem: 5584981032154 → (84) 98103-2154
+const waVisivel = site.whatsapp.replace(/^55(\d{2})(\d{4,5})(\d{4})$/, '($1) $2-$3');
 const MSG = {
   geral: 'Olá! Vim pelo site da Sutily Mais e gostaria de agendar uma consulta.',
   trat: (nome) => `Olá! Vim pelo site da Sutily Mais e gostaria de agendar uma avaliação de ${nome}.`,
@@ -215,6 +217,7 @@ ${corpo}
     <div class="rodape-col">
       <h2 class="rot">Onde estamos</h2>
       <address>${end1}<br>${end2}</address>
+      ${site.whatsapp ? `<p><a class="lk" href="${wa(MSG.geral)}" target="_blank" rel="noopener" data-wa="rodape">WhatsApp · ${waVisivel}</a></p>` : ''}
       ${site.telefone ? `<p><a class="lk" href="tel:${site.telefone.replace(/\D/g, '')}" data-evento="telefone">${site.telefone}</a></p>` : ''}
       <p><a class="lk" href="${linkRota}" target="_blank" rel="noopener" data-evento="rota">Como chegar</a></p>
       ${site.instagram ? `<p><a class="lk" href="${site.instagram}" target="_blank" rel="noopener me">Instagram</a></p>` : ''}
@@ -226,7 +229,7 @@ ${corpo}
     <p><a class="lk" href="${RAIZ}politica-de-privacidade/">Política de privacidade</a> · <button class="lk" type="button" data-cookies-abrir>Preferências de cookies</button></p>
   </div>
 </footer>
-<a class="barra-cta" href="${wa(MSG.geral)}" target="_blank" rel="noopener" data-wa="barra-mobile" data-barra>${ic.wa}<span>Agendar pelo WhatsApp</span></a>
+<a class="barra-cta" href="${wa(MSG.geral)}" target="_blank" rel="noopener" data-wa="flutuante" data-barra>${ic.wa}<span>Agendar pelo WhatsApp</span></a>
 <div class="cookies" role="dialog" aria-live="polite" aria-label="Aviso de cookies" data-cookies hidden>
   <p>Usamos cookies de medição e de anúncios para entender como o site é usado. Nenhum dado de saúde é coletado. <a class="lk" href="${RAIZ}politica-de-privacidade/">Saiba mais</a></p>
   <div class="cookies-acoes">
@@ -439,7 +442,7 @@ function home() {
       <dl class="nap" data-rev>
         <div><dt>Endereço</dt><dd><address>${end1}<br>${end2}</address>${!E.rua && site.previa ? '<span class="pendente">Logradouro e CEP a confirmar</span>' : ''}</dd></div>
         ${site.horarios.length ? `<div><dt>Horários</dt><dd>${site.horarios.map((h) => `${h.dias}: ${h.horas}`).join('<br>')}</dd></div>` : site.previa ? '<div><dt>Horários</dt><dd><span class="pendente">A confirmar</span></dd></div>' : ''}
-        <div><dt>Agendamento</dt><dd><a class="lk" href="${wa(MSG.geral)}" target="_blank" rel="noopener" data-wa="contato">WhatsApp${site.telefone ? ` · ${site.telefone}` : ''}</a>${!site.whatsapp && site.previa ? '<span class="pendente">Número a confirmar</span>' : ''}</dd></div>
+        <div><dt>Agendamento</dt><dd><a class="lk" href="${wa(MSG.geral)}" target="_blank" rel="noopener" data-wa="contato">WhatsApp${waVisivel ? ` · ${waVisivel}` : ''}</a>${!site.whatsapp && site.previa ? '<span class="pendente">Número a confirmar</span>' : ''}</dd></div>
       </dl>
       <div class="onde-acoes" data-rev>
         <a class="btn btn-escuro" href="${linkRota}" target="_blank" rel="noopener" data-evento="rota" data-magnetico>${ic.pino}<span>Traçar rota</span></a>

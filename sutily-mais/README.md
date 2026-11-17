@@ -145,7 +145,7 @@ Requer Playwright (Chromium) e FFmpeg.
   só são carregados depois do “Aceitar”. Sem nenhum código configurado, o aviso de
   cookies nem aparece.
 - **Eventos** (enviados ao `dataLayer`): `whatsapp_click` (com `posicao`: hero, topo,
-  barra-mobile, tratamento-topo…), `telefone_click`, `rota_click`, `mapa_click`,
+  flutuante, tratamento-topo…), `telefone_click`, `rota_click`, `mapa_click`,
   `avaliacoes_click`, `avaliar_click`, `filme_play`, `mapa_carregado`.
 - **UTMs:** `utm_source`, `utm_medium`, `utm_campaign`, `utm_content` e `utm_term` são
   guardadas durante a visita e acompanham os eventos.

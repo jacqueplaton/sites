@@ -26,7 +26,7 @@ export const site = {
 
   // ---------- CONTATO (NAP) — deve ser IDÊNTICO ao Perfil da Empresa no Google
   // WhatsApp só com números, com 55 + DDD. Ex.: '5584999990000'
-  whatsapp: '',
+  whatsapp: '5584981032154',
   // Telefone como aparece no Google. Ex.: '(84) 99999-0000'
   telefone: '',
   email: '',

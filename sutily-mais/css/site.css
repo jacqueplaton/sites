@@ -412,7 +412,12 @@ html.mov .faixa-tr{animation:none}
 .legal-in .lk{background-size:100% 1px;color:var(--tinta)}
 
 /* ---------- elementos flutuantes */
-.barra-cta{display:none}
+/* botão flutuante de WhatsApp, em todas as páginas: pílula no canto (computador) ou barra (celular) */
+.barra-cta{position:fixed;right:24px;bottom:24px;z-index:50;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:0 26px 0 22px;border-radius:999px;background:var(--ouro);color:var(--tinta-escura);font:500 .74rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;box-shadow:0 14px 34px -12px rgba(15,39,29,.55);transform:translateY(190%);transition:transform .7s var(--ease),background-color .4s}
+.barra-cta .ic{font-size:1.25rem}
+.barra-cta.visivel{transform:none}
+.barra-cta:hover{background:#E8DC98}
+body.menu-aberto .barra-cta{transform:translateY(190%)}
 .cookies{position:fixed;left:16px;bottom:16px;z-index:80;width:min(440px,100% - 32px);display:grid;gap:18px;padding:22px 24px;background:var(--profundo);color:#F2F8F3;--tinta:#F2F8F3;--fundo:#17362A;--linha:rgba(242,248,243,.3);--btn:#D6C56F;--btn-tx:#12291F;--btn-h:#E8DC98;border-radius:4px;box-shadow:0 24px 60px -20px rgba(0,0,0,.5);font-size:.9rem;line-height:1.5;animation:surge .8s var(--ease) both}
 .cookies[hidden]{display:none}
 .cookies-acoes{display:flex;gap:10px;justify-content:flex-end}
@@ -494,10 +499,7 @@ html.mov .faixa-tr{animation:none}
   .vizinhos a{padding:20px 12px}
   .faq-r{padding-right:0}
   .cookies{bottom:84px}
-  .barra-cta{position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:50;display:flex;align-items:center;justify-content:center;gap:12px;min-height:56px;border-radius:999px;background:var(--ouro);color:var(--tinta-escura);font:500 .76rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;box-shadow:0 14px 34px -12px rgba(15,39,29,.55);transform:translateY(160%);transition:transform .7s var(--ease)}
-  .barra-cta .ic{font-size:1.2rem}
-  .barra-cta.visivel{transform:none}
-  body.menu-aberto .barra-cta{transform:translateY(160%)}
+  .barra-cta{left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));padding:0 16px}
 }
 
 /* ==========================================================================
