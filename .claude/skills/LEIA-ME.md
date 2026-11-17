@@ -31,6 +31,7 @@ Depois abra o Claude Code na pasta e rode `/skills` para conferir se apareceram.
 | `excalidraw-diagram` | Diagrama editável (.excalidraw) | Não |
 | `visualizations` | PNG estilo desenhado à mão | API key kie.ai |
 | `excalidraw-visuals` | Idem, versão com script | API key kie.ai |
+| `cold-outreach` | Mensagens de prospecção (WhatsApp, DM, e-mail + follow-ups) em PT/EN | Preencher `cold-outreach/perfil.md` |
 
 ## Antes de usar video-to-website
 
@@ -42,4 +43,15 @@ node -v             # precisa responder
 Sirva sempre por HTTP, nunca abrindo o arquivo direto:
 ```
 npx serve .
+```
+
+## Antes de usar cold-outreach
+
+Abra `cold-outreach/perfil.md` e preencha os campos `[PREENCHER]` (quem assina,
+oferta, assinatura de e-mail com endereço físico). A skill só cita casos e números
+que estiverem nesse arquivo. Os textos gerados vão para a pasta `prospeccao/`.
+
+```
+/cold-outreach Sabor Mineiro, Deerfield Beach, instagram.com/...
+/cold-outreach prospects.csv
 ```
