@@ -1,0 +1,39 @@
+{
+  "_leia": "Dados centrais do site. Depois de editar, rode: python3 fonte/gerar.py",
+
+  "marca": "Melquisedeque Brito",
+  "nome_completo": "Melquisedeque de Brito Trindade",
+  "oab": "OAB/RN 23.477",
+  "atuacao_curta": "Advocacia criminal",
+  "regiao": "Natal, Parnamirim e região",
+
+  "whatsapp": {
+    "_pendente": "Confirmar com o escritório se este número abre a conta certa. O número exibido segue o print 08.",
+    "digitos": "558488494456",
+    "exibicao": "+55 84 8849-4456",
+    "mensagem": "Olá, gostaria de agendar uma conversa com o escritório."
+  },
+
+  "instagram": {
+    "usuario": "advmelquisedeque",
+    "url": "https://www.instagram.com/advmelquisedeque/"
+  },
+
+  "formacao": {
+    "_pendente": "Mudar para true somente depois que o advogado confirmar título e grafia.",
+    "confirmada": false,
+    "texto": "Especialista em Direito Penal e Criminologia pela PUC/RS"
+  },
+
+  "endereco": {
+    "_pendente": "Endereço físico, horário e plantão dependem do titular. Deixe vazio até haver dado verificável.",
+    "exibir": false,
+    "linhas": []
+  },
+
+  "analytics": {
+    "_leia": "Preencha somente com integração autorizada. Ex.: G-XXXXXXX ou GTM-XXXXXX. Vazio = nenhum script de medição.",
+    "ga4": "",
+    "gtm": ""
+  }
+}
